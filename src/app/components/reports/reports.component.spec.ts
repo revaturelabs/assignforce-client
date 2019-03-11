@@ -10,17 +10,34 @@ import { AppMaterialModule } from '../../material.module';
 import { ReportsComponent } from './reports.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { HttpClientTestingModule } from '../../../../node_modules/@angular/common/http/testing';
+import { Observable } from 'rxjs/Observable';
+import { Curriculum } from '../../model/Curriculum';
+import { Batch } from '../../model/Batch';
 
 describe('ReportsComponent', () => {
   let batchService: BatchControllerService;
-  let curriculumService: CurriculumControllerService;
+  let curriculumService: MockCurriculumControllerService;
   let component: ReportsComponent;
   let fixture: ComponentFixture<ReportsComponent>;
+  
+  //no dummy curriculum data added yet
+   class MockCurriculumControllerService {
+  //   findAll(): Observable<Curriculum[]> {
+  //     return Observable.of();
+      
+  //   }
+  //   update(curriculum: Curriculum){
+  //     if(curriculum == null){
+  //       return Observable.of(new Error('testError'));
+  //     }
+  //     return curriculum;
+  //   }
+   }
 
-  const batches = 
-    {
+  const batches: Batch[] = 
+    [{
       id: 740,
-      name: '1803 Mar12 .NET',
+      name: 'Test1',
       startDate: new Date('2018-04-11').getTime(),
       endDate: new Date('2018-06-17').getTime(),
       curriculum: 2,
@@ -31,14 +48,30 @@ describe('ReportsComponent', () => {
       building: 1,
       room: 7,
       classSize: 21
-    }
+    },
+    {
+      id: 741,
+      name: 'Test2',
+      startDate: new Date('2018-05-11').getTime(),
+      endDate: new Date('2018-07-17').getTime(),
+      curriculum: 1,
+      trainer: null,
+      cotrainer: null,
+      skills: [],
+      location: 2,
+      building: 1,
+      room: 7,
+      classSize: 21
+    }];
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [AppMaterialModule, BrowserAnimationsModule, HttpClientTestingModule],
       schemas: [NO_ERRORS_SCHEMA],
       declarations: [ReportsComponent],
-      providers: [BatchControllerService, CurriculumControllerService, SettingControllerService]
+      providers: [BatchControllerService,
+         {provide: CurriculumControllerService, useClass: MockCurriculumControllerService},
+         SettingControllerService]
     }).compileComponents();
   }));
   beforeEach(() => {
@@ -85,10 +118,8 @@ describe('ReportsComponent', () => {
 
 
   it('should mapBatches', ()=> {
-    component.mapBatches();
-    spyOn(component.allBatches, 'find');
-    //expect(this.batches.length).not.toBeUndefined();
-    expect(this.batches).Any();
+    component.allBatches = batches;
+    expect(component.mapBatches()).toEqual([[],[],[],[batches[0]],[batches[1]],[],[],[],[],[],[],[]]);
   });
 
 });
