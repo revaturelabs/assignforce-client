@@ -1,0 +1,107 @@
+#!/bin/sh
+
+branch=$(git symbolic-ref HEAD | sed -e 's,.*/\(.*\),\1,')
+
+function fetch_upstream() {
+  echo "fetching from upstream..."
+  git fetch upstream
+}
+
+function checkout_staging() {
+  echo "checking out staging branch"
+  git checkout staging
+}
+
+function merge_upstream() {
+  echo "merging from upstream"
+  git merge upstream/staging
+}
+
+function commit_to_origin() {
+  echo "create commit"
+  git commit -am "updating from upstream"
+  echo "push to origin"
+  git push
+}
+
+function check_upstream_exists() {
+  echo "checking to see if upstream exists"
+  if git config remote.upstream.url > /dev/null;  then
+    echo "upstream exists...syncing now"
+  else
+    echo "adding upstream to your remotes"
+    git remote add upstream https://github.com/revaturelabs/assignforce-client.git
+  fi
+}
+
+function stash() {
+  echo "stashing uncommitted changes"
+  git stash
+}
+
+function unstash() {
+  echo "retrieving stashed changes"
+  git stash pop
+}
+
+function checkout_branch() {
+  echo "switching to $branch branch"
+  git checkout ${branch}
+}
+
+function merge() {
+  echo "merging origin/staging with $branch"
+  git merge staging
+}
+
+option="${1}"
+case ${option} in
+  "init")
+    check_upstream_exists
+    stash
+    fetch_upstream
+    checkout_staging
+    merge_upstream
+    commit_to_origin
+    checkout_branch
+    unstash
+    ;;
+  "sync")
+    stash
+    fetch_upstream
+    checkout_staging
+    merge_upstream
+    commit_to_origin
+    checkout_branch
+    unstash
+    ;;
+  "merge")
+    stash
+    fetch_upstream
+    checkout_staging
+    merge_upstream
+    commit_to_origin
+    checkout_branch
+    merge
+    unstash
+    ;;
+  "test")
+    stash
+    fetch_upstream
+    checkout_staging
+    merge_upstream
+    commit_to_origin
+    git checkout testing
+    merge
+    checkout_branch
+    unstash
+    ;;
+  *)
+    echo "Invalid command...Options:"
+    echo "--------------------------"
+    echo "sh fsync init    --> initialize upstream and sync"
+    echo "sh fsync sync    --> sync with upstream"
+    echo "sh fsync merge   --> sync with upstream, push and merge with current branch (use with caution)"
+    ;;
+esac
+

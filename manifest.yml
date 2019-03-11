@@ -1,0 +1,11 @@
+---
+applications:
+- name: assignforce
+  memory: 2G
+  instances: 2
+  docker:
+    image: ajduet/assignforce
+    username: ajduet
+  health-check-type: http
+  health-check-http-endpoint: /index.html
+

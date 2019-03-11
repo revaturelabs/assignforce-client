@@ -1,0 +1,36 @@
+<nav mat-tab-nav-bar>
+  <span *ngFor="let tab of tabs">
+    <!--If a trainer is logged in and it is not the profile tab make the tabs-->
+    <a mat-tab-link
+    *ngIf = '(this.auth0.userHasRole(["Trainer"]) && tab.label !== "Profile"); else second'
+    [routerLink]="tab.path"
+    routerLinkActive #rla="routerLinkActive"
+    [active]="rla.isActive"
+    style="text-decoration: none;">
+      {{tab.label}}
+    </a>
+    <!--If a trainer is logged in and it is the profile tab it appends their email to the path so that it will route
+    to the profile component-->
+    <ng-template #second>
+      <a mat-tab-link
+      *ngIf= "tab.label === 'Profile' && this.auth0.userHasRole(['Trainer']) && auth0.trainerEmail; else third"
+      [routerLink]="[tab.path, auth0.trainerEmail]"
+      routerLinkActive #rla="routerLinkActive"
+      [active]="rla.isActive"
+      style="text-decoration: none;">
+        {{tab.label}}
+      </a>
+    </ng-template>
+    <!-- If the SVP is logged in it won't show the profile tab-->
+    <ng-template #third>
+      <a mat-tab-link
+      *ngIf= "this.auth0.userHasRole(['SVP of Technology']) && !(tab.label === 'Profile')"
+      [routerLink]="tab.path"
+      routerLinkActive #rla="routerLinkActive"
+      [active]="rla.isActive"
+      style="text-decoration: none;">
+        {{tab.label}}
+      </a>
+    </ng-template>
+  </span>
+</nav>

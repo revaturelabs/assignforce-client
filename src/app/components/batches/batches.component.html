@@ -1,0 +1,278 @@
+<div id="batchesDiv">
+
+  <!-- Create New Batch  -->
+  <!-- Should Only Appear if they are admin -->
+  <mat-accordion *ngIf="this.auth0.userHasRole(['SVP of Technology'])">
+    <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{batchMode == BatchMode.Create ? 'Create New Batch' : 'Edit Batch'}}
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <!-- Batch Form -->
+      <form [formGroup]="batchForm">
+        <div>
+          <mat-form-field>
+            <mat-select formControlName="curriculum" placeholder="Core Curriculum" [disabled]="curriculums.length < 1" [(ngModel)]="batchModel.curriculum"
+            (ngModelChange)="updateCurriculum()">
+              <ng-container *ngFor="let curriculum of curriculums" >
+                <mat-option *ngIf="curriculum.isActive && curriculum.isCore" [value]="curriculum.id"> {{ curriculum.name }}</mat-option>
+              </ng-container>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-select formControlName="skills" placeholder="Skills" multiple [disabled]="batchModel.skills?.length < 1" [(ngModel)]="batchModelSkillArr">
+              <mat-option *ngFor="let skill of skills" [value]="skill.skillId">{{ skill.skillName }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field>
+            <input formControlName="startDate" matInput [matDatepicker]="picker1" placeholder="Choose a start date"
+              readonly [(ngModel)]="batchModel.startDate" (ngModelChange)="updateCurriculum()" ngModelOptions="{timezone: '0000'}">
+            <mat-datepicker-toggle matSuffix [for]="picker1" [disabled]="curriculums.length < 1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input formControlName="endDate" matInput [min]="batchForm.controls.startDate.value" [matDatepicker]="picker2" placeholder="Choose an end date"
+              readonly [(ngModel)]="batchModel.endDate" (ngModelChange)="updateCurriculum()">
+            <mat-datepicker-toggle matSuffix [for]="picker2" [disabled]="!batchForm.value.startDate"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput placeholder="spans {{numOfWeeksBetween}} weeks" readonly>
+          </mat-form-field>
+
+          <mat-form-field id="batchName">
+            <input formControlName="batchName" matInput placeholder="Name" [value]="batchModel.name" readonly>
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field>
+            <mat-select formControlName="trainer" placeholder="Trainer" [disabled]="curriculums.length < 1 && trainers.length < 1" [(ngModel)]="batchModel.trainer">
+              <mat-option *ngFor="let trainer of trainers" [value]="trainer.id">
+                {{ trainer.firstName }} 
+                <span *ngIf="trainer.id !== batchModel.trainer">
+                  -- {{ trainer.skillsMapping }}%
+                  <mat-icon>list_alt</mat-icon>
+                </span>
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-select formControlName="cotrainer" placeholder="Co-Trainer" [disabled]="!batchForm.value.trainer" [(ngModel)]="batchModel.cotrainer">
+              <div *ngFor="let cotrainer of sortedTrainers">
+                <mat-option *ngIf="batchModel.trainer !== cotrainer.id" [value]="cotrainer.id">
+                  {{ cotrainer.firstName }} 
+                  <span *ngIf="cotrainer.id !== batchModel.cotrainer">
+                  -- {{ cotrainer.skillsMapping }}%
+                    <mat-icon>list_alt</mat-icon>
+                  </span>
+                </mat-option>
+              </div>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field>
+              <mat-select formControlName="students" placeholder="Students" [disabled]="curriculums.length < 1"
+                [(ngModel)]="batchModel.classSize">
+                <mat-option *ngFor="let num of students" [value]="num">
+                  {{ num }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field>
+            <mat-select formControlName="location" placeholder="Location" [disabled]="curriculums.length < 1 && locations.length < 1"
+              [(ngModel)]="batchModel.location"
+              (ngModelChange)="updateLocation()">
+              <mat-option *ngFor="let location of locations" [value]="location.id">
+                {{ location.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+
+          <mat-form-field>
+            <mat-select formControlName="building" placeholder="Building" [disabled]="!batchModel.location" [(ngModel)]="batchModel.building"
+            (ngModelChange)="updateBuilding()">
+              <mat-option *ngFor="let building of buildingsOfALocation" [value]="building.buildingId">
+               {{ building.buildingName }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-select formControlName="room" placeholder="Room" [disabled]="!batchModel.building" [(ngModel)]="batchModel.room">
+              <mat-option *ngFor="let room of buildingRooms" [value]="room.id">
+                {{ room.roomName }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div>
+          <button type="submit" mat-raised-button [disabled]="!batchForm.valid" (click)="onSubmit()">Submit</button>
+          <button type="button" mat-raised-button [disabled]="!batchForm.dirty" (click)="onCancel()">Cancel</button>
+        </div>
+      </form>
+      <!-- Batch Projection Form-->
+      <!-- TODO -->
+
+      <!-- Batch Totals -->
+      <!-- TODO -->
+
+    </mat-expansion-panel>
+
+    <!-- Shows form changing as values inserted. For testing purposes only -->
+    <!-- <p>Form value: {{ batchForm.value | json }}</p> -->
+  </mat-accordion>
+
+  <!-- All Batches Panel-->
+  <!-- This has some Admin properties -->
+  <mat-accordion>
+    <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{secondHeader}}
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="example-container_mat-elevation-z8">
+        <mat-table #table [dataSource]="dataSource" matSort>
+
+          <!-- Checkbox Column -->
+          <ng-container matColumnDef="Checkbox">
+            <mat-header-cell *matHeaderCellDef mat-sort-header id="check"> </mat-header-cell>
+            <mat-cell *matCellDef="let batch" id="checkcell">
+              <mat-checkbox></mat-checkbox>
+            </mat-cell>
+          </ng-container>
+
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+            <mat-cell *matCellDef="let batch"> {{batch.name}} </mat-cell>
+          </ng-container>
+
+          <!-- Curriculum Column -->
+          <ng-container matColumnDef="curriculum">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Curriculum </mat-header-cell>
+            <mat-cell *matCellDef="let batch"> {{ entityLookup('curriculums', batch.curriculum)?.name }} </mat-cell>
+          </ng-container>
+
+          <!-- Trainer Column -->
+          <ng-container matColumnDef="trainers">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Trainer/Cotrainer </mat-header-cell>
+            <mat-cell *matCellDef="let batch">
+              <div *ngIf="batch.trainer">{{ (entityLookup('trainers', batch.trainer)?.firstName + ' ' + entityLookup('trainers', batch.trainer)?.lastName)
+                || "" }}</div>
+              <div *ngIf="batch.cotrainer">{{ (entityLookup('trainers', batch.cotrainer)?.firstName + ' ' + entityLookup('trainers', batch.cotrainer)?.lastName)
+                || "" }}</div>
+            </mat-cell>
+          </ng-container>
+
+          <!-- Address Column -->
+          <ng-container matColumnDef="location">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Location </mat-header-cell>
+            <mat-cell *matCellDef="let batch"> {{ entityLookup('locations', batch.location)?.name }} </mat-cell>
+          </ng-container>
+
+          <!-- Building Column -->
+          <ng-container matColumnDef="building">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Building </mat-header-cell>
+            <mat-cell *matCellDef="let batch">
+              <div *ngIf="batch.building">{{ entityLookup('buildings', batch.building)?.buildingName }}</div>
+            </mat-cell>
+          </ng-container>
+
+          <!-- Room Column -->
+          <ng-container matColumnDef="room">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Room </mat-header-cell>
+            <mat-cell *matCellDef="let batch">
+              <div *ngIf="batch.room">{{ entityLookup('rooms', batch.room)?.roomName }}</div>
+            </mat-cell>
+          </ng-container>
+
+          <!-- Class Size Column -->
+          <ng-container matColumnDef="size">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Class Size </mat-header-cell>
+            <mat-cell *matCellDef="let batch"> {{batch.classSize}} </mat-cell>
+          </ng-container>
+
+          <!-- StartDate Column -->
+          <ng-container matColumnDef="startDate">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> StartDate </mat-header-cell>
+            <mat-cell *matCellDef="let batch"> {{batch.startDate| date : 'MM/dd/yyyy'}}</mat-cell>
+          </ng-container>
+
+          <!-- EndDate Column -->
+          <ng-container matColumnDef="endDate">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> EndDate </mat-header-cell>
+            <mat-cell *matCellDef="let batch"> {{batch.endDate| date : 'MM/dd/yyyy'}} </mat-cell>
+          </ng-container>
+
+
+          <!-- Buttons -->
+          <ng-container matColumnDef="Icons">
+            <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+            <mat-cell *matCellDef="let batch">
+
+              <button *ngIf="this.auth0.userHasRole(['SVP of Technology'])" mat-icon-button (click)="editBatch(batch)">
+                <mat-icon matTooltip="Edit" matTooltipPosition="above">mode_edit</mat-icon>
+              </button>
+              <!-- <button mat-icon-button (click)="cloneBatch()" [disabled]="true">
+                <mat-icon matTooltip="Clone" matTooltipPosition="above">filter_none</mat-icon>
+              </button> -->
+              <button *ngIf="this.auth0.userHasRole(['SVP of Technology'])" mat-icon-button (click)="deleteBatch(batch)">
+                <mat-icon matTooltip="Delete" matTooltipPosition="above">delete</mat-icon>
+              </button>
+              <!-- <button mat-icon-button>
+                <mat-icon matTooltip="Synchronize" matTooltipPosition="above">publish</mat-icon>
+              </button> -->
+            </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="batchColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: batchColumns;"></mat-row>
+        </mat-table>
+
+        <!-- Loading Spinner -->
+        <div class="center">
+          <div fxFlex="100"> &nbsp;</div>
+          <h5 *ngIf="!isLoading && !allBatches">No Batches</h5>
+          <mat-progress-spinner *ngIf="isLoading" mode="indeterminate"></mat-progress-spinner>
+          <div fxFlex="100"> &nbsp;</div>
+        </div>
+      </div>
+
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <!-- Batch TimeLine -->
+  <mat-accordion>
+    <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Batch Timeline
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-batches-timeline
+        [batchList]="allBatches"
+        [trainerList]="trainers"
+        [curriculumList]="curriculums"
+        [buildingList]="buildings"
+      ></app-batches-timeline>
+    </mat-expansion-panel>
+  </mat-accordion>
+  
+</div>

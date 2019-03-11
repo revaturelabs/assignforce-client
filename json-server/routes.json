@@ -1,0 +1,3 @@
+{
+    "/trainers/email/:email": "/trainers?email=:email"
+}
