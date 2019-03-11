@@ -16,12 +16,12 @@ import { Batch } from '../../model/Batch';
 
 describe('ReportsComponent', () => {
   let batchService: BatchControllerService;
-  let curriculumService: MockCurriculumControllerService;
+  let curriculumService;
   let component: ReportsComponent;
   let fixture: ComponentFixture<ReportsComponent>;
   
   //no dummy curriculum data added yet
-   class MockCurriculumControllerService {
+  // class MockCurriculumControllerService {
   //   findAll(): Observable<Curriculum[]> {
   //     return Observable.of();
       
@@ -32,7 +32,7 @@ describe('ReportsComponent', () => {
   //     }
   //     return curriculum;
   //   }
-   }
+  // }
 
   const batches: Batch[] = 
     [{
@@ -70,7 +70,7 @@ describe('ReportsComponent', () => {
       schemas: [NO_ERRORS_SCHEMA],
       declarations: [ReportsComponent],
       providers: [BatchControllerService,
-         {provide: CurriculumControllerService, useClass: MockCurriculumControllerService},
+         {provide: CurriculumControllerService, useClass: CurriculumControllerService},
          SettingControllerService]
     }).compileComponents();
   }));
