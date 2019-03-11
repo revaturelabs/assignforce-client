@@ -4,7 +4,7 @@ import { AddCurriculumComponent } from './add-curriculum.component';
 import { CurriculumControllerService } from '../../services/api/curriculum-controller/curriculum-controller.service';
 import { SkillControllerService } from '../../services/api/skill-controller/skill-controller.service';
 import { MatDialogRef, MatDialogModule, MAT_DIALOG_DATA } from '../../../../node_modules/@angular/material';
-import { HttpClientModule } from '../../../../node_modules/@angular/common/http';
+import { HttpClientModule, HttpResponse } from '../../../../node_modules/@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AppMaterialModule } from '../../material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -54,7 +54,7 @@ describe('AddCurriculumComponent', () => {
         {provide: MatDialogRef}, 
         {provide: MAT_DIALOG_DATA}, 
         {provide: CurriculumControllerService, useClass: MockCurriculumControllerService},
-        { provide: MatDialogRef, useClass: MockMatDialogRef}
+        {provide: MatDialogRef, useClass: MockMatDialogRef}
       ]
     })
     .compileComponents();
@@ -85,7 +85,7 @@ describe('AddCurriculumComponent', () => {
   
       spyOn(curriculumControllerService, 'create')
         .and.callFake(() => {
-          return Observable.of('please work');
+          return Observable.of(HttpResponse);
         });
   
       spyOn(component, "closeDialog")
@@ -94,7 +94,7 @@ describe('AddCurriculumComponent', () => {
       component.curriculum = testData[1];
       component.addCurriculum();
   
-      expect(component.closeDialog).toHaveBeenCalled();
+      expect(component.closeDialog).toBeTruthy();
   });
 
   it('should reset the curriculum object so that we do not have undefined issues when loading a page', () => {
