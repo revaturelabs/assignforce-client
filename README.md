@@ -1,5 +1,7 @@
 # assignforce-client
 
+![Build Status](https://codebuild.us-east-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoibFdMT2VCR0N3WDd1byszL29WZ2pnT3k1OHhYMVU3UWRpeG1KVmdJR3NZcGNvT2YvSmtTRXRWYU5mNnVBV25OamdGQzRGRU5FbXJxUHdKeWhoYXE3Um5JPSIsIml2UGFyYW1ldGVyU3BlYyI6IkFMVm45OUpHODd6d2lBL0giLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master)
+
 Angular client for Assignforce
 
 ## Production Server

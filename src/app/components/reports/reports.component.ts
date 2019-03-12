@@ -200,6 +200,7 @@ export class ReportsComponent implements OnInit {
     this.chart1 = chart(this.traineeChartNextYear.nativeElement, this.options)
   }
 
+  //Returns an array of the arrays of the batches that start in each month
   mapBatches(): any[] {
     const mapByMonth = [];
     for(let i = 0; i < 12; i++) {
