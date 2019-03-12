@@ -50,7 +50,7 @@ describe('UnavailableControllerService', () => {
     unavailableControllerService.create(newUnavailable).subscribe(resp => {
       expect(resp).toEqual(newUnavailable);
     });
-    let req = httpTestingController.expectOne(unavailableApi.baseUrl + unavailableApi.create + newUnavailable.room);
+    let req = httpTestingController.expectOne(unavailableApi.baseUrl + unavailableApi.create);
     expect(req.request.method).toBe('POST');
     unavailableData.push(req.request.body);
     let dataSize = unavailableData.length;
@@ -63,7 +63,7 @@ describe('UnavailableControllerService', () => {
     unavailableControllerService.update(updatedUnavailability).subscribe(resp => {
       expect(resp).toEqual(updatedUnavailability);
     });
-    let req = httpTestingController.expectOne(unavailableApi.baseUrl + unavailableApi.update + updatedUnavailability.room);
+    let req = httpTestingController.expectOne(unavailableApi.baseUrl + unavailableApi.update);
     expect(req.request.method).toBe('PUT');
     let unavailabilityIndex = unavailableData.findIndex(unavailable => unavailable.id === req.request.body.id);
     unavailableData[unavailabilityIndex] = req.request.body;
