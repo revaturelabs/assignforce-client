@@ -1,9 +1,9 @@
-const baseApiUrl = 'https://rev-gateway.cfapps.io/';
+const apiBaseUrl = 'https://api.assignforce.revaturelabs.com/';
 
 export const environment = {
   production: true,
   name: 'prod',
-  baseUrl: 'https://assignforce.cfapps.io',
+  baseUrl: 'https://assignforce.revaturelabs.com',
 
   appRoutes: {
     login: 'login',
@@ -31,111 +31,111 @@ export const environment = {
     domain: 'revature.auth0.com',
     responseType: 'token id_token',
     audience: 'hydra-gateway',
-    redirectUri: 'https://assignforce.cfapps.io/callback',
+    redirectUri: 'https://assignforce.revaturelabs.com/callback',
     scope: 'openid profile'
   },
 
   apiUrls: {
     addressController: {
-      baseUrl: baseApiUrl + 'location-service',
-      create: '/',
+      baseUrl: `${apiBaseUrl}/location-service`,
+      create: '',
       update: '/',
-      findAll: '/',
+      findAll: '',
       find: '/',
       remove: '/'
     },
 
     batchController: {
-      baseUrl: baseApiUrl + 'batch-service',
-      create: '/',
+      baseUrl: `${apiBaseUrl}/batch-service`,
+      create: '',
       update: '/',
-      findAll: '/',
+      findAll: '',
       find: '/',
       remove: '/'
     },
 
     buildingController: {
-      baseUrl: baseApiUrl + 'location-service/building',
-      create: '/',
+      baseUrl: `${apiBaseUrl}/location-service/building`,
+      create: '',
       update: '/',
-      findAll: '/',
+      findAll: '',
       find: '/',
       remove: '/'
     },
 
     locationController: {
-      baseUrl: baseApiUrl + 'location-service',
-      create: '/',
+      baseUrl: `${apiBaseUrl}/location-service`,
+      create: '',
       update: '/',
-      findAll: '/',
+      findAll: '',
       find: '/',
       remove: '/'
     },
 
     roomController: {
-      baseUrl: baseApiUrl + 'location-service/room',
-      create: '/',
+      baseUrl: `${apiBaseUrl}/location-service/room`,
+      create: '',
       update: '/',
-      findAll: '/',
+      findAll: '',
       find: '/',
       remove: '/'
     },
 
     curriculumController: {
-      baseUrl: baseApiUrl + 'curriculum-service',
-      create: '/',
+      baseUrl: `${apiBaseUrl}/curriculum-service`,
+      create: '',
       update: '/',
-      findAll: '/',
+      findAll: '',
       find: '/',
       remove: '/'
     },
 
     focusController: {
-      baseUrl: baseApiUrl + 'focus-service',
-      create: '/',
+      baseUrl: 'api/focus',
+      create: '',
       update: '/',
-      findAll: '/',
+      findAll: '',
       find: '/',
       remove: '/'
     },
 
     skillController: {
-      baseUrl: baseApiUrl + 'skill-service',
-      create: '/',
+      baseUrl: `${apiBaseUrl}/skill-service`,
+      create: '',
       update: '/',
-      findAll: '/',
+      findAll: '',
       find: '/',
       remove: '/'
     },
 
     trainerController: {
-      baseUrl: baseApiUrl + 'trainer-service',
-      create: '/',
+      baseUrl: `${apiBaseUrl}/trainer-service`,
+      create: '',
       update: '/',
-      findAll: '/',
+      findAll: '',
       find: '/',
       remove: '/'
     },
 
     settingController: {
-      baseUrl: baseApiUrl + 'setting-service',
-      create: '/',
+      baseUrl: `${apiBaseUrl}/setting-service`,
+      create: '',
       update: '/',
-      findAll: '/',
+      findAll: '',
       find: '/',
       remove: '/'
     },
 
     unavailableController: {
-      baseUrl: baseApiUrl + 'location-service/unavailable',
+      baseUrl: `${apiBaseUrl}/location-service/unavailabilities`,
       create: '/',
       update: '/',
-      findAll: '/',
+      findAll: '',
       find: '/',
       remove: '/'
     },
     filehandlerController: {
-      baseUrl: 'api/filehandler',
+      baseUrl: `${apiBaseUrl}/filehandler-service`,
       create: '',
       update: '/',
       findAll: '',
