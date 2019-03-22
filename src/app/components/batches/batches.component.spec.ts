@@ -7,9 +7,6 @@ import { BatchesTimelineFilterComponent } from '../batches-timeline-filter/batch
 import { BatchControllerService } from '../../services/api/batch-controller/batch-controller.service';
 import { TrainerControllerService } from '../../services/api/trainer-controller/trainer-controller.service';
 
-//added for some issues
-// import {getUIRouter} from '@uirouter/angular-hybrid';
-// import {UrlService} from '@uirouter/angular-hybrid/node_modules/@uirouter/angularjs';
 import { UrlService } from '../../services/url/url.service';
 
 import { AppMaterialModule } from '../../material.module';
@@ -28,6 +25,7 @@ import { RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { batchService, curriculumService, skillService } from '../../../jestGlobalMocks'
+import { BatchFormComponent } from '../batch-form/batch-form.component';
 
 describe('BatchesComponent', () => {
   let component: BatchesComponent;
@@ -45,7 +43,7 @@ describe('BatchesComponent', () => {
         RouterTestingModule
         // UrlService
       ],
-      declarations: [BatchesComponent, BatchesTimelineComponent, BatchesTimelineFilterComponent],
+      declarations: [BatchesComponent, BatchesTimelineComponent, BatchesTimelineFilterComponent, BatchFormComponent],
       providers: [
         { provide: BatchControllerService, useValue: batchService },
         { provide: CurriculumControllerService, useValue: curriculumService },
@@ -70,7 +68,6 @@ describe('BatchesComponent', () => {
     fixture = TestBed.createComponent(BatchesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    skillService = TestBed.get(SkillControllerService);
   });
 
   it('should create', () => {
@@ -81,7 +78,7 @@ describe('BatchesComponent', () => {
     expect(curriculumService.findAll).toHaveBeenCalled();
   });
 
-  // it('should call find all on skills service', () => {
-  //   expect(skillService.findAll).toHaveBeenCalled();
-  // });
+    // it('should call find all on skills service', () => {
+    //   expect(skillService.findAll).toHaveBeenCalled();
+    // });
 });

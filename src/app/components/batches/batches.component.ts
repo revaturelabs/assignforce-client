@@ -74,7 +74,6 @@ export class BatchesComponent implements OnInit, AfterViewInit {
   // ---------------------------------- VARIABLES FOR ALL BATCHES -----------------------------------
   //  COLUMNS FOR THE ALL BATCHES TAB
   batchColumns = [
-    'Checkbox',
     'name',
     'curriculum',
     'trainers',
@@ -327,44 +326,41 @@ export class BatchesComponent implements OnInit, AfterViewInit {
     });
   }
   // ------ Create a new batch using provided valid form data ------
-  onSubmit() {
+  onSubmit(event) {
+    this.batchModel = Object.assign(this.batchModel, event);
+
+    let tempDate = new Date(this.batchModel.startDate);
+    tempDate.setHours(9);
+    this.batchModel.startDate = tempDate.getTime();
+
+    tempDate = new Date(this.batchModel.endDate);
+    tempDate.setHours(17);
+
+    this.batchModel.endDate = tempDate.getTime();
     if (this.batchMode === BatchMode.Create) {
-      this.batchModel.id = 0;
-
-      if (this.batchModel.classSize == null) this.batchModel.classSize = this.classSize;
-
       this.batchService
         .create(this.batchModel)
-        .toPromise()
-        .then(b => {
-          this.onCancel();
-          this.refreshBatches();
-        })
-        .catch(error => {
-          console.log(error);
+        .subscribe(batch => {
+          this.allBatches.push(batch);
+          this.dataSource.data = this.allBatches;
+          console.log(batch);
         });
     } else if (this.batchMode === BatchMode.Edit) {
       this.batchService
         .update(this.batchModel)
-        .toPromise()
-        .then(b => {
-          this.onCancel();
-          this.refreshBatches();
-          this.batchMode = BatchMode.Create;
+        .subscribe(() => {
+          const i = this.allBatches.findIndex(b => b.id === this.batchModel.id);
+          this.allBatches[i] = this.batchModel;
+          this.dataSource.data = this.allBatches;
         })
-        .catch(error => {
-          console.log(error);
-        });
     }
 
     this.shouldUpdateTimeline = true;
-    this.batchForm.reset(); //should reset form after submitting
   }
 
   onCancel() {
     this.batchMode = BatchMode.Create;
     this.batchModel = new Batch();
-    this.batchForm.reset();
   }
 
   // --------------------------- Methods for auto generating form values -------------------------------------
@@ -431,7 +427,7 @@ export class BatchesComponent implements OnInit, AfterViewInit {
 
     /* this problem only comes up when editing a batch */
     Object.assign(this.batchModel, batch);
-    this.batchForm.markAsDirty();   //won't work if after updateCurriculum method
+    this.batchForm.markAsDirty(); //won't work if after updateCurriculum method
     if (this.batchModel.curriculum) this.updateCurriculum();
     if (this.batchModel.location) this.updateLocation();
     if (this.batchModel.building) this.updateBuilding();
