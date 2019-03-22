@@ -225,6 +225,7 @@ export class BatchFormComponent implements OnInit, OnChanges {
   }
 
   private filterBuildRooms(selBuildingId: number){
+    console.log(selBuildingId);
     this.filteredRooms = this.rooms.filter(room => room.building === selBuildingId);
   }
   private filterLocationBuildings(selLocId: number){
