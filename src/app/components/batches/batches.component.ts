@@ -328,15 +328,6 @@ export class BatchesComponent implements OnInit, AfterViewInit {
   // ------ Create a new batch using provided valid form data ------
   onSubmit(event) {
     this.batchModel = Object.assign(this.batchModel, event);
-
-    let tempDate = new Date(this.batchModel.startDate);
-    tempDate.setHours(9);
-    this.batchModel.startDate = tempDate.getTime();
-
-    tempDate = new Date(this.batchModel.endDate);
-    tempDate.setHours(17);
-
-    this.batchModel.endDate = tempDate.getTime();
     if (this.batchMode === BatchMode.Create) {
       this.batchService
         .create(this.batchModel)
