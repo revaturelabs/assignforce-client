@@ -7,9 +7,6 @@ import { BatchesTimelineFilterComponent } from '../batches-timeline-filter/batch
 import { BatchControllerService } from '../../services/api/batch-controller/batch-controller.service';
 import { TrainerControllerService } from '../../services/api/trainer-controller/trainer-controller.service';
 
-//added for some issues
-// import {getUIRouter} from '@uirouter/angular-hybrid';
-// import {UrlService} from '@uirouter/angular-hybrid/node_modules/@uirouter/angularjs';
 import { UrlService } from '../../services/url/url.service';
 
 import { AppMaterialModule } from '../../material.module';

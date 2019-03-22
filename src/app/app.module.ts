@@ -1,6 +1,6 @@
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -66,6 +66,7 @@ import { AddCurriculumComponent } from './components/add-curriculum/add-curricul
 import { FilehandlerService } from './services/api/filehandler-controller/filehandler-controller.service';
 import { BuildingControllerService } from './services/api/building-controller/building-controller.service';
 import { RoomControllerService } from './services/api/room-controller/room-controller.service';
+import { BatchFormComponent } from './components/batch-form/batch-form.component';
 
 @NgModule({
   declarations: [
@@ -106,13 +107,15 @@ import { RoomControllerService } from './services/api/room-controller/room-contr
     EditCurriculumComponent,
     LocationDeleteUnavailabilityDialogComponent,
     AddTrainerErrorComponent,
-    AddCurriculumComponent
+    AddCurriculumComponent,
+    BatchFormComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 
   imports: [
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     BrowserModule,
     AppRouting,
     BrowserAnimationsModule,
