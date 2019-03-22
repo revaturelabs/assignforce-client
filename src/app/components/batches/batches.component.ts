@@ -331,12 +331,14 @@ export class BatchesComponent implements OnInit, AfterViewInit {
 
     let tempDate = new Date(this.batchModel.startDate);
     tempDate.setHours(9);
-    this.batchModel.startDate = tempDate.getTime();
+    //@ts-ignore
+    this.batchModel.startDate = tempDate.toISOString();
 
     tempDate = new Date(this.batchModel.endDate);
     tempDate.setHours(17);
 
-    this.batchModel.endDate = tempDate.getTime();
+    //@ts-ignore
+    this.batchModel.endDate = tempDate.toISOString();
     if (this.batchMode === BatchMode.Create) {
       this.batchService
         .create(this.batchModel)
