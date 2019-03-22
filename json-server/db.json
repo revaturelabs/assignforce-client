@@ -128,12 +128,14 @@
       "room": 161
     },
     {
+      "id": 2,
       "name": "1906 Jun17 Java",
       "startDate": 1560776400000,
       "endDate": 1566594000000,
       "curriculum": 1,
       "trainer": 1,
       "cotrainer": null,
+      "classSize": 40,
       "skills": [
         {
           "skillId": 4,
@@ -206,11 +208,9 @@
           "isActive": true
         }
       ],
-      "location": null,
-      "building": null,
-      "room": null,
-      "classSize": 40,
-      "id": 2
+      "location": 67,
+      "building": 68,
+      "room": 148
     },
     {
       "name": "1903 Mar25 Java",
