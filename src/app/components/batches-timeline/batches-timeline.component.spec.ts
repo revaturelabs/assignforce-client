@@ -176,7 +176,6 @@ describe("BatchesTimelineComponent", () => {
     const dcolor = component.getColorForcurriculum(3);
     const ucolor = component.getColorForcurriculum(105);
     const defaultColor = component.getColorForcurriculum(999);
-    console.log(defaultColor);
     expect(jcolor).not.toEqual(scolor);
     expect(jcolor).not.toEqual(dcolor);
     expect(jcolor).not.toEqual(ucolor);
@@ -188,7 +187,6 @@ describe("BatchesTimelineComponent", () => {
   it('should return an empty list if timescaleEnabled is false', () => {
     component.timescaleEnabled = false;
     expect(JSON.stringify(component.getTimescale())).toBe(JSON.stringify([]));
-    console.log(JSON.stringify(component.getTimescale()) === JSON.stringify([]));
   });
 
   it('should get the line breaks', () => {
@@ -235,9 +233,7 @@ describe("BatchesTimelineComponent", () => {
 
     //de.triggerEventHandler('filterChangeEmitter', matOption);
 
-    console.log('OPENING');
 
-    console.log(matSelectChange);
 
     // expect(component.onFilterChange).toHaveBeenCalled();
   });

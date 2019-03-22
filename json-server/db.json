@@ -47,7 +47,7 @@
       "startDate": "2017-08-14T08:00:00Z",
       "endDate": "2017-10-20T08:00:00Z",
       "curriculum": 1,
-      "trainer": 13,
+      "trainer": 175,
       "cotrainer": 36,
       "students": 15,
       "skills": [
@@ -1586,6 +1586,42 @@
       "location": 66,
       "building": 66,
       "room": 143
+    },
+    {
+      "name": "1903 Mar25 SDET",
+      "startDate": "2019-03-25T04:00:00.000Z",
+      "endDate": "2019-06-07T04:00:00.000Z",
+      "curriculum": 3,
+      "trainer": null,
+      "cotrainer": null,
+      "skills": [
+        {
+          "skillId": 47
+        },
+        {
+          "skillId": 68
+        },
+        {
+          "skillId": 69
+        },
+        {
+          "skillId": 5
+        },
+        {
+          "skillId": 70
+        },
+        {
+          "skillId": 71
+        },
+        {
+          "skillId": 72
+        }
+      ],
+      "location": null,
+      "building": null,
+      "room": null,
+      "classSize": 26,
+      "id": 609
     }
   ],
   "buildings": [

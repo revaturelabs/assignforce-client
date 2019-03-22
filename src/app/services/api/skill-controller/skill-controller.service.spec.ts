@@ -37,8 +37,6 @@ describe('SkillControllerService', () => {
   //   //   expect(data.skillId).toBe(1);
   //   // }));
   //   const req = httpMock.expectOne((`https://18.191.174.118:8765/skill-service`),'Call the Api');
-  //   console.log("HERE");
-  //   console.log(req.request.url);
   //   expect(req.request.method).toHaveBeenCalled();
   
   //   req.flush({

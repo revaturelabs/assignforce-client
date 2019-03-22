@@ -431,6 +431,7 @@ export class BatchesComponent implements OnInit, AfterViewInit {
 
     /* this problem only comes up when editing a batch */
     Object.assign(this.batchModel, batch);
+    console.log(this.batchModel);
     this.batchForm.markAsDirty();   //won't work if after updateCurriculum method
     if (this.batchModel.curriculum) this.updateCurriculum();
     if (this.batchModel.location) this.updateLocation();

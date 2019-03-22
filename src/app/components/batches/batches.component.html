@@ -32,9 +32,9 @@
         <div>
           <mat-form-field>
             <input formControlName="startDate" matInput [matDatepicker]="picker1" placeholder="Choose a start date"
-              readonly [(ngModel)]="batchModel.startDate" (ngModelChange)="updateCurriculum()" ngModelOptions="{timezone: '0000'}">
+              readonly [(ngModel)]="batchModel.startDate" ngModelOptions="{timezone: '0000'}">
             <mat-datepicker-toggle matSuffix [for]="picker1" [disabled]="curriculums.length < 1"></mat-datepicker-toggle>
-            <mat-datepicker #picker1></mat-datepicker>
+            <mat-datepicker #picker1 [startAt]="batchModel.startDate"></mat-datepicker>
           </mat-form-field>
 
           <mat-form-field>
@@ -132,9 +132,6 @@
       <!-- TODO -->
 
     </mat-expansion-panel>
-
-    <!-- Shows form changing as values inserted. For testing purposes only -->
-    <!-- <p>Form value: {{ batchForm.value | json }}</p> -->
   </mat-accordion>
 
   <!-- All Batches Panel-->
