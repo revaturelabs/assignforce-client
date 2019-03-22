@@ -25,6 +25,7 @@ import { RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { batchService, curriculumService, skillService } from '../../../jestGlobalMocks'
+import { BatchFormComponent } from '../batch-form/batch-form.component';
 
 describe('BatchesComponent', () => {
   let component: BatchesComponent;
@@ -42,7 +43,7 @@ describe('BatchesComponent', () => {
         RouterTestingModule
         // UrlService
       ],
-      declarations: [BatchesComponent, BatchesTimelineComponent, BatchesTimelineFilterComponent],
+      declarations: [BatchesComponent, BatchesTimelineComponent, BatchesTimelineFilterComponent, BatchFormComponent],
       providers: [
         { provide: BatchControllerService, useValue: batchService },
         { provide: CurriculumControllerService, useValue: curriculumService },
@@ -67,7 +68,6 @@ describe('BatchesComponent', () => {
     fixture = TestBed.createComponent(BatchesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    skillService = TestBed.get(SkillControllerService);
   });
 
   it('should create', () => {
@@ -78,7 +78,7 @@ describe('BatchesComponent', () => {
     expect(curriculumService.findAll).toHaveBeenCalled();
   });
 
-  // it('should call find all on skills service', () => {
-  //   expect(skillService.findAll).toHaveBeenCalled();
-  // });
+    // it('should call find all on skills service', () => {
+    //   expect(skillService.findAll).toHaveBeenCalled();
+    // });
 });
