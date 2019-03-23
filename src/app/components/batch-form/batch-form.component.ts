@@ -162,7 +162,6 @@ export class BatchFormComponent implements OnInit, OnChanges {
     this.buildings = this.buildings.filter(b => b.isActive);
 
     this.rooms = await this.roomService.findAll().toPromise();
-    this.rooms = this.rooms.filter(r => r.active);
   }
   private async loadTrainers() {
     this.trainers = await this.trainerService.findAll().toPromise();
