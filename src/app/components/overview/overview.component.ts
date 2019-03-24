@@ -24,6 +24,7 @@ import { Address } from '../../model/Address';
 export class OverviewComponent implements OnInit, AfterViewInit {
   // ----------------------- NEW CODE FROM NEW HOPE -----------------------------------
   selectedFilter: number;
+  filteredYear: string;
   panelTitle = 'Loading...';
   isLoading: boolean;
   batchList: any[] = [];
@@ -46,11 +47,13 @@ export class OverviewComponent implements OnInit, AfterViewInit {
     'progress'
   ];
 
-  dataSource = new MatTableDataSource(this.displayedBatchList);
+  dataSource = new MatTableDataSource();
   @ViewChild(MatSort)
   sort: MatSort;
   @ViewChild(MatPaginator)
   paginator: MatPaginator;
+
+  batchDropYearFilterObjs: Map<string, any> = new Map<string, any>();
 
   constructor(
     private batchController: BatchControllerService,
@@ -71,14 +74,13 @@ export class OverviewComponent implements OnInit, AfterViewInit {
       blist => {
         this.batchList = blist;
         this.batchList.sort((a, b) => a.id - b.id);
-        this.batchList.forEach(b => (b.progress = this.getCurrentProgress(b)));
-        this.applyFilter(0);
+        this.batchList.forEach(b => {
+          b.progress = this.getCurrentProgress(b);
+          const year = new Date(b.startDate).getFullYear().toString();
+          this.batchDropYearFilterObjs.set(year, null);
+        });
+        this.applyFilter(this.batchDropYearFilterObjs.keys().next().value, 0);
         this.isLoading = false;
-
-        if (this.batchList.length < 1) {
-          this.isLoading = false;
-          this.panelTitle = 'All Batches';
-        }
       },
       error => {
         this.isLoading = false;
@@ -111,11 +113,11 @@ export class OverviewComponent implements OnInit, AfterViewInit {
         this.buildingsList.sort((a, b) => a.buildingId - b.buildingId);
         this.roomController.findAll().subscribe(rooms => {
           this.roomsList = rooms;
-          this.roomsList.sort((a,b) => a.id - b.id);
+          this.roomsList.sort((a, b) => a.id - b.id);
         });
       });
     });
-  };
+  }
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
@@ -133,46 +135,42 @@ export class OverviewComponent implements OnInit, AfterViewInit {
   // --------------------------------- END OF THE OLD -----------------------------------------------------
 
   // ----------------------------------BEGIN OPERATION NEW HOPE -------------------------------------------
-  applyFilter(filterType: number) {
+  applyFilter(filterYear: string, filterType: number) {
+    let displayedBatchList = [];
+    if(!filterYear || !(filterType >= 0)) {
+      console.log(`Can\'t filter without filter inputs: filterYear=${filterYear}, filterType=${filterType}`);
+      return 
+    }
+    if(filterYear) {
+      this.filteredYear = filterYear;
+      displayedBatchList = this.batchList.filter(batch => {
+        const year = new Date(batch.startDate).getFullYear().toString();
+        return year === filterYear;
+      })
+    }
+
     /**
      *  FILTER TYPE!!!
      *  0 - By All
      *  1 - In Progress
      *  2 - Beginning in two weeks
      */
-    this.selectedFilter = filterType;
-    this.displayedBatchList = [];
-    if (filterType === 0) {
-      this.displayedBatchList = this.batchList;
-      this.panelTitle = 'All Batches';
-    } else if (filterType === 1) {
-      this.batchList.forEach(batchObj => {
-        if (batchObj.progress > 0 && batchObj.progress < 100) {
-          this.displayedBatchList.push(batchObj);
-        }
-      });
-
-      if (this.displayedBatchList.length < 1) {
-        this.panelTitle = 'No Batches In Progress';
-      } else {
-        this.panelTitle = 'Batches In Progress';
-      }
-    } else if (filterType === 2) {
-      this.batchList.forEach(batchObj => {
-        if (batchObj.progress === 0) {
-          if (this.getCurrentWeekOfBatch(batchObj.startDate) >= -2) {
-            this.displayedBatchList.push(batchObj);
-          }
-        }
-      });
-
-      if (this.displayedBatchList.length < 1) {
-        this.panelTitle = 'No Batches Beginning in Two Weeks';
-      } else {
-        this.panelTitle = 'Batches Beginning within Two Weeks';
+    if (filterType >= 0) {
+      this.selectedFilter = filterType;
+      if(filterType === 0) {
+        this.panelTitle = `All Batches for ${this.filteredYear}`
+      } else if (filterType === 1) {
+        displayedBatchList = displayedBatchList.filter(batch => batch.progress > 0 && batch.progress < 100);
+        this.panelTitle = `Batches In Progress for ${this.filteredYear}`;
+      } else if (filterType === 2) {
+        displayedBatchList = displayedBatchList.filter(batch => {
+          const weekNumber = this.getCurrentWeekOfBatch(batch.startDate);
+          return weekNumber >= -2 && weekNumber < 0;
+        });
+        this.panelTitle = `Batches Starting Soon for ${this.filteredYear}`
       }
     }
-    this.dataSource.data = this.displayedBatchList;
+    this.dataSource.data = displayedBatchList;
   }
 
   computeNumOfWeeksBetween(startDate: number, endDate: number): number {
@@ -191,10 +189,10 @@ export class OverviewComponent implements OnInit, AfterViewInit {
   // IF RETURN IS POSITIVE, BATCH HAS STARTED/IS IN SESSION FOR # WEEKS.
   // IF RETURN IS NEGATIVE, BATCH HAS NOT STARTED/WILL START IN # WEEKS.
   getCurrentWeekOfBatch(startDate: number): number {
-    const currentDate = new Date(Date.now());
+    const currentDate = new Date(Date.now()).valueOf();
     const startValue = new Date(startDate).valueOf();
-    const numberOfDays = (currentDate.valueOf() - startValue) / (1000 * 60 * 60 * 24);
-    const weekNumber = Math.floor(numberOfDays / 7);
+    const numberOfDays = (currentDate - startValue) / (1000 * 60 * 60 * 24);
+    const weekNumber = Math.floor(numberOfDays / 5);
     return weekNumber;
   }
 
@@ -239,7 +237,7 @@ export class OverviewComponent implements OnInit, AfterViewInit {
 
   findBuilding(id: number): Building {
     let b: Building = null;
-    b= this.buildingsList.find(building => building.buildingId === id);
+    b = this.buildingsList.find(building => building.buildingId === id);
     return b;
   }
 
@@ -247,5 +245,9 @@ export class OverviewComponent implements OnInit, AfterViewInit {
     let r: Room = null;
     r = this.roomsList.find(room => room.id === id);
     return r;
+  }
+
+  arrayFromMap(map: Map<any, any>) {
+    return Array.from(map.keys()).sort();
   }
 }

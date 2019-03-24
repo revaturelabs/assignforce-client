@@ -79,7 +79,6 @@ export class FillSkillsService {
   }
 
   private getObjs(skillList) {
-    console.log(skillList);
     this.skillList = skillList;
     return this.service.findAll();
   }
