@@ -14,6 +14,7 @@ import { Angular5Csv } from 'angular5-csv/dist/Angular5-csv';
 import { BuildingControllerService } from '../../services/api/building-controller/building-controller.service';
 import { RoomControllerService } from '../../services/api/room-controller/room-controller.service';
 import { Address } from '../../model/Address';
+import { Batch } from '../../model/Batch';
 
 @Component({
   selector: 'app-overview',
@@ -126,7 +127,40 @@ export class OverviewComponent implements OnInit, AfterViewInit {
   // -------------------------------- PREVIOUS BATCH'S METHODS -------------------------------------------
   exportToCSV(evt) {
     evt.stopPropagation();
-    const csv = new Angular5Csv(this.batchList, 'batches');
+    const mappedBatches = this.batchList.map(batch=> {
+      const newBatch = {};
+      const curriculum = this.curriculumList.find(c => c.id === batch.curriculum);
+      const trainer = this.trainerList.find(t => t.id === batch.trainer);
+      const cotrainer = this.trainerList.find(t1 => t1.id === batch.cotrainer);
+      const location = this.addressList.find(l => l.id === batch.location);
+      const building = this.buildingsList.find(b => b.buildingId === batch.building);
+      const room = this.roomsList.find(r => r.id === batch.room);
+      const startDate = new Date(batch.startDate).toLocaleDateString();
+      const endDate = new Date(batch.endDate).toLocaleDateString();
+      newBatch['id'] = batch.id;
+      newBatch['name'] = batch.name;
+
+      newBatch['curriculum'] = curriculum ? curriculum.name : '';
+      
+      newBatch['trainer'] = trainer ? `${trainer.firstName} ${trainer.lastName}`: '';
+      newBatch['cotrainer'] = cotrainer ? `${cotrainer.firstName} ${cotrainer.lastName}` : '';
+
+      newBatch['location'] = location ? location.name : '';
+      newBatch['building'] = building ? building.buildingName : '';
+      newBatch['room'] = room ? room.roomName : '';
+
+      newBatch['startDate'] = startDate;
+      newBatch['endDate'] = endDate;
+      return newBatch;
+    });
+    
+    const csv = new Angular5Csv(
+      mappedBatches,
+      `batches`, 
+      {
+        "headers": ['ID', 'NAME', 'CURRICULUM', 'TRAINER', 'COTRAINER', 'LOCATION', 'BUILDING', 'ROOM', 'STARTDATE', 'ENDDATE']
+      }
+    );
   }
 
   openMenu(evt) {
