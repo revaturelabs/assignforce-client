@@ -411,6 +411,141 @@
       "location": 66,
       "building": 66,
       "room": 160
+    },
+    {
+      "name": "1601 Jan01 Java",
+      "startDate": "2016-01-01T14:00:00.000Z",
+      "endDate": "2016-03-11T22:00:00.000Z",
+      "curriculum": 1,
+      "trainer": 1,
+      "cotrainer": null,
+      "skills": [
+        {
+          "skillId": 4,
+          "skillName": "AngularJ",
+          "isActive": true
+        },
+        {
+          "skillId": 1,
+          "skillName": "Core Java",
+          "isActive": true
+        },
+        {
+          "skillId": 2,
+          "skillName": "JUnit",
+          "isActive": true
+        },
+        {
+          "skillId": 3,
+          "skillName": "Spring",
+          "isActive": true
+        },
+        {
+          "skillId": 50,
+          "skillName": "Java Servlets",
+          "isActive": true
+        },
+        {
+          "skillId": 51,
+          "skillName": "JSP",
+          "isActive": true
+        },
+        {
+          "skillId": 25,
+          "skillName": "Oracle SQL",
+          "isActive": true
+        },
+        {
+          "skillId": 48,
+          "skillName": "JDBC",
+          "isActive": true
+        },
+        {
+          "skillId": 49,
+          "skillName": "HTML",
+          "isActive": true
+        },
+        {
+          "skillId": 52,
+          "skillName": "Freemarker",
+          "isActive": true
+        },
+        {
+          "skillId": 54,
+          "skillName": "jQuery",
+          "isActive": true
+        },
+        {
+          "skillId": 55,
+          "skillName": "Hibernate",
+          "isActive": true
+        },
+        {
+          "skillId": 56,
+          "skillName": "REST",
+          "isActive": true
+        },
+        {
+          "skillId": 57,
+          "skillName": "SOAP",
+          "isActive": true
+        }
+      ],
+      "location": null,
+      "building": null,
+      "room": null,
+      "classSize": 10,
+      "id": 6
+    },
+    {
+      "name": "2001 Jan01 SDET",
+      "startDate": "2020-01-01T14:00:00.000Z",
+      "endDate": "2020-03-06T22:00:00.000Z",
+      "curriculum": 3,
+      "trainer": null,
+      "cotrainer": null,
+      "skills": [
+        {
+          "skillId": 5,
+          "skillName": "Selenium/WebDriver",
+          "isActive": true
+        },
+        {
+          "skillId": 47,
+          "skillName": "Core SDET",
+          "isActive": true
+        },
+        {
+          "skillId": 69,
+          "skillName": "TestNG",
+          "isActive": true
+        },
+        {
+          "skillId": 72,
+          "skillName": "Manual Testing",
+          "isActive": true
+        },
+        {
+          "skillId": 70,
+          "skillName": "Pyhton",
+          "isActive": true
+        },
+        {
+          "skillId": 71,
+          "skillName": "UFT",
+          "isActive": true
+        },
+        {
+          "skillId": 68,
+          "skillName": "Cucumber",
+          "isActive": true
+        }
+      ],
+      "location": null,
+      "building": null,
+      "room": null,
+      "classSize": 10,
+      "id": 7
     }
   ],
   "buildings": [

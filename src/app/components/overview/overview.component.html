@@ -7,19 +7,22 @@
           </mat-panel-title>
           <mat-panel-description>
             <span class="fill-space"></span>
-            <mat-icon title="Export to CSV" (click)="exportToCSV($event)">get_app</mat-icon>
-  
-            <mat-icon [matMenuTriggerFor]="menu" (click)="openMenu($event)">
+            <mat-icon title="Export to .csv" (click)="exportToCSV($event)">get_app</mat-icon>
+            <mat-icon title="Filter by year" [matMenuTriggerFor]="yearFilterMenu" (click)="openMenu">calendar_today</mat-icon>
+            <mat-menu #yearFilterMenu>
+              <button mat-menu-item *ngFor="let yearObj of arrayFromMap(batchDropYearFilterObjs)" (click)="applyFilter(yearObj, selectedFilter)" [disabled]="filteredYear === yearObj">{{yearObj}}</button>
+            </mat-menu>
+            <mat-icon title="Filter by progress"[matMenuTriggerFor]="menu" (click)="openMenu($event)">
               menu
             </mat-icon>
             <mat-menu #menu="matMenu">
-              <button mat-menu-item (click)="applyFilter(0)" [disabled]="selectedFilter === 0">
+              <button mat-menu-item (click)="applyFilter(filteredYear, 0)" [disabled]="selectedFilter === 0">
                 <span>All</span>
               </button>
-              <button mat-menu-item (click)="applyFilter(1)" [disabled]="selectedFilter === 1">
+              <button mat-menu-item (click)="applyFilter(filteredYear, 1)" [disabled]="selectedFilter === 1">
                 <span>In Progress</span>
               </button>
-              <button mat-menu-item (click)="applyFilter(2)" [disabled]="selectedFilter === 2">
+              <button mat-menu-item (click)="applyFilter(filteredYear, 2)" [disabled]="selectedFilter === 2">
                 <span>Beginning within two weeks</span>
               </button>
             </mat-menu>
@@ -104,7 +107,7 @@
           </mat-table>
           <div class = "center">
             <div fxFlex="100"> &nbsp;</div>
-            <h5 *ngIf="!isLoading && (!displayedBatchList || displayedBatchList.length < 1)">No Batches</h5>
+            <h5 *ngIf="!isLoading && (!dataSource.filteredData || dataSource.filteredData.length < 1)">No Batches</h5>
             <mat-progress-spinner *ngIf="isLoading" mode="indeterminate"></mat-progress-spinner>
             <div fxFlex="100"> &nbsp;</div>
           </div>
