@@ -3,26 +3,21 @@ version: 0.2
 phases:
   install:
     commands:
+      - echo Installing npm...
       - npm install -g @angular/cli
       - npm i
   pre_build:
     commands:
-      - echo Logging into ECR
-      - $(aws ecr get-login --no-include-email --region us-east-1)
-      - echo Running all Unit tests
-      - npm run test
+      - echo Logging in to Amazon ECR...
+      - $(aws ecr get-login --no-include-email --region $AWS_REGION)
   build:
     commands:
-      - echo Building with environment $ENV_NAME
-      - ng build --$ENV_NAME
-      - docker build -t $IMAGE_NAME .
-      - docker tag $IMAGE_NAME $REPO/$IMAGE_NAME:$TAG
+      - echo Build started on `date`
+      - echo Building the Docker image...          
+      - docker build -t $ECR_REPO_NAME:$IMAGE_TAG .
+      - docker tag $ECR_REPO_NAME:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO_NAME:$IMAGE_TAG      
   post_build:
     commands:
-      - echo Pushing to ECR
-      - docker push $REPO/$IMAGE_NAME:$TAG
-      - echo Writing image Definition File
-      - printf '[{"name":"%s","imageUri":"%s"}]' $CONTAINER_NAME $REPO/$IMAGE_NAME:$TAG > imagedefinitions.json
-      
-artifacts:
-  files: imagedefinitions.json
+      - echo Build completed on `date`
+      - echo Pushing the Docker image...
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO_NAME:$IMAGE_TAG
