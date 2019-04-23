@@ -4,7 +4,7 @@ phases:
   pre_build:
     commands:
       - echo Installing npm
-      - sudo yum -y npm
+      - npm install
       - echo Building Angular project
       - npm build -aot
       - echo Logging in to Amazon ECR...
