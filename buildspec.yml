@@ -4,11 +4,11 @@ phases:
   install:
     commands:
       - echo Installing npm...
-      - npm install -g @angular/cli
+      - npm install -g @angular/cliy
   pre_build:
     commands:
       - echo Building Angular project
-      - npm build -aot
+      - npm run build -aot
       - echo Logging in to Amazon ECR...
       - $(aws ecr get-login --no-include-email --region $AWS_REGION)
   build:
