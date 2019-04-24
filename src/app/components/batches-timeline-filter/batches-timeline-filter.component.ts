@@ -64,7 +64,6 @@ export class BatchesTimelineFilterComponent implements OnInit {
     this.loadCurriculumData();
     this.loadFocusData();
     this.loadLocationData();
-    this.loadBuildingData();
   }
 
   loadSettingData() {
@@ -188,9 +187,5 @@ onLocationSelectChange(evt: Event) {
     this.buildingData.push(building);
   }
   this.filterChangeEmitter.emit(evt);
-}
-
-loadBuildingData(){
-  this.buildingFilter;
 }
 }
