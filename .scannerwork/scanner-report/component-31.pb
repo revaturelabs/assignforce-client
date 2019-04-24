@@ -1,0 +1,1 @@
+ 2cssXEhr*src/app/components/core/core.component.css

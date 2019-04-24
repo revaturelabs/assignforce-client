@@ -1,0 +1,67 @@
+/* ==================== GLOBAL STYLES ==================== */
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+/* ----------- GENERAL STYLING ---------- */
+.fill-space {
+  flex: 1 1 auto;
+}
+
+/* ----------- MAT PANELS STYLING ----------- */
+.mat-expansion-panel,
+.mat-expansion-panel-header {
+  background-color: #37474f;
+}
+
+.mat-expansion-panel-body {
+  background-color: #fff;
+}
+
+.mat-expansion-panel-header-title {
+  color: #fff;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+mat-panel-title {
+  color: #fff;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.mat-expansion-panel-header-description {
+  color: #fff;
+}
+
+/* ----------- MAT TOOLBAR STYLING ----------- */
+mat-toolbar {
+  padding: 0px 16px;
+  background-color: #37474f;
+  color: #e0e4e6;
+}
+
+mat-toolbar-row {
+  background-color: #37474f;
+  color: #e0e4e6;
+  display: flex;
+}
+
+/* ----------- BUTTON ----------- */
+.mat-icon {
+  margin: 4px;
+  color: #fff;
+}
+
+.mat-icon:hover {
+  color: #f26a25;
+}
+
+.revOrange {
+  color: #f26a25;
+  background-color: solid #fff;
+}
+
+/* ----------- BATCHES + BATCHES TIMELINE STYLING ----------- */
+#check,
+#checkcell {
+  max-width: 25px;
+}

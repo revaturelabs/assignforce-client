@@ -1,0 +1,35 @@
+<form [formGroup]="addTrainerForm" (submit)="onSubmit(addTrainerForm.value, addTrainerForm.valid)">
+  <h2 mat-dialog-title>Add New Trainer</h2>
+  <div mat-dialog-content>
+    <div>
+      <mat-form-field style="width: 100%;">
+        <input matInput formControlName="firstName" placeholder="First Name" type="text">
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field style="width: 100%;">
+        <input matInput formControlName="lastName" placeholder="Last Name" type="text">
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field style="width: 100%;">
+        <input matInput formControlName="email" placeholder="Email" type="email">
+      </mat-form-field>
+    </div>
+    <mat-label>Skills Background
+      <div>
+        <span *ngFor="let skill of curricula">
+          <span>
+            <mat-checkbox [value]="skill.id" (change)="skillChange($event.checked, $event.source.value)"> {{ skill.name }}</mat-checkbox>
+          </span>
+        </span>
+      </div>
+    </mat-label>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button tabindex="4" [disabled]="!addTrainerForm.valid">Add</button>
+    <button mat-button (click)="onNoClick($event)" tabindex="-1">Cancel</button>
+  </div>
+</form>

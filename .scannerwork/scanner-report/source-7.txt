@@ -1,0 +1,9 @@
+.add-curriculum-name {
+    width: 100%;
+  }
+  
+  .form-field-container {
+    display: flex;
+    justify-content: center;
+  }
+  

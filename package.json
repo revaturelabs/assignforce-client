@@ -50,6 +50,7 @@
     "json2csv": "^3.11.5",
     "npm": "^6.3.0",
     "rxjs": "^5.5.2",
+    "tslint-sonarts": "^1.9.0",
     "zone.js": "^0.8.25"
   },
   "devDependencies": {

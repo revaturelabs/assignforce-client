@@ -1,0 +1,204 @@
+<form class="padding-top" #settingsForm="ngForm">
+  <mat-grid-list cols='4' rowHeight="50px">
+    <mat-grid-tile
+      [colspan] = "2"
+      [rowspan] = "1">
+      <label class="leftAlign" for="trainerPerPage" >Timeline Trainers Per Page</label>
+    </mat-grid-tile>
+
+    <mat-grid-tile
+    [colspan] = "2"
+    [rowspan] = "1">
+      <mat-form-field>
+          <input matInput required name="trainerPerPage" type="number" [(ngModel)]="setting.trainersPerPage" [readonly]="isReadOnly()">
+      </mat-form-field>
+    </mat-grid-tile>
+
+
+    <mat-grid-tile
+    [colspan] = "2"
+    [rowspan] = "1">
+        <label class="leftAlign" for="outgoingGrads">Reports Outgoing Grads</label>
+    </mat-grid-tile>
+
+    <mat-grid-tile
+    [colspan] = "2"
+    [rowspan] = "1">
+      <mat-form-field>
+        <input matInput required name="outgoingGrads" type="number" [(ngModel)]="setting.reportGrads" [readonly]="isReadOnly()">
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile
+    [colspan] = "2"
+    [rowspan] = "1">
+      <label class="leftAlign" for="candidateIncoming">Reports Candidates Incoming</label>
+    </mat-grid-tile>
+
+    <mat-grid-tile
+    [colspan] = "2"
+    [rowspan] = "1">
+      <mat-form-field>
+        <input matInput required name="candidateIncoming" type="number" [(ngModel)]="setting.reportIncomingGrads" [readonly]="isReadOnly()">
+      </mat-form-field>
+    </mat-grid-tile>
+
+
+    <!--<mat-grid-tile-->
+    <!--[colspan] = "2"-->
+    <!--[rowspan] = "1">-->
+      <!--<label class="leftAlign" for="batchLocation">Default Batch Location</label>-->
+    <!--</mat-grid-tile>-->
+
+    <!--<mat-grid-tile-->
+    <!--[colspan] = "2"-->
+    <!--[rowspan] = "1">-->
+      <!--<mat-form-field>-->
+        <!--<mat-select [(ngModel)]="setting.defaultLocation" name="defaultLocation">-->
+          <!--<mat-option *ngFor="let location of locations" [value]="location">-->
+            <!--{{ location.name }}-->
+          <!--</mat-option>-->
+        <!--</mat-select>-->
+      <!--</mat-form-field>-->
+    <!--</mat-grid-tile>-->
+
+    <!--<mat-grid-tile-->
+    <!--[colspan] = "2"-->
+    <!--[rowspan] = "1">-->
+      <!--<label class="leftAlign" for="batchBuilding">Default Batch Building</label>-->
+    <!--</mat-grid-tile>-->
+
+    <!--<mat-grid-tile-->
+    <!--[colspan] = "2"-->
+    <!--[rowspan] = "1">-->
+      <!--<mat-form-field>-->
+        <!--<mat-select [(ngModel)]="setting.defaultBuilding" name="defaultBuilding">-->
+          <!--<mat-option *ngFor="let building of buildings" [value]="building">-->
+            <!--{{ building.name }}-->
+          <!--</mat-option>-->
+        <!--</mat-select>-->
+      <!--</mat-form-field>-->
+    <!--</mat-grid-tile>-->
+
+    <mat-grid-tile
+    [colspan] = "2"
+    [rowspan] = "1">
+      <label class="leftAlign" for="minBatchSize">Minimum Batch Size</label>
+    </mat-grid-tile>
+
+    <mat-grid-tile
+    [colspan] = "2"
+    [rowspan] = "1">
+      <mat-form-field>
+        <input matInput required name="minBatchSize" type="number" [(ngModel)]="setting.minBatchSize" [readonly]="isReadOnly()">
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile
+    [colspan] = "2"
+    [rowspan] = "1">
+      <label class="leftAlign" for="maxBatchSize">Maximum Batch Size</label>
+    </mat-grid-tile>
+
+    <mat-grid-tile
+    [colspan] = "2"
+    [rowspan] = "1">
+      <mat-form-field>
+        <input matInput required name="maxBatchSize" type="number" [(ngModel)]="setting.maxBatchSize" [readonly]="isReadOnly()">
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile
+    [colspan] = "2"
+    [rowspan] = "1">
+      <label class="leftAlign" for="batchDuration">Default Batch Length</label>
+    </mat-grid-tile>
+
+    <mat-grid-tile
+    [colspan] = "2"
+    [rowspan] = "1">
+      <mat-form-field>
+        <input matInput required name="batchDuration" type="number" [(ngModel)]="setting.batchLength" [readonly]="isReadOnly()">
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile
+    [colspan] = "2"
+    [rowspan] = "1">
+      <label class="leftAlign" for="trainerBreakDays">Minimum Day Between Trainer Batches</label>
+    </mat-grid-tile>
+
+    <mat-grid-tile
+    [colspan] = "2"
+    [rowspan] = "1">
+      <mat-form-field>
+        <input matInput required name="daysBetweenBatches" type="number" [(ngModel)]="setting.trainerBreakDays" [readonly]="isReadOnly()">
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile
+    [colspan] = "2"
+    [rowspan] = "1">
+      <label class="leftAlign" for="namePattern">Default Batch Name Pattern</label>
+    </mat-grid-tile>
+
+    <mat-grid-tile
+    [colspan] = "2"
+    [rowspan] = "1">
+      <mat-form-field>
+        <input matInput name="namePattern" type="text" readonly [(ngModel)]="setting.defaultNamePattern" [readonly]="isReadOnly()">
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile
+    [colspan] = "1"
+    [rowspan] = "1">
+    </mat-grid-tile>
+
+    <mat-grid-tile
+    [colspan] = "1"
+    [rowspan] = "1">
+      <button mat-raised-button [ngClass]="isReadOnly()?'btn-white':'btn-orange'" type="submit" [disabled]="!settingsForm.form.valid || isReadOnly()" (click)="save()">SAVE</button>
+    </mat-grid-tile>
+
+    <mat-grid-tile
+    [colspan] = "1"
+    [rowspan] = "1">
+      <button mat-raised-button (click)="reset()" [disabled]="isReadOnly()">RESET</button>
+    </mat-grid-tile>
+
+    <mat-grid-tile
+    [colspan] = "1"
+    [rowspan] = "1">
+    </mat-grid-tile>
+
+    <mat-grid-tile
+      [colspan] = "1"
+      [rowspan] = "1">
+    </mat-grid-tile>
+
+    <mat-grid-tile
+      [colspan] = "2"
+      [rowspan] = "1">
+      <mat-progress-bar mode="buffer" *ngIf="isLoading"></mat-progress-bar>
+    </mat-grid-tile>
+    <mat-grid-tile
+      [colspan] = "1"
+      [rowspan] = "1">
+    </mat-grid-tile>
+    <mat-grid-tile
+      [colspan] = "1"
+      [rowspan] = "1">
+    </mat-grid-tile>
+
+    <!--<mat-grid-tile
+      [colspan] = "2"
+      [rowspan] = "1">
+      <mat-card *ngIf="isError">Error Loading Setting Data</mat-card>
+    </mat-grid-tile>-->
+    <mat-grid-tile
+      [colspan] = "1"
+      [rowspan] = "1">
+    </mat-grid-tile>
+  </mat-grid-list>
+</form>
