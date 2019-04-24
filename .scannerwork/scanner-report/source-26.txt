@@ -1,0 +1,77 @@
+<form>
+  <div>
+    <div>
+      <mat-form-field>
+        <mat-label>Start Date</mat-label>
+        <input id="startDate" name="startDate" matInput (change)="onFilterChange($event)" (dateChange)="onFilterChange($event)" [matDatepicker]="picker1"
+          [(ngModel)]="startDate">
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1=""></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>End Date</mat-label>
+        <input id="endDate" name="endDate" matInput (change)="onFilterChange($event)" (dateChange)="onFilterChange($event)" [matDatepicker]="picker2"
+          [(ngModel)]="endDate">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2=""></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Curriculum</mat-label>
+        <mat-select id="curriculum" name="curriculum" (change)="onFilterChange($event)" [(ngModel)]="curriculumFilter">
+          <mat-option *ngFor="let cur of curriculumData" [value]="cur">
+            {{cur.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Location</mat-label>
+        <mat-select #location id="location" name="location" (change)="onLocationSelectChange($event)" [(ngModel)]="locationFilter">
+          <mat-option *ngFor="let loc of locationData" [value]="loc">
+            {{loc.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Building</mat-label>
+        <mat-select id="building" name="building" (change)="onFilterChange($event)" [(ngModel)]="buildingFilter">
+          <mat-option *ngFor="let building of buildingData" [value]="building">
+            {{building.buildingName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-checkbox id="hideconcluded" (change)="onFilterChange($event)" color="primary">Show Concluded Batches</mat-checkbox>
+      <mat-checkbox id="hidebatchless" (change)="onFilterChange($event)" color="primary">Show Batchless Trainers</mat-checkbox>
+      <mat-checkbox id="hideinactive" (change)="onFilterChange($event)" color="primary">Show Inactive Trainers</mat-checkbox>
+      <br>
+      <mat-form-field>
+        <mat-label>TrainersPerPage</mat-label>
+        <input id="trainersperpage" type="number" matInput placeholder="Trainers Per Page (0 to see all)" (change)="onFilterChange($event)"
+          value="{{trainersPerPage}}" min="0">
+      </mat-form-field>
+      <button mat-raised-button id="diabled-firstpage" mat-mini-fab *ngIf="currentPage === 0" color="disabled"> |&lt; </button>
+      <button mat-raised-button id="diabled-previouspage" mat-mini-fab *ngIf="currentPage === 0" color="disabled"> &lt; </button>
+      <button mat-raised-button type="button" id="firstpage" mat-mini-fab *ngIf="currentPage > 0" (click)="onFilterChange({target:{id:'firstpage'}})" color="warn">
+      |&lt; </button>
+      <button mat-raised-button type="button" id="previouspage" mat-mini-fab *ngIf="currentPage > 0" (click)="onFilterChange({target:{id:'previouspage'}})" color="warn">
+      &lt; </button>
+      <span *ngIf="trainersPerPage === 0">
+        Viewing All Trainers' Batches
+      </span>
+      <span id="viewpagespan" *ngIf="trainersPerPage != 0">
+        Viewing Page: {{currentPage + 1}} / {{maxPages + 1}}
+        <mat-form-field>
+          <mat-label>Current Page</mat-label>
+          <input id="currentpage" type="number" matInput placeholder="Enter value to go to page" (change)="onFilterChange($event)"
+            value="{{currentPage + 1}}" min="1">
+        </mat-form-field>
+      </span>
+      <button mat-raised-button type="button" id="nextpage" mat-mini-fab *ngIf="currentPage < maxPages" (click)="onFilterChange({target:{id:'nextpage'}})" color="warn">
+      &gt; </button>
+      <button mat-raised-button type="button" id="lastpage" mat-mini-fab *ngIf="currentPage < maxPages" (click)="onFilterChange({target:{id:'lastpage'}})" color="warn">
+      &gt;| </button>
+      <button mat-raised-button id="diabled-nextpage" mat-mini-fab *ngIf="currentPage >= maxPages" color="disabled"> &gt; </button>
+      <button mat-raised-button id="diabled-lastpage" mat-mini-fab *ngIf="currentPage >= maxPages" color="disabled"> &gt;| </button>
+    </div>
+    <mat-progress-bar mode="buffer" *ngIf="loading"></mat-progress-bar>
+  </div>
+</form>

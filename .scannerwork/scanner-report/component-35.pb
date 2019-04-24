@@ -1,0 +1,1 @@
+# 2webXhr5src/app/components/curricula/curricula.component.html
