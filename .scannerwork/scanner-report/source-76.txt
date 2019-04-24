@@ -1,0 +1,27 @@
+/* ---------- REPORTS STYLING ----------- */
+#reportsDiv {
+  padding-top: 5%;
+}
+
+/* ----------- MAT TOOLBAR ----------- */
+mat-toolbar,
+mat-toolbar-row {
+  background-color: #37474f;
+}
+
+/* ----------- INCOMING TRAINEE TABLE ----------- */
+.example-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+}
+
+/* ----------- MAT TABLE ----------- */
+.mat-table {
+  overflow: auto;
+  max-height: 500px;
+}
+
+.mat-header-cell.mat-sort-header-sorted {
+  color: black;
+}

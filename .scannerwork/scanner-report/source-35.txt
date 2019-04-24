@@ -1,0 +1,23 @@
+<div class="container-curricula">
+  
+    <mat-toolbar-row>
+      <mat-toolbar class="toolbar-curricula">
+        <span class="mat-expansion-panel-header-title">Curricula</span>
+        <span class="fill-space"></span>
+      </mat-toolbar>
+    </mat-toolbar-row>
+
+    <br/>
+
+    <mat-card>
+      <app-core [isCore]="true"></app-core>
+    </mat-card>
+    
+    <mat-card>
+      <app-core [isCore]="false"></app-core>
+    </mat-card>
+    
+    <mat-card>
+      <app-curriculum-skills ></app-curriculum-skills>
+    </mat-card>
+</div>

@@ -1,0 +1,69 @@
+/* ----------- CURRICULUM SKILLS STYLING ---------- */
+
+.container-curricula {
+  margin-top: 5%;
+}
+
+/* #38464E #3D5360*/
+
+.toolbar-curricula-sub {
+  background-color: #37474f;
+  color: white;
+}
+
+/* ----------- MAT TOOLBAR ---------- */
+
+.toolbar-mat-buttons {
+  margin: 12px 6px;
+}
+
+.panel-title-fix {
+  padding-top: 8px;
+}
+
+/* ----------- ICONS ---------- */
+
+.icon-margin-fix {
+  margin: 0px;
+  color: white;
+}
+
+/* ----------- BUTTONS ---------- */
+
+.button-orange {
+  background-color: #fff;
+  margin: 2px;
+}
+
+.mat-icon,
+.material-icons {
+  color: #f26a25;
+}
+
+/* ----------- LIST OF SKILL ITEMS DETAIL ---------- */
+
+.item-detail {
+  margin: 2%;
+}
+
+/* --------- STYLES INCONSISTENT ---------- */
+
+/* #mat-expansion-panel-header-2:hover mat-panel-title {
+  color: black;
+}
+
+#mat-expansion-panel-header-2:focus {
+  background-color: #3d5360;
+  color: white;
+}
+
+#mat-expansion-panel-header-2:focus:hover {
+  background-color: white;
+  color: black;
+} */
+
+/* .mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:not([aria-disabled='true']).cdk-keyboard-focused,
+.mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:not([aria-disabled='true']).cdk-program-focused,
+.mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:not([aria-disabled='true']):hover {
+  background: white;
+} */

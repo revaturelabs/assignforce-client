@@ -1,0 +1,1 @@
+	 2tsX@hr=src/app/components/add-curriculum/add-curriculum.component.ts

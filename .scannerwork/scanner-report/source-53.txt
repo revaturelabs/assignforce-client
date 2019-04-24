@@ -1,0 +1,6 @@
+<h1 mat-dialog-title>Delete This Building?</h1>
+<h4> {{data.building.buildingName}}</h4>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="data.building" tabindex="2">Yes</button>
+  <button mat-button (click)="onNoClick()" tabindex="-1">No</button>
+</div>

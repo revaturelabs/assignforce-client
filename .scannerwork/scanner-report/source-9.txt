@@ -1,0 +1,63 @@
+import { Component, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '../../../../node_modules/@angular/material';
+import { CurriculumControllerService } from '../../services/api/curriculum-controller/curriculum-controller.service';
+import { SkillControllerService } from '../../services/api/skill-controller/skill-controller.service';
+import { Curriculum } from '../../model/Curriculum';
+import { Skill } from '../../model/Skill';
+import { Inject } from '@angular/core';
+
+@Component({
+  selector: 'app-add-curriculum',
+  templateUrl: './add-curriculum.component.html',
+  styleUrls: ['./add-curriculum.component.css']
+})
+export class AddCurriculumComponent implements OnInit {
+
+  constructor(
+    public dialogRef: MatDialogRef<AddCurriculumComponent>,
+    private curriculumControllerService: CurriculumControllerService,
+    private skillControllerService: SkillControllerService,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) { }
+
+  curriculum: Curriculum;
+  skills: Skill[] = [];
+  selectedSkills: Skill[];
+
+  ngOnInit() {
+    this.newCurriculum();
+    this.skillControllerService.findAll().subscribe(data => {
+      this.skills = data.filter(skill => {
+        if (skill.isActive){
+          return skill;
+        }
+      });
+    });
+  }
+
+  //Closes the add Curriculum Modal.
+  closeDialog(): void {
+    this.dialogRef.close();
+  }
+
+  //Resets the current Curriculum.  This is here to prevent the old curriculum from persisting between additions and to prevent undefined errors.
+  newCurriculum(): void {
+    this.curriculum = new Curriculum(0, '', true, true, []);
+  }
+
+  addCurriculum(): void {
+    this.curriculum.skills = this.selectedSkills;
+    this.curriculum.isCore = this.data.isCore;
+    this.curriculumControllerService
+      .create(this.curriculum)
+      .toPromise()
+      .then(() => {
+        this.newCurriculum();
+        this.closeDialog();
+      })
+      .catch(err => {
+        alert('Error occurred while adding Curriculum');
+        console.log(err);
+      });
+  }
+}

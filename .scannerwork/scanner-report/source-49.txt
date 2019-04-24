@@ -1,0 +1,19 @@
+<h2 mat-dialog-title>Add New Location</h2>
+<div mat-dialog-content>
+  <p>Location Name:</p>
+  <mat-form-field class="update-form" style="width: 100%">
+    <input matInput tabindex="1" [(ngModel)]="data.location.name">
+  </mat-form-field>
+  <p>City:</p>
+  <mat-form-field class="update-form" style="width: 100%">
+    <input matInput tabindex="2" [(ngModel)]="data.location.city">
+  </mat-form-field>
+  <p>State:</p>
+  <mat-form-field class="update-form" style="width: 100%">
+    <input matInput tabindex="3" [(ngModel)]="data.location.state">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="data.location" tabindex="4">Add</button>
+  <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+</div>

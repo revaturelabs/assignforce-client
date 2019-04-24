@@ -1,0 +1,18 @@
+<h2 mat-dialog-title>Add {{ addType | titlecase }}</h2>
+<div mat-dialog-content>
+    <mat-form-field class="update-form" style="width: 100%">
+        <input matInput tabindex="1" [(ngModel)]="typeContent.buildingName" [placeholder]="(addType | titlecase) + ' Name'">
+    </mat-form-field>
+    <div *ngIf="addType === 'location'">
+        <mat-form-field class="update-form" style="width: 100%">
+            <input matInput tabindex="2" [(ngModel)]="data.location.city" placeholder="City">
+        </mat-form-field>
+        <mat-form-field class="update-form" style="width: 100%">
+            <input matInput tabindex="3" [(ngModel)]="data.location.state" placeholder="State">
+        </mat-form-field>
+    </div>
+</div>
+<div mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="data.building" tabindex="4">Add</button>
+    <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+</div>

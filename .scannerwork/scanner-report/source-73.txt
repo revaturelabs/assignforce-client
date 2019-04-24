@@ -1,0 +1,91 @@
+/* ---------- PROFILE STYLING ----------- */
+#profileDiv {
+  margin-top: 5%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.center {
+  align-content: center;
+  margin: 0 auto;
+}
+
+#profileName {
+  /* width: 60%; */
+  /* display: flex; */
+  align-content: center;
+  /* margin: 0 auto; */
+  margin: 20px auto 0;
+}
+
+.container {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.col-lg-2 {
+  padding: 2% 0 2% 0;
+  margin-right: 0;
+}
+
+.col-lg-10 {
+  margin-right: 0;
+  padding: 2% 0 2% 0;
+}
+
+#subToolbar {
+  /* Spacing hotfix. Should replace with class-based solution. */
+  margin-bottom: 2vh;
+}
+
+/* ---------- TOOLBAR ----------- */
+.md-toolbar {
+  padding: 0px;
+  background-color: transparent;
+  color: inherit;
+}
+
+.md-toolbar-spacer {
+  flex: 1 1 auto;
+}
+
+/* ---------- ICON ----------- */
+mat-icon {
+  margin: 0;
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+/* ---------- IMAGES ----------- */
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ---------- RESUME ----------- */
+.inputFile {
+  display: none;
+}
+
+/* ---------- CARD ----------- */
+mat-card {
+  margin: 0;
+  padding: 0;
+}
+
+mat-card-content {
+  margin: 0;
+}
+
+/* ---------- BUTTONS ---------- */
+.mat-icon,
+.material-icons {
+  color: #f26a25;
+}
+
+/* ---------- UNAVAILABLE FORM ---------- */
+#unavailableDiv {
+  padding: 0% 2% 1% 2.5%;
+}

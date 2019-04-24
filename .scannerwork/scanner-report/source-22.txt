@@ -1,0 +1,38 @@
+/* ---------- BATCHES TIMELINE STYLING ---------- */
+#timelineDiv {
+  padding-top: 2%;
+}
+
+/* ---------- TRAINER NAMES STYLING ---------- */
+.trainer-names {
+  word-wrap: break-word;
+  float: left;
+  vertical-align: bottom;
+  text-align: center;
+}
+
+#trainer-names-bg {
+  position: sticky;
+  top: 0;
+  background-color: #d3d3d3;
+  overflow: auto;
+  z-index: 5;
+}
+
+/* ---------- TIMELINE STYLING ---------- */
+.unselectable {
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+}
+
+#timeline {
+  position: relative;
+  z-index: 1;
+}
+
+.batch-tooltip {
+  position: relative;
+  z-index: 10;
+}
