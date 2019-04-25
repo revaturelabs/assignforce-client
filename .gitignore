@@ -36,6 +36,7 @@ npm-debug.log
 testem.log
 /typings
 /package-lock.json
+.scannerwork
 
 # e2e
 /e2e/*.js
@@ -84,6 +85,7 @@ local.properties
 .settings/ 
 .loadpath 
 .recommenders 
+.scannerwork
 
 # Eclipse Core 
 .project 
