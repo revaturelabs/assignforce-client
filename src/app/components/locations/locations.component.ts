@@ -1,17 +1,14 @@
 import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatIconRegistry } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ReactiveFormsModule, FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { Building } from '../../model/Building';
 import { Address } from '../../model/Address';
 import { Room } from '../../model/Room';
 import { LocationAddDialogComponent } from './add-dialog/location-add-dialog.component';
 import { AddressControllerService } from '../../services/api/address-controller/address-controller.service';
-// import { BuildingControllerService } from '../../services/api/building-controller/building-controller.service';
 import { RoomControllerService } from '../../services/api/room-controller/room-controller.service';
 import { UnavailableControllerService } from '../../services/api/unavailable-controller/unavailable-controller.service';
 import { AuthService } from '../../services/auth/auth.service';
-import { FormControl } from '@angular/forms';
 import { Unavailability } from '../../model/Unavailability';
 
 import { CachedObjectsService } from '../../services/api/cache/cached-objects.service';

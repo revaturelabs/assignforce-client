@@ -177,5 +177,7 @@ describe('ProfileComponent', () => {
     let num = 15;
     expect(component.padZeroDate(num)).toEqual(15);
   });
-
 });
+
+
+
