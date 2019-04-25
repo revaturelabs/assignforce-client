@@ -820,7 +820,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
     if (this.batchFilteredList.length === 0) {
       return rects;
     }
-    const full_duration = this.endValue - this.startValue;
+   
 
     // text mode to use by pixel height
     const txtlongpx = 105;
