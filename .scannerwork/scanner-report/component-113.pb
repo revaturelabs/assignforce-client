@@ -1,1 +1,1 @@
-q 2tsX"hrKsrc/app/services/api/curriculum-controller/curriculum-controller.service.ts
+q 2tsXVhrBsrc/app/components/trainers/trainer-item/trainer-item.component.ts

@@ -1,17 +1,27 @@
-import { Skill } from './Skill';
+/* ---------- SETTINGS STYLING ---------- */
+.padding-top {
+  padding-top: 5%;
+  max-width: 60%;
+  padding-left: 10%;
+  padding-right: 10%;
+  margin: 0 auto;
+}
 
-export class Curriculum {
-  id: number;
-  name: string;
-  isActive: boolean;
-  isCore: boolean;
-  skills: Skill[];
+/* ---------- BUTTONS STYLING ---------- */
+.btn-orange,
+.btn-orange:hover,
+.btn-orange:active,
+.btn-orange:focus {
+  color: #ffffff;
+  background-color: #f26a25;
+}
 
-  constructor(id: number, name: string, active: boolean, core: boolean, skills: Skill[]) {
-    this.id = id;
-    this.name = name;
-    this.isActive = active;
-    this.isCore = core;
-    this.skills = skills;
-  }
+.btn-white {
+  color: #000000;
+  background-color: #ffffff;
+  border-color: #000000;
+}
+
+.leftAlign {
+  text-align: left;
 }

@@ -1,14 +1,17 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import { Unavailability } from './Unavailability';
+import { Building } from './Building';
+export class Room {
+  id: number;
+  roomName: string;
+  building: number;
+  active: boolean;
+  unavailabilities: Unavailability[];
 
-@Injectable()
-export class S3CredentialService {
-  url = '/api/v2/s3Creds';
-
-  constructor(private http: HttpClient) {}
-
-  getCreds(): Observable<any> {
-    return this.http.get<any>(this.url);
+  constructor(id?: number, active?: boolean, roomName?: string, building?: number, unavailabilities?: Unavailability[]) {
+    this.id = id;
+    this.roomName = roomName;
+    this.active = active;
+    this.building = building;
+    this.unavailabilities = unavailabilities;
   }
 }

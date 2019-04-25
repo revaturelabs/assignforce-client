@@ -1,1 +1,1 @@
-æ (2tsX„hrRsrc/app/services/api/unavailable-controller/unavailable-controller.service.spec.ts
+æ (2tsXJhr8src/app/components/curricula/curricula.component.spec.ts

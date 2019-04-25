@@ -1,1 +1,1 @@
- 2cssXhr>src/app/components/certifications/certifications.component.css
+ 2tsX³hrsrc/app/app.module.ts

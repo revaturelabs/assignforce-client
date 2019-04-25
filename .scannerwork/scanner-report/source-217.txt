@@ -1,49 +1,74 @@
-import { TestBed } from '@angular/core/testing';
-import {
-  HttpClientTestingModule,
-  HttpTestingController,
-} from '@angular/common/http/testing';
-import { CurriculumControllerService } from '../services/api/curriculum-controller/curriculum-controller.service';
-import {AuthService} from '../services/auth/auth.service'
-import { SpringXsrfInterceptor } from './springXsrfInterceptor';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { environment } from '../../environments/environment';
-
-export class MockAuthService{
-    public getToken(){
-        return "testToken"
+(function() {
+  function e(t, n, r) {
+    function s(o, u) {
+      if (!n[o]) {
+        if (!t[o]) {
+          var a = typeof require == 'function' && require;
+          if (!u && a) return a(o, !0);
+          if (i) return i(o, !0);
+          var f = new Error("Cannot find module '" + o + "'");
+          throw ((f.code = 'MODULE_NOT_FOUND'), f);
+        }
+        var l = (n[o] = { exports: {} });
+        t[o][0].call(
+          l.exports,
+          function(e) {
+            var n = t[o][1][e];
+            return s(n ? n : e);
+          },
+          l,
+          l.exports,
+          e,
+          t,
+          n,
+          r
+        );
+      }
+      return n[o].exports;
     }
-}
+    var i = typeof require == 'function' && require;
+    for (var o = 0; o < r.length; o++) s(r[o]);
+    return s;
+  }
+  return e;
+})()(
+  {
+    1: [
+      function(require, module, exports) {
+        'use strict';
 
-describe(`SpringXsrfInterceptor`, () => {
-  let service: CurriculumControllerService;
-  let httpMock: HttpTestingController;
-  const curriculumController = environment.apiUrls.curriculumController
+        /* global given, then  */
+        var url = '/batches';
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
-      providers: [
-        CurriculumControllerService,
-        {provide: AuthService, useClass: MockAuthService},
-        {
-          provide: HTTP_INTERCEPTORS,
-          useClass: SpringXsrfInterceptor,
-          multi: true,
-        },
-      ],
-    });
-    service = TestBed.get(CurriculumControllerService);
-    httpMock = TestBed.get(HttpTestingController);
-
-
-})
-    it('should add an Authorization header with the token in it', () => {
-        service.findAll().subscribe(response => {
-        expect(response).toBeTruthy();
+        given('I am on the home page', function() {
+          cy.visit('/');
         });
-        const httpRequest = httpMock.expectOne(curriculumController.baseUrl + curriculumController.findAll);
-        expect(httpRequest.request.headers.has('Authorization')).toEqual(true);
-        expect(httpRequest.request.headers.get('Authorization')).toEqual('Bearer testToken')
-    });
-});
+
+        when('I click on the {string} tab', function(title) {
+          cy.get('#mat-tab-label-0-1')
+            .should('contain', title)
+            .click();
+        });
+
+        then('The URL is {string}', function(url) {
+          cy.url().should('contain', url);
+        });
+
+        then('I can see {string}', function(text) {
+          cy.get('*:contains(' + text + ')').should('contain', text);
+        });
+
+        given('I am on the batches page', function() {
+          cy.visit('/batches');
+        });
+
+        then('true should be {int}', function(value) {
+          expect(value).to.equal(24);
+        });
+      },
+      {}
+    ]
+  },
+  {},
+  [1]
+);

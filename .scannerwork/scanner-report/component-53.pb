@@ -1,1 +1,1 @@
-5 2webXhrKsrc/app/components/locations/location-delete-building-dialog.component.html
+5 2tsXhr=src/app/components/certifications/certifications.component.ts

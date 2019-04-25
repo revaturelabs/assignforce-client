@@ -1,1 +1,1 @@
-ﬁ (2tsXùhrPsrc/app/services/api/curriculum-controller/curriculum-controller.service.spec.ts
+ﬁ (2tsXÇhrBsrc/app/components/add-curriculum/add-curriculum.component.spec.ts

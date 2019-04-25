@@ -1,1 +1,1 @@
-Z 2tsXVhrBsrc/app/components/trainers/trainer-item/trainer-item.component.ts
+Z 2cssXhr2src/app/components/menu-bar/menu-bar.component.css

@@ -1,86 +1,53 @@
-import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
-
-import { TrainersAddComponent } from './trainers-add.component';
-
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { AppMaterialModule } from '../../../material.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule, FormBuilder, FormGroup } from '@angular/forms';
-import { TrainersComponent } from '../trainers.component';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { Trainer } from '../../../model/Trainer';
-import { Skill } from '../../../model/Skill';
-import { TrainerControllerService } from '../../../services/api/trainer-controller/trainer-controller.service';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-
-describe('TrainersAddComponent', () => {
-  let component: TrainersAddComponent;
-  let fixture: ComponentFixture<TrainersAddComponent>;
-  let fb;
-  let dialog;
-  let trainerService: TrainerControllerService;
-  let addTrainerForm: FormGroup;
-
-  class MockTrainerService {
-    createTrainer(trainer: Trainer) { }
-  }
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [TrainersAddComponent],
-      imports: [AppMaterialModule, BrowserAnimationsModule, FormsModule],
-      providers: [
-        {
-          provide: TrainerControllerService,
-          useClass: MockTrainerService
-        },
-        {
-          provide: MAT_DIALOG_DATA,
-          useValue: { trainer: null, curricula: [] }
-        }, {
-          provide: MatDialogRef,
-          useValue: dialog
+(function() {
+  function e(t, n, r) {
+    function s(o, u) {
+      if (!n[o]) {
+        if (!t[o]) {
+          var a = typeof require == 'function' && require;
+          if (!u && a) return a(o, !0);
+          if (i) return i(o, !0);
+          var f = new Error("Cannot find module '" + o + "'");
+          throw ((f.code = 'MODULE_NOT_FOUND'), f);
         }
-      ]
-    });
+        var l = (n[o] = { exports: {} });
+        t[o][0].call(
+          l.exports,
+          function(e) {
+            var n = t[o][1][e];
+            return s(n ? n : e);
+          },
+          l,
+          l.exports,
+          e,
+          t,
+          n,
+          r
+        );
+      }
+      return n[o].exports;
+    }
+    var i = typeof require == 'function' && require;
+    for (var o = 0; o < r.length; o++) s(r[o]);
+    return s;
+  }
+  return e;
+})()(
+  {
+    1: [
+      function(require, module, exports) {
+        'use strict';
 
-    fixture = TestBed.createComponent(TrainersAddComponent);
-    fb = fixture.debugElement.injector.get(FormBuilder);
-    dialog = fixture.debugElement.injector.get(MatDialogRef);
-    component = fixture.componentInstance;
-  }));
+        /* global given*/
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+        var url = 'https://facebook.com';
 
-  it('should call onNoClick', () => {
-    spyOn(component, 'onNoClick');
-    component.onNoClick(new Event('test'));
-    expect(component.onNoClick).toHaveBeenCalled();
-  });
-
-  it('should call onSubmit', () => {
-    spyOn(component, 'onSubmit');
-    component.onSubmit({}, true);
-    expect(component.onSubmit).toHaveBeenCalled();
-  });
-
-  it('onSubmit with no skills should equal empty array', () => {
-    spyOn(component, 'onSubmit');
-    let formVal = {firstName: "first", lastName: "last", email: "test@email.com", skills: null};
-    component.onSubmit(formVal, true);
-    fixture.detectChanges();
-    expect(component.trainer.skills).toEqual([]);
-  });
-
-
-  it('should call skillChange', () => {
-    spyOn(component, 'skillChange');
-    component.skillChange(true,{});
-    expect(component.skillChange).toHaveBeenCalled();
-  });
-
-
-});
+        given('I open Facebook page', function() {
+          cy.visit(url);
+        });
+      },
+      {}
+    ]
+  },
+  {},
+  [1]
+);

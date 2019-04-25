@@ -1,1 +1,1 @@
-S 2webX3hr/src/app/components/skills/skills.component.html
+S 2webX#hrHsrc/app/components/locations/location-open-unavailibility.component.html

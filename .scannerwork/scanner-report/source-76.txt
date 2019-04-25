@@ -1,27 +1,6 @@
-/* ---------- REPORTS STYLING ----------- */
-#reportsDiv {
-  padding-top: 5%;
-}
-
-/* ----------- MAT TOOLBAR ----------- */
-mat-toolbar,
-mat-toolbar-row {
-  background-color: #37474f;
-}
-
-/* ----------- INCOMING TRAINEE TABLE ----------- */
-.example-container {
-  display: flex;
-  flex-direction: column;
-  min-width: 300px;
-}
-
-/* ----------- MAT TABLE ----------- */
-.mat-table {
-  overflow: auto;
-  max-height: 500px;
-}
-
-.mat-header-cell.mat-sort-header-sorted {
-  color: black;
-}
+<h1 mat-dialog-title>Delete This Building?</h1>
+<h4> {{data.building.buildingName}}</h4>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="data.building" tabindex="2">Yes</button>
+  <button mat-button (click)="onNoClick()" tabindex="-1">No</button>
+</div>

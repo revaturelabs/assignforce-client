@@ -1,1 +1,1 @@
-N 2tsXáhr/src/app/components/reports/reports.component.ts
+N 2webXhrGsrc/app/components/locations/location-delete-room-dialog.component.html

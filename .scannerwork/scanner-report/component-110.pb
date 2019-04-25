@@ -1,1 +1,1 @@
-n 2tsX6hrAsrc/app/services/api/batch-controller/batch-controller.service.ts
+n 2tsXhrLsrc/app/components/trainers/add-trainer-error/add-trainer-error.component.ts

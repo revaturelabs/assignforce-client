@@ -1,102 +1,152 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
+// The file contents for the current environment will overwrite these during build.
+// The build system defaults to the dev environment which uses `environment.ts`, but if you do
+// `ng build --env=prod` then `environment.prod.ts` will be used instead.
+// The list of which env maps to which file can be found in `.angular-cli.json`.
 
-import { AppMaterialModule } from '../../material.module';
-import { Skill } from '../../model/Skill';
-import { SkillControllerService } from '../../services/api/skill-controller/skill-controller.service';
-import { CurriculumSkillsComponent } from './curriculum-skills.component';
-import { AuthService } from '../../services/auth/auth.service';
-import { RouterTestingModule } from '../../../../node_modules/@angular/router/testing';
-import { Router } from '../../../../node_modules/@angular/router';
-import { UrlService } from '../../services/url/url.service';
+export const environment = {
+  production: false,
+  name: 'default',
 
-describe('CurriculumSkillsComponent', () => {
-  let component: CurriculumSkillsComponent;
-  let fixture: ComponentFixture<CurriculumSkillsComponent>;
-  
-  const testData: Skill[] = [new Skill(1, 'Test Skill', true), new Skill(2, 'Test Skill 2', true)];
-  let skillControllerService = SkillControllerService;
+  baseUrl: 'https://localhost:4200',
+  baseApiUrl: 'api',
 
-  class MockSkillControllerService {
-    findAll(): Observable<Skill[]> {
-      return Observable.of(testData);
+  //routers
+  appRoutes: {
+    login: 'login',
+    overview: 'overview',
+    batches: 'batches',
+    locations: 'locations',
+    curricula: 'curricula',
+    trainers: 'trainers',
+    profile: 'profile',
+    reports: 'reports',
+    settings: 'settings',
+    callback: 'callback'
+  },
+
+  auth0: {
+    namespace: 'https://revature.com/',
+    title: 'AssignForce Login',
+    clientId: 'tjQhcs0O4mRV2iry6SAO0Gy1YQcBrWCa', //hydra
+    domain: 'revature.auth0.com',
+    responseType: 'token id_token',
+    audience: 'hydra-gateway',
+    redirectUri: 'https://localhost:4200/callback',
+    scope: 'openid profile'
+  },
+
+  security_config: {
+    roles: ['SVP of Technology', 'Trainer'],
+    groups: ['Operations'],
+    permissions: []
+  },
+
+  apiUrls: {
+    addressController: {
+      baseUrl: 'api/address',
+      create: '',
+      update: '/',
+      findAll: '',
+      find: '/',
+      remove: '/'
+    },
+
+    batchController: {
+      baseUrl: 'api/batch',
+      create: '',
+      update: '/',
+      findAll: '',
+      find: '/',
+      remove: '/'
+    },
+
+    buildingController: {
+      baseUrl: 'api/building',
+      create: '',
+      update: '/',
+      findAll: '',
+      find: '/',
+      remove: '/'
+    },
+
+    locationController: {
+      baseUrl: 'api/location',
+      create: '',
+      update: '/',
+      findAll: '',
+      find: '/',
+      remove: '/'
+    },
+
+    roomController: {
+      baseUrl: 'api/room',
+      create: '',
+      update: '/',
+      findAll: '',
+      find: '/',
+      remove: '/'
+    },
+
+    curriculumController: {
+      baseUrl: 'api/curriculum',
+      create: '',
+      update: '/',
+      findAll: '',
+      find: '/',
+      remove: '/'
+    },
+
+    focusController: {
+      baseUrl: 'api/focus',
+      create: '',
+      update: '/',
+      findAll: '',
+      find: '/',
+      remove: '/'
+    },
+
+    skillController: {
+      baseUrl: 'api/skill',
+      create: '',
+      update: '/',
+      findAll: '',
+      find: '/',
+      remove: '/'
+    },
+
+    trainerController: {
+      baseUrl: 'api/trainer',
+      create: '',
+      update: '/',
+      findAll: '',
+      find: '/',
+      remove: '/'
+    },
+
+    settingController: {
+      baseUrl: 'api/setting',
+      create: '',
+      update: '/',
+      findAll: '',
+      find: '/',
+      remove: '/'
+    },
+
+    unavailableController: {
+      baseUrl: 'api/unavailable',
+      create: '',
+      update: '/',
+      findAll: '',
+      find: '/',
+      remove: '/'
+    },
+    filehandlerController: {
+      baseUrl: 'api/filehandler',
+      create: '',
+      update: '/',
+      findAll: '',
+      find: '/',
+      remove: '/'
     }
   }
-
-  class MockAuthService {
-    userHasRole(roles: string[]) : boolean {
-      return true;
-    }
-  }
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [CurriculumSkillsComponent],
-      imports: [AppMaterialModule, BrowserAnimationsModule],
-      providers: [UrlService,
-        { provide: SkillControllerService, useClass: MockSkillControllerService },
-        { provide: Router, useClass: RouterTestingModule},
-        { provide: AuthService, useClass: MockAuthService}
-      ]
-    }).compileComponents();
-    skillControllerService = TestBed.get(SkillControllerService);
-  }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(CurriculumSkillsComponent);
-    component = fixture.componentInstance;
-    let authService = TestBed.get(AuthService);
-    authService.auth
-    fixture.detectChanges();
-  });
-
-  // init
-  it('should create', () => {
-  expect(component).toBeTruthy();
-  });
-
-  //mat-list
-  it('should contain a mat-list', () => {
-  const compiled = fixture.debugElement.nativeElement;
-  expect(compiled.querySelector('mat-list')).toBeTruthy();
-  });
-
-
-  it('should contain the skill name', () => {
-  const compiled = fixture.debugElement.nativeElement;
-  expect(compiled.querySelector('.skill-name').textContent).toContain(component.skillData[0].skillName);
-  });
-
-
-  it('should contain an accordion for the skills', () => {
-  const compiled = fixture.debugElement.nativeElement;
-  expect(compiled.querySelector('mat-accordion')).toBeTruthy();
-  });
-
-
-  it('should contain a title named Skills', () => {
-  const compiled = fixture.debugElement.nativeElement;
-  expect(compiled.querySelector('mat-panel-title').textContent).toContain('Skills');
-  });
-
-//should be able to remove
-  it('should have a remove button', () => {
-  const compiled = fixture.debugElement.nativeElement;
-  expect(compiled.querySelector('.remove-button')).toBeTruthy();
-  });
-
-//edit button should be there
-  it('should have an edit button', () => {
-  const compiled = fixture.debugElement.nativeElement;
-  expect(compiled.querySelector('.edit-button')).toBeTruthy();
-  });
-
-//openEditSkillDialog
-it('should open the edit Dialog', () => {
-  const compiled = fixture.debugElement.nativeElement;
-  
-});
-
-});
+};

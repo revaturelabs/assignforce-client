@@ -1,1 +1,1 @@
-w 2tsXbhr<src/app/services/api/skill-controller/fill-skills.service.ts
+w 2tsX˜hr1src/app/components/trainers/trainers.component.ts

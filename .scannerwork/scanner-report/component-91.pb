@@ -1,1 +1,1 @@
-[ 2cssXhrCsrc/app/components/trainers/trainers-add/trainers-add.component.css
+[ 2webX%hr3src/app/components/menu-bar/menu-bar.component.html

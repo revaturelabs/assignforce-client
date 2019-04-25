@@ -1,1 +1,1 @@
-) 2webXhrAsrc/app/components/edit-curriculum/edit-curriculum.component.html
+) 2tsX¶hr5src/app/components/batch-form/batch-form.component.ts

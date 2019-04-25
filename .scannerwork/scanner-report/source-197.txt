@@ -1,71 +1,153 @@
-import { from } from './../../../../node_modules/rxjs/observable/from';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+// The file contents for the current environment will overwrite these during build.
+// The build system defaults to the dev environment which uses `environment.ts`, but if you do
+// `ng build --env=prod` then `environment.prod.ts` will be used instead.
+// The list of which env maps to which file can be found in `.angular-cli.json`.
+const apiBaseUrl = 'https://dev.api.assignforce.revaturelabs.com';
 
-import { BatchesTimelineFilterComponent } from './batches-timeline-filter.component';
-import { AppMaterialModule } from '../../material.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BatchControllerService } from '../../services/api/batch-controller/batch-controller.service';
-import { TrainerControllerService } from '../../services/api/trainer-controller/trainer-controller.service';
-import { CurriculumControllerService } from '../../services/api/curriculum-controller/curriculum-controller.service';
-import { FocusControllerService } from '../../services/api/focus-controller/focus-controller.service';
-import { AddressControllerService } from '../../services/api/address-controller/address-controller.service';
-import { SettingControllerService } from '../../services/api/setting-controller/setting-controller.service';
-import {BuildingControllerService} from "../../services/api/building-controller/building-controller.service";
-import {RoomControllerService} from "../../services/api/room-controller/room-controller.service";
-
-describe('BatchesTimelineFilterComponent', () => {
-  let component: BatchesTimelineFilterComponent;
-  let fixture: ComponentFixture<BatchesTimelineFilterComponent>;
-  let curriculumService: CurriculumControllerService;
-  let focusService: FocusControllerService;
-  let addressService: AddressControllerService;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [AppMaterialModule, ReactiveFormsModule, FormsModule, HttpClientTestingModule, BrowserAnimationsModule],
-      declarations: [BatchesTimelineFilterComponent],
-      providers: [CurriculumControllerService, FocusControllerService, AddressControllerService,
-        SettingControllerService, BuildingControllerService, RoomControllerService]
-    }).compileComponents();
-  }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(BatchesTimelineFilterComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-    curriculumService = TestBed.get(CurriculumControllerService);
-    focusService = TestBed.get(FocusControllerService);
-    addressService = TestBed.get(AddressControllerService);
-
-  });
-
-    it('should create', () => {
-      expect(component).toBeTruthy();
-    });
-
-    it('should loadCurriculumData', () => {
-      let currciulumSpy = spyOn(curriculumService, 'findAll').and.callFake(() => {
-        return from([[1, 2, 3]]);
-      });
-      component.loadCurriculumData();
-      expect(component.curriculumData).toBeTruthy();
-    });
-
-    it('should loadFocusData', () => {
-      let focusSpy = spyOn(focusService, 'findAll').and.callFake(() => {
-        return from([[1, 2, 3]]);
-      });
-      component.loadFocusData();
-      expect(component.focusData).toBeTruthy();
-    });
-
-    it('should loadLocationData', () => {
-      let locationSpy = spyOn(addressService, 'findAll').and.callFake(() => {
-        return from([1, 2, 3]);
-      });
-      component.loadLocationData();
-      expect(component.locationData).toBeTruthy();
-    });
-});
+export const environment = {
+    production: false,
+    name: 'dev',
+  
+    baseUrl: 'https://dev2.assignforce.revaturelabs.com',
+  
+    //routers
+    appRoutes: {
+      login: 'login',
+      overview: 'overview',
+      batches: 'batches',
+      locations: 'locations',
+      curricula: 'curricula',
+      trainers: 'trainers',
+      profile: 'profile',
+      reports: 'reports',
+      settings: 'settings',
+      callback: 'callback'
+    },
+  
+    auth0: {
+      namespace: 'https://revature.com/',
+      title: 'AssignForce Login',
+      clientId: 'tjQhcs0O4mRV2iry6SAO0Gy1YQcBrWCa', //hydra
+      domain: 'revature.auth0.com',
+      responseType: 'token id_token',
+      audience: 'hydra-gateway',
+      redirectUri: 'https://dev2.assignforce.revaturelabs.com/callback',
+      scope: 'openid profile'
+    },
+  
+    security_config: {
+      roles: ['SVP of Technology', 'Trainer'],
+      groups: ['Operations'],
+      permissions: []
+    },
+  
+    apiUrls: {
+      addressController: {
+        baseUrl: `${apiBaseUrl}/location-service`,
+        create: '',
+        update: '/',
+        findAll: '',
+        find: '/',
+        remove: '/'
+      },
+  
+      batchController: {
+        baseUrl: `${apiBaseUrl}/batch-service`,
+        create: '',
+        update: '/',
+        findAll: '',
+        find: '/',
+        remove: '/'
+      },
+  
+      buildingController: {
+        baseUrl: `${apiBaseUrl}/location-service/building`,
+        create: '',
+        update: '/',
+        findAll: '',
+        find: '/',
+        remove: '/'
+      },
+  
+      locationController: {
+        baseUrl: `${apiBaseUrl}/location-service`,
+        create: '',
+        update: '/',
+        findAll: '',
+        find: '/',
+        remove: '/'
+      },
+  
+      roomController: {
+        baseUrl: `${apiBaseUrl}/location-service/room`,
+        create: '',
+        update: '/',
+        findAll: '',
+        find: '/',
+        remove: '/'
+      },
+  
+      curriculumController: {
+        baseUrl: `${apiBaseUrl}/curriculum-service`,
+        create: '',
+        update: '/',
+        findAll: '',
+        find: '/',
+        remove: '/'
+      },
+  
+      focusController: {
+        baseUrl: 'api/focus',
+        create: '',
+        update: '/',
+        findAll: '',
+        find: '/',
+        remove: '/'
+      },
+  
+      skillController: {
+        baseUrl: `${apiBaseUrl}/skill-service`,
+        create: '',
+        update: '/',
+        findAll: '',
+        find: '/',
+        remove: '/'
+      },
+  
+      trainerController: {
+        baseUrl: `${apiBaseUrl}/trainer-service`,
+        create: '',
+        update: '/',
+        findAll: '',
+        find: '/',
+        remove: '/'
+      },
+  
+      settingController: {
+        baseUrl: `${apiBaseUrl}/setting-service`,
+        create: '',
+        update: '/',
+        findAll: '',
+        find: '/',
+        remove: '/'
+      },
+  
+      unavailableController: {
+        baseUrl: `${apiBaseUrl}/location-service/unavailabilities`,
+        create: '/',
+        update: '/',
+        findAll: '',
+        find: '/',
+        remove: '/'
+      },
+      filehandlerController: {
+        baseUrl: `${apiBaseUrl}/filehandler-service`,
+        create: '',
+        update: '/',
+        findAll: '',
+        find: '/',
+        remove: '/'
+      }
+    }
+  };
+  

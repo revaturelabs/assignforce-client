@@ -1,1 +1,1 @@
-] 2tsXshrBsrc/app/components/trainers/trainers-add/trainers-add.component.ts
+] 2cssX,hr2src/app/components/overview/overview.component.css

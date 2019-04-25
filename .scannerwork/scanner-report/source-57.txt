@@ -1,11 +1,14 @@
-<h2 mat-dialog-title>Edit Building</h2>
-<div mat-dialog-content>
-  <p>Building Name:</p>
-  <mat-form-field class="update-form" style="width: 100%">
-    <input matInput tabindex="1" [(ngModel)]="data.building.buildingName">
-  </mat-form-field>
-</div>
-<div mat-dialog-actions>
-  <button mat-button [mat-dialog-close]="data.building" tabindex="4">Update</button>
-  <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
-</div>
+/* ---------- CURRICULA STYLES ---------- */
+.container-curricula {
+  margin-top: 5%;
+  width: 100%;
+}
+
+.toolbar-curricula {
+  background-color: #37474f;
+  color: white;
+  max-height: 50px;
+
+  background-color: inherit;
+  color: inherit;
+}

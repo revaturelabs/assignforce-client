@@ -1,1 +1,1 @@
-? 2tsXžhr3src/app/components/locations/locations.component.ts
+? 2cssXhr@src/app/components/edit-curriculum/edit-curriculum.component.css

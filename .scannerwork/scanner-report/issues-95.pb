@@ -1,6 +1,5 @@
-L
-WebAvoidCommentedOutCodeCheckRemove this commented out code. 2 [L
-WebAvoidCommentedOutCodeCheckRemove this commented out code. 2 KL
-WebAvoidCommentedOutCodeCheckRemove this commented out code. 2 QL
-WebAvoidCommentedOutCodeCheckRemove this commented out code. 2 ^L
-WebAvoidCommentedOutCodeCheckRemove this commented out code. 2 
+Z
+
+typescriptS18547Remove this useless assignment to local variable "csv". 2
+ùù
+ 

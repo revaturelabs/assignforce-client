@@ -1,1 +1,1 @@
-u 2tsXhr)src/app/services/api/service.interface.ts
+u 2cssX;hr2src/app/components/trainers/trainers.component.css

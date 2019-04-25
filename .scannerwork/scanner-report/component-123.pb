@@ -1,1 +1,1 @@
-{ 2tsXxhr%src/app/services/auth/auth.service.ts
+{ 2tsX-hrsrc/app/model/Batch.ts

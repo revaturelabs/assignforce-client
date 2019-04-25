@@ -1,1 +1,1 @@
-< 2webX#hrHsrc/app/components/locations/location-open-unavailibility.component.html
+< 2cssXFhrDsrc/app/components/curriculum-skills/curriculum-skills.component.css

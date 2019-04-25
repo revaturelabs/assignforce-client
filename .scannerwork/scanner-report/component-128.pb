@@ -1,1 +1,1 @@
-€ 2tsX0hr#src/app/services/url/url.service.ts
+€ 2tsX+hrsrc/app/model/Setting.ts

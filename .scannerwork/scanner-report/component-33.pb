@@ -1,1 +1,1 @@
-! 2tsX†hr)src/app/components/core/core.component.ts
+! 2cssXhr4src/app/components/add-skill/add-skill.component.css

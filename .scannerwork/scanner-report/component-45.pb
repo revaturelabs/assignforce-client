@@ -1,1 +1,1 @@
-- 2tsX4hr5src/app/components/edit-skill/edit-skill.component.ts
+- 2cssX'hrBsrc/app/components/batches-timeline/batches-timeline.component.css

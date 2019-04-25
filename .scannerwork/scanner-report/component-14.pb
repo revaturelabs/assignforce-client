@@ -1,1 +1,1 @@
- 2webXhr?src/app/components/authenticating/authenticating.component.html
+ 2jsXhrjson-server/delete-hook.js

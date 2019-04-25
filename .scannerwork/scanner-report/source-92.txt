@@ -1,35 +1,53 @@
-<form [formGroup]="addTrainerForm" (submit)="onSubmit(addTrainerForm.value, addTrainerForm.valid)">
-  <h2 mat-dialog-title>Add New Trainer</h2>
-  <div mat-dialog-content>
-    <div>
-      <mat-form-field style="width: 100%;">
-        <input matInput formControlName="firstName" placeholder="First Name" type="text">
-      </mat-form-field>
-    </div>
+import { Component, OnInit, ViewEncapsulation, OnChanges } from '@angular/core';
+import { UrlService } from '../../services/url/url.service';
+import { AuthService } from '../../services/auth/auth.service';
 
-    <div>
-      <mat-form-field style="width: 100%;">
-        <input matInput formControlName="lastName" placeholder="Last Name" type="text">
-      </mat-form-field>
-    </div>
+@Component({
+  selector: 'app-menu-bar',
+  templateUrl: './menu-bar.component.html',
+  styleUrls: ['./menu-bar.component.css'],
+  encapsulation: ViewEncapsulation.None
+})
+export class MenuBarComponent implements OnInit {
+  //This is the list of tabs and their paths for the ngFor in the html view
+  //url.get[pathname]Url is a service that fetches the paths from the environment.ts file
+  tabs = [
+    {
+      label: 'Overview',
+      path: this.url.getOverviewUrl()
+    },
+    {
+      label: 'Batches',
+      path: this.url.getBatchesUrl()
+    },
+    {
+      label: 'Locations',
+      path: this.url.getLocationsUrl()
+    },
+    {
+      label: 'Curricula',
+      path: this.url.getCurriculaUrl()
+    },
+    {
+      label: 'Trainers',
+      path: this.url.getTrainersUrl()
+    },
+    {
+      label: 'Profile',
+      path: this.url.getProfileUrl()
+    },
+    {
+      label: 'Reports',
+      path: this.url.getReportsUrl()
+    },
+    {
+      label: 'Settings',
+      path: this.url.getSettingsUrl()
+    }
+  ];
 
-    <div>
-      <mat-form-field style="width: 100%;">
-        <input matInput formControlName="email" placeholder="Email" type="email">
-      </mat-form-field>
-    </div>
-    <mat-label>Skills Background
-      <div>
-        <span *ngFor="let skill of curricula">
-          <span>
-            <mat-checkbox [value]="skill.id" (change)="skillChange($event.checked, $event.source.value)"> {{ skill.name }}</mat-checkbox>
-          </span>
-        </span>
-      </div>
-    </mat-label>
-  </div>
-  <div mat-dialog-actions>
-    <button mat-button tabindex="4" [disabled]="!addTrainerForm.valid">Add</button>
-    <button mat-button (click)="onNoClick($event)" tabindex="-1">Cancel</button>
-  </div>
-</form>
+  constructor(private url: UrlService, public auth0: AuthService) {}
+
+  ngOnInit() {
+  }
+}

@@ -1,74 +1,23 @@
-import { Injectable } from '@angular/core';
-import { Trainer } from '../../../model/Trainer';
-import { Batch } from '../../../model/Batch';
-import { Focus } from '../../../model/Focus';
-import { Skill } from '../../../model/Skill';
-import { Curriculum } from '../../../model/Curriculum';
-import { Address } from '../../../model/Address';
+<mat-list-item mat-ripple="#ff0000" *ngIf="trainer.isActive">
+  <mat-icon class="peopleIcon" matListIcon>people</mat-icon>
+  <h4 matLine> {{ trainer.firstName }} {{ trainer.lastName }} </h4>
+  <p matLine>Skills: {{ listSkills() }}</p>
+  <span class="md-toolbar-spacer"> </span>
 
-/**
- * This service is used to store information from the database, so that once a call is done once,
- * the same call is not performed on other tabs.  Every array has a getter and setter.
- */
-@Injectable()
-export class CachedObjectsService {
-
-  constructor() { }
-
-  private cachedTrainers: Trainer[] = [];
-  private cachedBatches: Batch[] = [];
-  private cachedFocuses: Focus[] = [];
-  private cachedSkills: Skill[] = [];
-  private cachedLocations: Address[] = [];
-  private cachedCurriculum: Curriculum[] = [];
-
-  public getTrainers():Trainer[]{
-    return this.cachedTrainers;
-  }
-
-  public setTrainers(trainers: Trainer[]){
-    this.cachedTrainers = trainers;
-  }
-
-  public getBatches():Batch[]{
-    return this.cachedBatches;
-  }
-
-  public setBatches(batches: Batch[]){
-    this.cachedBatches = batches;
-  }
-
-  public getFocuses():Focus[]{
-    return this.cachedFocuses;
-  }
-
-  public setFocuses(focuses: Focus[]){
-    this.cachedFocuses = focuses;
-  }
-
-  public getSkills():Skill[]{
-    return this.cachedSkills;
-  }
-
-  public setSkills(skills: Skill[]){
-    this.cachedSkills = skills;
-  }
-
-  public getLocations():Address[]{
-    return this.cachedLocations;
-  }
-
-  public setLocations(locations: Address[]){
-    this.cachedLocations = locations;
-  }
-
-  public getCurricula():Curriculum[]{
-    return this.cachedCurriculum;
-  }
-
-  public setCurricula(curriculum: Curriculum[]){
-    this.cachedCurriculum = curriculum;
-  }
-
-
-}
+  <button mat-icon-button (click)="grabS3Resume(trainer)" *ngIf="isManager==true" matTooltip="Download Resume">
+    <mat-icon class="revOrange">file_download</mat-icon>
+  </button>
+  <button mat-icon-button (click)="removeTrainer()" *ngIf="isManager==true" matTooltip="Deactivate Trainer">
+    <mat-icon class="revOrange">remove_circle</mat-icon>
+  </button>
+</mat-list-item>
+<mat-list-item class="md-2-line" mat-ripple="#ff0000" *ngIf="!trainer.isActive">
+  <mat-icon class="peopleIcon" matListIcon>people</mat-icon>
+  <h4 matLine> {{ trainer.firstName }} {{ trainer.lastName }} </h4>
+  <p *ngIf="trainer.skills" matLine>Skills: {{ listSkills() }}</p>
+  <span class="md-toolbar-spacer"> </span>
+  <!--button activates a Trainer-->
+  <button mat-icon-button (click)="activateTrainer()" *ngIf="isManager==true" matTooltip="Reactivate Trainer">
+    <mat-icon class="revOrange">add_circle</mat-icon>
+  </button>
+</mat-list-item>

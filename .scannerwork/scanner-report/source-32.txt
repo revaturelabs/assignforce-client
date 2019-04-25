@@ -1,45 +1,63 @@
-<mat-card-content>
-  <mat-accordion>
-    <mat-expansion-panel [expanded]="true">
-      <mat-expansion-panel-header class="toolbar-curricula-sub">
-        <mat-panel-title>
-          <span *ngIf="isCore == true"class="panel-title-fix">Core Curricula</span>
-          <span *ngIf="isCore == false"class="panel-title-fix">Focus Curricula</span>
-        </mat-panel-title>
-        <mat-panel-description *ngIf="this.auth0.userHasRole(['SVP of Technology'])">
-          <span class="fill-space"></span>
-          <button mat-icon-button (click)="openAddCurriculumDialog($event, isCore)">
-            <mat-icon class="icon-margin-fix" matTooltip="Add New Curriculum">add_circle_outline</mat-icon>
-          </button>
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-      <div class="mat-panel-content">
-        <mat-list>
-          <div *ngFor="let core of coreData; last as last">
-            <mat-list-item class="item-detail" *ngIf="core.isActive"> 
-              <div>
-                <h3 mat-line class="core-name">{{core.name}}</h3>
-                <span class="core-skills-label">Skills: </span>
-                <span *ngIf="core.skills.length < 1">none</span>
-                <span *ngFor="let skill of curriculumSkills(core); last as last">
-                  <span *ngIf="!last" class="core-skills">{{skill.skillName}}, </span>
-                  <span *ngIf="last" class="core-skills">{{skill.skillName}}</span>
-                </span>
-                <br><br><br>
-              </div>
-              <span class="fill-space"></span>
-              <span *ngIf="this.auth0.userHasRole(['SVP of Technology'])">
-                <button mat-icon-button class="edit-button button-orange" (click)="openEditCurriculumSkillsDialog(core)">
-                  <mat-icon class="icon-margin-fix" matTooltip="Edit Skills">mode_edit</mat-icon>
-                </button>
-                <button mat-icon-button class="remove-button button-orange" (click)="confirmRemoveCurriculum(core)">
-                  <mat-icon class="icon-margin-fix" matTooltip="Deactivate Curriculum">remove_circle</mat-icon>
-                </button>
-              </span>
-            </mat-list-item>
-          </div>
-        </mat-list>
-      </div>
-    </mat-expansion-panel>
-  </mat-accordion>
-</mat-card-content>
+import { Component, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '../../../../node_modules/@angular/material';
+import { CurriculumControllerService } from '../../services/api/curriculum-controller/curriculum-controller.service';
+import { SkillControllerService } from '../../services/api/skill-controller/skill-controller.service';
+import { Curriculum } from '../../model/Curriculum';
+import { Skill } from '../../model/Skill';
+import { Inject } from '@angular/core';
+
+@Component({
+  selector: 'app-add-curriculum',
+  templateUrl: './add-curriculum.component.html',
+  styleUrls: ['./add-curriculum.component.css']
+})
+export class AddCurriculumComponent implements OnInit {
+
+  constructor(
+    public dialogRef: MatDialogRef<AddCurriculumComponent>,
+    private curriculumControllerService: CurriculumControllerService,
+    private skillControllerService: SkillControllerService,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) { }
+
+  curriculum: Curriculum;
+  skills: Skill[] = [];
+  selectedSkills: Skill[];
+
+  ngOnInit() {
+    this.newCurriculum();
+    this.skillControllerService.findAll().subscribe(data => {
+      this.skills = data.filter(skill => {
+        if (skill.isActive){
+          return skill;
+        }
+      });
+    });
+  }
+
+  //Closes the add Curriculum Modal.
+  closeDialog(): void {
+    this.dialogRef.close();
+  }
+
+  //Resets the current Curriculum.  This is here to prevent the old curriculum from persisting between additions and to prevent undefined errors.
+  newCurriculum(): void {
+    this.curriculum = new Curriculum(0, '', true, true, []);
+  }
+
+  addCurriculum(): void {
+    this.curriculum.skills = this.selectedSkills;
+    this.curriculum.isCore = this.data.isCore;
+    this.curriculumControllerService
+      .create(this.curriculum)
+      .toPromise()
+      .then(() => {
+        this.newCurriculum();
+        this.closeDialog();
+      })
+      .catch(err => {
+        alert('Error occurred while adding Curriculum');
+        console.log(err);
+      });
+  }
+}

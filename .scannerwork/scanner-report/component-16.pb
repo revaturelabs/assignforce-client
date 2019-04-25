@@ -1,1 +1,1 @@
- 2cssXhr6src/app/components/batch-form/batch-form.component.css
+ 2jsX-hrkarma.conf.js

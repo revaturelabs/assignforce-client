@@ -1,1 +1,1 @@
-ç (2tsXÝhr*src/app/services/auth/auth.service.spec.ts
+ç (2tsXghrHsrc/app/components/curriculum-skills/curriculum-skills.component.spec.ts

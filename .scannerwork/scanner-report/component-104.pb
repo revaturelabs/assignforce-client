@@ -1,1 +1,1 @@
-h 2tsXhrsrc/app/model/Room.ts
+h 2tsX°hr1src/app/components/settings/settings.component.ts

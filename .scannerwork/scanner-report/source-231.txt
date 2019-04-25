@@ -1,220 +1,102 @@
-import { TestBed, inject } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
 
-import { AuthService } from './auth.service';
-import { UrlService } from '../url/url.service';
-import { AppRouting } from '../../app.routing';
-import { Router } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
-import { HttpClientModule } from '@angular/common/http';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { fn } from '@angular/compiler/src/output/output_ast';
+import { AppMaterialModule } from '../../material.module';
+import { Skill } from '../../model/Skill';
+import { SkillControllerService } from '../../services/api/skill-controller/skill-controller.service';
+import { CurriculumSkillsComponent } from './curriculum-skills.component';
+import { AuthService } from '../../services/auth/auth.service';
+import { RouterTestingModule } from '../../../../node_modules/@angular/router/testing';
+import { Router } from '../../../../node_modules/@angular/router';
+import { UrlService } from '../../services/url/url.service';
 
-export class MockAuthService {
-  lock = null;
-  showLogin() {
-    return;
+describe('CurriculumSkillsComponent', () => {
+  let component: CurriculumSkillsComponent;
+  let fixture: ComponentFixture<CurriculumSkillsComponent>;
+  
+  const testData: Skill[] = [new Skill(1, 'Test Skill', true), new Skill(2, 'Test Skill 2', true)];
+  let skillControllerService = SkillControllerService;
+
+  class MockSkillControllerService {
+    findAll(): Observable<Skill[]> {
+      return Observable.of(testData);
+    }
   }
-  handleAuthentication() {
-    return;
-  }
-}
 
-
-describe('AuthService', () => {
-  let router = {
-    navigate: jasmine.createSpy('navigate')
+  class MockAuthService {
+    userHasRole(roles: string[]) : boolean {
+      return true;
+    }
   }
-  let service: AuthService;
-  beforeEach(() => {
+
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule, HttpClientTestingModule],
-      providers: [
-        { provide: AuthService, useClass: AuthService },
-        UrlService,
-        { provide: Router, useValue: router }
+      declarations: [CurriculumSkillsComponent],
+      imports: [AppMaterialModule, BrowserAnimationsModule],
+      providers: [UrlService,
+        { provide: SkillControllerService, useClass: MockSkillControllerService },
+        { provide: Router, useClass: RouterTestingModule},
+        { provide: AuthService, useClass: MockAuthService}
       ]
     }).compileComponents();
-
-    service = TestBed.get(AuthService);
-   
-
-
-    let store = {};
-    const mockLocalStorage = {
-      getItem: (key: string): string => {
-        return key in store ? store[key] : null;
-      },
-      setItem: (key: string, value: string) => {
-        store[key] = value;
-      },
-      removeItem: (key: string) => {
-        delete store[key];
-      },
-      clear: () => {
-        store = {};
-      }
-    };
-      spyOn(localStorage, 'getItem')
-        .and.callFake(mockLocalStorage.getItem);
-      spyOn(localStorage, 'setItem')
-        .and.callFake(mockLocalStorage.setItem);
-      spyOn(localStorage, 'removeItem')
-        .and.callFake(mockLocalStorage.removeItem);
-      spyOn(localStorage, 'clear')
-        .and.callFake(mockLocalStorage.clear);
-  });
-
-  it('should be created', inject([AuthService], (service: AuthService) => {
-    expect(service).toBeTruthy();
+    skillControllerService = TestBed.get(SkillControllerService);
   }));
 
-  //handleAuthentication tests
-  it('should set all the variables in set session to localStorage, if it has a valid authresult', ()=>{
-    const mockLock = {
-      error: false,
-      authResult: {
-        accessToken: 'testAccesstoken',
-        idToken: 'testIdToken',
-        expiresIn: 500,
-        idTokenPayload: {'https://revature.com/roles': 'athing',
-        'https://revature.com/groups': 'anotherthing'},
-      },
-      profile: {
-        name: 'testProfileName'
-      },
-      on: (string, callBack)=>{
-        callBack({
-          accessToken: 'testAccessToken',
-          idToken: 'testIdToken',
-          expiresIn: 500,
-          idTokenPayload: {'https://revature.com/roles': 'athing',
-          'https://revature.com/groups': 'anotherthing'},
-        });
-      },
-      getUserInfoNoError: (access_token, callBack)=>{
-        callBack(false ,{name: 'testProfileName'} );
-      }
-    }
-    
-    spyOn(service.lock,'on').and.callFake(mockLock.on);
-    spyOn(service.lock, 'getUserInfo').and.callFake(mockLock.getUserInfoNoError)
-    service.handleAuthentication();
+  beforeEach(() => {
+    fixture = TestBed.createComponent(CurriculumSkillsComponent);
+    component = fixture.componentInstance;
+    let authService = TestBed.get(AuthService);
+    authService.auth
+    fixture.detectChanges();
+  });
 
-    expect(localStorage.getItem('access_token')).toBe('testAccessToken');
-    expect(localStorage.getItem('id_token')).toBe('testIdToken');
-    expect(JSON.parse(localStorage.getItem('expires_at'))).toBeGreaterThan(new Date().getTime());
-    expect(localStorage.getItem('roles')).toBe('athing');
-    expect(localStorage.getItem('groups')).toBe('anotherthing');
-    expect(localStorage.getItem('email')).toBe('testProfileName');
-  })
+  // init
+  it('should create', () => {
+  expect(component).toBeTruthy();
+  });
+
+  //mat-list
+  it('should contain a mat-list', () => {
+  const compiled = fixture.debugElement.nativeElement;
+  expect(compiled.querySelector('mat-list')).toBeTruthy();
+  });
 
 
-
-  //logout test
-  it('should remove all local storage items', ()=>{
-    localStorage.setItem('access_token','acctoken');
-    localStorage.setItem('id_token','idtoken');
-    localStorage.setItem('expires_at','expat');
-    localStorage.setItem('roles','rolestoken');
-    localStorage.setItem('groups','groupstoken');
-    spyOn(service.lock , 'logout').and.callFake((parameter)=>{})
-    service.logout();
-    expect(localStorage.getItem('access_token')).toBe(null);
-    expect(localStorage.getItem('id_token')).toBe(null);
-    expect(localStorage.getItem('expires_at')).toBe(null);
-    expect(localStorage.getItem('roles')).toBe(null);
-    expect(localStorage.getItem('groups')).toBe(null);
-  })
-
-  it('should call the lock logout function', ()=>{
-    localStorage.setItem('access_token','acctoken');
-    localStorage.setItem('id_token','idtoken');
-    localStorage.setItem('expires_at','expat');
-    localStorage.setItem('roles','rolestoken');
-    localStorage.setItem('groups','groupstoken');
-    const fakelogout = jest.fn();
-    spyOn(service.lock, 'logout').and.callFake(fakelogout)
-    service.logout();
-    expect(fakelogout).toHaveBeenCalled();
-  })
+  it('should contain the skill name', () => {
+  const compiled = fixture.debugElement.nativeElement;
+  expect(compiled.querySelector('.skill-name').textContent).toContain(component.skillData[0].skillName);
+  });
 
 
-  //isAuthenticated tests
-  it('should return true if expiration date is after now',()=>{
-    localStorage.setItem('expires_at', JSON.stringify(new Date().getTime()+20000000));
-    expect(service.isAuthenticated()).toBe(true);
-  })
- 
-  it('should return false if expiration date is before now',()=>{
-    localStorage.setItem('expires_at', JSON.stringify(new Date().getTime()));
-    expect(service.isAuthenticated()).toBe(false);
-  })
+  it('should contain an accordion for the skills', () => {
+  const compiled = fixture.debugElement.nativeElement;
+  expect(compiled.querySelector('mat-accordion')).toBeTruthy();
+  });
 
-  //userHasRole tests
-  it('should return false if isAuthenticated is false', ()=>{
-    let expectedRoles = [];
-    spyOn(service, 'isAuthenticated')
-    .and.returnValue(false);
-    spyOn(expectedRoles, 'every')
-    .and.returnValue(true);
-    expect(service.userHasRole(expectedRoles)).toBe(false);
-  })
 
-  it('should return false if expected roles contains a role localStorage roles does not', ()=>{
-    let expectedRoles = ['role1','role2','role3', 'role4']
-    spyOn(service, 'isAuthenticated')
-    .and.returnValue(true);
-    localStorage.setItem('roles', '{"role1", "role2", "role3"}');
-    expect(service.userHasRole(expectedRoles)).toBe(false);
-  })
+  it('should contain a title named Skills', () => {
+  const compiled = fixture.debugElement.nativeElement;
+  expect(compiled.querySelector('mat-panel-title').textContent).toContain('Skills');
+  });
 
-  it('should return true if local storage roles contains all expectedRoles',()=>{
-    let expectedRoles = ['role1', 'role2', 'role3']
-    spyOn(service, 'isAuthenticated')
-    .and.returnValue(true);
-    localStorage.setItem('roles', '{"role1", "role2", "role3"}');
-    expect(service.userHasRole(expectedRoles)).toBe(true);
-  })
+//should be able to remove
+  it('should have a remove button', () => {
+  const compiled = fixture.debugElement.nativeElement;
+  expect(compiled.querySelector('.remove-button')).toBeTruthy();
+  });
 
-  //getProfile tests
-  it('should throw access token must exist error if token does not exist', ()=>{
-    let cb={}
-    expect(()=>{service.getProfile(cb)}).toThrowError('Access');
-  })
+//edit button should be there
+  it('should have an edit button', () => {
+  const compiled = fixture.debugElement.nativeElement;
+  expect(compiled.querySelector('.edit-button')).toBeTruthy();
+  });
 
-  it('callback should get profile from the lock if none exists in the service', ()=>{
-
-    let name: string;
-    let getUserInfoNoError = (access_token, callBack)=>{
-      callBack(false ,{name: 'testProfileName'} );
-    }
-    spyOn(service.lock, 'getUserInfo').and.callFake(getUserInfoNoError);
-   
-    let callBackTest = (error, profile) =>{
-    name = profile.name
-   }
-    localStorage.setItem('access_token', 'fakeAccess');
-    service.getProfile(callBackTest);
-    expect(name).toBe('testProfileName');
-  })
-
-  it('callback should get profile from the service if one exists',()=>{
-    let name: string;
-
-    service.userProfile ={name: 'testProfileName'};
-    let callBackTest = (error, profile) =>{
-      name = profile.name
-     }
-    localStorage.setItem('access_token', 'fakeAccess');
-    service.getProfile(callBackTest)
-    expect(name).toBe('testProfileName')
-  })
-
- //get Token test
- it('should get access token', ()=>{
-   localStorage.setItem('access_token','test_token')
-   expect(service.getToken()).toBe('test_token')
- })
-
+//openEditSkillDialog
+it('should open the edit Dialog', () => {
+  const compiled = fixture.debugElement.nativeElement;
+  
+});
 
 });

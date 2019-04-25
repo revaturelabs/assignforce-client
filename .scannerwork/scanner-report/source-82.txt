@@ -1,81 +1,29 @@
-/* ---------- SKILLS STYLING ----------- */
-.mat-expansion-panel-header-title {
-  flex: 1 1 auto;
-}
+<h2 mat-dialog-title>Edit Room</h2>
+<div mat-dialog-content>
+  <p>Room Name:</p>
+  <mat-form-field class="update-form" style="width: 100%">
+    <input matInput tabindex="1" [(ngModel)]="data.room.roomName">
+    </mat-form-field>
 
-.revDark {
-  color: #37474f;
-}
+    <p>Add Unavailability</p>
+   
+    <mat-form-field>
+      <input  matInput [matDatepicker]="picker1" placeholder="Choose a start date"
+        readonly   [(ngModel)]="startDate">
+      <mat-datepicker-toggle matSuffix [for]="picker1" ></mat-datepicker-toggle>
+      <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field>
 
-#skillsDiv {
-  padding: 0% 2% 1% 2.5%;
-}
-
-.mat-option-text,
-.mat-optgroup {
-  color: #37474f;
-}
-
-/* ---------- ICONS ----------- */
-mat-icon {
-  margin: 0;
-  display: inline-flex;
-  vertical-align: middle;
-  color: #fff;
-}
-
-.material-icons {
-  color: #f26a25;
-}
-
-.center {
-  text-align: center;
-  margin: 0 auto;
-}
-
-.ng-star-inserted {
-  color: #fff;
-}
-
-.ng-star-inserted:hover {
-  color: #f26a25;
-}
-
-/* ---------- MAT TOOLBAR ----------- */
-.md-toolbar {
-  padding: 0px;
-  background-color: transparent;
-  color: inherit;
-}
-
-.md-toolbar-spacer {
-  flex: 1 1 auto;
-}
-
-/* ---------- MAT LIST ITEM DISPLAY SKILLS ----------- */
-.md-list-item {
-  border-radius: 10px;
-  margin: 6px 8px;
-  padding: 0 6px;
-}
-
-/* ---------- MAT CARD ----------- */
-mat-card {
-  margin: 0;
-  padding: 0;
-}
-
-mat-card-content {
-  margin: 0;
-  padding: 16px;
-}
-
-mat-select {
-  width: 300px;
-}
-
-/* ---------- BUTTONS ---------- */
-.mat-icon,
-.material-icons {
-  color: #f26a25;
-}
+    <mat-form-field>
+      <input  matInput [matDatepicker]="picker2"  [min]="startDate" placeholder="Choose an end date"
+        readonly   [(ngModel)]="endDate">
+      <mat-datepicker-toggle matSuffix [for]="picker2" [disabled]="(startDate === null)" ></mat-datepicker-toggle>
+      <mat-datepicker #picker2></mat-datepicker>
+    </mat-form-field>
+    
+    <button mat-button (click)="onAdd()" >Confirm Unavailability</button>
+</div>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="data.room" tabindex="4">Update</button>
+  <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+</div>

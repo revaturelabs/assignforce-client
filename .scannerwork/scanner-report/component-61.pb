@@ -1,1 +1,1 @@
-= 2cssXhr4src/app/components/locations/locations.component.css
+= 2webX$hrEsrc/app/components/curriculum-skills/curriculum-skills.component.html

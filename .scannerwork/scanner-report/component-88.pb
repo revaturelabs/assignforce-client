@@ -1,1 +1,1 @@
-X 2cssX#hrCsrc/app/components/trainers/trainer-item/trainer-item.component.css
+X 2webXhr-src/app/components/login/login.component.html

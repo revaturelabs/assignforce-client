@@ -1,1 +1,1 @@
-x 2tsXhrAsrc/app/services/api/skill-controller/skill-controller.service.ts
+x 2tsXhr-src/app/interceptors/springXsrfInterceptor.ts

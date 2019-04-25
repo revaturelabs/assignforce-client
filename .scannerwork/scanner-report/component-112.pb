@@ -1,1 +1,1 @@
-p 2tsXKhr4src/app/services/api/cache/cached-objects.service.ts
+p 2webXhrDsrc/app/components/trainers/trainer-item/trainer-item.component.html

@@ -1,1 +1,1 @@
-C 2cssXhr2src/app/components/menu-bar/menu-bar.component.css
+C 2webXhr7src/app/components/edit-skill/edit-skill.component.html

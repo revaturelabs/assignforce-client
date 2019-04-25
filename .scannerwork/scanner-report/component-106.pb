@@ -1,1 +1,1 @@
-j 2tsXhrsrc/app/model/Skill.ts
+j 2webX3hr/src/app/components/skills/skills.component.html

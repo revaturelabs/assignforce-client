@@ -1,1 +1,1 @@
-Ö (2tsXnhrGsrc/app/components/trainers/trainer-item/trainer-item.component.spec.ts
+Ö 2jsX:hr#support/step_definitions/batches.js

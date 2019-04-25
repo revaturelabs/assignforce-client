@@ -1,1 +1,1 @@
-D 2webX%hr3src/app/components/menu-bar/menu-bar.component.html
+D 2tsX4hr5src/app/components/edit-skill/edit-skill.component.ts

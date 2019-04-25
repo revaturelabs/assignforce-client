@@ -1,19 +1,27 @@
-import { Building } from './Building';
+/* ---------- REPORTS STYLING ----------- */
+#reportsDiv {
+  padding-top: 5%;
+}
 
-export class Address {
-  public id: number;
-  name: string;
-  city: string;
-  state: string;
-  buildings: Building[];
-  isActive: boolean;
+/* ----------- MAT TOOLBAR ----------- */
+mat-toolbar,
+mat-toolbar-row {
+  background-color: #37474f;
+}
 
-  constructor(id?: number, name?: string, city?: string, state?: string, buildings?: Building[], isActive?: boolean) {
-    this.id = id;
-    this.name = name;
-    this.city = city;
-    this.state = state;
-    this.buildings = buildings;
-    this.isActive = isActive;
-  }
+/* ----------- INCOMING TRAINEE TABLE ----------- */
+.example-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+}
+
+/* ----------- MAT TABLE ----------- */
+.mat-table {
+  overflow: auto;
+  max-height: 500px;
+}
+
+.mat-header-cell.mat-sort-header-sorted {
+  color: black;
 }

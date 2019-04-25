@@ -1,1 +1,1 @@
-, 2webXhr7src/app/components/edit-skill/edit-skill.component.html
+, 2tsXæhr/src/app/components/batches/batches.component.ts

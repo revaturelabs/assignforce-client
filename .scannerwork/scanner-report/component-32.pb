@@ -1,1 +1,1 @@
-  2webX-hr+src/app/components/core/core.component.html
+  2tsX@hr=src/app/components/add-curriculum/add-curriculum.component.ts

@@ -1,1 +1,1 @@
-; 2webXhrEsrc/app/components/locations/location-edit-room-dialog.component.html
+; 2tsXhr3src/app/components/curricula/curricula.component.ts

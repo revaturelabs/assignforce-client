@@ -1,1 +1,1 @@
-o 2tsX!hrGsrc/app/services/api/building-controller/building-controller.service.ts
+o 2cssX#hrCsrc/app/components/trainers/trainer-item/trainer-item.component.css

@@ -1,1 +1,1 @@
-* 2tsXThr?src/app/components/edit-curriculum/edit-curriculum.component.ts
+* 2cssXhr0src/app/components/batches/batches.component.css

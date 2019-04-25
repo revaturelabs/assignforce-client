@@ -1,1 +1,1 @@
-a 2tsXhr-src/app/interceptors/springXsrfInterceptor.ts
+a 2webXihr1src/app/components/profile/profile.component.html

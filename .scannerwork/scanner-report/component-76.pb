@@ -1,1 +1,1 @@
-L 2cssXhr0src/app/components/reports/reports.component.css
+L 2webXhrKsrc/app/components/locations/location-delete-building-dialog.component.html

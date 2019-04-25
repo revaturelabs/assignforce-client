@@ -1,34 +1,69 @@
-<div mat-dialog-content>
-        <mat-expansion-panel [expanded]="true">
-    <mat-expansion-panel-header>
-        <mat-panel-title>
-            <h4 matline>Unavailabilities </h4>
-        </mat-panel-title>
-        <mat-panel-description>
-            <span class = "fill-space"></span>
-            <mat-icon  matchTooltip = "Add Unavalability" class = "material-icons" (click) = "openAddUnvailibilityDialog($event, data.room)">
-                add_circle_outline
-            </mat-icon>
-           
-        </mat-panel-description>
-    </mat-expansion-panel-header>
-    <mat-list *ngFor = "let unavailability of roomUnavailibilities(data.room.id)"><!-- Hernan : roomUnavailibilities(data.room.id)"> -->
-        <mat-list-item>
-            <h4 mat-line>
-                               Start date:  {{unavailability.startDate | date}}
-                End Date: {{unavailability.endDate | date}} <br>
-                {{unavailability.description}} 
-            </h4>
-            <span class="fill-space"></span>
+/* ----------- CURRICULUM SKILLS STYLING ---------- */
 
-          <!--Added parameter data.room to both methods below - Hernan - -->
-            <mat-icon  matTooltip="Remove Unavailability" class="material-icons" style="color: black; cursor: pointer"  (click) = "openDeleteUnavailibilityDialog($event, unavailability, data.room)">
-                    remove_circle_outline</mat-icon>
-             <mat-icon matTooltip="Edit  Unavailability" class="material-icons" style="color: black; cursor: pointer" (click) = "openChangeUnavailibilityDialog($event, unavailability, data.room)"  >
-                            edit</mat-icon>
+.container-curricula {
+  margin-top: 5%;
+}
 
-        </mat-list-item>
-        <mat-divider></mat-divider>
-    </mat-list>
-</mat-expansion-panel>
-</div>
+/* #38464E #3D5360*/
+
+.toolbar-curricula-sub {
+  background-color: #37474f;
+  color: white;
+}
+
+/* ----------- MAT TOOLBAR ---------- */
+
+.toolbar-mat-buttons {
+  margin: 12px 6px;
+}
+
+.panel-title-fix {
+  padding-top: 8px;
+}
+
+/* ----------- ICONS ---------- */
+
+.icon-margin-fix {
+  margin: 0px;
+  color: white;
+}
+
+/* ----------- BUTTONS ---------- */
+
+.button-orange {
+  background-color: #fff;
+  margin: 2px;
+}
+
+.mat-icon,
+.material-icons {
+  color: #f26a25;
+}
+
+/* ----------- LIST OF SKILL ITEMS DETAIL ---------- */
+
+.item-detail {
+  margin: 2%;
+}
+
+/* --------- STYLES INCONSISTENT ---------- */
+
+/* #mat-expansion-panel-header-2:hover mat-panel-title {
+  color: black;
+}
+
+#mat-expansion-panel-header-2:focus {
+  background-color: #3d5360;
+  color: white;
+}
+
+#mat-expansion-panel-header-2:focus:hover {
+  background-color: white;
+  color: black;
+} */
+
+/* .mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:not([aria-disabled='true']).cdk-keyboard-focused,
+.mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:not([aria-disabled='true']).cdk-program-focused,
+.mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:not([aria-disabled='true']):hover {
+  background: white;
+} */

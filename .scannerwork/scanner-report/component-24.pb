@@ -1,2 +1,2 @@
- 2tsXÇ
-hrAsrc/app/components/batches-timeline/batches-timeline.component.ts
+ 2jsX
+hrsnapshots.js

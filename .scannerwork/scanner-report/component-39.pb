@@ -1,1 +1,1 @@
-' 2tsXMhrCsrc/app/components/curriculum-skills/curriculum-skills.component.ts
+' 2cssXhr6src/app/components/batch-form/batch-form.component.css

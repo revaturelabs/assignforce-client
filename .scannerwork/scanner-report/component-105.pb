@@ -1,1 +1,1 @@
-i 2tsX+hrsrc/app/model/Setting.ts
+i 2cssXRhr.src/app/components/skills/skills.component.css

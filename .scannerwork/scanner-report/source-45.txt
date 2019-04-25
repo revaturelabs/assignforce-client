@@ -1,51 +1,38 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+/* ---------- BATCHES TIMELINE STYLING ---------- */
+#timelineDiv {
+  padding-top: 2%;
+}
 
-import { Skill } from '../../model/Skill';
-import { SkillControllerService } from '../../services/api/skill-controller/skill-controller.service';
+/* ---------- TRAINER NAMES STYLING ---------- */
+.trainer-names {
+  word-wrap: break-word;
+  float: left;
+  vertical-align: bottom;
+  text-align: center;
+}
 
-@Component({
-  selector: 'app-edit-skill',
-  templateUrl: './edit-skill.component.html',
-  styleUrls: ['./edit-skill.component.css']
-})
-export class EditSkillComponent implements OnInit {
-  constructor(
-    private dialogRef: MatDialogRef<EditSkillComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Skill,
-    private skillControllerService: SkillControllerService
-  ) {}
+#trainer-names-bg {
+  position: sticky;
+  top: 0;
+  background-color: #d3d3d3;
+  overflow: auto;
+  z-index: 5;
+}
 
-  //The skill to be edited
-  skill: Skill;
+/* ---------- TIMELINE STYLING ---------- */
+.unselectable {
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+}
 
-  //Sets up the Modal with all the data it will need
-  ngOnInit() {
-    this.newSkill();
-    this.skill = JSON.parse(JSON.stringify(this.data));
-  }
+#timeline {
+  position: relative;
+  z-index: 1;
+}
 
-  //Closes the Modal
-  closeDialog() {
-    this.dialogRef.close();
-  }
-
-  //Resets the skill to avoid having undefined errors
-  newSkill(): void {
-    this.skill = new Skill(0, '', true);
-  }
-
-  //Sends the updated skill to the server to be processed.
-  editSkill(): void {
-    this.skillControllerService
-      .update(this.skill)
-      .toPromise()
-      .then()
-      .catch(err => {
-        alert('Error occurred while editing skill');
-        console.log(err);
-      });
-    this.newSkill();
-    this.closeDialog();
-  }
+.batch-tooltip {
+  position: relative;
+  z-index: 10;
 }

@@ -1,1 +1,1 @@
- 2tsXhr7src/app/services/s3-credential/s3-credential.service.ts
+ 2tsXhrsrc/app/model/Room.ts

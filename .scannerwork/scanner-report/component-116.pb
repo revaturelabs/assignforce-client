@@ -1,1 +1,1 @@
-t 2tsX,hr?src/app/services/api/room-controller/room-controller.service.ts
+t 2tsXshrBsrc/app/components/trainers/trainers-add/trainers-add.component.ts

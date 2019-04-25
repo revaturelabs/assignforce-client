@@ -1,1 +1,1 @@
-$ 2tsXhr3src/app/components/curricula/curricula.component.ts
+$ 2cssXhr>src/app/components/authenticating/authenticating.component.css

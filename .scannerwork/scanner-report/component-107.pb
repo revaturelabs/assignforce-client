@@ -1,1 +1,1 @@
-k 2tsX+hrsrc/app/model/Trainer.ts
+k 2tsXuhr-src/app/components/skills/skills.component.ts

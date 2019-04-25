@@ -1,53 +1,18 @@
-import { Component, OnInit, ViewEncapsulation, OnChanges } from '@angular/core';
-import { UrlService } from '../../services/url/url.service';
-import { AuthService } from '../../services/auth/auth.service';
-
-@Component({
-  selector: 'app-menu-bar',
-  templateUrl: './menu-bar.component.html',
-  styleUrls: ['./menu-bar.component.css'],
-  encapsulation: ViewEncapsulation.None
-})
-export class MenuBarComponent implements OnInit {
-  //This is the list of tabs and their paths for the ngFor in the html view
-  //url.get[pathname]Url is a service that fetches the paths from the environment.ts file
-  tabs = [
-    {
-      label: 'Overview',
-      path: this.url.getOverviewUrl()
-    },
-    {
-      label: 'Batches',
-      path: this.url.getBatchesUrl()
-    },
-    {
-      label: 'Locations',
-      path: this.url.getLocationsUrl()
-    },
-    {
-      label: 'Curricula',
-      path: this.url.getCurriculaUrl()
-    },
-    {
-      label: 'Trainers',
-      path: this.url.getTrainersUrl()
-    },
-    {
-      label: 'Profile',
-      path: this.url.getProfileUrl()
-    },
-    {
-      label: 'Reports',
-      path: this.url.getReportsUrl()
-    },
-    {
-      label: 'Settings',
-      path: this.url.getSettingsUrl()
-    }
-  ];
-
-  constructor(private url: UrlService, public auth0: AuthService) {}
-
-  ngOnInit() {
-  }
-}
+<h2 mat-dialog-title>Add {{ addType | titlecase }}</h2>
+<div mat-dialog-content>
+    <mat-form-field class="update-form" style="width: 100%">
+        <input matInput tabindex="1" [(ngModel)]="typeContent.buildingName" [placeholder]="(addType | titlecase) + ' Name'">
+    </mat-form-field>
+    <div *ngIf="addType === 'location'">
+        <mat-form-field class="update-form" style="width: 100%">
+            <input matInput tabindex="2" [(ngModel)]="data.location.city" placeholder="City">
+        </mat-form-field>
+        <mat-form-field class="update-form" style="width: 100%">
+            <input matInput tabindex="3" [(ngModel)]="data.location.state" placeholder="State">
+        </mat-form-field>
+    </div>
+</div>
+<div mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="data.building" tabindex="4">Add</button>
+    <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+</div>

@@ -1,1 +1,1 @@
- 2webX,hr?src/app/components/certifications/certifications.component.html
+ 2tsXRhrsrc/app/app.routing.ts

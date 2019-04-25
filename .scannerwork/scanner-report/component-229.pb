@@ -1,1 +1,1 @@
-å (2tsX‹hrJsrc/app/services/api/trainer-controller/trainer-controller.service.spec.ts
+å (2tsX¬hr.src/app/components/core/core.component.spec.ts

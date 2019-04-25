@@ -1,131 +1,73 @@
-import { TestBed, inject } from '@angular/core/testing';
-import { Unavailability } from '../../../model/Unavailability'
-import { UnavailableControllerService } from './unavailable-controller.service';
-import { HttpClient, HttpHandler, HttpErrorResponse } from '@angular/common/http';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { environment } from '../../../../environments/environment';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
 
-describe('UnavailableControllerService', () => {
-  let httpTestingController: HttpTestingController;
-  let unavailableControllerService: UnavailableControllerService;
-  let unavailableData: Unavailability[];
-  const unavailableApi = environment.apiUrls.unavailableController;
-  beforeEach(() => {
+
+import { AppMaterialModule } from '../../material.module';
+import { Curriculum } from '../../model/Curriculum';
+import { Skill } from '../../model/Skill';
+import { CurriculumControllerService } from '../../services/api/curriculum-controller/curriculum-controller.service';
+import { SkillControllerService } from '../../services/api/skill-controller/skill-controller.service';
+import { CoreComponent } from '../core/core.component';
+import { CurriculumSkillsComponent } from '../curriculum-skills/curriculum-skills.component';
+import { CurriculaComponent } from './curricula.component';
+import { SkillsComponent } from '../skills/skills.component';
+import { AuthService } from '../../services/auth/auth.service';
+import { RouterTestingModule } from '@angular/router/testing';
+import { Router } from '@angular/router';
+import { UrlService } from '../../services/url/url.service';
+import { CachedObjectsService } from '../../services/api/cache/cached-objects.service';
+
+describe('CurriculaComponent', () => {
+  let component: CurriculaComponent;
+  let fixture: ComponentFixture<CurriculaComponent>;
+  
+  const testSkillData: Skill[] = [
+    new Skill(1,"skill1", true),
+    new Skill(2, "skill2", true),
+    new Skill(3, "skill3", false)
+  ];
+
+  const testData: Curriculum[] = [
+      new Curriculum(1, 'Test Curriculum', true, true, [testSkillData[0], testSkillData[1]]),
+      new Curriculum(2, 'Test Curriculum 2', true, false, [testSkillData[2], testSkillData[1]])
+  ];
+
+  class MockSkillControllerService {
+    find(id: number) {
+      return Observable.of(testSkillData.find( (skill) => skill.skillId === id));
+    }
+    findAll() {
+      return Observable.of(testSkillData);
+    }
+  }
+
+  class MockCurriculumControllerService {
+    findAll(): Observable<Curriculum[]> {
+      return Observable.of(testData);
+    }
+  }
+
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
-      providers: [UnavailableControllerService, HttpClient]
-    });
-    httpTestingController = TestBed.get(HttpTestingController);
-    unavailableControllerService = TestBed.get(UnavailableControllerService);
-    unavailableData = [
-      {
-        "id": 12,
-        "startDate": new Date(2018, 4),
-        "endDate": new Date(2018, 9),
-        "description": "this is a test unavailability",
-        "room": 143
-      },
-      {
-        "id": 42,
-        "startDate": new Date(2019, 3),
-        "endDate": new Date(2019, 6),
-        "description": "This is another unavailability",
-        "room": 200
-      }
-    ]
-  });
-
-  afterEach(() => {
-    // Verifies all HTTP requests have been handled
-    httpTestingController.verify();
-  });
-
-  it('should be created', inject([UnavailableControllerService], (service: UnavailableControllerService) => {
-    expect(service).toBeTruthy();
+      imports: [AppMaterialModule, BrowserAnimationsModule],
+      declarations: [CurriculaComponent, CoreComponent, CurriculumSkillsComponent],
+      providers: [ CoreComponent, SkillsComponent, AuthService, UrlService, CachedObjectsService,
+        { provide: CurriculumControllerService, useClass: MockCurriculumControllerService },
+        { provide: SkillControllerService, useClass: MockSkillControllerService },
+        { provide: Router, useClass: RouterTestingModule}
+      ]
+    }).compileComponents();
   }));
 
-  // Create
-  it('should create an unavailability', () => {
-    let newUnavailable: Unavailability = {id: 43, startDate: new Date(2018, 12), endDate: new Date(2019, 3), description: "Testing the creation method", room: 32};
-    unavailableControllerService.create(newUnavailable).subscribe(resp => {
-      expect(resp).toEqual(newUnavailable);
-    });
-    let req = httpTestingController.expectOne(unavailableApi.baseUrl + unavailableApi.create);
-    expect(req.request.method).toBe('POST');
-    unavailableData.push(req.request.body);
-    let dataSize = unavailableData.length;
-    req.flush(unavailableData[dataSize-1]);
-  })
-
-  // Update
-  it('should update an existing unavailability', () => {
-    let updatedUnavailability: Unavailability = {id: 42, startDate: new Date (2019, 12), endDate: new Date (2020, 3), description: "Testing the update method", room: 32};
-    unavailableControllerService.update(updatedUnavailability).subscribe(resp => {
-      expect(resp).toEqual(updatedUnavailability);
-    });
-    let req = httpTestingController.expectOne(unavailableApi.baseUrl + unavailableApi.update);
-    expect(req.request.method).toBe('PUT');
-    let unavailabilityIndex = unavailableData.findIndex(unavailable => unavailable.id === req.request.body.id);
-    unavailableData[unavailabilityIndex] = req.request.body;
-    req.flush(unavailableData[unavailabilityIndex]);
+  beforeEach(() => {
+    fixture = TestBed.createComponent(CurriculaComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
   });
 
-  // Remove
-  it('should delete an unavailability', () => {
-    let deleteParam = 42;
-    unavailableControllerService.remove(deleteParam).subscribe(resp => {
-      expect(resp).toEqual(
-        [
-          {
-            "id": 12,
-            "startDate": new Date(2018, 4),
-            "endDate": new Date(2018, 9),
-            "description": "this is a test unavailability",
-            "room": 143
-          }
-        ]
-      )
-    });
-    let req = httpTestingController.expectOne(unavailableApi.baseUrl + unavailableApi.remove + deleteParam);
-    expect(req.request.method).toBe('DELETE');
-    let removedIndex = unavailableData.findIndex(unavailability => unavailability.id === deleteParam);
-    unavailableData.splice(removedIndex, 1);
-    req.flush(unavailableData);
-  });
-  // Find
-  it('find a specific unavailability', () => {
-    const findParam = 12;
-    unavailableControllerService.find(findParam).subscribe(resp => {
-      expect(resp).toEqual(unavailableData[0]);
-    });
-    let req = httpTestingController.expectOne(unavailableApi.baseUrl + unavailableApi.find + findParam);
-    expect(req.request.method).toBe('GET');
-    let foundIndex = unavailableData.findIndex(unavailability => unavailability.id === findParam);
-    req.flush(unavailableData[foundIndex]);
-  });
-
-  // Find All
-  it('should find all unavailabilities', () => {
-    unavailableControllerService.findAll().subscribe(resp => {
-      expect(resp).toEqual(unavailableData);
-    });
-    let req = httpTestingController.expectOne(unavailableApi.baseUrl + unavailableApi.findAll);
-    expect(req.request.method).toBe('GET');
-    req.flush(unavailableData);
-  });
-
-  // Error
-  it('should receive an error after trying to find an unavailability that does not exist', () => {
-    const errmsg = 'Something went wrong. Unless you wanted it to. In that case it went right.';
-    let findParam = 250;
-    unavailableControllerService.find(250).subscribe(resp =>
-      fail('should have failed with a 404 error'),
-      (error: HttpErrorResponse) => {
-        expect(error.status).toEqual(404, 'status');
-        expect(error.error).toEqual(errmsg, 'message');
-      }
-    );
-    let req = httpTestingController.expectOne(unavailableApi.baseUrl + unavailableApi.find + findParam);
-    req.flush(errmsg, {status: 404, statusText: 'Not Found'});
+  it('should create', () => {
+    expect(component).toBeTruthy();
   });
 });

@@ -1,73 +1,76 @@
-<div style="margin-top: 5%">
-  <mat-accordion>
-    <mat-expansion-panel [expanded]="true">
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          <h4>Locations</h4>
-        </mat-panel-title>
-        <mat-panel-description>
-          <span class="fill-space"></span>
-          <mat-icon *ngIf="auth0.userHasRole(['SVP of Technology'])" matTooltip="Add Location" class="material-icons" (click)="openAddLocationDialog($event)"> add_location</mat-icon>
-        </mat-panel-description>
-      </mat-expansion-panel-header>
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material';
+import { Skill } from '../../model/Skill';
+import { SkillControllerService } from '../../services/api/skill-controller/skill-controller.service';
+import { AddSkillComponent } from '../add-skill/add-skill.component';
+import { EditSkillComponent } from '../edit-skill/edit-skill.component';
+import { AuthService } from '../../services/auth/auth.service';
 
-      <div style="padding-top: .5%">
-        <mat-accordion>
-          <mat-expansion-panel *ngFor="let location of locations">
-            <mat-expansion-panel-header (click)="collapseAll(location.id)">
-              <mat-panel-title>
-                <mat-icon mat-list-icon svgIcon="location"></mat-icon>
-                <h4 mat-line>{{location.name}} &nbsp;</h4>
-                <p mat-line *ngIf="location.city != 'null' && location.state != 'null'"> &nbsp;{{location.city}}<span *ngIf="location.city != null && location.state != null">, </span>{{location.state}} </p>
-              </mat-panel-title>
-              <mat-panel-description>
-                <span class="fill-space"></span>
-                <mat-icon *ngIf="auth0.userHasRole(['SVP of Technology'])" matTooltip="Add Building" class="material-icons" (click)="openAddBuildingDialog($event, location)"> add_circle</mat-icon>
-                <mat-icon *ngIf="auth0.userHasRole(['SVP of Technology'])" matTooltip="Remove Location" class="material-icons" (click)="openDeleteLocationDialog($event, location)"> location_off</mat-icon>
-                <mat-icon *ngIf="auth0.userHasRole(['SVP of Technology'])" matTooltip="Edit Location" class="material-icons" (click)="openEditLocationDialog($event, location)"> edit</mat-icon>
-              </mat-panel-description>
-            </mat-expansion-panel-header>
-            <div style="padding-top: .5%">
-              <mat-accordion *ngFor="let building of locationBuildings(location.id)">
-                <mat-expansion-panel [expanded]="expanded[location.id]">
-                  <mat-expansion-panel-header>
-                    <mat-panel-title>
-                      <mat-icon mat-list-icon svgIcon="building"></mat-icon>
-                      <h4 mat-line>{{building.buildingName}}</h4>
-                    </mat-panel-title>
-                    <mat-panel-description>
-                      <span class="fill-space"></span>
-                      <mat-icon *ngIf="auth0.userHasRole(['SVP of Technology'])" matTooltip="Add Room" class="material-icons" (click)="openAddRoomDialog($event, location, building)"> add_circle_outline</mat-icon>
-                      <mat-icon *ngIf="auth0.userHasRole(['SVP of Technology'])" matTooltip="Remove Building" class="material-icons" (click)="openDeleteBuildingDialog($event, location, building)">
-                        remove_circle</mat-icon>
-                      <mat-icon *ngIf="auth0.userHasRole(['SVP of Technology'])" matTooltip="Edit Building" class="material-icons" (click)="openEditBuildingDialog($event, location, building)">
-                        edit</mat-icon>
-                    </mat-panel-description>
-                  </mat-expansion-panel-header>
+@Component({
+  selector: 'app-curriculum-skills',
+  templateUrl: './curriculum-skills.component.html',
+  styleUrls: ['./curriculum-skills.component.css']
+})
+export class CurriculumSkillsComponent implements OnInit {
+  skillData: Skill[] = [];
 
-                  <div style="padding-top: .5%">
-                    <mat-list *ngFor="let room of buildingRooms(building.buildingId)">
-                      <mat-list-item>
-                        <h4 mat-line>
-                          <mat-icon style="color: black">store</mat-icon>{{room.roomName}}</h4>
-                        <span class="fill-space"></span>
-                        <mat-icon *ngIf="auth0.userHasRole(['SVP of Technology'])" matTooltip="Remove Room" class="material-icons" style="color: black; cursor: pointer" (click)="openDeleteRoomDialog($event, location, building, room)">
-                          remove_circle_outline</mat-icon>
-                        <mat-icon *ngIf="auth0.userHasRole(['SVP of Technology'])" matTooltip="Edit Room" class="material-icons" style="color: black; cursor: pointer" (click)="openEditRoomDialog($event, location, building, room)">
-                          edit</mat-icon>
-                        <mat-icon *ngIf="auth0.userHasRole(['SVP of Technology'])" matTooltip="Unavailibilities" class="material-icons" style="color: black; cursor: pointer" (click)="openEditUnavailibiliyDialog($event, room)">
-                          domain_disabled</mat-icon>
-                      </mat-list-item>
-                      <mat-divider></mat-divider>
-                    </mat-list>
-                  </div>
+  constructor(
+    private dialog: MatDialog,
+    private skillControllerService: SkillControllerService,
+    public auth0: AuthService
+  ) {}
 
-                </mat-expansion-panel>
-              </mat-accordion>
-            </div>
-          </mat-expansion-panel>
-        </mat-accordion>
-      </div>
-    </mat-expansion-panel>
-  </mat-accordion>
-</div>
+  ngOnInit() {
+    this.skillControllerService.findAll().subscribe(data => {
+      this.skillData = data;
+    });
+  }
+
+  checkAuth() {
+    return this.auth0.userHasRole(['SVP of Technology']);
+  }
+
+  openAddSkillDialog(event: Event) {
+    event.stopPropagation();
+    const dialogRef = this.dialog.open(AddSkillComponent, {
+      data: this.skillData
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.refreshSkills();
+    });
+  }
+
+  openEditSkillDialog(skill) {
+    const dialogRef = this.dialog.open(EditSkillComponent, {
+      data: skill
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.refreshSkills();
+    });
+  }
+
+  refreshSkills(): void {
+    this.skillControllerService
+      .findAll()
+      .toPromise()
+      .then(data => {
+        this.skillData = data;
+      });
+  }
+
+  confirmRemoveSkill(skill: Skill) {
+    if (confirm('Are you sure you want to remove ' + skill.skillName + '?')) {
+      skill.isActive = false;
+      this.skillControllerService
+        .update(skill)
+        .toPromise()
+        .then(() => {
+          this.refreshSkills();
+        })
+        .catch(err => {
+          alert('Error occurred while removing skill');
+          console.log(err);
+        });
+    }
+  }
+}

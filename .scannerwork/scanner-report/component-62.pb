@@ -1,1 +1,1 @@
-> 2webXJhr5src/app/components/locations/locations.component.html
+> 2tsXMhrCsrc/app/components/curriculum-skills/curriculum-skills.component.ts

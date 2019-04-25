@@ -1,1 +1,1 @@
-9 2webXhrIsrc/app/components/locations/location-edit-building-dialog.component.html
+9 2cssXhr4src/app/components/curricula/curricula.component.css

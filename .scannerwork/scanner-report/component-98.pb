@@ -1,1 +1,1 @@
-b 2tsXehrsrc/app/material.module.ts
+b 2tsXÄhr/src/app/components/profile/profile.component.ts

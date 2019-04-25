@@ -1,1 +1,1 @@
-g 2tsXhrsrc/app/model/Focus.ts
+g 2webXÍhr3src/app/components/settings/settings.component.html

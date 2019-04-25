@@ -1,1 +1,1 @@
-É (2tsXghrHsrc/app/components/curriculum-skills/curriculum-skills.component.spec.ts
+É 2tsX™hrsrc/environments/environment.ts

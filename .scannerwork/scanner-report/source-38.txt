@@ -1,36 +1,12 @@
-<mat-card-content>
-  <mat-accordion>
-    <mat-expansion-panel [expanded]="true">
-      <mat-expansion-panel-header class="toolbar-curricula-sub">
-        <mat-panel-title>
-          <span class="panel-title-fix">Skills</span>
-        </mat-panel-title>
-        <mat-panel-description *ngIf="this.auth0.userHasRole(['SVP of Technology'])">
-          <span class="fill-space"></span>
-          <button mat-icon-button (click)="openAddSkillDialog($event)">
-            <mat-icon class="icon-margin-fix" matTooltip="Add New Skill">add_circle_outline</mat-icon>
-          </button>
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-      <div class="mat-panel-content">
-        <mat-list>
-          <ng-container *ngFor="let skill of skillData; last as last">
-          <mat-list-item class="item-detail" *ngIf="skill.isActive">
-            <div>
-              <h3 mat-line class="skill-name">{{skill.skillName}}</h3>
-            </div>
-            <span class="fill-space"></span>
-            <button mat-icon-button class="edit-button button-orange" *ngIf="this.auth0.userHasRole(['SVP of Technology'])" (click)="openEditSkillDialog(skill)">
-              <mat-icon class="icon-margin-fix" matTooltip="Edit Skill">mode_edit</mat-icon>
-            </button>
-            <button mat-icon-button class="remove-button button-orange" *ngIf="this.auth0.userHasRole(['SVP of Technology'])" (click)="confirmRemoveSkill(skill)">
-              <mat-icon class="icon-margin-fix" matTooltip="Deactivate Skill">remove_circle</mat-icon>
-            </button>
-            <mat-divider *ngIf="!last"></mat-divider>
-          </mat-list-item>
-        </ng-container>
-        </mat-list>
-      </div>
-    </mat-expansion-panel>
-  </mat-accordion>
-</mat-card-content>
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-authenticating',
+  templateUrl: './authenticating.component.html',
+  styleUrls: ['./authenticating.component.css']
+})
+export class AuthenticatingComponent implements OnInit {
+  constructor() {}
+
+  ngOnInit() {}
+}

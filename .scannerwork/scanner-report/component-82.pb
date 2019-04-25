@@ -1,1 +1,1 @@
-R 2cssXRhr.src/app/components/skills/skills.component.css
+R 2webXhrEsrc/app/components/locations/location-edit-room-dialog.component.html

@@ -1,29 +1,18 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../../environments/environment';
-import { Skill } from '../../../model/Skill';
+import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { AuthService } from '../services/auth/auth.service';
 
 @Injectable()
-export class SkillControllerService {
-  constructor(private http: HttpClient) {}
-
-  private skillController = environment.apiUrls.skillController;
-
-  public create(skill: Skill): Observable<Skill> {
-    return this.http.post<Skill>(this.skillController.baseUrl + this.skillController.create, skill);
-  }
-  public update(skill: Skill): Observable<Skill> {
-    return this.http.put<Skill>(this.skillController.baseUrl + this.skillController.update, skill);
-  }
-  public findAll(): Observable<Skill[]> {
-    return this.http.get<Skill[]>(this.skillController.baseUrl + this.skillController.findAll);
-  }
-  public remove(id: number): Observable<any> {
-    return this.http.delete<Skill>(this.skillController.baseUrl + this.skillController.remove + id);
-  }
-
-  public find(id: number): Observable<Skill> {
-    return this.http.get<Skill>(this.skillController.baseUrl + this.skillController.find + id);
+export class SpringXsrfInterceptor implements HttpInterceptor {
+  headerName = 'Authorization';
+  constructor(private auth0: AuthService) {}
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    const token = this.auth0.getToken();
+    // Be careful not to overwrite an existing header of the same name.
+    if (token !== null && !req.headers.has(this.headerName)) {
+      req = req.clone({ headers: req.headers.set(this.headerName, 'Bearer ' + token) });
+    }
+    return next.handle(req);
   }
 }

@@ -1,566 +1,84 @@
-import { TestBed, inject, getTestBed } from '@angular/core/testing';
-import { RoomControllerService } from './room-controller.service';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { Room } from '../../../model/Room';
-import { environment } from '../../../../environments/environment';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BatchesTimelineComponent } from '../batches-timeline/batches-timeline.component';
+import { BatchesTimelineFilterComponent } from '../batches-timeline-filter/batches-timeline-filter.component';
+import { BatchControllerService } from '../../services/api/batch-controller/batch-controller.service';
+import { TrainerControllerService } from '../../services/api/trainer-controller/trainer-controller.service';
 
-describe('RoomControllerService', () => {
-    let httpTestingController: HttpTestingController;
-    let roomControllerService: RoomControllerService;
-    let roomData: Room[];
-    const roomApi = environment.apiUrls.roomController;
+import { UrlService } from '../../services/url/url.service';
 
-    beforeEach(() => {
-        TestBed.configureTestingModule({
-            imports: [HttpClientTestingModule],
-            providers: [RoomControllerService, HttpClient]
-        });
-        httpTestingController = TestBed.get(HttpTestingController);
-        roomControllerService = TestBed.get(RoomControllerService);
-        roomData = [
-          {
-              "id": 1,
-              "roomName": "201",
-              "active": true,
-              "building": 1,
-              unavailabilities: []
-            },
-            {
-              "id": 2,
-              "roomName": "202",
-              "active": true,
-              "building": 1,
-              unavailabilities: []
-            },
-            {
-              "id": 3,
-              "roomName": "204",
-              "active": true,
-              "building": 1,
-              unavailabilities: []
-            },
-            {
-              "id": 4,
-              "roomName": "205",
-              "active": true,
-              "building": 1,
-              unavailabilities: []
-            },
-            {
-              "id": 5,
-              "roomName": "X1",
-              "active": false,
-              "building": 1,
-              unavailabilities: []
-            },
-            {
-              "id": 6,
-              "roomName": "207",
-              "active": true,
-              "building": 1,
-              unavailabilities: []
-            },
-            {
-              "id": 100,
-              "roomName": "X2",
-              "active": false,
-              "building": 1,
-              unavailabilities: []
-            },
-            {
-              "id": 101,
-              "roomName": "X3",
-              "active": false,
-              "building": 1,
-              unavailabilities: []
-            },
-            {
-              "id": 122,
-              "roomName": "209",
-              "active": true,
-              "building": 1,
-              unavailabilities: []
-            },
-            {
-              "id": 102,
-              "roomName": "203",
-              "active": true,
-              "building": 1,
-              unavailabilities: []
-            },
-            {
-              "id": 103,
-              "roomName": "206",
-              "active": true,
-              "building": 1,
-              unavailabilities: []
-            },
-            {
-              "id": 142,
-              "roomName": "214",
-              "active": true,
-              "building": 1,
-              unavailabilities: []
-            },
-            {
-              "id": 143,
-              "active": true,
-              "roomName": "2301 C",
-              "building": 66,
-              "unavailabilities": [
-                {
-                  "id": 0,
-                  "startDate": new Date("2018-12-04T05:00:00.000Z"),
-                  "endDate": new Date("2018-12-18T05:00:00.000Z"),
-                  "description": "Vacation 3",
-                  "room": 143
-                },
-                {
-                  "id": 0,
-                  "startDate": new Date("2018-12-11T05:00:00.000Z"),
-                  "endDate": new Date("2018-12-19T05:00:00.000Z"),
-                  "description": "Brians vacation",
-                  "room": 143
-                },
-                {
-                  "id": 0,
-                  "startDate": new Date("2018-12-17T05:00:00.000Z"),
-                  "endDate": new Date("2018-12-28T05:00:00.000Z"),
-                  "description": "hhhxxx",
-                  "room": 143
-                }
-              ]
-            },
-            {
-              "id": 145,
-              "active": true,
-              "roomName": "Chik Fil A",
-              "building": 67,
-              "unavailabilities": []
-            },
-            {
-              "id": 146,
-              "active": true,
-              "roomName": "Subway",
-              "building": 67,
-              "unavailabilities": []
-            },
-            {
-              "id": 147,
-              "active": true,
-              "roomName": "1st Floor",
-              "building": 68,
-              "unavailabilities": [
-                {
-                  "id": 0,
-                  "startDate": new Date("2018-12-02T02:12:13.417Z"),
-                  "endDate": new Date("2018-12-02T02:12:13.417Z"),
-                  "description": "James broke the building",
-                  "room": 147
-                },
-                {
-                  "id": 0,
-                  "startDate": new Date("2018-12-02T22:00:42.931Z"),
-                  "endDate": new Date("2018-12-02T22:00:42.931Z"),
-                  "description": "Vacationing",
-                  "room": 147
-                }
-              ]
-            },
-            {
-              "id": 148,
-              "active": true,
-              "roomName": "China Town",
-              "building": 68,
-              "unavailabilities": [
-                {
-                  "id": 0,
-                  "startDate": new Date("2018-12-11T05:00:00.000Z"),
-                  "endDate": new Date("2018-12-17T05:00:00.000Z"),
-                  "description": "Valid test 1",
-                  "room": 148
-                },
-                {
-                  "id": 0,
-                  "startDate": new Date("2018-12-10T05:00:00.000Z"),
-                  "endDate": new Date("2018-12-18T05:00:00.000Z"),
-                  "description": "Valid test 2",
-                  "room": 148
-                }
-              ]
-            },
-            {
-              "id": 149,
-              "active": true,
-              "roomName": "3rd Floor",
-              "building": 68,
-              "unavailabilities": [
-                {
-                  "id": 0,
-                  "startDate": new Date("2018-12-03T17:31:28.303Z"),
-                  "endDate": new Date("2018-12-18T05:00:00.000Z"),
-                  "description": "test",
-                  "room": 149
-                }
-              ]
-            },
-            {
-              "id": 150,
-              "active": true,
-              "roomName": "200 A",
-              "building": 69,
-              "unavailabilities": [
-                {
-                  "id": 0,
-                  "startDate": new Date("2018-12-17T05:00:00.000Z"),
-                  "endDate": new Date("2018-12-26T05:00:00.000Z"),
-                  "description": "Winter Break",
-                  "room": 150
-                },
-                {
-                  "id": 0,
-                  "startDate": new Date("2018-12-10T05:00:00.000Z"),
-                  "endDate": new Date("2018-12-18T05:00:00.000Z"),
-                  "description": "New Semester",
-                  "room": 150
-                }
-              ]
-            },
-            {
-              "id": 151,
-              "active": true,
-              "roomName": "Bat Cave",
-              "building": 70,
-              "unavailabilities": [
-                {
-                  "id": 0,
-                  "startDate": new Date("2018-12-06T05:00:00.000Z"),
-                  "endDate": new Date("2018-12-18T05:00:00.000Z"),
-                  "description": "Renovations",
-                  "room": 151
-                },
-                {
-                  "id": 0,
-                  "startDate": new Date("2018-12-03T17:28:27.729Z"),
-                  "endDate": new Date("2018-12-18T05:00:00.000Z"),
-                  "description": "New test",
-                  "room": 151
-                }
-              ]
-            }
-      ];
-    });
+import { AppMaterialModule } from '../../material.module';
+import { BatchesComponent } from './batches.component';
+import { CachedObjectsService } from '../../services/api/cache/cached-objects.service'
+import { FillSkillsService } from '../../services/api/skill-controller/fill-skills.service'
+import { FocusControllerService } from '../../services/api/focus-controller/focus-controller.service';
+import { AddressControllerService } from '../../services/api/address-controller/address-controller.service';
+import { RoomControllerService } from '../../services/api/room-controller/room-controller.service';
+import { BuildingControllerService } from '../../services/api/building-controller/building-controller.service';
+import { CurriculumControllerService } from '../../services/api/curriculum-controller/curriculum-controller.service';
+import { SkillControllerService } from '../../services/api/skill-controller/skill-controller.service';
+import { SettingControllerService } from '../../services/api/setting-controller/setting-controller.service';
+import { AuthService } from '../../services/auth/auth.service';
+import { RouterModule } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 
-    afterEach(() => {
-        httpTestingController.verify();
-    });
+import { batchService, curriculumService, skillService } from '../../../jestGlobalMocks'
+import { BatchFormComponent } from '../batch-form/batch-form.component';
 
-    it('should be created', () => {
-        expect(roomControllerService).toBeTruthy();
-    });
+describe('BatchesComponent', () => {
+  let component: BatchesComponent;
+  let fixture: ComponentFixture<BatchesComponent>;
 
-    //create
-    it('should create a new Room', () => {
-        let newRoom: Room = {id: 200, roomName: 'Unit Room', building: 67, active: true, unavailabilities: []};
-        roomControllerService.create(newRoom).subscribe(resp => {
-            expect(resp).toEqual(newRoom);
-        });
-        let req = httpTestingController.expectOne(roomApi.baseUrl + roomApi.create);
-        expect(req.request.method).toBe('POST');
-        roomData.push(req.request.body);
-        let dataSize = roomData.length;
-        req.flush(roomData[dataSize-1]);
-    });
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        AppMaterialModule,
+        ReactiveFormsModule,
+        FormsModule,
+        HttpClientTestingModule,
+        BrowserAnimationsModule,
+        RouterModule, //added below
+        RouterTestingModule
+        // UrlService
+      ],
+      declarations: [BatchesComponent, BatchesTimelineComponent, BatchesTimelineFilterComponent, BatchFormComponent],
+      providers: [
+        { provide: BatchControllerService, useValue: batchService },
+        { provide: CurriculumControllerService, useValue: curriculumService },
+        TrainerControllerService,
+        SettingControllerService,
+        FocusControllerService,
+        AddressControllerService,
+        RoomControllerService,
+        CachedObjectsService,
+        FillSkillsService,
+        BuildingControllerService,
+        SkillControllerService,
+        AuthService, //added below
+        RouterModule,
+        RouterTestingModule,
+        UrlService
+      ]
+    }).compileComponents();
+  }));
 
-    //update
-    it('should update an existing room', () => {
-        let updatedRoom: Room = {id: 150, roomName: 'Unit Room', building: 67, active: false, unavailabilities: []};
-        roomControllerService.update(updatedRoom).subscribe(resp => {
-            expect(resp).toEqual(updatedRoom);
-        });
-        let req = httpTestingController.expectOne(roomApi.baseUrl + roomApi.update + updatedRoom.id);
-        expect(req.request.method).toBe('PUT');
-        let roomIndex = roomData.findIndex(room => room.id === updatedRoom.id);
-        roomData[roomIndex] = req.request.body;
-        req.flush(roomData[roomIndex]);
-    })
-    //find
-    it('should find a specific room', () => {
-        const findParam = 150;
-        roomControllerService.find(findParam).subscribe(resp => {
-            expect(resp).toEqual({
-                "id": 150,
-                "active": true,
-                "roomName": "200 A",
-                "building": 69,
-                "unavailabilities": [
-                  {
-                    "id": 0,
-                    "startDate": new Date("2018-12-17T05:00:00.000Z"),
-                    "endDate": new Date("2018-12-26T05:00:00.000Z"),
-                    "description": "Winter Break",
-                    "room": 150
-                  },
-                  {
-                    "id": 0,
-                    "startDate": new Date("2018-12-10T05:00:00.000Z"),
-                    "endDate": new Date("2018-12-18T05:00:00.000Z"),
-                    "description": "New Semester",
-                    "room": 150
-                  }
-                ]
-              });
-        });
-        let req = httpTestingController.expectOne(roomApi.baseUrl + roomApi.find + findParam);
-        expect(req.request.method).toBe('GET');
-        let foundIndex = roomData.findIndex(room => room.id === findParam);
-        req.flush(roomData[foundIndex]);
-    });
-    //findAll
-    it('should find all rooms', () => {
-        roomControllerService.findAll().subscribe(resp => {
-            expect(resp).toEqual(roomData);
-        });
-        let req = httpTestingController.expectOne(roomApi.baseUrl + roomApi.findAll);
-        expect(req.request.method).toBe('GET');
-        req.flush(roomData);
-    });
-    //remove
-    it('should remove a room', () => {
-        let removeId = 150;
-        roomControllerService.remove(removeId).subscribe(resp => {
-            expect(resp).toEqual(
-              [
-                {
-                    "id": 1,
-                    "roomName": "201",
-                    "active": true,
-                    "building": 1,
-                    unavailabilities: []
-                  },
-                  {
-                    "id": 2,
-                    "roomName": "202",
-                    "active": true,
-                    "building": 1,
-                    unavailabilities: []
-                  },
-                  {
-                    "id": 3,
-                    "roomName": "204",
-                    "active": true,
-                    "building": 1,
-                    unavailabilities: []
-                  },
-                  {
-                    "id": 4,
-                    "roomName": "205",
-                    "active": true,
-                    "building": 1,
-                    unavailabilities: []
-                  },
-                  {
-                    "id": 5,
-                    "roomName": "X1",
-                    "active": false,
-                    "building": 1,
-                    unavailabilities: []
-                  },
-                  {
-                    "id": 6,
-                    "roomName": "207",
-                    "active": true,
-                    "building": 1,
-                    unavailabilities: []
-                  },
-                  {
-                    "id": 100,
-                    "roomName": "X2",
-                    "active": false,
-                    "building": 1,
-                    unavailabilities: []
-                  },
-                  {
-                    "id": 101,
-                    "roomName": "X3",
-                    "active": false,
-                    "building": 1,
-                    unavailabilities: []
-                  },
-                  {
-                    "id": 122,
-                    "roomName": "209",
-                    "active": true,
-                    "building": 1,
-                    unavailabilities: []
-                  },
-                  {
-                    "id": 102,
-                    "roomName": "203",
-                    "active": true,
-                    "building": 1,
-                    unavailabilities: []
-                  },
-                  {
-                    "id": 103,
-                    "roomName": "206",
-                    "active": true,
-                    "building": 1,
-                    unavailabilities: []
-                  },
-                  {
-                    "id": 142,
-                    "roomName": "214",
-                    "active": true,
-                    "building": 1,
-                    unavailabilities: []
-                  },
-                  {
-                    "id": 143,
-                    "active": true,
-                    "roomName": "2301 C",
-                    "building": 66,
-                    "unavailabilities": [
-                      {
-                        "id": 0,
-                        "startDate": new Date("2018-12-04T05:00:00.000Z"),
-                        "endDate": new Date("2018-12-18T05:00:00.000Z"),
-                        "description": "Vacation 3",
-                        "room": 143
-                      },
-                      {
-                        "id": 0,
-                        "startDate": new Date("2018-12-11T05:00:00.000Z"),
-                        "endDate": new Date("2018-12-19T05:00:00.000Z"),
-                        "description": "Brians vacation",
-                        "room": 143
-                      },
-                      {
-                        "id": 0,
-                        "startDate": new Date("2018-12-17T05:00:00.000Z"),
-                        "endDate": new Date("2018-12-28T05:00:00.000Z"),
-                        "description": "hhhxxx",
-                        "room": 143
-                      }
-                    ]
-                  },
-                  {
-                    "id": 145,
-                    "active": true,
-                    "roomName": "Chik Fil A",
-                    "building": 67,
-                    "unavailabilities": []
-                  },
-                  {
-                    "id": 146,
-                    "active": true,
-                    "roomName": "Subway",
-                    "building": 67,
-                    "unavailabilities": []
-                  },
-                  {
-                    "id": 147,
-                    "active": true,
-                    "roomName": "1st Floor",
-                    "building": 68,
-                    "unavailabilities": [
-                      {
-                        "id": 0,
-                        "startDate": new Date("2018-12-02T02:12:13.417Z"),
-                        "endDate": new Date("2018-12-02T02:12:13.417Z"),
-                        "description": "James broke the building",
-                        "room": 147
-                      },
-                      {
-                        "id": 0,
-                        "startDate": new Date("2018-12-02T22:00:42.931Z"),
-                        "endDate": new Date("2018-12-02T22:00:42.931Z"),
-                        "description": "Vacationing",
-                        "room": 147
-                      }
-                    ]
-                  },
-                  {
-                    "id": 148,
-                    "active": true,
-                    "roomName": "China Town",
-                    "building": 68,
-                    "unavailabilities": [
-                      {
-                        "id": 0,
-                        "startDate": new Date("2018-12-11T05:00:00.000Z"),
-                        "endDate": new Date("2018-12-17T05:00:00.000Z"),
-                        "description": "Valid test 1",
-                        "room": 148
-                      },
-                      {
-                        "id": 0,
-                        "startDate": new Date("2018-12-10T05:00:00.000Z"),
-                        "endDate": new Date("2018-12-18T05:00:00.000Z"),
-                        "description": "Valid test 2",
-                        "room": 148
-                      }
-                    ]
-                  },
-                  {
-                    "id": 149,
-                    "active": true,
-                    "roomName": "3rd Floor",
-                    "building": 68,
-                    "unavailabilities": [
-                      {
-                        "id": 0,
-                        "startDate": new Date("2018-12-03T17:31:28.303Z"),
-                        "endDate": new Date("2018-12-18T05:00:00.000Z"),
-                        "description": "test",
-                        "room": 149
-                      }
-                    ]
-                  },
-                  {
-                    "id": 151,
-                    "active": true,
-                    "roomName": "Bat Cave",
-                    "building": 70,
-                    "unavailabilities": [
-                      {
-                        "id": 0,
-                        "startDate": new Date("2018-12-06T05:00:00.000Z"),
-                        "endDate": new Date("2018-12-18T05:00:00.000Z"),
-                        "description": "Renovations",
-                        "room": 151
-                      },
-                      {
-                        "id": 0,
-                        "startDate": new Date("2018-12-03T17:28:27.729Z"),
-                        "endDate": new Date("2018-12-18T05:00:00.000Z"),
-                        "description": "New test",
-                        "room": 151
-                      }
-                    ]
-                  }
-            ]
-            );
-        });
-        let req = httpTestingController.expectOne(roomApi.baseUrl + roomApi.remove + removeId);
-        expect(req.request.method).toBe('DELETE');
-        let removedIndex = roomData.findIndex(room => room.id === removeId);
-        roomData.splice(removedIndex, 1);
-        req.flush(roomData);
-    });
-    //error
-    it('should receive an error after trying to find a room that does not exist', () => {
-        const errmsg = 'Something went wrong. Unless you wanted it to. In that case it went right.';
-        let findParam = 250;
-        roomControllerService.find(findParam).subscribe(resp =>
-            fail('should have failed with a 404 error'),
-            (error: HttpErrorResponse) => {
-                expect(error.status).toEqual(404, 'status');
-                expect(error.error).toEqual(errmsg, 'message');
-            }
-        );
-        let req = httpTestingController.expectOne(roomApi.baseUrl + roomApi.find + findParam);
-        req.flush(errmsg, {status: 404, statusText: 'Not Found'});
-    });
+  beforeEach(() => {
+    fixture = TestBed.createComponent(BatchesComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should call find all on curriculum service', () => {
+    expect(curriculumService.findAll).toHaveBeenCalled();
+  });
+
+    // it('should call find all on skills service', () => {
+    //   expect(skillService.findAll).toHaveBeenCalled();
+    // });
 });

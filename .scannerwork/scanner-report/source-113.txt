@@ -1,33 +1,85 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../../environments/environment';
-import { Curriculum } from '../../../model/Curriculum';
-import { Observable } from 'rxjs/Observable';
+import { Component, OnInit, Input } from '@angular/core';
 
-@Injectable()
-export class CurriculumControllerService {
-  constructor(private http: HttpClient) {}
+import { Trainer } from '../../../model/Trainer';
+import { Skill } from '../../../model/Skill';
+import { TrainerControllerService } from '../../../services/api/trainer-controller/trainer-controller.service';
+import { SkillControllerService } from '../../../services/api/skill-controller/skill-controller.service';
+import { AuthService } from '../../../services/auth/auth.service';
+import { CachedObjectsService } from '../../../services/api/cache/cached-objects.service';
+import { RouterLink } from '../../../../../node_modules/@angular/router';
 
-  private curriculumController = environment.apiUrls.curriculumController;
+@Component({
+  selector: 'app-trainer-item',
+  templateUrl: './trainer-item.component.html',
+  styleUrls: ['./trainer-item.component.css']
+})
+export class TrainerItemComponent implements OnInit {
+  @Input()
+  trainer: Trainer;
+  isManager: boolean;
+  allSkills: Skill[] = [];
+  routerLink: RouterLink;
 
-  public create(curriculum: Curriculum): Observable<Curriculum> {
-    return this.http.post<Curriculum>(
-      this.curriculumController.baseUrl + this.curriculumController.create,curriculum
-    );
-  }
-  public update(curriculum: Curriculum): Observable<Curriculum> {
-    return this.http.put<Curriculum>(
-      this.curriculumController.baseUrl + this.curriculumController.update + curriculum.id,curriculum
-    );
-  }
-  public findAll(): Observable<Curriculum[]> {
-    return this.http.get<Curriculum[]>(this.curriculumController.baseUrl + this.curriculumController.findAll);
-  }
-  public remove(id: number): Observable<any> {
-    return this.http.delete<Curriculum>(this.curriculumController.baseUrl + this.curriculumController.remove + id);
+  constructor(
+    private trainerService: TrainerControllerService,
+    private skillsService: SkillControllerService,
+    public auth0: AuthService,
+    private cachingService: CachedObjectsService
+  ) {}
+
+  ngOnInit() {
+    this.isManager = this.auth0.userHasRole(['SVP of Technology']);
+    this.skillsService.findAll().subscribe(response => {
+      this.allSkills = response;
+      this.cachingService.setSkills(response);
+    });
   }
 
-  public find(id: number): Observable<Curriculum> {
-    return this.http.get<Curriculum>(this.curriculumController.baseUrl + this.curriculumController.find + id);
+  removeTrainer() {
+    this.trainer.isActive = false;
+    this.trainerService
+      .update(this.trainer)
+      .toPromise()
+      .then(t => {})
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  activateTrainer() {
+    this.trainer.isActive = true;
+    this.trainerService
+      .update(this.trainer)
+      .toPromise()
+      .then(t => {})
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  listSkills() {
+    if (!this.trainer.skills || this.trainer.skills.length === 0) {
+      return 'None';
+    }
+    const skillName: string[] = [];
+    const skillsArray = this.allSkills.filter(aSkill => {
+      if (this.trainer.skills) {
+        return this.trainer.skills.findIndex(tSkill => {
+          return aSkill.skillId === tSkill.skillId;
+        }) >= 0;
+      }
+      return false;
+    });
+    return skillsArray.map(skill => skill.skillName).join(', ');
+
+    // for (const skill of this.trainer.skills) {
+    //   // console.log(skill);
+    //   if (skill) {
+    //     skillName.push(' ' + skill.skillName);
+    //   } else {
+    //     skillName.push('skillErr!');
+    //   }
+    // }
+    // return skillName;
   }
 }

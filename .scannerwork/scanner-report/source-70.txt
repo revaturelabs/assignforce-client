@@ -1,43 +1,39 @@
-/* ----------- OVERVIEW STYLES ----------- */
-#overviewDiv {
-  margin-top: 5%;
-}
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
-.mat-expansion-panel-header-title {
-  color: #fff;
-  font-weight: 500;
-  font-size: 18px;
-}
+@Component({
+  selector: 'app-location-add-dialog',
+  templateUrl: './location-add-dialog.component.html'
+})
+export class LocationAddDialogComponent implements OnInit {
+  addType: string;
+  typeContent;
+  // dialogContent;
 
-[aria-disabled='true'].mat-expansion-panel-header {
-  color: #fff;
-  font-weight: 500;
-  font-size: 18px;
-}
-/* ----------- BUTTON ----------- */
+  constructor(public dialogRef: MatDialogRef<LocationAddDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {}
 
-#download {
-  position: relative;
-  bottom: 30px;
-  left: 0px;
-  visibility: hidden;
-}
+  ngOnInit() {
+    this.addType = this.data.addType;
+    switch (this.data.addType) {
+      case 'location':
+        {
+          this.typeContent = this.data.location;
+        }
+        break;
+      case 'building':
+        {
+          this.typeContent = this.data.building;
+        }
+        break;
+      case 'room':
+        {
+          this.typeContent = this.data.room;
+        }
+        break;
+    }
+  }
 
-#download:hover .downloadText {
-  visibility: visible;
-}
-/* Loading spinner */
-.center {
-  margin: auto;
-  width: 10%;
-}
-
-.mat-icon,
-.material-icons {
-  color: #f26a25;
-}
-
-.mat-icon:hover,
-.material-icons:hover {
-  color: #f26a25;
+  onNoClick() {
+    this.dialogRef.close();
+  }
 }

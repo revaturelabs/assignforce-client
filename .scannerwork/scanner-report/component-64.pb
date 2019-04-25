@@ -1,1 +1,1 @@
-@ 2cssXhr,src/app/components/login/login.component.css
+@ 2webXhrAsrc/app/components/edit-curriculum/edit-curriculum.component.html

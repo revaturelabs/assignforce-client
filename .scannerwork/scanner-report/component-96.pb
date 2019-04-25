@@ -1,1 +1,1 @@
-` 2tsX˜hr1src/app/components/trainers/trainers.component.ts
+` 2cssX\hr0src/app/components/profile/profile.component.css

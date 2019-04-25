@@ -1,1 +1,1 @@
-& 2webX$hrEsrc/app/components/curriculum-skills/curriculum-skills.component.html
+& 2tsXhr=src/app/components/authenticating/authenticating.component.ts

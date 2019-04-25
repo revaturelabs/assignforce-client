@@ -1,1 +1,1 @@
-P 2webXÍhr3src/app/components/settings/settings.component.html
+P 2webXhrIsrc/app/components/locations/location-edit-building-dialog.component.html

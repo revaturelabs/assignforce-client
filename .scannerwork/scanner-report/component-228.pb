@@ -1,1 +1,1 @@
-ä (2tsXChrFsrc/app/services/api/skill-controller/skill-controller.service.spec.ts
+ä (2tsXhrBsrc/app/components/certifications/certifications.component.spec.ts

@@ -1,1 +1,1 @@
-A 2webXhr-src/app/components/login/login.component.html
+A 2tsXThr?src/app/components/edit-curriculum/edit-curriculum.component.ts

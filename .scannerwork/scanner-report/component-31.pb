@@ -1,1 +1,1 @@
- 2cssXEhr*src/app/components/core/core.component.css
+ 2webXhr?src/app/components/add-curriculum/add-curriculum.component.html

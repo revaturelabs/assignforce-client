@@ -1,1 +1,1 @@
-f 2tsXhrsrc/app/model/Curriculum.ts
+f 2cssXhr2src/app/components/settings/settings.component.css

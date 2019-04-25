@@ -1,17 +1,17 @@
-import { Injectable } from '@angular/core';
-import { SecurityConfig } from './security-config';
+import { Skill } from './Skill';
 
-@Injectable()
-export class SecurityContext {
-  private securityConfig: SecurityConfig;
+export class Focus {
+  id: number;
+  name: string;
+  isActive: boolean;
+  isCore: boolean;
+  skills: Skill[];
 
-  constructor() {}
-
-  public setSecurityConfig(config: SecurityConfig) {
-    this.securityConfig = config;
-  }
-
-  public getSecurityConfig() {
-    return this.securityConfig;
+  constructor(id: number, name: string, active: boolean, core: boolean, skills: Skill[]) {
+    this.id = id;
+    this.name = name;
+    this.isActive = active;
+    this.isCore = core;
+    this.skills = skills;
   }
 }

@@ -1,1 +1,1 @@
- 2tsXæhr/src/app/components/batches/batches.component.ts
+ 2jsXhrprotractor.conf.js

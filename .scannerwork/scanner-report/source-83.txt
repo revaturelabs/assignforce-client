@@ -1,50 +1,34 @@
-<!--skills section-->
-<mat-toolbar-row>
-  <mat-toolbar class="md-toolbar" layout="columns">
-    <span class="mat-expansion-panel-header-title">Skills</span>
-    <span class="md-toolbar-spacer"></span>
-    <button mat-icon-button *ngIf="editable" (click)="updateSkills()">
-      <mat-icon matTooltip="Save" class="mat-icon" *ngIf="!lockSkills">save</mat-icon>
-      <mat-icon matTooltip="Edit" class="mat-icon" *ngIf="lockSkills">edit</mat-icon>
-    </button>
-  </mat-toolbar>
-</mat-toolbar-row>
+<div mat-dialog-content>
+        <mat-expansion-panel [expanded]="true">
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            <h4 matline>Unavailabilities </h4>
+        </mat-panel-title>
+        <mat-panel-description>
+            <span class = "fill-space"></span>
+            <mat-icon  matchTooltip = "Add Unavalability" class = "material-icons" (click) = "openAddUnvailibilityDialog($event, data.room)">
+                add_circle_outline
+            </mat-icon>
+           
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-list *ngFor = "let unavailability of roomUnavailibilities(data.room.id)"><!-- Hernan : roomUnavailibilities(data.room.id)"> -->
+        <mat-list-item>
+            <h4 mat-line>
+                               Start date:  {{unavailability.startDate | date}}
+                End Date: {{unavailability.endDate | date}} <br>
+                {{unavailability.description}} 
+            </h4>
+            <span class="fill-space"></span>
 
-<div id="skillsDiv">
-  <mat-card-content *ngIf="loading===true">
-    <div class="center">
-      <div fxFlex="100"> &nbsp;</div>
-      <mat-progress-spinner class="center" mode="indeterminate"></mat-progress-spinner>
-      <div fxFlex="100"> &nbsp;</div>
-    </div>
-  </mat-card-content>
+          <!--Added parameter data.room to both methods below - Hernan - -->
+            <mat-icon  matTooltip="Remove Unavailability" class="material-icons" style="color: black; cursor: pointer"  (click) = "openDeleteUnavailibilityDialog($event, unavailability, data.room)">
+                    remove_circle_outline</mat-icon>
+             <mat-icon matTooltip="Edit  Unavailability" class="material-icons" style="color: black; cursor: pointer" (click) = "openChangeUnavailibilityDialog($event, unavailability, data.room)"  >
+                            edit</mat-icon>
 
-  <mat-card-content *ngIf="loading==false && allSkills">
-    <div class="md-padding" layout="column">
-      <div *ngIf="!lockSkills">
-        <h2 matSubheader class="revDark">Select a skill:</h2>
-        <mat-select class="revDark" multiple placeholder="Select Skill" [compareWith]="compareObjects" [ngModel]="trainer.skills">
-          <mat-optgroup class="revDark">
-            <mat-option class="revDark" *ngFor="let skill of allSkills" (click)="addSkill(skill)" [value]="skill">
-              <span class="revDark">{{skill.skillName}}</span>
-            </mat-option>
-          </mat-optgroup>
-        </mat-select>
-        <hr>
-      </div>
-      <h2 matSubheader class="revDark">Current Skills</h2>
-      <mat-list>
-        <button [disabled]="lockSkills" mat-button class="md-list-item" *ngFor="let skill of trainerSkills()" (click)="removeSkill(skill)">
-          <mat-icon class="material-icons">stars</mat-icon>
-          <span class="revDark">
-              <h5>{{skill?.skillName}}</h5>
-          </span>
-        </button>
-      </mat-list>
-    </div>
-  </mat-card-content>
-
-  <mat-card-content *ngIf="loading == false && skillsList == undefined">
-    <h1 class="center revOrange">FAILED TO LOAD</h1>
-  </mat-card-content>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+    </mat-list>
+</mat-expansion-panel>
 </div>

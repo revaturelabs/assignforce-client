@@ -1,26 +1,144 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+export const environment = {
+  production: false,
+  name: 'local-server',
+  baseUrl: 'http://localhost:4200', //change this to https;
 
-import { AppMaterialModule } from '../../material.module';
-import { CertificationsComponent } from './certifications.component';
+  appRoutes: {
+    login: 'login',
+    overview: 'overview',
+    batches: 'batches',
+    locations: 'locations',
+    curricula: 'curricula',
+    trainers: 'trainers',
+    profile: 'profile',
+    reports: 'reports',
+    settings: 'settings',
+    callback: 'callback'
+  },
 
-describe('CertificationsComponent', () => {
-  let component: CertificationsComponent;
-  let fixture: ComponentFixture<CertificationsComponent>;
+  security_config: {
+    roles: ['SVP of Technology', 'Trainer'],
+    groups: ['Operations'],
+    permissions: []
+  },
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [AppMaterialModule],
-      declarations: [CertificationsComponent]
-    }).compileComponents();
-  }));
+  auth0: {
+    namespace: 'http://revature.com/',
+    title: 'AssignForce Login',
+    clientId: 'tjQhcs0O4mRV2iry6SAO0Gy1YQcBrWCa', //hydra
+    domain: 'revature.auth0.com',
+    responseType: 'token id_token',
+    audience: 'hydra-gateway',
+    redirectUri: 'http://localhost:4200/callback',
+    scope: 'openid profile'
+  },
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(CertificationsComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  apiUrls: {
+    addressController: {
+      baseUrl: 'http://localhost:3000/addresses',
+      create: '',
+      update: '/',
+      findAll: '',
+      find: '/',
+      remove: '/'
+    },
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    batchController: {
+      baseUrl: 'http://localhost:3000/batches',
+      create: '',
+      update: '/',
+      findAll: '',
+      find: '/',
+      remove: '/'
+    },
+
+    buildingController: {
+      baseUrl: 'http://localhost:3000/buildings',
+      create: '',
+      update: '/',
+      findAll: '',
+      find: '/',
+      remove: '/'
+    },
+
+    locationController: {
+      baseUrl: 'http://localhost:3000/addresses',
+      create: '',
+      update: '/',
+      findAll: '',
+      find: '/',
+      remove: '/'
+    },
+
+    roomController: {
+      baseUrl: 'http://localhost:3000/rooms',
+      create: '',
+      update: '/',
+      findAll: '',
+      find: '/',
+      remove: '/'
+    },
+
+    curriculumController: {
+      baseUrl: 'http://localhost:3000/curricula',
+      create: '',
+      update: '/',
+      findAll: '',
+      find: '/',
+      remove: '/'
+    },
+
+    focusController: {
+      baseUrl: 'http://localhost:3000/curricula',
+      create: '',
+      update: '/',
+      findAll: '',
+      find: '/',
+      remove: '/'
+    },
+
+    skillController: {
+      baseUrl: 'http://localhost:3000/skills',
+      create: '',
+      update: '/',
+      findAll: '',
+      find: '/',
+      remove: '/'
+    },
+
+    trainerController: {
+      baseUrl: 'http://localhost:3000/trainers',
+      create: '',
+      update: '/',
+      findAll: '',
+      find: '/',
+      remove: '/'
+    },
+
+    settingController: {
+      baseUrl: 'http://localhost:3000/settings',
+      create: '',
+      update: '/',
+      findAll: '',
+      find: '/',
+      remove: '/'
+    },
+
+    unavailableController: {
+      baseUrl: 'http://localhost:3000/unavailables',
+      create: '',
+      update: '/',
+      findAll: '',
+      find: '/',
+      remove: '/'
+    },
+    filehandlerController: {
+      baseUrl: 'api/filehandler',
+      create: '',
+      update: '/',
+      findAll: '',
+      find: '/',
+      remove: '/'
+    }
+  }
+};

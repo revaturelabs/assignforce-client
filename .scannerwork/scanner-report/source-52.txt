@@ -1,29 +1,15 @@
-<h2 mat-dialog-title>Edit Unavailibility</h2>
-<div mat-dialog-content>
-  <p>Unavailibility description: </p>
-  <mat-form-field class="update-form" style="width: 100%">
-    <input matInput tabindex="1" [(ngModel)]="data.unavailability .description">
-  </mat-form-field>
-  <p>Start Date:</p>
-  <mat-form-field>
-      <input matInput tabIndex="2" [matDatepicker]="picker1"
-      placeholder = "Choose a startDate"
-      readOnly [(ngModel)] = "data.unavailability.startDate">
-      <mat-datepicker-toggle matSuffix [for] = "picker1"></mat-datepicker-toggle>
-      <mat-datepicker #picker1></mat-datepicker>
-  </mat-form-field>
+<!--certifications section-->
+<mat-toolbar-row>
+  <mat-toolbar class="md-toolbar">
+    <span class="mat-expansion-panel-header-title">Certifications</span>
+    <span class="md-toolbar-spacer"></span>
+    <button mat-icon-button>
+       
+      <mat-icon matTooltip="Add Certification" class="material-icons md-toolbar-icon">add_circle</mat-icon>
+    </button>
+  </mat-toolbar>
+</mat-toolbar-row>
 
-  <p>End Date:</p>
-  <mat-form-field>
-      <input matInput tabIndex="3" [matDatepicker]="picker2" 
-      [min] = "data.unavailability.startDate"
-      placeholder = "Choose a endDate"
-      readOnly [(ngModel)] = "data.unavailability.endDate">
-      <mat-datepicker-toggle matSuffix [for] = "picker2" ></mat-datepicker-toggle>
-      <mat-datepicker #picker2></mat-datepicker>
-  </mat-form-field>
-  <div mat-dialog-actions>
-    <button mat-button [mat-dialog-close]="data.unavailability " tabindex="4">Update</button>
-    <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
-  </div>
-</div>
+<mat-card-content>
+ 
+</mat-card-content>

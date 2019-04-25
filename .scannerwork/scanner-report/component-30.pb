@@ -1,1 +1,1 @@
- 2tsXhr=src/app/components/certifications/certifications.component.ts
+ 2cssX	hr>src/app/components/add-curriculum/add-curriculum.component.css

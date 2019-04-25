@@ -1,27 +1,6 @@
-/* ---------- SETTINGS STYLING ---------- */
-.padding-top {
-  padding-top: 5%;
-  max-width: 60%;
-  padding-left: 10%;
-  padding-right: 10%;
-  margin: 0 auto;
-}
-
-/* ---------- BUTTONS STYLING ---------- */
-.btn-orange,
-.btn-orange:hover,
-.btn-orange:active,
-.btn-orange:focus {
-  color: #ffffff;
-  background-color: #f26a25;
-}
-
-.btn-white {
-  color: #000000;
-  background-color: #ffffff;
-  border-color: #000000;
-}
-
-.leftAlign {
-  text-align: left;
-}
+<h1 mat-dialog-title>Delete This Unavailability?</h1>
+<h4> {{data.unavailability.description}}</h4>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="data.unavailability" tabindex="2">Yes</button>
+  <button mat-button (click)="onNoClick()" tabindex="-1">No</button>
+</div>

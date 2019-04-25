@@ -1,73 +1,146 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
+const apiBaseUrl = 'https://api.assignforce.revaturelabs.com/';
 
+export const environment = {
+  production: true,
+  name: 'prod',
+  baseUrl: 'https://assignforce.revaturelabs.com',
 
-import { AppMaterialModule } from '../../material.module';
-import { Curriculum } from '../../model/Curriculum';
-import { Skill } from '../../model/Skill';
-import { CurriculumControllerService } from '../../services/api/curriculum-controller/curriculum-controller.service';
-import { SkillControllerService } from '../../services/api/skill-controller/skill-controller.service';
-import { CoreComponent } from '../core/core.component';
-import { CurriculumSkillsComponent } from '../curriculum-skills/curriculum-skills.component';
-import { CurriculaComponent } from './curricula.component';
-import { SkillsComponent } from '../skills/skills.component';
-import { AuthService } from '../../services/auth/auth.service';
-import { RouterTestingModule } from '@angular/router/testing';
-import { Router } from '@angular/router';
-import { UrlService } from '../../services/url/url.service';
-import { CachedObjectsService } from '../../services/api/cache/cached-objects.service';
+  appRoutes: {
+    login: 'login',
+    overview: 'overview',
+    batches: 'batches',
+    locations: 'locations',
+    curricula: 'curricula',
+    trainers: 'trainers',
+    profile: 'profile',
+    reports: 'reports',
+    settings: 'settings',
+    callback: 'callback'
+  },
 
-describe('CurriculaComponent', () => {
-  let component: CurriculaComponent;
-  let fixture: ComponentFixture<CurriculaComponent>;
-  
-  const testSkillData: Skill[] = [
-    new Skill(1,"skill1", true),
-    new Skill(2, "skill2", true),
-    new Skill(3, "skill3", false)
-  ];
+  security_config: {
+    roles: ['SVP of Technology', 'Trainer'],
+    groups: ['Operations'],
+    permissions: []
+  },
 
-  const testData: Curriculum[] = [
-      new Curriculum(1, 'Test Curriculum', true, true, [testSkillData[0], testSkillData[1]]),
-      new Curriculum(2, 'Test Curriculum 2', true, false, [testSkillData[2], testSkillData[1]])
-  ];
+  auth0: {
+    namespace: 'https://revature.com/',
+    title: 'AssignForce Login',
+    clientId: 'tjQhcs0O4mRV2iry6SAO0Gy1YQcBrWCa', //hydra
+    domain: 'revature.auth0.com',
+    responseType: 'token id_token',
+    audience: 'hydra-gateway',
+    redirectUri: 'https://assignforce.revaturelabs.com/callback',
+    scope: 'openid profile'
+  },
 
-  class MockSkillControllerService {
-    find(id: number) {
-      return Observable.of(testSkillData.find( (skill) => skill.skillId === id));
-    }
-    findAll() {
-      return Observable.of(testSkillData);
+  apiUrls: {
+    addressController: {
+      baseUrl: `${apiBaseUrl}/location-service`,
+      create: '',
+      update: '/',
+      findAll: '',
+      find: '/',
+      remove: '/'
+    },
+
+    batchController: {
+      baseUrl: `${apiBaseUrl}/batch-service`,
+      create: '',
+      update: '/',
+      findAll: '',
+      find: '/',
+      remove: '/'
+    },
+
+    buildingController: {
+      baseUrl: `${apiBaseUrl}/location-service/building`,
+      create: '',
+      update: '/',
+      findAll: '',
+      find: '/',
+      remove: '/'
+    },
+
+    locationController: {
+      baseUrl: `${apiBaseUrl}/location-service`,
+      create: '',
+      update: '/',
+      findAll: '',
+      find: '/',
+      remove: '/'
+    },
+
+    roomController: {
+      baseUrl: `${apiBaseUrl}/location-service/room`,
+      create: '',
+      update: '/',
+      findAll: '',
+      find: '/',
+      remove: '/'
+    },
+
+    curriculumController: {
+      baseUrl: `${apiBaseUrl}/curriculum-service`,
+      create: '',
+      update: '/',
+      findAll: '',
+      find: '/',
+      remove: '/'
+    },
+
+    focusController: {
+      baseUrl: 'api/focus',
+      create: '',
+      update: '/',
+      findAll: '',
+      find: '/',
+      remove: '/'
+    },
+
+    skillController: {
+      baseUrl: `${apiBaseUrl}/skill-service`,
+      create: '',
+      update: '/',
+      findAll: '',
+      find: '/',
+      remove: '/'
+    },
+
+    trainerController: {
+      baseUrl: `${apiBaseUrl}/trainer-service`,
+      create: '',
+      update: '/',
+      findAll: '',
+      find: '/',
+      remove: '/'
+    },
+
+    settingController: {
+      baseUrl: `${apiBaseUrl}/setting-service`,
+      create: '',
+      update: '/',
+      findAll: '',
+      find: '/',
+      remove: '/'
+    },
+
+    unavailableController: {
+      baseUrl: `${apiBaseUrl}/location-service/unavailabilities`,
+      create: '/',
+      update: '/',
+      findAll: '',
+      find: '/',
+      remove: '/'
+    },
+    filehandlerController: {
+      baseUrl: `${apiBaseUrl}/filehandler-service`,
+      create: '',
+      update: '/',
+      findAll: '',
+      find: '/',
+      remove: '/'
     }
   }
-
-  class MockCurriculumControllerService {
-    findAll(): Observable<Curriculum[]> {
-      return Observable.of(testData);
-    }
-  }
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [AppMaterialModule, BrowserAnimationsModule],
-      declarations: [CurriculaComponent, CoreComponent, CurriculumSkillsComponent],
-      providers: [ CoreComponent, SkillsComponent, AuthService, UrlService, CachedObjectsService,
-        { provide: CurriculumControllerService, useClass: MockCurriculumControllerService },
-        { provide: SkillControllerService, useClass: MockSkillControllerService },
-        { provide: Router, useClass: RouterTestingModule}
-      ]
-    }).compileComponents();
-  }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(CurriculaComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+};

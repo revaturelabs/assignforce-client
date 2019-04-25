@@ -1,1 +1,1 @@
-| 2tsXhr&src/app/services/auth/guard.service.ts
+| 2tsXhrsrc/app/model/Building.ts

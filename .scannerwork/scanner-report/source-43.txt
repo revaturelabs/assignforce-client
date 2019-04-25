@@ -1,0 +1,151 @@
+<div id="batchesDiv">
+
+  <!-- Create New Batch  -->
+  <!-- Should Only Appear if they are admin -->
+  <mat-accordion *ngIf="this.auth0.userHasRole(['SVP of Technology'])">
+    <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{batchMode == BatchMode.Create ? 'Create New Batch' : 'Edit Batch'}}
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <!-- Batch Form -->
+      <app-batch-form 
+        [options]="{mode: batchMode, model: batchModel}"
+        (batchSubmitted)="onSubmit($event)"
+        (actionCancelled)="onCancel()"></app-batch-form>
+      <!-- Batch Projection Form-->
+      <!-- TODO -->
+
+      <!-- Batch Totals -->
+      <!-- TODO -->
+
+    </mat-expansion-panel>
+
+  </mat-accordion>
+
+  <!-- All Batches Panel-->
+  <!-- This has some Admin properties -->
+  <mat-accordion>
+    <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{secondHeader}}
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="example-container_mat-elevation-z8">
+        <mat-table #table [dataSource]="dataSource" matSort>
+
+         <!-- Name Column -->
+          <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+            <mat-cell *matCellDef="let batch"> {{batch.name}} </mat-cell>
+          </ng-container>
+
+          <!-- Curriculum Column -->
+          <ng-container matColumnDef="curriculum">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Curriculum </mat-header-cell>
+            <mat-cell *matCellDef="let batch"> {{ entityLookup('curriculums', batch.curriculum)?.name }} </mat-cell>
+          </ng-container>
+
+          <!-- Trainer Column -->
+          <ng-container matColumnDef="trainers">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Trainer/Cotrainer </mat-header-cell>
+            <mat-cell *matCellDef="let batch">
+              <div *ngIf="batch.trainer">{{ (entityLookup('trainers', batch.trainer)?.firstName + ' ' + entityLookup('trainers', batch.trainer)?.lastName)
+                || "" }}</div>
+              <div *ngIf="batch.cotrainer">{{ (entityLookup('trainers', batch.cotrainer)?.firstName + ' ' + entityLookup('trainers', batch.cotrainer)?.lastName)
+                || "" }}</div>
+            </mat-cell>
+          </ng-container>
+
+          <!-- Address Column -->
+          <ng-container matColumnDef="location">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Location </mat-header-cell>
+            <mat-cell *matCellDef="let batch"> {{ entityLookup('locations', batch.location)?.name }} </mat-cell>
+          </ng-container>
+
+          <!-- Building Column -->
+          <ng-container matColumnDef="building">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Building </mat-header-cell>
+            <mat-cell *matCellDef="let batch">
+              <div *ngIf="batch.building">{{ entityLookup('buildings', batch.building)?.buildingName }}</div>
+            </mat-cell>
+          </ng-container>
+
+          <!-- Room Column -->
+          <ng-container matColumnDef="room">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Room </mat-header-cell>
+            <mat-cell *matCellDef="let batch">
+              <div *ngIf="batch.room">{{ entityLookup('rooms', batch.room)?.roomName }}</div>
+            </mat-cell>
+          </ng-container>
+
+          <!-- Class Size Column -->
+          <ng-container matColumnDef="size">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Class Size </mat-header-cell>
+            <mat-cell *matCellDef="let batch"> {{batch.classSize}} </mat-cell>
+          </ng-container>
+
+          <!-- StartDate Column -->
+          <ng-container matColumnDef="startDate">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> StartDate </mat-header-cell>
+            <mat-cell *matCellDef="let batch"> {{batch.startDate| date : 'MM/dd/yyyy'}}</mat-cell>
+          </ng-container>
+
+          <!-- EndDate Column -->
+          <ng-container matColumnDef="endDate">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> EndDate </mat-header-cell>
+            <mat-cell *matCellDef="let batch"> {{batch.endDate| date : 'MM/dd/yyyy'}} </mat-cell>
+          </ng-container>
+
+
+          <!-- Buttons -->
+          <ng-container matColumnDef="Icons">
+            <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+            <mat-cell *matCellDef="let batch">
+
+              <button *ngIf="this.auth0.userHasRole(['SVP of Technology'])" mat-icon-button (click)="editBatch(batch)">
+                <mat-icon matTooltip="Edit" matTooltipPosition="above">mode_edit</mat-icon>
+              </button>
+              <button *ngIf="this.auth0.userHasRole(['SVP of Technology'])" mat-icon-button (click)="deleteBatch(batch)">
+                <mat-icon matTooltip="Delete" matTooltipPosition="above">delete</mat-icon>
+              </button>
+            </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="batchColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: batchColumns;"></mat-row>
+        </mat-table>
+
+        <!-- Loading Spinner -->
+        <div class="center">
+          <div fxFlex="100"> &nbsp;</div>
+          <h5 *ngIf="!isLoading && !allBatches">No Batches</h5>
+          <mat-progress-spinner *ngIf="isLoading" mode="indeterminate"></mat-progress-spinner>
+          <div fxFlex="100"> &nbsp;</div>
+        </div>
+      </div>
+
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <!-- Batch TimeLine -->
+  <mat-accordion>
+    <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Batch Timeline
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-batches-timeline
+        [batchList]="allBatches"
+        [trainerList]="trainers"
+        [curriculumList]="curriculums"
+        [buildingList]="buildings"
+      ></app-batches-timeline>
+    </mat-expansion-panel>
+  </mat-accordion>
+  
+</div>

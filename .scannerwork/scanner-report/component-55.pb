@@ -1,1 +1,1 @@
-7 2webXhrGsrc/app/components/locations/location-delete-room-dialog.component.html
+7 2webX-hr+src/app/components/core/core.component.html

@@ -1,60 +1,57 @@
-import { TestBed, inject } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material';
+import { NgModule } from '@angular/core';
+import { Injectable } from '@angular/core';
 
-import { UrlService } from './url.service';
+import { LocationAddDialogComponent } from './location-add-dialog.component';
+import { AppMaterialModule } from '../../../material.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { environment } from '../../../environments/environment';
-describe('UrlService', () => {
-  let urlService;
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { toBase64String } from '@angular/compiler/src/output/source_map';
+class MatStub {
+  addType: any;
+  building: any;
+  location: any;
+  room: any;
+}
 
-  beforeEach(() => {
+class diagStub {
+  close() {}
+}
+
+describe('AddDialogComponent', () => {
+  let component: LocationAddDialogComponent;
+  let fixture: ComponentFixture<LocationAddDialogComponent>;
+
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
-      providers: [UrlService]
+      imports: [MatDialogModule, AppMaterialModule, BrowserAnimationsModule, HttpClientTestingModule, FormsModule],
+      schemas: [NO_ERRORS_SCHEMA],
+      declarations: [LocationAddDialogComponent],
+      providers: [{ provide: MatDialogRef, useClass: diagStub }, { provide: MAT_DIALOG_DATA, useClass: MatStub }]
     });
-    urlService = TestBed.get(UrlService);
-  });
-
-  it('should be created', inject([UrlService], (service: UrlService) => {
-    expect(service).toBeTruthy();
   }));
 
-  it('should return base url when getBaseUrl is called', () => {
-    expect(urlService.getBaseUrl()).toBe(environment.baseUrl);
+  beforeEach(() => {
+    fixture = TestBed.createComponent(LocationAddDialogComponent);
+    component = fixture.componentInstance;
   });
 
-  it('should return login url when getLoginUrl is called', () => {
-    expect(urlService.getLoginUrl()).toBe(environment.appRoutes.login);
+  it('should create', () => {
+    expect(component).toBeTruthy();
   });
 
-  it('should return overview url when getOverviewUrl is called', () => {
-    expect(urlService.getOverviewUrl()).toBe(environment.appRoutes.overview);
-  });
-
-  it('should return batches url when getBatchesUrl is called', () => {
-    expect(urlService.getBatchesUrl()).toBe(environment.appRoutes.batches);
-  });
-
-  it('should return locations url when getLocationUrl is called', () => {
-    expect(urlService.getLocationsUrl()).toBe(environment.appRoutes.locations);
-  });
-
-  it('should return curricula url when getCurriculaUrl is called', () => {
-    expect(urlService.getCurriculaUrl()).toBe(environment.appRoutes.curricula);
-  });
-
-  it('should return trainers url when getTrainersUrl is called', () => {
-    expect(urlService.getTrainersUrl()).toBe(environment.appRoutes.trainers);
-  });
-
-  it('should return profile url when getProfileUrl is called', () => {
-    expect(urlService.getProfileUrl()).toBe(environment.appRoutes.profile);
-  });
-
-  it('should return reports url when getReportsUrl is called', () => {
-    expect(urlService.getReportsUrl()).toBe(environment.appRoutes.reports);
-  });
-
-  it('should return settings url when getSettingsUrl is called', () => {
-    expect(urlService.getSettingsUrl()).toBe(environment.appRoutes.settings);
+  it('should initialize', () => {
+    component.addType = 'location';
+    component.ngOnInit();
+    expect(component.typeContent).toBe(component.data.location);
+    component.addType = 'building';
+    component.ngOnInit();
+    expect(component.typeContent).toBe(component.data.building);
+    component.addType = 'room';
+    component.ngOnInit();
+    expect(component.typeContent).toBe(component.data.room);
   });
 });

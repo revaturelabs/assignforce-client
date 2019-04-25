@@ -1,1 +1,1 @@
-r 2tsXhrMsrc/app/services/api/filehandler-controller/filehandler-controller.service.ts
+r 2cssXhrCsrc/app/components/trainers/trainers-add/trainers-add.component.css

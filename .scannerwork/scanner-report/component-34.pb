@@ -1,1 +1,1 @@
-" 2cssXhr4src/app/components/curricula/curricula.component.css
+" 2webXhr5src/app/components/add-skill/add-skill.component.html
