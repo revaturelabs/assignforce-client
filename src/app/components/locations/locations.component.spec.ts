@@ -73,8 +73,8 @@ describe('LocationsComponent', () => {
     close(){};
     afterClosed(){};
   }
-  let iconRegistry = new IconStub();
-  let sanitizer = new domStub();
+  const iconRegistry = new IconStub();
+  const sanitizer = new domStub();
 
   beforeEach ( async(() => {
     TestBed.configureTestingModule({
@@ -123,32 +123,32 @@ describe('LocationsComponent', () => {
     // Ideally, component3 should be defined in the beforeEach, but was experiencing problems until 
     //attempting this way - Joe Milne & Chris Oberg
     component3 = TestBed.createComponent(LocationOpenUnavailibilityDialogComponent).componentInstance;
-    let start: Date = new Date('December 16, 2019');
-    let end: Date = new Date('December 17, 2019');
+    const start: Date = new Date('December 16, 2019');
+    const end: Date = new Date('December 17, 2019');
     expect(component3.validDates(start, end)).toEqual(true);
   });
   
   it('should create an invalid date', () => {
     component3 = TestBed.createComponent(LocationOpenUnavailibilityDialogComponent).componentInstance;
-    let start: Date = new Date('December 17, 2019');
-    let end: Date = new Date('December 16, 2019');
+    const start: Date = new Date('December 17, 2019');
+    const end: Date = new Date('December 16, 2019');
     expect(component3.validDates(start, end)).toEqual(false);
   });
   
   // Need to add test for LocationOpenUnavailibilityDialogComponent duplicate method (line 343)
 
   it('should return true since there is a duplicate', () => {
-    let unavailabilityTest: Unavailability = {id: 3, startDate: new Date(2019, 2, 13), endDate: new Date(2019, 3, 8), description: 'Bad Test', room: 1};
-    let roomTest: Room = {id: 1, roomName: 'Testing Room', building: 1, active: true, unavailabilities: [{id: 1, startDate: new Date(2019, 2, 13), endDate: new Date(2019, 3, 8), description: 'Dummy One', room: 1}, {id: 2, startDate: new Date(2019, 7, 4), endDate: new Date(2019, 7, 21), description: 'Dummy Two', room: 1}]};
-    let num = 1;
+    const unavailabilityTest: Unavailability = {id: 3, startDate: new Date(2019, 2, 13), endDate: new Date(2019, 3, 8), description: 'Bad Test', room: 1};
+    const roomTest: Room = {id: 1, roomName: 'Testing Room', building: 1, active: true, unavailabilities: [{id: 1, startDate: new Date(2019, 2, 13), endDate: new Date(2019, 3, 8), description: 'Dummy One', room: 1}, {id: 2, startDate: new Date(2019, 7, 4), endDate: new Date(2019, 7, 21), description: 'Dummy Two', room: 1}]};
+    const num = 1;
     component3 = TestBed.createComponent(LocationOpenUnavailibilityDialogComponent).componentInstance;
     expect(component3.duplicate(unavailabilityTest, roomTest, num)).toEqual(true);
   });
 
   it('should return false since there is not a duplicate', () => {
-    let unavailabilityTest: Unavailability = {id: 3, startDate: new Date(2019, 8, 21), endDate: new Date(2019, 9, 20), description: 'Good Test', room: 1};
-    let roomTest: Room = {id: 1, roomName: 'Testing Room', building: 1, active: true, unavailabilities: [{id: 1, startDate: new Date(2019, 2, 13), endDate: new Date(2019, 3, 8), description: 'Dummy One', room: 1}, {id: 2, startDate: new Date(2019, 7, 4), endDate: new Date(2019, 7, 21), description: 'Dummy Two', room: 1}]};
-    let num = 1;
+    const unavailabilityTest: Unavailability = {id: 3, startDate: new Date(2019, 8, 21), endDate: new Date(2019, 9, 20), description: 'Good Test', room: 1};
+    const roomTest: Room = {id: 1, roomName: 'Testing Room', building: 1, active: true, unavailabilities: [{id: 1, startDate: new Date(2019, 2, 13), endDate: new Date(2019, 3, 8), description: 'Dummy One', room: 1}, {id: 2, startDate: new Date(2019, 7, 4), endDate: new Date(2019, 7, 21), description: 'Dummy Two', room: 1}]};
+    const num = 1;
     component3 = TestBed.createComponent(LocationOpenUnavailibilityDialogComponent).componentInstance;
     expect(component3.duplicate(unavailabilityTest, roomTest, num)).toEqual(false);
   });
@@ -157,20 +157,20 @@ describe('LocationsComponent', () => {
   
   it('should create 2 dates of the same time length', () => {
     component3 = TestBed.createComponent(LocationOpenUnavailibilityDialogComponent).componentInstance;
-    let start1: Date = new Date('December 17, 2019');
-    let start2: Date = new Date('December 17, 2019');
-    let end1: Date = new Date('March 8, 2020');
-    let end2: Date = new Date('March 8, 2020');
+    const start1: Date = new Date('December 17, 2019');
+    const start2: Date = new Date('December 17, 2019');
+    const end1: Date = new Date('March 8, 2020');
+    const end2: Date = new Date('March 8, 2020');
     expect(component3.dateEquals(start1, start2)).toEqual(true);
     expect(component3.dateEquals(end1, end2)).toEqual(true);
   });
 
   it('should create 2 dates of the same time length (not the same dates however), returning false', () => {
     component3 = TestBed.createComponent(LocationOpenUnavailibilityDialogComponent).componentInstance;
-    let start1: Date = new Date('December 17, 2019');
-    let start2: Date = new Date('December 16, 2019');
-    let end1: Date = new Date('March 8, 2020');
-    let end2: Date = new Date('March 7, 2020');
+    const start1: Date = new Date('December 17, 2019');
+    const start2: Date = new Date('December 16, 2019');
+    const end1: Date = new Date('March 8, 2020');
+    const end2: Date = new Date('March 7, 2020');
     expect(component3.dateEquals(start1, start2)).toEqual(false);
     expect(component3.dateEquals(end1, end2)).toEqual(false);
   });
@@ -184,7 +184,7 @@ describe('LocationsComponent', () => {
 
   it('should not fail because the name has something in it', () => {
     component3 = TestBed.createComponent(LocationOpenUnavailibilityDialogComponent).componentInstance;
-    let test: string = "Test";
+    const test = "Test";
     expect(component3.notBlank(test)).toEqual(true);
   });
 
@@ -192,7 +192,7 @@ describe('LocationsComponent', () => {
   //it does pass the test as expected however.
   it('should fail because the name does not have any content in it', () =>{
     component3 = TestBed.createComponent(LocationOpenUnavailibilityDialogComponent).componentInstance;
-    let test: string = "  ";
+    const test = "  ";
     expect(component3.notBlank(test)).toEqual(false);
   });
 
@@ -214,18 +214,32 @@ describe('LocationsComponent', () => {
   // Need to add test for LocationsComponent notBlank method (line 842)
 
   it('should return true since the name provided contains content other than spaces', () => { 
-    let test: string = "Test";
+    const test = "Test";
     expect(component.notBlank(test)).toEqual(true);
   })
 
   // This will also throw an error because of the window.alert, functions as expected however.
   it('should return false since the name provided does not contain meaningful content', () => {
-    let test: string = "  ";
+    const test = "  ";
     expect(component.notBlank(test)).toEqual(false);
   })
 
   // Need to add test for LocationsComponent checkRoomUnique method (line 851)
   // Need to add test for LocationsComponent checkLocationUnique method (line 867)
   // Need to add test for LocationsComponent checkBuildingUnique method (line 883)
+
+  it('should return false since building name & address are the same', () => {
+    const building1 = new Building(true,1,"NEC",null , 14);
+    const building2 = new Building(true,2,"NEC", null, 14);
+    component.buildings.push(building1);
+    expect(component.checkBuildingUnique(building2)).toBe(false);
+  })
+  it('should return true since building name is not the same', () => {
+    const building1 = new Building(true,1,"NED",null , 14);
+    const building2 = new Building(true,2,"NEC", null, 14);
+    component.buildings.push(building1);
+    expect(component.checkBuildingUnique(building2)).toBe(true);
+  })
+
 
 });
