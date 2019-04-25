@@ -584,7 +584,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
   }
 
   // makes a simple object for a tooltip line for reuseablility
-  getTooltipExists(text: String, value: String) {
+  getTooltipExists(text: string, value: string) {
     return [
       { text: text + ": ", color: this.tooltipDefaultColor },
       { text: value, color: this.tooltipMidSectionColor }
