@@ -1,1 +1,0 @@
-B 2cssXhr6src/app/components/edit-skill/edit-skill.component.css

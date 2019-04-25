@@ -1,1 +1,0 @@
-= 2webX$hrEsrc/app/components/curriculum-skills/curriculum-skills.component.html

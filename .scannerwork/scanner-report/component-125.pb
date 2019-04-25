@@ -1,1 +1,0 @@
-} 2tsXhrsrc/app/model/Curriculum.ts

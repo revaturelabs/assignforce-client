@@ -1,1 +1,0 @@
- 2webX	hrsrc/app/app.component.html

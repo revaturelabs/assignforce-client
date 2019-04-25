@@ -1,1 +1,0 @@
- 2jsXhrjson-server/delete-hook.js

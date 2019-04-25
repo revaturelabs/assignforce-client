@@ -1,1 +1,0 @@
-* 2cssXhr0src/app/components/batches/batches.component.css

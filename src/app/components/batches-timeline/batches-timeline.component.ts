@@ -519,7 +519,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
   }
 
   filterInactiveTrainers(trainer: Trainer) {
-    return trainer.isActive ? false : true;
+    return !trainer.isActive;
   }
 
   updateCurriculums() {
@@ -778,10 +778,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
   }
 
   getRoomNameById(id: number) {
-    // const index = this.roomList.findIndex(t => t.id === id);
-    // if(this.roomList[index] != null){
-    //   return this.roomList[index].roomName;
-    // }
+  
     return "No Room exists."
   }
 

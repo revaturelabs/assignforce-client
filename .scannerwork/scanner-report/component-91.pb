@@ -1,1 +1,0 @@
-[ 2webX%hr3src/app/components/menu-bar/menu-bar.component.html
