@@ -1,1 +1,0 @@
-` 2tsX˜hr1src/app/components/trainers/trainers.component.ts

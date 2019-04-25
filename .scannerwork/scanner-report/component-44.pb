@@ -1,1 +1,0 @@
-, 2webXhr7src/app/components/edit-skill/edit-skill.component.html

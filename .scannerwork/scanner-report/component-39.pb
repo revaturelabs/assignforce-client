@@ -1,1 +1,0 @@
-' 2tsXMhrCsrc/app/components/curriculum-skills/curriculum-skills.component.ts

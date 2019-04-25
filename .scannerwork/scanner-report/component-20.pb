@@ -1,1 +1,0 @@
- 2webX hr1src/app/components/batches/batches.component.html

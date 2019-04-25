@@ -1,1 +1,0 @@
-k 2tsX+hrsrc/app/model/Trainer.ts

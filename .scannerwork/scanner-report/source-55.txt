@@ -1,6 +1,0 @@
-<h1 mat-dialog-title>Delete This Room?</h1>
-<h4> {{data.room.roomName}}</h4>
-<div mat-dialog-actions>
-  <button mat-button [mat-dialog-close]="data.room" tabindex="2">Yes</button>
-  <button mat-button (click)="onNoClick()" tabindex="-1">No</button>
-</div>

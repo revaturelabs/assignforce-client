@@ -1,1 +1,0 @@
-X 2cssX#hrCsrc/app/components/trainers/trainer-item/trainer-item.component.css

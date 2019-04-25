@@ -1,7 +1,0 @@
-<h2 mat-dialog-title>Error</h2>
-<div mat-dialog-component>
-  Trainer with that email already exists, please enter a unique email.
-</div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()"  tabindex="-1">Cancel</button>
-</div>

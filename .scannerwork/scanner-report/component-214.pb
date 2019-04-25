@@ -1,1 +1,0 @@
-Ö (2tsXnhrGsrc/app/components/trainers/trainer-item/trainer-item.component.spec.ts

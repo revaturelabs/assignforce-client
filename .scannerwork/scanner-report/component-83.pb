@@ -1,1 +1,0 @@
-S 2webX3hr/src/app/components/skills/skills.component.html

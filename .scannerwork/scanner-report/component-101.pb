@@ -1,1 +1,0 @@
-e 2tsXhrsrc/app/model/Building.ts

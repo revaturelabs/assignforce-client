@@ -1,1 +1,0 @@
-R 2cssXRhr.src/app/components/skills/skills.component.css

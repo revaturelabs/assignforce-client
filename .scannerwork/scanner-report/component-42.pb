@@ -1,1 +1,0 @@
-* 2tsXThr?src/app/components/edit-curriculum/edit-curriculum.component.ts
