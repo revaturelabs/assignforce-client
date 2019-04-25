@@ -563,4 +563,6 @@ describe('RoomControllerService', () => {
         let req = httpTestingController.expectOne(roomApi.baseUrl + roomApi.find + findParam);
         req.flush(errmsg, {status: 404, statusText: 'Not Found'});
     });
+
+  
 });

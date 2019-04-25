@@ -433,31 +433,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
         batch.endDate = new Date(batch.endDate).valueOf() + this.ONE_WEEK/7;
       }
     }
-    // this.batchController.findAll().subscribe(
-    //   result => {
-    //     this.batchList = [];
-    //     if (result.length === 0) {
-    //       console.log("no batches loaded!");
-    //       return;
-    //     }
-    //     for (const batch of result) {
-    //       // TODO:
-    //       //This probably needs some editing. Date is now a string.. Is there a TO-DO in Typescript?
-    //       //For some reason, it floors the day too hard and moves it back one.
-    //       if (!Number(batch.startDate)) {
-    //         batch.startDate = new Date(batch.startDate).valueOf() + this.ONE_WEEK/7;
-    //         batch.endDate = new Date(batch.endDate).valueOf() + this.ONE_WEEK/7;
-    //       }
-    //       this.batchList.push(batch);
-    //     }
-    //     this.filterBatches();
-    //     this.updatePage();
-    //     this.loading = false;
-    //   },
-    //   err => {
-    //     console.log("failed to load batches ", err);
-    //   }
-    // );
+  
   }
 
   //Filter batches. TODO: Logic can probably be simplified.
@@ -469,13 +445,14 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
         filter = filter ? filter : new Date(batch.endDate).getTime() < Date.now();
       }
       if (this.curriculumFilter.name !== "Any") {
-        filter = filter ? filter : batch.curriculum != this.curriculumFilter.id;
+
+        filter = filter ? filter : batch.curriculum !== this.curriculumFilter.id;
       }
       if (this.locationFilter.name !== "Any") {
-        filter = filter ? filter : batch.location != this.locationFilter.id;
+        filter = filter ? filter : batch.location !== this.locationFilter.id;
       }
       if (this.buildingFilter.buildingName !== "Any") {
-        filter = filter ? filter : batch.building != this.buildingFilter.buildingId;
+        filter = filter ? filter : batch.building !== this.buildingFilter.buildingId;
       }
       if (!filter) {
         this.batchFilteredList.push(batch);
@@ -548,22 +525,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
   updateCurriculums() {
 
     //TODO make this accurate in terms of function
-    // this.loading = true;
-    // this.curriculumController.findAll().subscribe(
-    //   result => {
-    //     this.curriculumList = [];
-    //     if (result.length === 0) {
-    //       console.log("no curriculum loaded!");
-    //       this.updatePage();
-    //       return;
-    //     }
-    //     this.curriculumList = result;
-    //     this.loading = false;
-    //   },
-    //   err => {
-    //     console.log("failed to load curriculum ", err);
-    //   }
-    // );
+
   }
 
   updateLocations() {
@@ -575,10 +537,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
       if(this.buildingList !== null) {
         this.buildingList.forEach(buildings => {
           this.buildingList.sort((a, b) => a.buildingId - b.buildingId);
-          // this.roomController.findAll().subscribe(rooms => {
-          // this.roomList = rooms;
-          // this.roomList.sort((a,b) => a.id - b.id);
-          // });
+          
         });
       }
     });
@@ -625,7 +584,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
   }
 
   // makes a simple object for a tooltip line for reuseablility
-  getTooltipExists(text: String, value: String) {
+  getTooltipExists(text: string, value: string) {
     return [
       { text: text + ": ", color: this.tooltipDefaultColor },
       { text: value, color: this.tooltipMidSectionColor }
