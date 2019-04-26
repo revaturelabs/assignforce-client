@@ -865,7 +865,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
 
       // change label based on height of rectangle
       const labelx = x + w * 0.25;
-      let labely = y + 20;
+      let labely;
       let labeltext = "";
       if (h > txtlongpx) {
         // spell out weeks
@@ -1013,7 +1013,6 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
       return [];
     }
     // cache some common values
-    const full_duration = this.endValue - this.startValue;
     const start_month = this.startDate.getMonth();
     const start_year = this.startDate.getFullYear();
     
@@ -1064,8 +1063,6 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
       // show in weeks
       namestyle = "month";
       // todo always show month day 0 and year month 0
-      const aligned_start_date =
-        this.startDate.getDate() - (this.startDate.getDate() % 7);
       for (let i = 0; i < max_dates; i++) {
         dates.push(new Date(start_year, start_month, i * 7));
       }

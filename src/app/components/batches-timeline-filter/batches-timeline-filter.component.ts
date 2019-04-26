@@ -46,10 +46,7 @@ export class BatchesTimelineFilterComponent implements OnInit {
   //Hint: I could. All the extra code.
   @ViewChild('location') location;
 
-  //Why couldn't they use the same nomenclature between this component and batch timeline...
-  //I should rename everything to somethingList so it can be consistent.
-  //Batch timeline used to just be trainers, batches, buildings, etc. Boring.
-  //You know.. Previous batch never bothered to use Focus.
+
   public curriculumData = [];
   public focusData = [];
   public locationData = [];
