@@ -141,7 +141,6 @@ export class OverviewComponent implements OnInit, AfterViewInit {
       newBatch['name'] = batch.name;
 
       newBatch['curriculum'] = curriculum ? curriculum.name : '';
-      
       newBatch['trainer'] = trainer ? `${trainer.firstName} ${trainer.lastName}`: '';
       newBatch['cotrainer'] = cotrainer ? `${cotrainer.firstName} ${cotrainer.lastName}` : '';
 
@@ -153,14 +152,6 @@ export class OverviewComponent implements OnInit, AfterViewInit {
       newBatch['endDate'] = endDate;
       return newBatch;
     });
-    
-    const csv = new Angular5Csv(
-      mappedBatches,
-      `batches`, 
-      {
-        "headers": ['ID', 'NAME', 'CURRICULUM', 'TRAINER', 'COTRAINER', 'LOCATION', 'BUILDING', 'ROOM', 'STARTDATE', 'ENDDATE']
-      }
-    );
   }
 
   openMenu(evt) {
