@@ -52,17 +52,6 @@ export class TrainersComponent implements OnInit {
         this.isLoading = false;
       });
     this.curricula = this.cacheService.getCurricula();
-    // if(this.trainers[0]){
-    //   //If the trainers object is already loaded, no need to load it again
-    //   this.isLoading = false;
-    // }else{
-    //   this.fillSkills.setList("trainer", () => {
-    //     this.isLoading = this.fillSkills.isLoading;
-    //     this.trainers = this.fillSkills.objs;
-    //     console.log(this.trainers);
-    //     this.cacheService.setTrainers(this.trainers);
-    // })
-  //}
     if(!this.curricula[0]){
       //Only load if cacheService was empty
       this.curriculumService

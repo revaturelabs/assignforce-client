@@ -19,20 +19,6 @@ describe('ReportsComponent', () => {
   let curriculumService;
   let component: ReportsComponent;
   let fixture: ComponentFixture<ReportsComponent>;
-  
-  //no dummy curriculum data added yet
-  // class MockCurriculumControllerService {
-  //   findAll(): Observable<Curriculum[]> {
-  //     return Observable.of();
-      
-  //   }
-  //   update(curriculum: Curriculum){
-  //     if(curriculum == null){
-  //       return Observable.of(new Error('testError'));
-  //     }
-  //     return curriculum;
-  //   }
-  // }
 
   const batches: Batch[] = 
     [{
