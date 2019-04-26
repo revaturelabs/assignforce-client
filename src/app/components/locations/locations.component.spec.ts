@@ -34,20 +34,6 @@ describe('LocationsComponent', () => {
 
   let fixture: ComponentFixture<LocationsComponent>;
 
-  const buildingService = {
-    findAll: jest.fn().mockImplementation(() => {
-      const buildings: Building[] = [
-        {
-          "buildingId": 1,
-          "isActive": true,
-          "buildingName": "11730 Plaza American Drive (HQ)",
-          "address": 1,
-          "rooms" : []
-        }
-      ];
-      return of(buildings);
-    })
-  };
 
   class AuthServStub{
     userHasRole(strings: string[]){
@@ -75,6 +61,7 @@ describe('LocationsComponent', () => {
   }
   let iconRegistry = new IconStub();
   let sanitizer = new domStub();
+  let buildingService = null;
 
   beforeEach ( async(() => {
     TestBed.configureTestingModule({

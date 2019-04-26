@@ -71,11 +71,6 @@ export class TrainersComponent implements OnInit {
     this.filehandlerService.download(trainer).subscribe(data => this.downloadFile(data));
   }
 
-  downloadFile(data: Response) {
-    const blob = new Blob([data]);
-    const url = window.URL.createObjectURL(blob);
-    window.open(url);
-  }
 
   // begin addTrainer
   addTrainer(): void {
