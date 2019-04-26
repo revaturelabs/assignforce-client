@@ -78,7 +78,8 @@ export class ProfileComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     public auth0: AuthService
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     this.addressService
@@ -86,9 +87,9 @@ export class ProfileComponent implements OnInit {
       .toPromise()
       .then(addresses => (this.addresses = addresses));
 
-   
+
     this.route.params.subscribe((params: Params) => {
-      this.trainerEmail = params["email"];
+      this.trainerEmail = params['email'];
       this.setTrainer(this.trainerEmail)
         .toPromise()
         .then(trainer => {
@@ -97,7 +98,7 @@ export class ProfileComponent implements OnInit {
             //some environments return an array with
             //a single element
             if (Array.isArray(trainer)) {
-              this.trainer = trainer[0]
+              this.trainer = trainer[0];
             } else {
               this.trainer = trainer;
             }
@@ -215,6 +216,7 @@ const SCOPES = 'https://www.googleapis.com/auth/calendar';
 const authorizeButton = document.getElementById('authorize_button');
 const signoutButton = document.getElementById('signout_button');
 const eventButton = document.getElementById('add_event');
+
 /**
  *  On load, called to load the auth2 library and API client library.
  */
@@ -246,7 +248,7 @@ function initClient() {
       discoveryDocs: DISCOVERY_DOCS,
       scope: SCOPES
     })
-    .then(function () {
+    .then(function() {
       // Listen for sign-in state changes.
       gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
 
@@ -313,7 +315,7 @@ function listUpcomingEvents() {
       maxResults: 10,
       orderBy: 'startTime'
     })
-    .then(function (response) {
+    .then(function(response) {
       const events = response.result.items;
       appendPre('Upcoming events:');
 
@@ -331,6 +333,7 @@ function listUpcomingEvents() {
       }
     });
 }
+
 /**
  Trainer Object
  {
@@ -358,12 +361,12 @@ function listUpcomingEvents() {
 
 // FUNCTION TO DELETE EVENT
 function deleteEvent(eventID) {
-  gapi.client.load('calendar', 'v3', function () {
+  gapi.client.load('calendar', 'v3', function() {
     const request = gapi.client.calendar.events.delete({
       calendarId: 'primary',
       eventId: eventID
     });
-    request.execute(function (resp) {
+    request.execute(function(resp) {
       if (typeof resp === 'undefined') {
         alert('Event was successfully removed from the calendar!');
       } else {
@@ -391,12 +394,12 @@ function insertEvent(JsonObj) {
         dateTime: end //if not an all day event, "date" should be "dateTime" with a dateTime value formatted according to RFC 3339
       }
     };
-    gapi.client.load('calendar', 'v3', function () {
+    gapi.client.load('calendar', 'v3', function() {
       const request = gapi.client.calendar.events.insert({
         calendarId: 'primary',
         resource: resource
       });
-      request.execute(function (resp) {
+      request.execute(function(resp) {
         console.log(resp);
         if (resp.id) {
           alert('Event was successfully added to the calendar!');
@@ -407,16 +410,17 @@ function insertEvent(JsonObj) {
     });
   }
 }
+
 // END INSERTEVENT FUNCTION
 
 // QUERY EXISTING EVENTS FUNCTION
 function checkExists(calID) {
-  gapi.client.load('calendar', 'v3', function () {
+  gapi.client.load('calendar', 'v3', function() {
     const request = gapi.client.calendar.events.list({
       calendarId: calID,
       q: 'My query string' //set the query string letiable
     });
-    request.execute(function (resp) {
+    request.execute(function(resp) {
       console.log(resp);
       if (resp.items) {
         for (let i = 0; i < resp.items.length; i++) {
@@ -428,4 +432,5 @@ function checkExists(calID) {
     });
   });
 }
+
 // END QUERY EVENTS FUNCTION
