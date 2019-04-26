@@ -1,29 +1,27 @@
 import { from } from './../../../../node_modules/rxjs/observable/from';
-import {
-  MAT_DIALOG_DATA,
-  MatDialog,
-  MatDialogRef,
-  MatIconRegistry
-} from '@angular/material';
-import { FormsModule } from '@angular/forms'
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatIconRegistry } from '@angular/material';
+import { FormsModule } from '@angular/forms';
 
-import { DomSanitizer} from "@angular/platform-browser";
-import { NO_ERRORS_SCHEMA } from "@angular/core";
+import { DomSanitizer } from '@angular/platform-browser';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AuthService} from "../../services/auth/auth.service";
+import { AuthService } from '../../services/auth/auth.service';
 import { AppMaterialModule } from '../../material.module';
 import { LocationsComponent, LocationAddUnavailabilityDialogComponent } from './locations.component';
 import { AddressControllerService } from '../../services/api/address-controller/address-controller.service';
 import { CachedObjectsService } from '../../services/api/cache/cached-objects.service';
-import { LocationAddDialogComponent } from "./add-dialog/location-add-dialog.component";
-import { LocationDeleteLocationDialogComponent, LocationOpenUnavailibilityDialogComponent } from "./locations.component";
-import { BuildingControllerService } from "../../services/api/building-controller/building-controller.service";
-import { RoomControllerService } from "../../services/api/room-controller/room-controller.service";
-import {Component} from "@angular/core";
-import {Building} from "../../model/Building";
-import {of} from "rxjs/observable/of";
+import { LocationAddDialogComponent } from './add-dialog/location-add-dialog.component';
+import {
+  LocationDeleteLocationDialogComponent,
+  LocationOpenUnavailibilityDialogComponent
+} from './locations.component';
+import { BuildingControllerService } from '../../services/api/building-controller/building-controller.service';
+import { RoomControllerService } from '../../services/api/room-controller/room-controller.service';
+import { Component } from '@angular/core';
+import { Building } from '../../model/Building';
+import { of } from 'rxjs/observable/of';
 import { Unavailability } from '../../model/Unavailability';
 import { UnavailableControllerService } from '../../services/api/unavailable-controller/unavailable-controller.service';
 import { Room } from '../../model/Room';
@@ -38,74 +36,77 @@ describe('LocationsComponent', () => {
     findAll: jest.fn().mockImplementation(() => {
       const buildings: Building[] = [
         {
-          "buildingId": 1,
-          "isActive": true,
-          "buildingName": "11730 Plaza American Drive (HQ)",
-          "address": 1,
-          "rooms" : []
+          buildingId: 1,
+          isActive: true,
+          buildingName: '11730 Plaza American Drive (HQ)',
+          address: 1,
+          rooms: []
         }
       ];
       return of(buildings);
     })
   };
 
-  class AuthServStub{
-    userHasRole(strings: string[]){
+  class AuthServStub {
+    userHasRole(strings: string[]) {
       return true;
     }
   }
 
-  class domStub{
+  class domStub {
     url: string;
     bypassSecurityTrustResourceUrl(url: string) {}
   }
 
   class MatDialogStub {
-    open(comp: any, meta: any) {};
+    open(comp: any, meta: any) {}
   }
 
-
   class IconStub {
-    addSvgIcon(locationType: any, sanitizer: any) {};
+    addSvgIcon(locationType: any, sanitizer: any) {}
   }
 
   class diagStub {
-    close(){};
-    afterClosed(){};
+    close() {}
+    afterClosed() {}
   }
   let iconRegistry = new IconStub();
   let sanitizer = new domStub();
 
-  beforeEach ( async(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         AppMaterialModule,
         HttpClientTestingModule,
         BrowserAnimationsModule,
-        // MAT_DIALOG_DATA,
-        // MatDialog,
-        // MatDialogRef,
-        // MatIconRegistry,
-        // DomSanitizer,
-        AppMaterialModule, BrowserAnimationsModule, FormsModule
+        BrowserAnimationsModule,
+        FormsModule
       ],
       schemas: [NO_ERRORS_SCHEMA],
-      declarations: [LocationsComponent,LocationAddDialogComponent,LocationDeleteLocationDialogComponent, LocationOpenUnavailibilityDialogComponent],
-      providers: [BuildingControllerService, AddressControllerService, RoomControllerService, CachedObjectsService, UnavailableControllerService,
-        { provide: BuildingControllerService, usevalue: buildingService},
+      declarations: [
+        LocationsComponent,
+        LocationAddDialogComponent,
+        LocationDeleteLocationDialogComponent,
+        LocationOpenUnavailibilityDialogComponent
+      ],
+      providers: [
+        BuildingControllerService,
+        AddressControllerService,
+        RoomControllerService,
+        CachedObjectsService,
+        UnavailableControllerService,
+        { provide: BuildingControllerService, usevalue: buildingService },
         { provide: AuthService, useclass: AuthServStub },
         { provide: MAT_DIALOG_DATA, useclass: MatDialogStub },
         { provide: MatDialogRef, useclass: diagStub },
         { provide: DomSanitizer, useValue: sanitizer },
-        { provide: MatDialog, useclass: MatDialogStub},
-        { provide: MatIconRegistry, useValue: iconRegistry}
-        ]
+        { provide: MatDialog, useclass: MatDialogStub },
+        { provide: MatIconRegistry, useValue: iconRegistry }
+      ]
     }).compileComponents();
-
   }));
 
-
-  beforeEach( ()=> {
+  beforeEach(() => {
     fixture = TestBed.createComponent(LocationsComponent);
     component = fixture.componentInstance;
   });
@@ -116,45 +117,75 @@ describe('LocationsComponent', () => {
 
   //List of tests to add from locations.component.ts, not concerned with creating tests for dialog windows
   // Need to add test for LocationEditRoomDialogComponent onAdd method (line 148)
-  
+
   // Tests for LocationOpenUnavailibilityDialogComponent validDates method (line 304)
-  
+
   it('should create a vaild date', () => {
-    // Ideally, component3 should be defined in the beforeEach, but was experiencing problems until 
+    // Ideally, component3 should be defined in the beforeEach, but was experiencing problems until
     //attempting this way - Joe Milne & Chris Oberg
     component3 = TestBed.createComponent(LocationOpenUnavailibilityDialogComponent).componentInstance;
     let start: Date = new Date('December 16, 2019');
     let end: Date = new Date('December 17, 2019');
     expect(component3.validDates(start, end)).toEqual(true);
   });
-  
+
   it('should create an invalid date', () => {
     component3 = TestBed.createComponent(LocationOpenUnavailibilityDialogComponent).componentInstance;
     let start: Date = new Date('December 17, 2019');
     let end: Date = new Date('December 16, 2019');
     expect(component3.validDates(start, end)).toEqual(false);
   });
-  
+
   // Need to add test for LocationOpenUnavailibilityDialogComponent duplicate method (line 343)
 
   it('should return true since there is a duplicate', () => {
-    let unavailabilityTest: Unavailability = {id: 3, startDate: new Date(2019, 2, 13), endDate: new Date(2019, 3, 8), description: 'Bad Test', room: 1};
-    let roomTest: Room = {id: 1, roomName: 'Testing Room', building: 1, active: true, unavailabilities: [{id: 1, startDate: new Date(2019, 2, 13), endDate: new Date(2019, 3, 8), description: 'Dummy One', room: 1}, {id: 2, startDate: new Date(2019, 7, 4), endDate: new Date(2019, 7, 21), description: 'Dummy Two', room: 1}]};
+    let unavailabilityTest: Unavailability = {
+      id: 3,
+      startDate: new Date(2019, 2, 13),
+      endDate: new Date(2019, 3, 8),
+      description: 'Bad Test',
+      room: 1
+    };
+    let roomTest: Room = {
+      id: 1,
+      roomName: 'Testing Room',
+      building: 1,
+      active: true,
+      unavailabilities: [
+        { id: 1, startDate: new Date(2019, 2, 13), endDate: new Date(2019, 3, 8), description: 'Dummy One', room: 1 },
+        { id: 2, startDate: new Date(2019, 7, 4), endDate: new Date(2019, 7, 21), description: 'Dummy Two', room: 1 }
+      ]
+    };
     let num = 1;
     component3 = TestBed.createComponent(LocationOpenUnavailibilityDialogComponent).componentInstance;
     expect(component3.duplicate(unavailabilityTest, roomTest, num)).toEqual(true);
   });
 
   it('should return false since there is not a duplicate', () => {
-    let unavailabilityTest: Unavailability = {id: 3, startDate: new Date(2019, 8, 21), endDate: new Date(2019, 9, 20), description: 'Good Test', room: 1};
-    let roomTest: Room = {id: 1, roomName: 'Testing Room', building: 1, active: true, unavailabilities: [{id: 1, startDate: new Date(2019, 2, 13), endDate: new Date(2019, 3, 8), description: 'Dummy One', room: 1}, {id: 2, startDate: new Date(2019, 7, 4), endDate: new Date(2019, 7, 21), description: 'Dummy Two', room: 1}]};
+    let unavailabilityTest: Unavailability = {
+      id: 3,
+      startDate: new Date(2019, 8, 21),
+      endDate: new Date(2019, 9, 20),
+      description: 'Good Test',
+      room: 1
+    };
+    let roomTest: Room = {
+      id: 1,
+      roomName: 'Testing Room',
+      building: 1,
+      active: true,
+      unavailabilities: [
+        { id: 1, startDate: new Date(2019, 2, 13), endDate: new Date(2019, 3, 8), description: 'Dummy One', room: 1 },
+        { id: 2, startDate: new Date(2019, 7, 4), endDate: new Date(2019, 7, 21), description: 'Dummy Two', room: 1 }
+      ]
+    };
     let num = 1;
     component3 = TestBed.createComponent(LocationOpenUnavailibilityDialogComponent).componentInstance;
     expect(component3.duplicate(unavailabilityTest, roomTest, num)).toEqual(false);
   });
 
   // Tests for LocationOpenUnavailibilityDialogComponent dateEquals method (line 367)
-  
+
   it('should create 2 dates of the same time length', () => {
     component3 = TestBed.createComponent(LocationOpenUnavailibilityDialogComponent).componentInstance;
     let start1: Date = new Date('December 17, 2019');
@@ -184,15 +215,15 @@ describe('LocationsComponent', () => {
 
   it('should not fail because the name has something in it', () => {
     component3 = TestBed.createComponent(LocationOpenUnavailibilityDialogComponent).componentInstance;
-    let test: string = "Test";
+    let test: string = 'Test';
     expect(component3.notBlank(test)).toEqual(true);
   });
 
   // This test will throw an error because it does not know how to handle the window.alert,
   //it does pass the test as expected however.
-  it('should fail because the name does not have any content in it', () =>{
+  it('should fail because the name does not have any content in it', () => {
     component3 = TestBed.createComponent(LocationOpenUnavailibilityDialogComponent).componentInstance;
-    let test: string = "  ";
+    let test: string = '  ';
     expect(component3.notBlank(test)).toEqual(false);
   });
 
@@ -213,19 +244,18 @@ describe('LocationsComponent', () => {
   // Need to add test for LocationsComponent deleteRoom method (line 635)
   // Need to add test for LocationsComponent notBlank method (line 842)
 
-  it('should return true since the name provided contains content other than spaces', () => { 
-    let test: string = "Test";
+  it('should return true since the name provided contains content other than spaces', () => {
+    let test: string = 'Test';
     expect(component.notBlank(test)).toEqual(true);
-  })
+  });
 
   // This will also throw an error because of the window.alert, functions as expected however.
   it('should return false since the name provided does not contain meaningful content', () => {
-    let test: string = "  ";
+    let test: string = '  ';
     expect(component.notBlank(test)).toEqual(false);
-  })
+  });
 
   // Need to add test for LocationsComponent checkRoomUnique method (line 851)
   // Need to add test for LocationsComponent checkLocationUnique method (line 867)
   // Need to add test for LocationsComponent checkBuildingUnique method (line 883)
-
 });
