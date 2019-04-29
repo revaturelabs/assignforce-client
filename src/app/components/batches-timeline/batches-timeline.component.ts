@@ -433,31 +433,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
         batch.endDate = new Date(batch.endDate).valueOf() + this.ONE_WEEK/7;
       }
     }
-    // this.batchController.findAll().subscribe(
-    //   result => {
-    //     this.batchList = [];
-    //     if (result.length === 0) {
-    //       console.log("no batches loaded!");
-    //       return;
-    //     }
-    //     for (const batch of result) {
-    //       // TODO:
-    //       //This probably needs some editing. Date is now a string.. Is there a TO-DO in Typescript?
-    //       //For some reason, it floors the day too hard and moves it back one.
-    //       if (!Number(batch.startDate)) {
-    //         batch.startDate = new Date(batch.startDate).valueOf() + this.ONE_WEEK/7;
-    //         batch.endDate = new Date(batch.endDate).valueOf() + this.ONE_WEEK/7;
-    //       }
-    //       this.batchList.push(batch);
-    //     }
-    //     this.filterBatches();
-    //     this.updatePage();
-    //     this.loading = false;
-    //   },
-    //   err => {
-    //     console.log("failed to load batches ", err);
-    //   }
-    // );
+  
   }
 
   //Filter batches. TODO: Logic can probably be simplified.
@@ -469,13 +445,14 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
         filter = filter ? filter : new Date(batch.endDate).getTime() < Date.now();
       }
       if (this.curriculumFilter.name !== "Any") {
-        filter = filter ? filter : batch.curriculum != this.curriculumFilter.id;
+
+        filter = filter ? filter : batch.curriculum !== this.curriculumFilter.id;
       }
       if (this.locationFilter.name !== "Any") {
-        filter = filter ? filter : batch.location != this.locationFilter.id;
+        filter = filter ? filter : batch.location !== this.locationFilter.id;
       }
       if (this.buildingFilter.buildingName !== "Any") {
-        filter = filter ? filter : batch.building != this.buildingFilter.buildingId;
+        filter = filter ? filter : batch.building !== this.buildingFilter.buildingId;
       }
       if (!filter) {
         this.batchFilteredList.push(batch);
@@ -542,28 +519,13 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
   }
 
   filterInactiveTrainers(trainer: Trainer) {
-    return trainer.isActive ? false : true;
+    return !trainer.isActive;
   }
 
   updateCurriculums() {
 
     //TODO make this accurate in terms of function
-    // this.loading = true;
-    // this.curriculumController.findAll().subscribe(
-    //   result => {
-    //     this.curriculumList = [];
-    //     if (result.length === 0) {
-    //       console.log("no curriculum loaded!");
-    //       this.updatePage();
-    //       return;
-    //     }
-    //     this.curriculumList = result;
-    //     this.loading = false;
-    //   },
-    //   err => {
-    //     console.log("failed to load curriculum ", err);
-    //   }
-    // );
+
   }
 
   updateLocations() {
@@ -575,10 +537,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
       if(this.buildingList !== null) {
         this.buildingList.forEach(buildings => {
           this.buildingList.sort((a, b) => a.buildingId - b.buildingId);
-          // this.roomController.findAll().subscribe(rooms => {
-          // this.roomList = rooms;
-          // this.roomList.sort((a,b) => a.id - b.id);
-          // });
+          
         });
       }
     });
@@ -625,7 +584,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
   }
 
   // makes a simple object for a tooltip line for reuseablility
-  getTooltipExists(text: String, value: String) {
+  getTooltipExists(text: string, value: string) {
     return [
       { text: text + ": ", color: this.tooltipDefaultColor },
       { text: value, color: this.tooltipMidSectionColor }
@@ -819,10 +778,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
   }
 
   getRoomNameById(id: number) {
-    // const index = this.roomList.findIndex(t => t.id === id);
-    // if(this.roomList[index] != null){
-    //   return this.roomList[index].roomName;
-    // }
+  
     return "No Room exists."
   }
 
@@ -864,7 +820,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
     if (this.batchFilteredList.length === 0) {
       return rects;
     }
-    const full_duration = this.endValue - this.startValue;
+   
 
     // text mode to use by pixel height
     const txtlongpx = 105;
@@ -909,7 +865,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
 
       // change label based on height of rectangle
       const labelx = x + w * 0.25;
-      let labely = y + 20;
+      let labely;
       let labeltext = "";
       if (h > txtlongpx) {
         // spell out weeks
@@ -1057,7 +1013,6 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
       return [];
     }
     // cache some common values
-    const full_duration = this.endValue - this.startValue;
     const start_month = this.startDate.getMonth();
     const start_year = this.startDate.getFullYear();
     
@@ -1085,7 +1040,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
 
     // create an array of all the dates to be shown and determine the naming style
     const dates: Date[] = [];
-    let namestyle = "month";
+    let namestyle;
     if (dist_between_months > pxdays) {
       // show in days
       namestyle = "day";
@@ -1108,8 +1063,6 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
       // show in weeks
       namestyle = "month";
       // todo always show month day 0 and year month 0
-      const aligned_start_date =
-        this.startDate.getDate() - (this.startDate.getDate() % 7);
       for (let i = 0; i < max_dates; i++) {
         dates.push(new Date(start_year, start_month, i * 7));
       }
@@ -1297,9 +1250,6 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
     const my =
       event.clientY -
       this.timelineRootElement.nativeElement.getBoundingClientRect().top;
-    const mx =
-      event.clientX -
-      this.timelineRootElement.nativeElement.getBoundingClientRect().left;
     const mdy = event.movementY;
     if (this.shifting) {
       event.preventDefault();

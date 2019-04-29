@@ -25,6 +25,7 @@
 /* -------- CORE ITEM DETAILS ---------- */
 .item-detail {
   margin: 2%;
+  display: inline;
 }
 
 /* ---------- BUTTONS ---------- */
@@ -41,28 +42,3 @@
 
 /* ---------- FOCUS ITEM DETAIL ---------- */
 
-.item-detail {
-  margin: 2%;
-  display: inline;
-}
-
-/* --------- STYLES INCONSISTENT ---------- */
-/* #mat-expansion-panel-header-0:hover mat-panel-title {
-  color: black;
-}
-
-#mat-expansion-panel-header-0:focus {
-  background-color: #3d5360;
-  color: white;
-}
-
-#mat-expansion-panel-header-0:focus:hover {
-  background-color: white;
-  color: black;
-}
-
-.mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:not([aria-disabled='true']).cdk-keyboard-focused,
-.mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:not([aria-disabled='true']).cdk-program-focused,
-.mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:not([aria-disabled='true']):hover {
-  background: white;
-} */

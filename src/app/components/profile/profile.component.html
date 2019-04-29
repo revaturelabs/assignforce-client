@@ -1,6 +1,5 @@
 <!--Trainers without an email won't appear on the profile page they'll act almost like, dead links -->
 <div id="profileDiv" class="container" *ngIf="!failed">
-  <!--<mat-card *ngIf="tId == -1" md-whiteframe="8" ng-cloak>-->
   <mat-card>
     <mat-toolbar-row>
       <mat-toolbar class="md-toolbar" layout="columns">
@@ -30,16 +29,7 @@
             <h1 style="display: inline">{{this.trainer.firstName}} {{this.trainer.lastName}}</h1>
             <h4>Email: {{this.trainer.email}}</h4>
             <!--The link for this will change unless there's no linkedIn link assign in that case it'll be just a link to linkedIn-->
-            <!--<h4>LinkedIn:-->
-              <!--<a href="{{link}}" target="_blank">LinkedIn</a>-->
-            <!--</h4>-->
           </div>
-          <!-- <div layout="row ">
-              <label> Current Resume: </label>
-              <label *ngIf="trainer.resume !=null ">{{trainer.resume}}</label>
-              <label *ngIf="trainer.resume==null ">No resume on file</label>
-              <br>
-            </div> -->
           <div *ngIf="!lockProfile ">
             <form [formGroup]="nameForm">
               <mat-form-field flex>
@@ -71,7 +61,6 @@
       </div>
       <!--Later when we have an idea of what we want to do for the uploads we can work on fleshing this out
           there's no implementation at all right now not even in the .ts file-->
-      <!-- <app-certifications></app-certifications> -->
     </mat-card-content>
   </mat-card>
 </div>

@@ -64,42 +64,7 @@ export class SettingsComponent implements OnInit {
     this.getSettingsInfo();
   }
 
-  /**
-   * Makes a call to the AddressControllerService to retrieve the list of addresses
-   * Assigns those values to local variables.
-   *
-   * Activated on page initialization.
-   */
-  // private loadLocations() {
-  //   this.addressService
-  //     .findAll()
-  //     .toPromise()
-  //     .then(locations => {
-  //       this.locations = locations;
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //     });
-  // }
-
-  /**
-   * Makes a call to the BuildingControllerService to retrieve the list of buildings.
-   * Assigns those values to local variables.
-   *
-   * Activated on page initialization.
-   */
-  // private loadBuildings() {
-  //   this.buildingService
-  //     .findAll()
-  //     .toPromise()
-  //     .then(buildings => {
-  //       this.buildings = buildings;
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //     });
-  // }
-
+  
   /**
    * Makes a call to the SettingControllerService to retrieve the settings values from the back-end.
    * Assigns those values to local variables.
@@ -114,8 +79,7 @@ export class SettingsComponent implements OnInit {
       .toPromise()
       .then(setting => {
         this.setting = setting;
-        // this.defaultBuilding = setting[0].defaultBuilding;
-        // this.defaultLocation = setting[0].defaultLocation;
+        
 
         this.isLoading = false;
       })

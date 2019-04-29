@@ -376,27 +376,6 @@ function deleteEvent(eventID) {
   });
 }
 
-// END DELETEEVENT FUNCTION
-/**
- for (y in myObj.unavailabilities){
-		 for (x in myObj.unavailabilities[y]) {
-			document.getElementById("demo").innerHTML += myObj.unavailabilities[y][x] +"<br>";
-		}
-	  }
-
- let resource1 = {
-				"summary":"My Summary",
-				"location": "My Location",
-				"description": "My Description",
-				"start": {
-				  "dateTime": "2019-07-12T08:30:00.0z"  //if not an all day event, "date" should be "dateTime" with a dateTime value formatted according to RFC 3339
-				},
-				"end": {
-				  "dateTime": "2019-07-12T09:30:00.0z"  //if not an all day event, "date" should be "dateTime" with a dateTime value formatted according to RFC 3339
-				}
-      };
-
- **/
 // FUNCTION TO INSERT EVENT
 function insertEvent(JsonObj) {
   for (const y in JsonObj.unavailabilities) {

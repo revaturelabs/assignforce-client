@@ -52,6 +52,7 @@ describe('LocationsComponent', () => {
       return of(buildings);
     })
   };
+
   class AuthServStub {
     userHasRole(strings: string[]) {
       return true;
@@ -74,8 +75,11 @@ describe('LocationsComponent', () => {
     close() {}
     afterClosed() {}
   }
-  const iconRegistry = new IconStub();
-  const sanitizer = new domStub();
+
+  let iconRegistry = new IconStub();
+  let sanitizer = new domStub();
+  let buildingService = null;
+
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -154,7 +158,9 @@ describe('LocationsComponent', () => {
   // Need to add test for LocationOpenUnavailibilityDialogComponent duplicate method (line 343)
 
   it('should return true since there is a duplicate', () => {
+
     const unavailabilityTest: Unavailability = {
+
       id: 3,
       startDate: new Date(2019, 2, 13),
       endDate: new Date(2019, 3, 8),
@@ -171,12 +177,20 @@ describe('LocationsComponent', () => {
         { id: 2, startDate: new Date(2019, 7, 4), endDate: new Date(2019, 7, 21), description: 'Dummy Two', room: 1 }
       ]
     };
+
+    let num = 1;
+
+    const unavailabilityTest: Unavailability = {id: 3, startDate: new Date(2019, 2, 13), endDate: new Date(2019, 3, 8), description: 'Bad Test', room: 1};
+    const roomTest: Room = {id: 1, roomName: 'Testing Room', building: 1, active: true, unavailabilities: [{id: 1, startDate: new Date(2019, 2, 13), endDate: new Date(2019, 3, 8), description: 'Dummy One', room: 1}, {id: 2, startDate: new Date(2019, 7, 4), endDate: new Date(2019, 7, 21), description: 'Dummy Two', room: 1}]};
     const num = 1;
+
+
     component3 = TestBed.createComponent(LocationOpenUnavailibilityDialogComponent).componentInstance;
     expect(component3.duplicate(unavailabilityTest, roomTest, num)).toEqual(true);
   });
 
   it('should return false since there is not a duplicate', () => {
+
     let unavailabilityTest: Unavailability = {
       id: 3,
       startDate: new Date(2019, 8, 21),
@@ -195,6 +209,12 @@ describe('LocationsComponent', () => {
       ]
     };
     let num = 1;
+
+
+    const unavailabilityTest: Unavailability = {id: 3, startDate: new Date(2019, 8, 21), endDate: new Date(2019, 9, 20), description: 'Good Test', room: 1};
+    const roomTest: Room = {id: 1, roomName: 'Testing Room', building: 1, active: true, unavailabilities: [{id: 1, startDate: new Date(2019, 2, 13), endDate: new Date(2019, 3, 8), description: 'Dummy One', room: 1}, {id: 2, startDate: new Date(2019, 7, 4), endDate: new Date(2019, 7, 21), description: 'Dummy Two', room: 1}]};
+    const num = 1;
+
     component3 = TestBed.createComponent(LocationOpenUnavailibilityDialogComponent).componentInstance;
     expect(component3.duplicate(unavailabilityTest, roomTest, num)).toEqual(false);
   });
@@ -231,6 +251,7 @@ describe('LocationsComponent', () => {
   it('should not fail because the name has something in it', () => {
     component3 = TestBed.createComponent(LocationOpenUnavailibilityDialogComponent).componentInstance;
     const test = 'Test';
+
     expect(component3.notBlank(test)).toEqual(true);
   });
 
@@ -239,6 +260,7 @@ describe('LocationsComponent', () => {
   it('should fail because the name does not have any content in it', () => {
     component3 = TestBed.createComponent(LocationOpenUnavailibilityDialogComponent).componentInstance;
     const test = '  ';
+
     expect(component3.notBlank(test)).toEqual(false);
   });
 
@@ -261,6 +283,7 @@ describe('LocationsComponent', () => {
 
   it('should return true since the name provided contains content other than spaces', () => {
     const test = 'Test';
+
     expect(component.notBlank(test)).toEqual(true);
   });
 
@@ -298,13 +321,4 @@ describe('LocationsComponent', () => {
     });
   });
 
-  // loadLocations() {
-  //   this.locationService
-  //     .findAll()
-  //     .toPromise()
-  //     .then((locations: Address[]) => {
-  //       this.locations = locations;
-  //       this.cachingService.setLocations(locations);
-  //     });
-  // }
 });
