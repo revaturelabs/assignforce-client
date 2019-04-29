@@ -132,7 +132,6 @@ export class LocationDeleteRoomDialogComponent {
 export class LocationEditRoomDialogComponent {
   startDate = new Date();
   endDate = new Date();
-  //tempUnAvailability = new Unavailability(0, null, null, '');
   constructor(
     public dialogRef: MatDialogRef<LocationEditRoomDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
@@ -146,11 +145,6 @@ export class LocationEditRoomDialogComponent {
     if (this.data.room.unavailabilities === undefined) {
       const check: Unavailability[] = [];
       this.data.room.unavailabilities = check;
-
-      //this.tempUnAvailability.startDate = this.startDate;
-      //this.tempUnAvailability.endDate = this.endDate;
-
-      //  this.data.room.unavailabilities.push(this.tempUnAvailability);
     }
   }
 }
@@ -275,10 +269,6 @@ export class LocationOpenUnavailibilityDialogComponent implements OnInit {
         room.unavailabilities[index] = original;
       }
       if (result && this.notBlank(unavailability.description)) {
-        // console.log('START DATE: ' + unavailability.startDate);
-        // console.log('END DATE: ' + unavailability.endDate);
-
-        // console.log(unavailability.endDate < unavailability.startDate );
         if (!this.validDates(unavailability.startDate, unavailability.endDate)) {
           window.alert('Not a valid set of dates');
           room.unavailabilities[index] = original;
@@ -289,13 +279,10 @@ export class LocationOpenUnavailibilityDialogComponent implements OnInit {
           } else {
             this.roomService.update(room).subscribe();
           }
-          // this.roomService.update(room).subscribe();
         }
-        // this.updateUnavailibility(unavailability);
       } else {
         // Cannot enter a blank name
         room.unavailabilities[index] = original;
-        // this.roomService.update(room).subscribe();
       }
     });
   }
@@ -328,13 +315,9 @@ export class LocationOpenUnavailibilityDialogComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        // console.log(room.unavailabilities.indexOf(unavailability) );
         const index = room.unavailabilities.indexOf(unavailability);
         room.unavailabilities.splice(index, 1);
-        // console.log(room.unavailabilities);
         this.roomService.update(room).subscribe();
-
-        // this.deleteUnavailibility(unavailability);
       }
     });
   }
@@ -343,8 +326,6 @@ export class LocationOpenUnavailibilityDialogComponent implements OnInit {
     let newStart = new Date(unavailability.startDate.toString());
     let newEnd = new Date(unavailability.endDate.toString());
     let ctr = 0;
-    // console.log('new start date: ' + newStart);
-    // console.log('new end date: ' + newEnd);
 
     if (room.unavailabilities) {
       for (let unavail of room.unavailabilities) {
@@ -354,8 +335,6 @@ export class LocationOpenUnavailibilityDialogComponent implements OnInit {
           ctr++;
           console.log('found same time frame');
         }
-        // console.log('array START: ' + roomStart);
-        // console.log('array END: ' + roomEnd);
       }
     }
 
@@ -559,17 +538,6 @@ export class LocationsComponent implements OnInit {
   }
 
   addRoom(location: Address, building: Building, room: Room) {
-    // let newLocation = location;
-    // //
-    // room.building = building.buildingId;
-    // for(let i = 0; i < newLocation.buildings.length; i++){
-    //   console.log('# of buildings in this location: ' + newLocation.buildings.length);
-    //   if(newLocation.buildings[i] === building){
-    //     newLocation.buildings[i].rooms.push(room);
-    //     break;
-    //   }
-    // }
-
     if (this.checkRoomUnique(room)) {
       //
       this.roomService
@@ -607,19 +575,10 @@ export class LocationsComponent implements OnInit {
       .then(building => {
         this.loadBuildings();
       });
-    // this.locationService.update(location)
-    //   .toPromise()
-    //   .then(
-    //     loc => {this.loadLocations();}
-    //   );
   }
   updateRoom(location: Address, building: Building, room: Room) {
     room.building = building.buildingId;
-    //
-    this.roomService
-      .update(room)
-      // this.roomService.create(room)
-      .subscribe(resp => this.loadRooms());
+    this.roomService.update(room).subscribe(resp => this.loadRooms());
   }
 
   //Delete functions
