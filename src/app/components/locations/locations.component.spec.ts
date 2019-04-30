@@ -32,6 +32,20 @@ describe('LocationsComponent', () => {
 
   let fixture: ComponentFixture<LocationsComponent>;
 
+  const buildingService = {
+    findAll: jest.fn().mockImplementation(() => {
+      const buildings: Building[] = [
+        {
+          buildingId: 1,
+          isActive: true,
+          buildingName: '11730 Plaza American Drive (HQ)',
+          address: 1,
+          rooms: []
+        }
+      ];
+      return of(buildings);
+    })
+  };
 
   class AuthServStub {
     userHasRole(strings: string[]) {
@@ -56,11 +70,8 @@ describe('LocationsComponent', () => {
     close() {}
     afterClosed() {}
   }
-
-  let iconRegistry = new IconStub();
-  let sanitizer = new domStub();
-  let buildingService = null;
-
+  const iconRegistry = new IconStub();
+  const sanitizer = new domStub();
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -128,7 +139,7 @@ describe('LocationsComponent', () => {
   // Need to add test for LocationOpenUnavailibilityDialogComponent duplicate method (line 343)
 
   it('should return true since there is a duplicate', () => {
-
+<<<<<<< HEAD
     let unavailabilityTest: Unavailability = {
       id: 3,
       startDate: new Date(2019, 2, 13),
@@ -147,17 +158,17 @@ describe('LocationsComponent', () => {
       ]
     };
     let num = 1;
-
+=======
     const unavailabilityTest: Unavailability = {id: 3, startDate: new Date(2019, 2, 13), endDate: new Date(2019, 3, 8), description: 'Bad Test', room: 1};
     const roomTest: Room = {id: 1, roomName: 'Testing Room', building: 1, active: true, unavailabilities: [{id: 1, startDate: new Date(2019, 2, 13), endDate: new Date(2019, 3, 8), description: 'Dummy One', room: 1}, {id: 2, startDate: new Date(2019, 7, 4), endDate: new Date(2019, 7, 21), description: 'Dummy Two', room: 1}]};
     const num = 1;
-
+>>>>>>> 275ab3257c8d20f2d0a0bf8d38585eca5cbeb0d6
     component3 = TestBed.createComponent(LocationOpenUnavailibilityDialogComponent).componentInstance;
     expect(component3.duplicate(unavailabilityTest, roomTest, num)).toEqual(true);
   });
 
   it('should return false since there is not a duplicate', () => {
-
+<<<<<<< HEAD
     let unavailabilityTest: Unavailability = {
       id: 3,
       startDate: new Date(2019, 8, 21),
@@ -176,11 +187,11 @@ describe('LocationsComponent', () => {
       ]
     };
     let num = 1;
-
+=======
     const unavailabilityTest: Unavailability = {id: 3, startDate: new Date(2019, 8, 21), endDate: new Date(2019, 9, 20), description: 'Good Test', room: 1};
     const roomTest: Room = {id: 1, roomName: 'Testing Room', building: 1, active: true, unavailabilities: [{id: 1, startDate: new Date(2019, 2, 13), endDate: new Date(2019, 3, 8), description: 'Dummy One', room: 1}, {id: 2, startDate: new Date(2019, 7, 4), endDate: new Date(2019, 7, 21), description: 'Dummy Two', room: 1}]};
     const num = 1;
-
+>>>>>>> 275ab3257c8d20f2d0a0bf8d38585eca5cbeb0d6
     component3 = TestBed.createComponent(LocationOpenUnavailibilityDialogComponent).componentInstance;
     expect(component3.duplicate(unavailabilityTest, roomTest, num)).toEqual(false);
   });
@@ -216,9 +227,11 @@ describe('LocationsComponent', () => {
 
   it('should not fail because the name has something in it', () => {
     component3 = TestBed.createComponent(LocationOpenUnavailibilityDialogComponent).componentInstance;
-
+<<<<<<< HEAD
     let test: string = 'Test';
-
+=======
+    const test = "Test";
+>>>>>>> 275ab3257c8d20f2d0a0bf8d38585eca5cbeb0d6
     expect(component3.notBlank(test)).toEqual(true);
   });
 
@@ -226,10 +239,11 @@ describe('LocationsComponent', () => {
   //it does pass the test as expected however.
   it('should fail because the name does not have any content in it', () => {
     component3 = TestBed.createComponent(LocationOpenUnavailibilityDialogComponent).componentInstance;
-
+<<<<<<< HEAD
     let test: string = '  ';
-
-
+=======
+    const test = "  ";
+>>>>>>> 275ab3257c8d20f2d0a0bf8d38585eca5cbeb0d6
     expect(component3.notBlank(test)).toEqual(false);
   });
 
@@ -250,24 +264,31 @@ describe('LocationsComponent', () => {
   // Need to add test for LocationsComponent deleteRoom method (line 635)
   // Need to add test for LocationsComponent notBlank method (line 842)
 
-
+<<<<<<< HEAD
   it('should return true since the name provided contains content other than spaces', () => {
     let test: string = 'Test';
-
+=======
+  it('should return true since the name provided contains content other than spaces', () => { 
+    const test = "Test";
+>>>>>>> 275ab3257c8d20f2d0a0bf8d38585eca5cbeb0d6
     expect(component.notBlank(test)).toEqual(true);
   });
 
   // This will also throw an error because of the window.alert, functions as expected however.
   it('should return false since the name provided does not contain meaningful content', () => {
-
+<<<<<<< HEAD
+    let test: string = '  ';
+=======
     const test = "  ";
-
+>>>>>>> 275ab3257c8d20f2d0a0bf8d38585eca5cbeb0d6
     expect(component.notBlank(test)).toEqual(false);
   });
 
   // Need to add test for LocationsComponent checkRoomUnique method (line 851)
   // Need to add test for LocationsComponent checkLocationUnique method (line 867)
   // Need to add test for LocationsComponent checkBuildingUnique method (line 883)
+<<<<<<< HEAD
+=======
 
   it('should return false since building name & address are the same', () => {
     const building1 = new Building(true,1,"NEC",null , 14);
@@ -283,4 +304,5 @@ describe('LocationsComponent', () => {
   })
 
 
+>>>>>>> 275ab3257c8d20f2d0a0bf8d38585eca5cbeb0d6
 });

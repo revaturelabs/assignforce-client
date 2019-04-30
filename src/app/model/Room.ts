@@ -1,11 +1,13 @@
 import { Unavailability } from './Unavailability';
-import { Building } from './Building';
+import { Reservation } from './Reservation';
+
 export class Room {
   id: number;
   roomName: string;
   building: number;
   active: boolean;
   unavailabilities: Unavailability[];
+  reservations: Reservation[];
 
   constructor(id?: number, active?: boolean, roomName?: string, building?: number, unavailabilities?: Unavailability[]) {
     this.id = id;

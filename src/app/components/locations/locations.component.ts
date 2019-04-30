@@ -1,5 +1,5 @@
-import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatIconRegistry } from '@angular/material';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { MatDialog, MatIconRegistry } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Building } from '../../model/Building';
 import { Address } from '../../model/Address';
@@ -7,444 +7,20 @@ import { Room } from '../../model/Room';
 import { LocationAddDialogComponent } from './add-dialog/location-add-dialog.component';
 import { AddressControllerService } from '../../services/api/address-controller/address-controller.service';
 import { RoomControllerService } from '../../services/api/room-controller/room-controller.service';
-import { UnavailableControllerService } from '../../services/api/unavailable-controller/unavailable-controller.service';
 import { AuthService } from '../../services/auth/auth.service';
-import { Unavailability } from '../../model/Unavailability';
 
 import { CachedObjectsService } from '../../services/api/cache/cached-objects.service';
 import { BuildingControllerService } from '../../services/api/building-controller/building-controller.service';
+import { LocationAddLocationDialogComponent } from './location-add-location-dialog/location-add-location-dialog.component';
+import { LocationAddRoomDialogComponent } from './location-add-room-dialog/location-add-room-dialog.component';
+import { LocationEditLocationDialogComponent } from './location-edit-location-dialog/location-edit-location-dialog.component';
+import { LocationEditBuildingDialogComponent } from './location-edit-building-dialog/location-edit-building-dialog.component';
+import { LocationEditRoomDialogComponent } from './location-edit-room-dialog/location-edit-room-dialog.component';
+import { LocationDeleteLocationDialogComponent } from './location-delete-location-dialog/location-delete-location-dialog.component';
+import { LocationDeleteBuildingDialogComponent } from './location-delete-building-dialog/location-delete-building-dialog.component';
+import { LocationDeleteRoomDialogComponent } from './location-delete-room-dialog/location-delete-room-dialog.component';
+import { LocationOpenUnavailibilityDialogComponent } from './location-open-unavailibility/location-open-unavailibility.component';
 
-@Component({
-  selector: 'app-location-delete-location-dialog',
-  templateUrl: './location-delete-location-dialog.component.html'
-})
-
-// Dialog Components which reference the respective html templates in this component
-
-// At some point, we may want a LocationAddBuildingDialogComponent since it just uses
-// the LocationAddDialogComponent default, which references the buildingName anyways
-// so it's pretty much a LocationAddBuildingDialogComponent already.
-export class LocationDeleteLocationDialogComponent {
-  constructor(
-    public dialogRef: MatDialogRef<LocationDeleteLocationDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-}
-
-@Component({
-  selector: 'app-location-add-location-dialog',
-  templateUrl: './location-add-location-dialog.component.html'
-})
-export class LocationAddLocationDialogComponent {
-  constructor(
-    public dialogRef: MatDialogRef<LocationAddLocationDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-}
-
-@Component({
-  selector: 'app-location-edit-location-dialog',
-  templateUrl: './location-edit-location-dialog.component.html'
-})
-export class LocationEditLocationDialogComponent {
-  constructor(
-    public dialogRef: MatDialogRef<LocationEditLocationDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-}
-
-@Component({
-  selector: 'app-location-delete-building-dialog',
-  templateUrl: './location-delete-building-dialog.component.html'
-})
-export class LocationDeleteBuildingDialogComponent {
-  constructor(
-    public dialogRef: MatDialogRef<LocationDeleteBuildingDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-}
-
-@Component({
-  selector: 'app-location-edit-building-dialog',
-  templateUrl: './location-edit-building-dialog.component.html'
-})
-export class LocationEditBuildingDialogComponent {
-  constructor(
-    public dialogRef: MatDialogRef<LocationEditBuildingDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-}
-
-@Component({
-  selector: 'app-location-add-room-dialog',
-  templateUrl: './location-add-room-dialog.component.html'
-})
-export class LocationAddRoomDialogComponent {
-  constructor(
-    public dialogRef: MatDialogRef<LocationAddRoomDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-}
-
-@Component({
-  selector: 'app-location-delete-room-dialog',
-  templateUrl: './location-delete-room-dialog.component.html'
-})
-export class LocationDeleteRoomDialogComponent {
-  constructor(
-    public dialogRef: MatDialogRef<LocationDeleteRoomDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-}
-
-@Component({
-  selector: 'app-location-edit-room-dialog',
-  templateUrl: './location-edit-room-dialog.component.html'
-})
-export class LocationEditRoomDialogComponent {
-  startDate = new Date();
-  endDate = new Date();
-  //tempUnAvailability = new Unavailability(0, null, null, '');
-  constructor(
-    public dialogRef: MatDialogRef<LocationEditRoomDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-
-  onAdd(): void {
-    if (this.data.room.unavailabilities === undefined) {
-      const check: Unavailability[] = [];
-      this.data.room.unavailabilities = check;
-
-      //this.tempUnAvailability.startDate = this.startDate;
-      //this.tempUnAvailability.endDate = this.endDate;
-
-      //  this.data.room.unavailabilities.push(this.tempUnAvailability);
-    }
-  }
-}
-
-@Component({
-  selector: 'app-location-delete-unavailability-dialog',
-  templateUrl: './location-delete-unavailability-dialog.component.html'
-})
-export class LocationDeleteUnavailabilityDialogComponent {
-  constructor(
-    public dialogRef: MatDialogRef<LocationDeleteUnavailabilityDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-}
-
-@Component({
-  selector: 'app-location-add-unavailability-dialog',
-  templateUrl: './location-add-unavailability-dialog.component.html'
-})
-export class LocationAddUnavailabilityDialogComponent implements OnInit {
-  constructor(
-    public dialogRef: MatDialogRef<LocationAddUnavailabilityDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
-
-  ngOnInit() {}
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-}
-
-@Component({
-  selector: 'app-location-change-unavailibility-dialog',
-  templateUrl: './location-change-unavailibility-dialog.component.html'
-})
-export class LocationChangeUnavailabilityDialogComponent {
-  constructor(
-    public dialogRef: MatDialogRef<LocationChangeUnavailabilityDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-}
-
-@Component({
-  selector: 'app-location-open-unavailibility-dialog',
-  templateUrl: './location-open-unavailibility.component.html'
-})
-export class LocationOpenUnavailibilityDialogComponent implements OnInit {
-  unavailibilities: Unavailability[] = [];
-
-  constructor(
-    private roomService: RoomControllerService,
-    //Hernan
-    public dialog: MatDialog,
-    private unavailibilityService: UnavailableControllerService,
-    public dialogRef: MatDialogRef<LocationOpenUnavailibilityDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
-
-  ngOnInit() {
-    // Hernan
-    // console.log('LocationOpenUnavailibilityDialogComponent ngOnInit() no longer used');
-    this.loadUnavailibilities();
-  }
-
-  openAddUnvailibilityDialog(evt, room: Room): void {
-    evt.stopPropagation();
-    const unavailibility = new Unavailability(0, new Date(), new Date(), 'test', room.id);
-
-    const dialogRef = this.dialog.open(LocationAddUnavailabilityDialogComponent, {
-      width: '450 px',
-      data: {
-        addType: 'unavailibility',
-        unavailibility: unavailibility
-      }
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result && this.notBlank(unavailibility.description)) {
-        if (!this.validDates(unavailibility.startDate, unavailibility.endDate)) {
-          window.alert('Not a valid set of dates!');
-        } else {
-          if (this.duplicate(unavailibility, room, 1)) {
-            window.alert('This unavailability time frame already exists for this room');
-          } else {
-            this.addUnavailibility(unavailibility, room);
-          }
-        }
-        // Hernan
-        // this.addUnavailibility(unavailibility);
-      }
-    });
-  }
-
-  openChangeUnavailibilityDialog(evt, unavailability: Unavailability, room: Room): void {
-    evt.stopPropagation();
-
-    let original = new Unavailability(
-      unavailability.id,
-      unavailability.startDate,
-      unavailability.endDate,
-      unavailability.description,
-      unavailability.room
-    );
-    const index = room.unavailabilities.indexOf(unavailability);
-
-    const dialogRef = this.dialog.open(LocationChangeUnavailabilityDialogComponent, {
-      width: '450 px',
-      data: {
-        unavailability: unavailability
-      }
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if (!result) {
-        room.unavailabilities[index] = original;
-      }
-      if (result && this.notBlank(unavailability.description)) {
-        // console.log('START DATE: ' + unavailability.startDate);
-        // console.log('END DATE: ' + unavailability.endDate);
-
-        // console.log(unavailability.endDate < unavailability.startDate );
-        if (!this.validDates(unavailability.startDate, unavailability.endDate)) {
-          window.alert('Not a valid set of dates');
-          room.unavailabilities[index] = original;
-        } else {
-          if (this.duplicate(unavailability, room, 2)) {
-            window.alert('Updating will result in a duplicate time frame');
-            room.unavailabilities[index] = original;
-          } else {
-            this.roomService.update(room).subscribe();
-          }
-          // this.roomService.update(room).subscribe();
-        }
-        // this.updateUnavailibility(unavailability);
-      } else {
-        // Cannot enter a blank name
-        room.unavailabilities[index] = original;
-        // this.roomService.update(room).subscribe();
-      }
-    });
-  }
-
-  validDates(newStart: Date, newEnd: Date): boolean {
-    const start = new Date(newStart.toString());
-    const end = new Date(newEnd.toString());
-    start.setHours(0, 0, 0, 0);
-    end.setHours(0, 0, 0, 0);
-    console.log('Loaded start date: ' + start);
-    console.log('Loaded end date: ' + end);
-
-    if (end < start) {
-      console.log(' are INVALID DATES');
-      return false;
-    } else {
-      console.log(' are VALID DATES');
-      return true;
-    }
-  }
-
-  openDeleteUnavailibilityDialog(evt, unavailability: Unavailability, room: Room): void {
-    evt.stopPropagation();
-    const dialogRef = this.dialog.open(LocationDeleteUnavailabilityDialogComponent, {
-      width: '250px',
-      data: {
-        unavailability: unavailability
-      }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        // console.log(room.unavailabilities.indexOf(unavailability) );
-        const index = room.unavailabilities.indexOf(unavailability);
-        room.unavailabilities.splice(index, 1);
-        // console.log(room.unavailabilities);
-        this.roomService.update(room).subscribe();
-
-        // this.deleteUnavailibility(unavailability);
-      }
-    });
-  }
-
-  duplicate(unavailability: Unavailability, room: Room, num: Number): boolean {
-    let newStart = new Date(unavailability.startDate.toString());
-    let newEnd = new Date(unavailability.endDate.toString());
-    let ctr = 0;
-    // console.log('new start date: ' + newStart);
-    // console.log('new end date: ' + newEnd);
-
-    if (room.unavailabilities) {
-      for (let unavail of room.unavailabilities) {
-        let roomStart = new Date(unavail.startDate.toString());
-        let roomEnd = new Date(unavail.endDate.toString());
-        if (this.dateEquals(newStart, roomStart) && this.dateEquals(newEnd, roomEnd)) {
-          ctr++;
-          console.log('found same time frame');
-        }
-        // console.log('array START: ' + roomStart);
-        // console.log('array END: ' + roomEnd);
-      }
-    }
-
-    if (ctr >= num) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  dateEquals(d1: Date, d2: Date): boolean {
-    const date1 = new Date(d1.toString());
-    const date2 = new Date(d2.toString());
-    date1.setHours(0, 0, 0, 0);
-    date2.setHours(0, 0, 0, 0);
-    console.log('date 1: ' + date1 + ' date 2: ' + date2);
-    console.log(date1 === date2);
-
-    if (
-      date1.getFullYear() === date2.getFullYear() &&
-      date1.getMonth() === date2.getMonth() &&
-      date1.getDate() === date2.getDate()
-    ) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  deleteUnavailibility(unavailability: Unavailability) {
-    this.unavailibilityService.remove(unavailability.id).subscribe(
-      () => {},
-      () => {},
-      () => {
-        this.loadUnavailibilities();
-      }
-    );
-    this.loadUnavailibilities();
-  }
-
-  updateUnavailibility(unavailability: Unavailability) {
-    this.unavailibilityService.update(unavailability).subscribe(
-      () => {},
-      () => {},
-      () => {
-        this.loadUnavailibilities();
-      }
-    );
-  }
-  addUnavailibility(unavailibility: Unavailability, room: Room) {
-    this.unavailibilityService.create(unavailibility).subscribe(
-      () => {},
-      () => {},
-      () => {
-        this.unavailibilities.push(unavailibility);
-        room.unavailabilities = room.unavailabilities || [];
-        room.unavailabilities.push(unavailibility);
-        this.loadUnavailibilities();
-      }
-    );
-  }
-
-  loadUnavailibilities() {
-    this.unavailibilityService
-      .findAll()
-      .toPromise()
-      .then((unavailibilities: Unavailability[]) => {
-        this.unavailibilities = unavailibilities;
-      });
-  }
-
-  roomUnavailibilities(id: number): Unavailability[] {
-    const filtered = this.unavailibilities.filter(rm => rm.room === id);
-
-    return filtered;
-  }
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-
-  notBlank(content: String) {
-    if (content.replace(/\s/g, '').length === 0) {
-      alert('Name field cannot be left blank');
-      return false;
-    } else {
-      return true;
-    }
-  }
-}
 @Component({
   selector: 'app-locations',
   templateUrl: './locations.component.html',
@@ -559,16 +135,6 @@ export class LocationsComponent implements OnInit {
   }
 
   addRoom(location: Address, building: Building, room: Room) {
-    // let newLocation = location;
-    // //
-    // room.building = building.buildingId;
-    // for(let i = 0; i < newLocation.buildings.length; i++){
-    //   console.log('# of buildings in this location: ' + newLocation.buildings.length);
-    //   if(newLocation.buildings[i] === building){
-    //     newLocation.buildings[i].rooms.push(room);
-    //     break;
-    //   }
-    // }
 
     if (this.checkRoomUnique(room)) {
       //
@@ -607,18 +173,11 @@ export class LocationsComponent implements OnInit {
       .then(building => {
         this.loadBuildings();
       });
-    // this.locationService.update(location)
-    //   .toPromise()
-    //   .then(
-    //     loc => {this.loadLocations();}
-    //   );
   }
   updateRoom(location: Address, building: Building, room: Room) {
     room.building = building.buildingId;
-    //
     this.roomService
       .update(room)
-      // this.roomService.create(room)
       .subscribe(resp => this.loadRooms());
   }
 
@@ -865,8 +424,6 @@ export class LocationsComponent implements OnInit {
   checkRoomUnique(room: Room): boolean {
     let unique = true;
     //ask august how to postpone for asynchronous stuff
-    //this.roomService.findAll().subscribe(result => {
-
     for (let item of this.rooms) {
       if (item.roomName === room.roomName && item.building === room.building && item.id !== room.id) {
         console.log('room(' + item.id + ') is the duplicate: ' + room.roomName);
@@ -875,13 +432,11 @@ export class LocationsComponent implements OnInit {
       }
     }
     return unique;
-    //})
   }
 
   checkLocationUnique(address: Address): boolean {
     let unique = true;
     //ask august how to postpone for asynchronous stuff
-    //this.roomService.findAll().subscribe(result => {
 
     for (let item of this.locations) {
       if (
@@ -896,13 +451,11 @@ export class LocationsComponent implements OnInit {
       }
     }
     return unique;
-    //})
   }
 
   checkBuildingUnique(building: Building): boolean {
     let unique = true;
     //ask august how to postpone for asynchronous stuff
-    //this.roomService.findAll().subscribe(result => {
 
     for (let item of this.buildings) {
       console.log(item);
@@ -917,6 +470,5 @@ export class LocationsComponent implements OnInit {
       }
     }
     return unique;
-    //})
   }
 }

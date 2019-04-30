@@ -12,6 +12,7 @@ import { LoginComponent } from './components/login/login.component';
 import { AuthenticatingComponent } from './components/authenticating/authenticating.component';
 import { GuardService as AuthGuard } from './services/auth/guard.service';
 import { environment } from '../environments/environment';
+import { RoomSchedulerComponent } from './components/room-scheduler/room-scheduler.component';
 
 const appRoutes: Routes = [
   {
@@ -61,6 +62,10 @@ const appRoutes: Routes = [
       {
         path: environment.appRoutes.settings,
         component: SettingsComponent
+      },
+      {
+        path: environment.appRoutes.roomScheduler,
+        component: RoomSchedulerComponent
       },
       {
         path: '**',
