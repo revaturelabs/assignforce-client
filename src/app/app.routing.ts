@@ -63,10 +63,10 @@ const appRoutes: Routes = [
         path: environment.appRoutes.settings,
         component: SettingsComponent
       },
-      {
+       {
         path: environment.appRoutes.roomScheduler,
         component: RoomSchedulerComponent
-      },
+      }, 
       {
         path: '**',
         redirectTo: environment.appRoutes.overview

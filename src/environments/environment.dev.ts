@@ -21,7 +21,8 @@ export const environment = {
       profile: 'profile',
       reports: 'reports',
       settings: 'settings',
-      callback: 'callback'
+      callback: 'callback',
+      roomScheduler: 'room-scheduler'
     },
   
     auth0: {

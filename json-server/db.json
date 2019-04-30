@@ -1337,6 +1337,13 @@
       "roomName": "1300",
       "building": 66,
       "unavailabilities": []
+    },
+    {
+      "id": 162,
+      "active": true,
+      "roomName": "The Hamburgler",
+      "building": 71,
+      "unavailabilities": []
     }
   ],
   "settings": [
@@ -2301,6 +2308,285 @@
       "certifications": [],
       "resume": "",
       "linkedInUrl": ""
+    },
+    {
+      "id": 124,
+      "firstName": "Trevin",
+      "lastName": "Chester",
+      "isActive": true,
+      "preferredLocation": null,
+      "unavailabilities": [],
+      "email": "trevin.chester@revature.com",
+      "skills": [
+        {
+          "skillId": 1
+        },
+        {
+          "skillId": 2
+        },
+        {
+          "skillId": 3
+        },
+        {
+          "skillId": 4
+        },
+        {
+          "skillId": 25
+        },
+        {
+          "skillId": 48
+        },
+        {
+          "skillId": 49
+        },
+        {
+          "skillId": 50
+        },
+        {
+          "skillId": 51
+        },
+        {
+          "skillId": 52
+        },
+        {
+          "skillId": 54
+        },
+        {
+          "skillId": 55
+        },
+        {
+          "skillId": 56
+        },
+        {
+          "skillId": 57
+        },
+        {
+          "skillId": 59,
+          "skillName": "ASP.NET MVC",
+          "isActive": true
+        },
+        {
+          "skillId": 60,
+          "skillName": "ASP.NET WEB API",
+          "isActive": true
+        },
+        {
+          "skillId": 58,
+          "skillName": "C#",
+          "isActive": true
+        },
+        {
+          "skillId": 66,
+          "skillName": "ADO.NET",
+          "isActive": true
+        },
+        {
+          "skillId": 62,
+          "skillName": "MSTest",
+          "isActive": true
+        },
+        {
+          "skillId": 65,
+          "skillName": "Entity Framework",
+          "isActive": true
+        },
+        {
+          "skillId": 63,
+          "skillName": "xUnit",
+          "isActive": true
+        },
+        {
+          "skillId": 64,
+          "skillName": "NLog",
+          "isActive": true
+        },
+        {
+          "skillId": 61,
+          "skillName": "IIS",
+          "isActive": true
+        },
+        {
+          "skillId": 46,
+          "skillName": "Core .NET",
+          "isActive": true
+        },
+        {
+          "skillId": 47
+        },
+        {
+          "skillId": 68
+        },
+        {
+          "skillId": 69
+        },
+        {
+          "skillId": 5
+        },
+        {
+          "skillId": 70
+        },
+        {
+          "skillId": 71
+        },
+        {
+          "skillId": 72
+        },
+        {
+          "skillId": 2,
+          "skillName": "JUnit",
+          "isActive": true
+        },
+        {
+          "skillId": 1,
+          "skillName": "Core Java",
+          "isActive": true
+        },
+        {
+          "skillId": 2,
+          "skillName": "JUnit",
+          "isActive": true
+        },
+        {
+          "skillId": 1,
+          "skillName": "Core Java",
+          "isActive": true
+        },
+        {
+          "skillId": 1,
+          "skillName": "Core Java",
+          "isActive": true
+        }
+      ],
+      "certifications": [],
+      "resume": "",
+      "linkedInUrl": ""
+    },
+    {
+      "id": 125,
+      "firstName": "Khang",
+      "lastName": "Khang",
+      "isActive": true,
+      "preferredLocation": null,
+      "unavailabilities": [],
+      "email": "Kahng.Khang@Khang.kom",
+      "skills": [
+        {
+          "skillId": 1
+        },
+        {
+          "skillId": 2
+        },
+        {
+          "skillId": 3
+        },
+        {
+          "skillId": 4
+        },
+        {
+          "skillId": 25
+        },
+        {
+          "skillId": 48
+        },
+        {
+          "skillId": 49
+        },
+        {
+          "skillId": 50
+        },
+        {
+          "skillId": 51
+        },
+        {
+          "skillId": 52
+        },
+        {
+          "skillId": 54
+        },
+        {
+          "skillId": 55
+        },
+        {
+          "skillId": 56
+        },
+        {
+          "skillId": 57
+        },
+        {
+          "skillId": 59,
+          "skillName": "ASP.NET MVC",
+          "isActive": true
+        },
+        {
+          "skillId": 60,
+          "skillName": "ASP.NET WEB API",
+          "isActive": true
+        },
+        {
+          "skillId": 58,
+          "skillName": "C#",
+          "isActive": true
+        },
+        {
+          "skillId": 66,
+          "skillName": "ADO.NET",
+          "isActive": true
+        },
+        {
+          "skillId": 62,
+          "skillName": "MSTest",
+          "isActive": true
+        },
+        {
+          "skillId": 65,
+          "skillName": "Entity Framework",
+          "isActive": true
+        },
+        {
+          "skillId": 63,
+          "skillName": "xUnit",
+          "isActive": true
+        },
+        {
+          "skillId": 64,
+          "skillName": "NLog",
+          "isActive": true
+        },
+        {
+          "skillId": 61,
+          "skillName": "IIS",
+          "isActive": true
+        },
+        {
+          "skillId": 46,
+          "skillName": "Core .NET",
+          "isActive": true
+        },
+        {
+          "skillId": 47
+        },
+        {
+          "skillId": 68
+        },
+        {
+          "skillId": 69
+        },
+        {
+          "skillId": 5
+        },
+        {
+          "skillId": 70
+        },
+        {
+          "skillId": 71
+        },
+        {
+          "skillId": 72
+        }
+      ],
+      "certifications": [],
+      "resume": "",
+      "linkedInUrl": ""
     }
   ],
   "unavailables": [
@@ -2330,6 +2616,13 @@
       "endDate": "2019-06-07T04:00:00.000Z",
       "description": "Batch",
       "room": 156
+    },
+    {
+      "id": 15,
+      "startDate": "2019-04-23T20:30:48.330Z",
+      "endDate": "2019-04-30T04:00:00.000Z",
+      "description": "test",
+      "room": 162
     }
   ]
 }
