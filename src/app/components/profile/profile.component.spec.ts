@@ -33,6 +33,23 @@ describe('ProfileComponent', () => {
   let skillService: SkillControllerService;
   let auth0: AuthService;
 
+  // class RouterStub {
+  //       snapshot=class{
+  //         navigate(params){
+
+  //         }
+  //     }
+
+  // }
+
+  //   class ActivatedRouterStub {
+  //      snapshot=class{
+  //         navigate(params){
+
+  //         }
+  //     }
+  //   }
+
   beforeEach(() => {
     addressService = new AddressControllerService(null);
     trainerService = new TrainerControllerService(null);

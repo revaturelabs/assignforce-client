@@ -1040,7 +1040,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
 
     // create an array of all the dates to be shown and determine the naming style
     const dates: Date[] = [];
-    let namestyle;
+    let namestyle = "month";
     if (dist_between_months > pxdays) {
       // show in days
       namestyle = "day";
@@ -1250,6 +1250,9 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
     const my =
       event.clientY -
       this.timelineRootElement.nativeElement.getBoundingClientRect().top;
+    const mx =
+      event.clientX -
+      this.timelineRootElement.nativeElement.getBoundingClientRect().left;
     const mdy = event.movementY;
     if (this.shifting) {
       event.preventDefault();

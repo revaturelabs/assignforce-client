@@ -67,6 +67,9 @@ import { FilehandlerService } from './services/api/filehandler-controller/fileha
 import { BuildingControllerService } from './services/api/building-controller/building-controller.service';
 import { RoomControllerService } from './services/api/room-controller/room-controller.service';
 import { BatchFormComponent } from './components/batch-form/batch-form.component';
+import { RoomSchedulerComponent } from './components/room-scheduler/room-scheduler.component';
+import { MatTableModule } from '@angular/material';
+
 
 @NgModule({
   declarations: [
@@ -83,7 +86,7 @@ import { BatchFormComponent } from './components/batch-form/batch-form.component
     LocationAddLocationDialogComponent,
     LocationDeleteLocationDialogComponent,
     LocationEditLocationDialogComponent,
-    LocationAddDialogComponent, // LocationAddBuildingDialogComponent,
+    LocationAddDialogComponent,
     LocationDeleteBuildingDialogComponent,
     LocationEditBuildingDialogComponent,
     LocationAddRoomDialogComponent,
@@ -108,7 +111,8 @@ import { BatchFormComponent } from './components/batch-form/batch-form.component
     LocationDeleteUnavailabilityDialogComponent,
     AddTrainerErrorComponent,
     AddCurriculumComponent,
-    BatchFormComponent
+    BatchFormComponent,
+    RoomSchedulerComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 
@@ -120,8 +124,7 @@ import { BatchFormComponent } from './components/batch-form/batch-form.component
     AppRouting,
     BrowserAnimationsModule,
     AppMaterialModule
-    //InMemoryWebApiModule.forRoot(InMemDbService)
-  ],
+    ],
 
   exports: [AppMaterialModule],
 

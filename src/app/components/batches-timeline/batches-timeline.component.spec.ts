@@ -150,7 +150,25 @@ describe("BatchesTimelineComponent", () => {
     expect(component.todayLine.y2).not.toBeNull();
   });
 
+  // it('should set the list of trainers', () => {
+  //   component.updateTrainers();
+  //   expect(component.trainerList).toBeTruthy();
+  // });
 
+  // it('should return the list of trainers with positions', async done => {
+  //   component.updateBatches();
+  //   done();
+  //   const trainers = component.getTrainers();
+  //   let expectedAmount = component.trainerList.length;
+  //   if (expectedAmount === 0) {
+  //     expectedAmount = 1;
+  //   }
+  //
+  //   expect(trainers.length).toEqual(expectedAmount);
+  //   expect(trainers[0].name).toBeTruthy();
+  //   expect(trainers[0].left).toBeTruthy();
+  //   expect(trainers[0].width).toBeTruthy();
+  // });
 
   it('should get a different color for each core curriculum', () => {
     const jcolor = component.getColorForcurriculum(1);
@@ -183,44 +201,121 @@ describe("BatchesTimelineComponent", () => {
   it('should set actualTrainersPerPage to the number of trainers as well as be the only page', () => {
     component.trainersPerPage = 0;
     component.updatePage();
+    // expect(component.actualTrainersPerPage).toBe(component.trainerList.length);
     expect(component.maxPages).toBe(0);
     expect(component.currentPage).toBe(0);
   });
 
   it('should set actualTrainersPerPage to the number trainers per page desired', () => {
     component.trainersPerPage = 25;
+    // component.trainerList.length = 50;
     component.updatePage();
     expect(component.actualTrainersPerPage).toBe(component.trainersPerPage);
   });
 
   it('should test on onFilterChange', () => {
-    
+    // let button = fixture.debugElement.nativeElement.querySelector('button');
+    // button.click();
 
     let de = fixture.debugElement.query(By.css('app-batches-timeline-filter'));
 
-
+    //  let matSelect = new MatSelect(null, null, null, null, null, null, null, null, null, null, null, null);
     let matSelectChange = new MatSelectChange(null, null);
     let matCheckbox = new MatCheckboxChange();
     let matOption = new MatOption(null, null, null, null);
 
     this.MatSort;
 
-
+    //  de.triggerEventHandler('filterChangeEmitter', new MatSelectChange(null, null));
     de.triggerEventHandler('filterChangeEmitter', matSelectChange);
 
     de.triggerEventHandler('filterChangeEmitter', matCheckbox);
 
-  });
+    //de.triggerEventHandler('filterChangeEmitter', matOption);
 
+
+
+    // expect(component.onFilterChange).toHaveBeenCalled();
+  });
   it('should test on switch("startdate")', () => {
+    // expect(component.onFilterChange).toHaveBeenCalled();
   });
+// });
 
-  it('should set actualTrainersPerPage to the number of trainers', () => {
-    component.trainersPerPage = 500;
-    // component.trainerList.length = 50;
-    component.actualTrainersPerPage = 50;
-    component.updatePage();
-    expect(component.actualTrainersPerPage).toBe(500);
-  });
+// it('should return the rectangles for the batches', async done => {
+//   component.updateBatches();
+//   done();
+//   const rects = component.getBatchesRectangles();
+//   expect(rects.length).toEqual(component.batchList.length);
+// });
 
+
+
+//Commented out tests that will have to be fixed
+// it('should return a list of months and their position', () => {
+//   const months = component.getTimescale();
+//   expect(months.length).toBeGreaterThan(1);
+// });
+
+// it('should convert the date to a position', () => {
+//   const ypos = component.dateToYPos(Date.now() + 1000 * 60 * 60 * 24 * 7 * 3); // now + 3 weeks
+//   expect(ypos).toBeGreaterThan(0); // should return a positive value
+// });
+
+// it('should convert the date to a position', () => {
+//   const dateval = component.yPosToDate(20);
+//   expect(dateval).toBeLessThan(Date.now()); // should return a value before today
+//   expect(dateval).toBeGreaterThan(component.startValue); // and after graph start
+// });
+// it('should get the timescale', () => {
+//   const ts = component.getTimescale();
+//   expect(ts.length).toBeGreaterThan(0);
+// });
+
+// it('should zoom the page', () => {
+//   const prezoom = component.endDate.valueOf() - component.startDate.valueOf();
+//   const zoomFactor = 2;
+//   component.startZoom(100);
+//   component.zoomBy(zoomFactor);
+//   component.finishZoom();
+//   expect(component.endDate.valueOf() - component.startDate.valueOf()).toEqual(zoomFactor * prezoom);
+// });
+
+// it('should shift the graph', () => {
+//   const predate = component.startValue;
+//   component.shiftBy(50);
+//   expect(component.startValue).toBeGreaterThan(predate);
+//   component.shiftBy(-50);
+//   expect(component.startValue).toEqual(predate);
+// });
+
+it('should set actualTrainersPerPage to the number of trainers', () => {
+  component.trainersPerPage = 500;
+  // component.trainerList.length = 50;
+  component.actualTrainersPerPage = 50;
+  component.updatePage();
+  expect(component.actualTrainersPerPage).toBe(500);
+});
+
+//  it('should test on ngOnInIt error service', () => {
+
+//     spyOn(settingService, 'find').and.callFake(()=>{return ErrorObservable.create('error message')});
+//     spyOn(addressService, 'findAll').and.callFake(()=>{return ErrorObservable.create('error message')});
+//     spyOn(trainerService, 'findAll').and.callFake(()=>{return ErrorObservable.create('error message')});
+//     spyOn(curriculumService, 'findAll').and.callFake(()=>{return ErrorObservable.create('error message')});
+//     spyOn(batchService, 'findAll').and.callFake(()=>{return ErrorObservable.create('error message')});
+
+//     component.ngOnInit();
+
+//     addressService.findAll().subscribe(
+//       data => {},
+//       error => {
+//         this.message = error;
+//       }
+//     );
+//     expect(this.message).toBe("error message");
+
+    // expect(component).toBeTruthy();
+    // expect(0).toBe(0);
+  // });
 });

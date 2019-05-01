@@ -33,9 +33,6 @@ describe('LocationsComponent', () => {
   let component: LocationsComponent;
   let component3: LocationOpenUnavailibilityDialogComponent;
   let fixture: ComponentFixture<LocationsComponent>;
-  let addressTestControllerService: AddressTestControllerService;
-  let httpMock: HttpTestingController;
-  // httpMock = TestBed.get(HttpTestingController);
 
   const buildingService = {
     findAll: jest.fn().mockImplementation(() => {
@@ -75,11 +72,8 @@ describe('LocationsComponent', () => {
     close() {}
     afterClosed() {}
   }
-
-  let iconRegistry = new IconStub();
-  let sanitizer = new domStub();
-  let buildingService = null;
-
+  const iconRegistry = new IconStub();
+  const sanitizer = new domStub();
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -158,9 +152,7 @@ describe('LocationsComponent', () => {
   // Need to add test for LocationOpenUnavailibilityDialogComponent duplicate method (line 343)
 
   it('should return true since there is a duplicate', () => {
-
-    const unavailabilityTest: Unavailability = {
-
+    let unavailabilityTest: Unavailability = {
       id: 3,
       startDate: new Date(2019, 2, 13),
       endDate: new Date(2019, 3, 8),
@@ -179,12 +171,9 @@ describe('LocationsComponent', () => {
     };
 
     let num = 1;
-
     const unavailabilityTest: Unavailability = {id: 3, startDate: new Date(2019, 2, 13), endDate: new Date(2019, 3, 8), description: 'Bad Test', room: 1};
     const roomTest: Room = {id: 1, roomName: 'Testing Room', building: 1, active: true, unavailabilities: [{id: 1, startDate: new Date(2019, 2, 13), endDate: new Date(2019, 3, 8), description: 'Dummy One', room: 1}, {id: 2, startDate: new Date(2019, 7, 4), endDate: new Date(2019, 7, 21), description: 'Dummy Two', room: 1}]};
     const num = 1;
-
-
     component3 = TestBed.createComponent(LocationOpenUnavailibilityDialogComponent).componentInstance;
     expect(component3.duplicate(unavailabilityTest, roomTest, num)).toEqual(true);
   });
@@ -209,12 +198,9 @@ describe('LocationsComponent', () => {
       ]
     };
     let num = 1;
-
-
     const unavailabilityTest: Unavailability = {id: 3, startDate: new Date(2019, 8, 21), endDate: new Date(2019, 9, 20), description: 'Good Test', room: 1};
     const roomTest: Room = {id: 1, roomName: 'Testing Room', building: 1, active: true, unavailabilities: [{id: 1, startDate: new Date(2019, 2, 13), endDate: new Date(2019, 3, 8), description: 'Dummy One', room: 1}, {id: 2, startDate: new Date(2019, 7, 4), endDate: new Date(2019, 7, 21), description: 'Dummy Two', room: 1}]};
     const num = 1;
-
     component3 = TestBed.createComponent(LocationOpenUnavailibilityDialogComponent).componentInstance;
     expect(component3.duplicate(unavailabilityTest, roomTest, num)).toEqual(false);
   });
@@ -250,8 +236,7 @@ describe('LocationsComponent', () => {
 
   it('should not fail because the name has something in it', () => {
     component3 = TestBed.createComponent(LocationOpenUnavailibilityDialogComponent).componentInstance;
-    const test = 'Test';
-
+    const test = "Test";
     expect(component3.notBlank(test)).toEqual(true);
   });
 
@@ -259,8 +244,7 @@ describe('LocationsComponent', () => {
   //it does pass the test as expected however.
   it('should fail because the name does not have any content in it', () => {
     component3 = TestBed.createComponent(LocationOpenUnavailibilityDialogComponent).componentInstance;
-    const test = '  ';
-
+    const test = "  ";
     expect(component3.notBlank(test)).toEqual(false);
   });
 
@@ -281,15 +265,16 @@ describe('LocationsComponent', () => {
   // Need to add test for LocationsComponent deleteRoom method (line 635)
   // Need to add test for LocationsComponent notBlank method (line 842)
 
+  it('should return true since the name provided contains content other than spaces', () => { 
+    const test = "Test";
   it('should return true since the name provided contains content other than spaces', () => {
     const test = 'Test';
-
     expect(component.notBlank(test)).toEqual(true);
   });
 
   // This will also throw an error because of the window.alert, functions as expected however.
   it('should return false since the name provided does not contain meaningful content', () => {
-    const test = '  ';
+    const test = "  ";
     expect(component.notBlank(test)).toEqual(false);
   });
 
@@ -320,5 +305,4 @@ describe('LocationsComponent', () => {
       // expect(request.request.method).toBe('GET');
     });
   });
-
 });
