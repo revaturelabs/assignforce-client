@@ -69,6 +69,7 @@ import { RoomControllerService } from './services/api/room-controller/room-contr
 import { BatchFormComponent } from './components/batch-form/batch-form.component';
 import { RoomSchedulerComponent } from './components/room-scheduler/room-scheduler.component';
 import { MatTableModule } from '@angular/material';
+import { RoomAddEventFormComponent } from './components/room-scheduler/add-event-form/add-event-form.component';
 
 
 @NgModule({
@@ -112,7 +113,8 @@ import { MatTableModule } from '@angular/material';
     AddTrainerErrorComponent,
     AddCurriculumComponent,
     BatchFormComponent,
-    RoomSchedulerComponent
+    RoomSchedulerComponent,
+    RoomAddEventFormComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 
@@ -123,7 +125,7 @@ import { MatTableModule } from '@angular/material';
     BrowserModule,
     AppRouting,
     BrowserAnimationsModule,
-    AppMaterialModule
+    AppMaterialModule,
     ],
 
   exports: [AppMaterialModule],
