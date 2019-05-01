@@ -1,16 +1,16 @@
-<mat-card class="event-form">
+<mat-dialog-content>
     <form>
     <!-- Dates -->
         <mat-form-field>
-            <input matInput [matDatepicker]="picker" placeholder="Start Date">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
+            <input matInput [matDatepicker]="pickeStartDate" placeholder="Start Date">
+            <mat-datepicker-toggle matSuffix [for]="pickeStartDate"></mat-datepicker-toggle>
+            <mat-datepicker #pickeStartDate></mat-datepicker>
         </mat-form-field>
 
         <mat-form-field>
-            <input matInput [matDatepicker]="picker" placeholder="End Date">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
+            <input matInput [matDatepicker]="pickerEndDate" placeholder="End Date">
+            <mat-datepicker-toggle matSuffix [for]="pickerEndDate"></mat-datepicker-toggle>
+            <mat-datepicker #pickerEndDate></mat-datepicker>
         </mat-form-field>
     <!-- General Information -->
         <mat-form-field>
@@ -24,7 +24,7 @@
                 <mat-select placeholder="Select Batch">
                   <mat-option value="Option 1">Option</mat-option>
                   <mat-option value="Option 2">Option</mat-option>
-                  <mat-option value="Other">Option</mat-option>
+                  <mat-option value="Other">Other</mat-option>
                 </mat-select>
         </mat-form-field>
 
@@ -32,4 +32,8 @@
                 <input matInput placeholder="Other description">
         </mat-form-field>
     </form>
-</mat-card>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button (click)="cancel()">Cancel</button>
+    <button mat-button>Add Event</button>
+</mat-dialog-actions>

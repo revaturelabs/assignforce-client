@@ -24,7 +24,8 @@ import {
   MatTableModule,
   MatTabsModule,
   MatToolbarModule,
-  MatTooltipModule
+  MatTooltipModule, 
+  MatDialogRef,
 } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RoomSchedulerComponent } from './components/room-scheduler/room-scheduler.component';
@@ -62,7 +63,7 @@ import { RoomSchedulerComponent } from './components/room-scheduler/room-schedul
     MatInputModule,
     MatDialogModule,
     MatGridListModule,
-    MatTableModule
+    MatTableModule,
   ],
   exports: [
     MatTabsModule,
@@ -96,8 +97,8 @@ import { RoomSchedulerComponent } from './components/room-scheduler/room-schedul
     MatInputModule,
     MatDialogModule,
     MatGridListModule,
-    MatTableModule
+    MatTableModule,
   ],
-  declarations: [  ]
+  declarations: []
 })
 export class AppMaterialModule {}
