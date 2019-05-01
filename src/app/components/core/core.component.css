@@ -25,6 +25,7 @@
 /* -------- CORE ITEM DETAILS ---------- */
 .item-detail {
   margin: 2%;
+  display: inline;
 }
 
 /* ---------- BUTTONS ---------- */
@@ -40,9 +41,4 @@
 }
 
 /* ---------- FOCUS ITEM DETAIL ---------- */
-
-.item-detail {
-  margin: 2%;
-  display: inline;
-}
 

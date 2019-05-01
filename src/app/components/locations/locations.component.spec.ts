@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { DomSanitizer } from '@angular/platform-browser';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthService } from '../../services/auth/auth.service';
@@ -25,17 +25,23 @@ import { of } from 'rxjs/observable/of';
 import { Unavailability } from '../../model/Unavailability';
 import { UnavailableControllerService } from '../../services/api/unavailable-controller/unavailable-controller.service';
 import { Room } from '../../model/Room';
+import { AddressTestControllerService } from '../../services/api/address-controller/address-test-controller.service';
+import { environment } from '../../../environments/environment.local-server';
+// service that points to our json test server
 
 describe('LocationsComponent', () => {
   let component: LocationsComponent;
   let component3: LocationOpenUnavailibilityDialogComponent;
-
   let fixture: ComponentFixture<LocationsComponent>;
+  let addressTestControllerService: AddressTestControllerService;
+  let httpMock: HttpTestingController;
+  // httpMock = TestBed.get(HttpTestingController);
 
   const buildingService = {
     findAll: jest.fn().mockImplementation(() => {
       const buildings: Building[] = [
         {
+          id: 1,
           buildingId: 1,
           isActive: true,
           buildingName: '11730 Plaza American Drive (HQ)',
@@ -52,7 +58,6 @@ describe('LocationsComponent', () => {
       return true;
     }
   }
-
   class domStub {
     url: string;
     bypassSecurityTrustResourceUrl(url: string) {}
@@ -70,8 +75,11 @@ describe('LocationsComponent', () => {
     close() {}
     afterClosed() {}
   }
-  const iconRegistry = new IconStub();
-  const sanitizer = new domStub();
+
+  let iconRegistry = new IconStub();
+  let sanitizer = new domStub();
+  let buildingService = null;
+
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -88,6 +96,7 @@ describe('LocationsComponent', () => {
         LocationAddDialogComponent,
         LocationDeleteLocationDialogComponent,
         LocationOpenUnavailibilityDialogComponent
+        // AddressTestControllerService
       ],
       providers: [
         BuildingControllerService,
@@ -95,6 +104,7 @@ describe('LocationsComponent', () => {
         RoomControllerService,
         CachedObjectsService,
         UnavailableControllerService,
+        AddressTestControllerService,
         { provide: BuildingControllerService, usevalue: buildingService },
         { provide: AuthService, useclass: AuthServStub },
         { provide: MAT_DIALOG_DATA, useclass: MatDialogStub },
@@ -109,7 +119,16 @@ describe('LocationsComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(LocationsComponent);
     component = fixture.componentInstance;
+    httpMock = TestBed.get(HttpTestingController);
+    addressTestControllerService = TestBed.get(AddressTestControllerService);
+
+    spyOn(addressTestControllerService, 'findAll').and.callThrough();
   });
+
+  // //
+  // afterEach(() => {
+  //   this.httpMock.verify();
+  // });
 
   it('should create', () => {
     expect(component).toBeTruthy();
@@ -139,15 +158,16 @@ describe('LocationsComponent', () => {
   // Need to add test for LocationOpenUnavailibilityDialogComponent duplicate method (line 343)
 
   it('should return true since there is a duplicate', () => {
-<<<<<<< HEAD
-    let unavailabilityTest: Unavailability = {
+
+    const unavailabilityTest: Unavailability = {
+
       id: 3,
       startDate: new Date(2019, 2, 13),
       endDate: new Date(2019, 3, 8),
       description: 'Bad Test',
       room: 1
     };
-    let roomTest: Room = {
+    const roomTest: Room = {
       id: 1,
       roomName: 'Testing Room',
       building: 1,
@@ -157,18 +177,20 @@ describe('LocationsComponent', () => {
         { id: 2, startDate: new Date(2019, 7, 4), endDate: new Date(2019, 7, 21), description: 'Dummy Two', room: 1 }
       ]
     };
+
     let num = 1;
-=======
+
     const unavailabilityTest: Unavailability = {id: 3, startDate: new Date(2019, 2, 13), endDate: new Date(2019, 3, 8), description: 'Bad Test', room: 1};
     const roomTest: Room = {id: 1, roomName: 'Testing Room', building: 1, active: true, unavailabilities: [{id: 1, startDate: new Date(2019, 2, 13), endDate: new Date(2019, 3, 8), description: 'Dummy One', room: 1}, {id: 2, startDate: new Date(2019, 7, 4), endDate: new Date(2019, 7, 21), description: 'Dummy Two', room: 1}]};
     const num = 1;
->>>>>>> 275ab3257c8d20f2d0a0bf8d38585eca5cbeb0d6
+
+
     component3 = TestBed.createComponent(LocationOpenUnavailibilityDialogComponent).componentInstance;
     expect(component3.duplicate(unavailabilityTest, roomTest, num)).toEqual(true);
   });
 
   it('should return false since there is not a duplicate', () => {
-<<<<<<< HEAD
+
     let unavailabilityTest: Unavailability = {
       id: 3,
       startDate: new Date(2019, 8, 21),
@@ -187,11 +209,12 @@ describe('LocationsComponent', () => {
       ]
     };
     let num = 1;
-=======
+
+
     const unavailabilityTest: Unavailability = {id: 3, startDate: new Date(2019, 8, 21), endDate: new Date(2019, 9, 20), description: 'Good Test', room: 1};
     const roomTest: Room = {id: 1, roomName: 'Testing Room', building: 1, active: true, unavailabilities: [{id: 1, startDate: new Date(2019, 2, 13), endDate: new Date(2019, 3, 8), description: 'Dummy One', room: 1}, {id: 2, startDate: new Date(2019, 7, 4), endDate: new Date(2019, 7, 21), description: 'Dummy Two', room: 1}]};
     const num = 1;
->>>>>>> 275ab3257c8d20f2d0a0bf8d38585eca5cbeb0d6
+
     component3 = TestBed.createComponent(LocationOpenUnavailibilityDialogComponent).componentInstance;
     expect(component3.duplicate(unavailabilityTest, roomTest, num)).toEqual(false);
   });
@@ -227,11 +250,8 @@ describe('LocationsComponent', () => {
 
   it('should not fail because the name has something in it', () => {
     component3 = TestBed.createComponent(LocationOpenUnavailibilityDialogComponent).componentInstance;
-<<<<<<< HEAD
-    let test: string = 'Test';
-=======
-    const test = "Test";
->>>>>>> 275ab3257c8d20f2d0a0bf8d38585eca5cbeb0d6
+    const test = 'Test';
+
     expect(component3.notBlank(test)).toEqual(true);
   });
 
@@ -239,11 +259,8 @@ describe('LocationsComponent', () => {
   //it does pass the test as expected however.
   it('should fail because the name does not have any content in it', () => {
     component3 = TestBed.createComponent(LocationOpenUnavailibilityDialogComponent).componentInstance;
-<<<<<<< HEAD
-    let test: string = '  ';
-=======
-    const test = "  ";
->>>>>>> 275ab3257c8d20f2d0a0bf8d38585eca5cbeb0d6
+    const test = '  ';
+
     expect(component3.notBlank(test)).toEqual(false);
   });
 
@@ -264,45 +281,44 @@ describe('LocationsComponent', () => {
   // Need to add test for LocationsComponent deleteRoom method (line 635)
   // Need to add test for LocationsComponent notBlank method (line 842)
 
-<<<<<<< HEAD
   it('should return true since the name provided contains content other than spaces', () => {
-    let test: string = 'Test';
-=======
-  it('should return true since the name provided contains content other than spaces', () => { 
-    const test = "Test";
->>>>>>> 275ab3257c8d20f2d0a0bf8d38585eca5cbeb0d6
+    const test = 'Test';
+
     expect(component.notBlank(test)).toEqual(true);
   });
 
   // This will also throw an error because of the window.alert, functions as expected however.
   it('should return false since the name provided does not contain meaningful content', () => {
-<<<<<<< HEAD
-    let test: string = '  ';
-=======
-    const test = "  ";
->>>>>>> 275ab3257c8d20f2d0a0bf8d38585eca5cbeb0d6
+    const test = '  ';
     expect(component.notBlank(test)).toEqual(false);
   });
 
   // Need to add test for LocationsComponent checkRoomUnique method (line 851)
   // Need to add test for LocationsComponent checkLocationUnique method (line 867)
   // Need to add test for LocationsComponent checkBuildingUnique method (line 883)
-<<<<<<< HEAD
-=======
 
   it('should return false since building name & address are the same', () => {
-    const building1 = new Building(true,1,"NEC",null , 14);
-    const building2 = new Building(true,2,"NEC", null, 14);
+    const building1 = new Building(true, 1, 'NEC', null, 14);
+    const building2 = new Building(true, 2, 'NEC', null, 14);
     component.buildings.push(building1);
     expect(component.checkBuildingUnique(building2)).toBe(false);
-  })
+  });
   it('should return true since building name is not the same', () => {
-    const building1 = new Building(true,1,"NED",null , 14);
-    const building2 = new Building(true,2,"NEC", null, 14);
+    const building1 = new Building(true, 1, 'NED', null, 14);
+    const building2 = new Building(true, 2, 'NEC', null, 14);
     component.buildings.push(building1);
     expect(component.checkBuildingUnique(building2)).toBe(true);
-  })
+  });
 
+  it('should get all addresses', () => {
+    // let addressController = environment.apiUrls.addressController;
+    // let service = TestBed.createComponent(AddressTestControllerService).componentInstance;
+    // const request = httpMock.expectOne(addressController + addressController.findAll);
+    addressTestControllerService.findAll().subscribe(result => {
+      // expect(result['addresses'].length).toBe('');
+      expect(result).toBeNull(false);
+      // expect(request.request.method).toBe('GET');
+    });
+  });
 
->>>>>>> 275ab3257c8d20f2d0a0bf8d38585eca5cbeb0d6
 });
