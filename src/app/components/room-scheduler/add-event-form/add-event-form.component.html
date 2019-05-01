@@ -15,25 +15,25 @@
     <!-- General Information -->
         <mat-form-field>
             <mat-select placeholder="Select Room">
-              <mat-option value="Option 1">Option</mat-option>
-              <mat-option value="Option 2">Option</mat-option>
+              <mat-option value="Option 1">Option 1</mat-option>
+              <mat-option value="Option 2">Option 2</mat-option>
             </mat-select>
         </mat-form-field>
 
-        <mat-form-field>
-                <mat-select placeholder="Select Batch">
-                  <mat-option value="Option 1">Option</mat-option>
-                  <mat-option value="Option 2">Option</mat-option>
+        <mat-form-field id="batchSeletor">
+                <mat-select placeholder="Select Batch" [(value)]="selected">
+                  <mat-option value="Option 1">Option 1</mat-option>
+                  <mat-option value="Option 2">Option 2</mat-option>
                   <mat-option value="Other">Other</mat-option>
                 </mat-select>
         </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field *ngIf="selected == 'Other'">
                 <input matInput placeholder="Other description">
         </mat-form-field>
     </form>
 </mat-dialog-content>
 <mat-dialog-actions>
     <button mat-button (click)="cancel()">Cancel</button>
-    <button mat-button>Add Event</button>
+    <button mat-button (click)="addEvent()">Add Event</button>
 </mat-dialog-actions>

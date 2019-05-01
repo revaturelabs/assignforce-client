@@ -9,11 +9,8 @@ import { RoomSchedulerComponent } from '../room-scheduler.component';
 })
 
 export class RoomAddEventFormComponent implements OnInit {
-
-    isOther: boolean;
-
-    constructor(public dialogRef: MatDialogRef<RoomSchedulerComponent>,) {
-
+    selected = "None";
+    constructor(public dialogRef: MatDialogRef<RoomSchedulerComponent>) {
     }
     ngOnInit() {
     }
@@ -23,6 +20,6 @@ export class RoomAddEventFormComponent implements OnInit {
     }
 
     addEvent() {
-        // TODO: Add Event
+        // TODO: Add event with service
     }
 }
