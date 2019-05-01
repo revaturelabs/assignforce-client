@@ -1,0 +1,36 @@
+<mat-dialog-content>
+    <form>
+    <!-- Dates -->
+        <mat-form-field>
+            <input matInput [matDatepicker]="pickeStartDate" placeholder="Start Date">
+            <mat-datepicker-toggle matSuffix [for]="pickeStartDate"></mat-datepicker-toggle>
+            <mat-datepicker #pickeStartDate></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput [matDatepicker]="pickerEndDate" placeholder="End Date">
+            <mat-datepicker-toggle matSuffix [for]="pickerEndDate"></mat-datepicker-toggle>
+            <mat-datepicker #pickerEndDate></mat-datepicker>
+        </mat-form-field>
+    <!-- General Information -->
+        <mat-form-field>
+            <mat-select placeholder="Select Room" [(value)]="selected">
+              <mat-option *ngFor="let room of roomArray" [value]="room.roomName"> {{ room.roomName }} </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field id="batchSeletor">
+                <mat-select placeholder="Select Batch" [(value)]="selected">
+                  <mat-option *ngFor="let batch of batchArray" [value]="batch.name">{{ batch.name }} </mat-option>
+                </mat-select>
+        </mat-form-field>
+
+        <mat-form-field *ngIf="selected == 'Other'">
+                <input matInput placeholder="Other description">
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button (click)="cancel()">Cancel</button>
+    <button mat-button (click)="addEvent()">Add Event</button>
+</mat-dialog-actions>

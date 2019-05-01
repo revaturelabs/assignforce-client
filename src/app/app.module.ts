@@ -3,7 +3,6 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { AppComponent } from './app.component';
 import { AppRouting } from './app.routing';
 import { AddSkillComponent } from './components/add-skill/add-skill.component';
@@ -15,7 +14,6 @@ import { CurriculaComponent } from './components/curricula/curricula.component';
 import { CurriculumSkillsComponent } from './components/curriculum-skills/curriculum-skills.component';
 import { EditSkillComponent } from './components/edit-skill/edit-skill.component';
 import { LocationAddDialogComponent } from './components/locations/add-dialog/location-add-dialog.component';
-
 import { LocationAddLocationDialogComponent } from './components/locations/location-add-location-dialog/location-add-location-dialog.component';
 import { LocationAddRoomDialogComponent } from './components/locations/location-add-room-dialog/location-add-room-dialog.component';
 import { LocationDeleteBuildingDialogComponent } from './components/locations/location-delete-building-dialog/location-delete-building-dialog.component';
@@ -29,7 +27,6 @@ import { LocationOpenUnavailibilityDialogComponent } from './components/location
 import { LocationAddUnavailabilityDialogComponent } from './components/locations/location-add-unavailability-dialog/location-add-unavailability-dialog.component';
 import { LocationChangeUnavailabilityDialogComponent } from './components/locations/location-change-unavailability-dialog/location-change-unavailability-dialog.component';
 import { LocationDeleteUnavailabilityDialogComponent } from './components/locations/location-delete-unavailability-dialog/location-delete-unavailability-dialog.component';
-
 import { LoginComponent } from './components/login/login.component';
 import { MenuBarComponent } from './components/menu-bar/menu-bar.component';
 import { OverviewComponent } from './components/overview/overview.component';
@@ -57,7 +54,6 @@ import { UrlService } from './services/url/url.service';
 import { BatchesTimelineComponent } from './components/batches-timeline/batches-timeline.component';
 import { BatchesTimelineFilterComponent } from './components/batches-timeline-filter/batches-timeline-filter.component';
 import { FocusControllerService } from './services/api/focus-controller/focus-controller.service';
-
 import { EditCurriculumComponent } from './components/edit-curriculum/edit-curriculum.component';
 import { FillSkillsService } from './services/api/skill-controller/fill-skills.service';
 import { AddTrainerErrorComponent } from './components/trainers/add-trainer-error/add-trainer-error.component';
@@ -68,8 +64,8 @@ import { BuildingControllerService } from './services/api/building-controller/bu
 import { RoomControllerService } from './services/api/room-controller/room-controller.service';
 import { BatchFormComponent } from './components/batch-form/batch-form.component';
 import { RoomSchedulerComponent } from './components/room-scheduler/room-scheduler.component';
+import { RoomAddEventFormComponent } from "./components/room-scheduler/add-event-form/add-event-form.component";
 import { MatTableModule } from '@angular/material';
-
 
 @NgModule({
   declarations: [
@@ -112,7 +108,8 @@ import { MatTableModule } from '@angular/material';
     AddTrainerErrorComponent,
     AddCurriculumComponent,
     BatchFormComponent,
-    RoomSchedulerComponent
+    RoomSchedulerComponent,
+    RoomAddEventFormComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 
@@ -123,10 +120,10 @@ import { MatTableModule } from '@angular/material';
     BrowserModule,
     AppRouting,
     BrowserAnimationsModule,
-    AppMaterialModule
+    AppMaterialModule,
     ],
 
-  exports: [AppMaterialModule],
+  exports: [AppMaterialModule, RoomAddEventFormComponent],
 
   providers: [
     S3CredentialService,
@@ -175,7 +172,9 @@ import { MatTableModule } from '@angular/material';
     TrainersAddComponent,
     LocationDeleteUnavailabilityDialogComponent,
     AddTrainerErrorComponent,
-    AddCurriculumComponent
+    AddCurriculumComponent,
+    RoomSchedulerComponent,
+    RoomAddEventFormComponent,
   ]
 })
 export class AppModule {}

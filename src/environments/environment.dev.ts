@@ -22,7 +22,7 @@ export const environment = {
       reports: 'reports',
       settings: 'settings',
       callback: 'callback',
-      roomScheduler: 'room-scheduler'
+      roomScheduler: 'room-scheduler',
     },
   
     auth0: {

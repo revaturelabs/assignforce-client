@@ -1,4 +1,7 @@
 import {Component} from '@angular/core';
+import { MatDialog } from '@angular/material';
+import { RoomAddEventFormComponent } from './add-event-form/add-event-form.component';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 export interface PeriodicElement {
   name: string;
@@ -31,4 +34,20 @@ const ELEMENT_DATA: PeriodicElement[] = [
 export class RoomSchedulerComponent {
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = ELEMENT_DATA;
+
+  constructor(public dialog: MatDialog) {
+  }
+  openDialog(): void {
+    const dialogRef = this.dialog.open(RoomAddEventFormComponent, {
+      width: '250px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
+  cancel() {
+    this.dialog.closeAll();
+  }
 }
