@@ -1,5 +1,5 @@
 import { Unavailability } from './Unavailability';
-import { Reservation } from './Reservation';
+import { Event } from './Event';
 
 export class Room {
   id: number;
@@ -7,10 +7,16 @@ export class Room {
   building: number;
   active: boolean;
   unavailabilities: Unavailability[];
-  reservations: Reservation[];
+  events: Event[];
   capacity: number;
 
-  constructor(id?: number, active?: boolean, roomName?: string, building?: number, unavailabilities?: Unavailability[]) {
+  constructor(
+    id?: number,
+    active?: boolean,
+    roomName?: string,
+    building?: number,
+    unavailabilities?: Unavailability[]
+  ) {
     this.id = id;
     this.roomName = roomName;
     this.active = active;
