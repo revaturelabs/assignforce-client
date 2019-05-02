@@ -29,6 +29,14 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./room-scheduler.component.css']
 })
 export class RoomSchedulerComponent {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
+  columnsToDisplay: string[] = ['name', 'number'];
+  room = [
+    {name:'Room3', roomNum:"2000"}
+  ];
+  dataSource = this.room;
+
+
+  renderRows() {
+
+  }
 }

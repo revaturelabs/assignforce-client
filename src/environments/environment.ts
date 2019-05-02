@@ -22,7 +22,7 @@ export const environment = {
     reports: 'reports',
     settings: 'settings',
     callback: 'callback',
-    roomScheduler: 'room-scheduler'
+    roomScheduler: 'roomScheduler'
   },
 
   auth0: {
@@ -141,6 +141,7 @@ export const environment = {
       find: '/',
       remove: '/'
     },
+    
     filehandlerController: {
       baseUrl: 'api/filehandler',
       create: '',

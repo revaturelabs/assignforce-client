@@ -8,6 +8,7 @@ export class Room {
   active: boolean;
   unavailabilities: Unavailability[];
   reservations: Reservation[];
+  capacity: number;
 
   constructor(id?: number, active?: boolean, roomName?: string, building?: number, unavailabilities?: Unavailability[]) {
     this.id = id;
