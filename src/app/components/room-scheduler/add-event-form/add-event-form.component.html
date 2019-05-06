@@ -1,36 +1,42 @@
+<form [formGroup]="addEventForm" (ngSubmit)="addEvent()">
 <mat-dialog-content>
-    <form>
+
     <!-- Dates -->
-        <mat-form-field>
-            <input matInput [matDatepicker]="pickeStartDate" placeholder="Start Date">
-            <mat-datepicker-toggle matSuffix [for]="pickeStartDate"></mat-datepicker-toggle>
-            <mat-datepicker #pickeStartDate></mat-datepicker>
-        </mat-form-field>
+    <mat-form-field>
+      <input matInput [matDatepicker]="pickeStartDate" placeholder="Start Date" formControlName="startDate">
+      <mat-datepicker-toggle matSuffix [for]="pickeStartDate"></mat-datepicker-toggle>
+      <mat-datepicker #pickeStartDate></mat-datepicker>
+    </mat-form-field>
 
-        <mat-form-field>
-            <input matInput [matDatepicker]="pickerEndDate" placeholder="End Date">
-            <mat-datepicker-toggle matSuffix [for]="pickerEndDate"></mat-datepicker-toggle>
-            <mat-datepicker #pickerEndDate></mat-datepicker>
-        </mat-form-field>
+    <mat-form-field>
+      <input matInput [matDatepicker]="pickerEndDate" placeholder="End Date" formControlName="endDate">
+      <mat-datepicker-toggle matSuffix [for]="pickerEndDate"></mat-datepicker-toggle>
+      <mat-datepicker #pickerEndDate></mat-datepicker>
+    </mat-form-field>
     <!-- General Information -->
-        <mat-form-field>
-            <mat-select placeholder="Select Room" [(value)]="selected">
-              <mat-option *ngFor="let room of roomArray" [value]="room.roomName"> {{ room.roomName }} </mat-option>
-            </mat-select>
-        </mat-form-field>
+    <mat-form-field>
+      <!-- <mat-select placeholder="Select Room" [(value)]="selected" formControlName="room"> -->
+      <mat-select placeholder="Select Room" formControlName="room">
+        <mat-option *ngFor="let room of roomArray" [value]="room.roomName"> {{ room.roomName }} </mat-option>
+      </mat-select>
+    </mat-form-field>
 
-        <mat-form-field id="batchSeletor">
-                <mat-select placeholder="Select Batch" [(value)]="selected">
-                  <mat-option *ngFor="let batch of batchArray" [value]="batch.name">{{ batch.name }} </mat-option>
-                </mat-select>
-        </mat-form-field>
+    <mat-form-field id="batchSeletor">
+      <!-- <mat-select placeholder="Select Batch" [(value)]="selected" formControlName="batch">  -->
+      <mat-select placeholder="Select Batch" formControlName="batch">
 
-        <mat-form-field *ngIf="selected == 'Other'">
-                <input matInput placeholder="Other description">
-        </mat-form-field>
-    </form>
+        <mat-option *ngFor="let batch of batchArray" [value]="batch.name">{{ batch.name }} </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="selected == 'Other'" formControlName="description">
+      <input matInput placeholder="Other description">
+    </mat-form-field>
 </mat-dialog-content>
 <mat-dialog-actions>
-    <button mat-button (click)="cancel()">Cancel</button>
-    <button mat-button (click)="addEvent()">Add Event</button>
+  <button mat-button (click)="cancel()">Cancel</button>
+  <button mat-button type="submit" [disabled]="!addEventForm.valid">Add Event</button>
+  <!-- <button mat-button (click)="addEvent()">Add Event</button> -->
+
 </mat-dialog-actions>
+</form>

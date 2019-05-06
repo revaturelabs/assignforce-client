@@ -32,7 +32,7 @@ export class RoomAddEventFormComponent implements OnInit {
     }
 
     addEvent() {
-        // TODO: Add event with service
+        console.log(this.addEventForm.value);
     }
 
     addEventForm = this.fb.group({
