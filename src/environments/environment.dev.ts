@@ -60,7 +60,8 @@ export const environment = {
         find: '/',
         remove: '/'
       },
-  
+
+
       buildingController: {
         baseUrl: `${apiBaseUrl}/location-service/building`,
         create: '',

@@ -9,7 +9,7 @@ export class Event {
     batch: Batch;
     description: String;
 
-    constructor(id?: number, startDate: Date, endDate: Date, room: Room, batch: Batch, description?: String) { 
+    constructor(id: number, startDate: Date, endDate: Date, room: Room, batch: Batch, description?: String) { 
         this.id = id;
         this.startDate = startDate;
         this.endDate = endDate;
