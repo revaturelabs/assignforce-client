@@ -39,7 +39,6 @@ export class AddSkillComponent implements OnInit {
   newSkill(): void {
     this.skill = new Skill(0, '', true);
   }
-
   /**
    * Handler for the add skill button from the form. 
    * Sends the new skill to be added to the server for processing. 
