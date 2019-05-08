@@ -1,3 +1,8 @@
+/**
+ * Add Curriculum Component
+ * 
+ *  */
+
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '../../../../node_modules/@angular/material';
 import { CurriculumControllerService } from '../../services/api/curriculum-controller/curriculum-controller.service';
@@ -20,6 +25,7 @@ export class AddCurriculumComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
+  
   curriculum: Curriculum;
   skills: Skill[] = [];
   selectedSkills: Skill[];
@@ -35,16 +41,31 @@ export class AddCurriculumComponent implements OnInit {
     });
   }
 
-  //Closes the add Curriculum Modal.
+  /**
+   * Closes the add curriculum modal 
+   *
+   * @memberof AddCurriculumComponent
+   */
   closeDialog(): void {
     this.dialogRef.close();
   }
 
-  //Resets the current Curriculum.  This is here to prevent the old curriculum from persisting between additions and to prevent undefined errors.
+  /**
+   * Resets the current curriculum.
+   * This is here to prevent the old curriculum from persisting between additions and to prevent undefined errors.
+   *
+   * @memberof AddCurriculumComponent
+   */
   newCurriculum(): void {
     this.curriculum = new Curriculum(0, '', true, true, []);
   }
 
+  /**
+   * Handler for "Add curriculum" button from form. 
+   * Calls the create method of the curriculum controller service. 
+   *
+   * @memberof AddCurriculumComponent
+   */
   addCurriculum(): void {
     this.curriculum.skills = this.selectedSkills;
     this.curriculum.isCore = this.data.isCore;
