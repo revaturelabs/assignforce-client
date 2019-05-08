@@ -22,17 +22,29 @@ export class AddSkillComponent implements OnInit {
     this.newSkill();
   }
 
-  //Closes the Add Skill Modal
+  /**
+   * Closes the Add Skill Modal
+   *
+   * @memberof AddSkillComponent
+   */
   closeDialog(): void {
     this.dialogRef.close();
   }
 
-  //Resets the skill so that old data wont exist on new Modal opening.  Also makes sure that there aren't any undefined issues.
+  /**
+   * Resets the skill so that old data wont exist on new Modal opening.  Also makes sure that there aren't any undefined issues. 
+   *
+   * @memberof AddSkillComponent
+   */
   newSkill(): void {
     this.skill = new Skill(0, '', true);
   }
-
-  //Sends the new skill to be added to the server for processing.
+  /**
+   * Handler for the add skill button from the form. 
+   * Sends the new skill to be added to the server for processing. 
+   *
+   * @memberof AddSkillComponent
+   */
   addSkill(): void {
     this.skillControllerService
       .create(this.skill)

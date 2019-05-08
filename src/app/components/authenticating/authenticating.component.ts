@@ -1,3 +1,9 @@
+/**
+ * Authenticating Component
+ * 
+ * @author August Duet
+ */
+
 import { Component, OnInit } from '@angular/core';
 
 @Component({
