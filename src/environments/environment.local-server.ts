@@ -71,6 +71,15 @@ export const environment = {
       remove: '/'
     },
 
+    eventController: {
+      baseUrl: 'http://localhost:3000/events',
+      create: '',
+      update: '/',
+      findAll: '',
+      find: '/',
+      remove: '/'
+    },
+
     roomController: {
       baseUrl: 'http://localhost:3000/rooms',
       create: '',

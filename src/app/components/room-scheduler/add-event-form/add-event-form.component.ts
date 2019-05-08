@@ -1,10 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { RoomSchedulerComponent } from '../room-scheduler.component';
 import { Batch } from '../../../model/Batch';
 import { Room } from '../../../model/Room';
 import { FormBuilder, Validators } from '@angular/forms';
 import { thisExpression } from '@babel/types';
+import { AddressControllerService } from '../../../services/api/address-controller/address-controller.service';
+import { BuildingControllerService } from '../../../services/api/building-controller/building-controller.service';
+import { RoomControllerService } from '../../../services/api/room-controller/room-controller.service';
+import { BatchControllerService } from '../../../services/api/batch-controller/batch-controller.service';
+import { EventControllerService } from '../../../services/api/event-controller/event-controller.service';
 
 @Component({
     selector: 'add-event-form',
@@ -13,18 +18,28 @@ import { thisExpression } from '@babel/types';
 })
 
 export class RoomAddEventFormComponent implements OnInit {
-    batch1: Batch = new Batch(null,'1901Tony-Node-JS',1012019,4,1,1,null,null,1,100,10);
-    batch2: Batch = new Batch(null,'1901Bill-NET', 1232019,3312019,null,2,null,null,1,1,104,23);
-    batchArray = [this.batch1, this.batch2];
-    room1: Room = new Room(1, true, '3201B', 2);
-    room2: Room = new Room(2, true, '2201C', 2);
-    
-    roomArray = [this.room1, this.room2];
+    batchArray: Batch[] = [];    
+    roomArray: Room[] = [];
+
+    startDate: Date;
+    endDate: Date;
+
 
     selected = "None";
-    constructor(public dialogRef: MatDialogRef<RoomSchedulerComponent>, private fb: FormBuilder) {
+    constructor(public dialogRef: MatDialogRef<RoomSchedulerComponent>, private fb: FormBuilder,
+        private batchService: BatchControllerService,
+        private eventService: EventControllerService,
+        @Inject(MAT_DIALOG_DATA) public data: any) {
     }
+
     ngOnInit() {
+        this.roomArray = this.data.rooms;
+        this.batchService.findAll().subscribe((batchArray) => {
+            this.batchArray = batchArray;
+        });
+        this.batchArray.filter((filter) => {
+            filter.location === this.data.location;
+        })
     }
 
     cancel() {
@@ -32,7 +47,6 @@ export class RoomAddEventFormComponent implements OnInit {
     }
 
     addEvent() {
-        console.log(this.addEventForm.value);
     }
 
     addEventForm = this.fb.group({

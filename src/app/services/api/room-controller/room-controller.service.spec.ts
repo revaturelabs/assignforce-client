@@ -24,84 +24,96 @@ describe('RoomControllerService', () => {
               "roomName": "201",
               "active": true,
               "building": 1,
-              unavailabilities: []
+              unavailabilities: [],
+              "capacity": 35
             },
             {
               "id": 2,
               "roomName": "202",
               "active": true,
               "building": 1,
-              unavailabilities: []
+              unavailabilities: [],
+              "capacity": 35
             },
             {
               "id": 3,
               "roomName": "204",
               "active": true,
               "building": 1,
-              unavailabilities: []
+              unavailabilities: [],
+              "capacity": 35
             },
             {
               "id": 4,
               "roomName": "205",
               "active": true,
               "building": 1,
-              unavailabilities: []
+              unavailabilities: [],
+              "capacity": 35
             },
             {
               "id": 5,
               "roomName": "X1",
               "active": false,
               "building": 1,
-              unavailabilities: []
+              unavailabilities: [],
+              "capacity": 35
             },
             {
               "id": 6,
               "roomName": "207",
               "active": true,
               "building": 1,
-              unavailabilities: []
+              unavailabilities: [],
+              "capacity": 35
             },
             {
               "id": 100,
               "roomName": "X2",
               "active": false,
               "building": 1,
-              unavailabilities: []
+              unavailabilities: [],
+              "capacity": 35
             },
             {
               "id": 101,
               "roomName": "X3",
               "active": false,
               "building": 1,
-              unavailabilities: []
+              unavailabilities: [],
+              "capacity": 35
             },
             {
               "id": 122,
               "roomName": "209",
               "active": true,
               "building": 1,
-              unavailabilities: []
+              unavailabilities: [],
+              "capacity": 35
             },
             {
               "id": 102,
               "roomName": "203",
               "active": true,
               "building": 1,
-              unavailabilities: []
+              unavailabilities: [],
+              "capacity": 35
             },
             {
               "id": 103,
               "roomName": "206",
               "active": true,
               "building": 1,
-              unavailabilities: []
+              unavailabilities: [],
+              "capacity": 35
             },
             {
               "id": 142,
               "roomName": "214",
               "active": true,
               "building": 1,
-              unavailabilities: []
+              unavailabilities: [],
+              "capacity": 35
             },
             {
               "id": 143,
@@ -130,21 +142,24 @@ describe('RoomControllerService', () => {
                   "description": "hhhxxx",
                   "room": 143
                 }
-              ]
+              ],
+              "capacity": 35
             },
             {
               "id": 145,
               "active": true,
               "roomName": "Chik Fil A",
               "building": 67,
-              "unavailabilities": []
+              "unavailabilities": [],
+              "capacity": 35
             },
             {
               "id": 146,
               "active": true,
               "roomName": "Subway",
               "building": 67,
-              "unavailabilities": []
+              "unavailabilities": [],
+              "capacity": 35
             },
             {
               "id": 147,
@@ -166,7 +181,8 @@ describe('RoomControllerService', () => {
                   "description": "Vacationing",
                   "room": 147
                 }
-              ]
+              ],
+              "capacity": 35
             },
             {
               "id": 148,
@@ -188,7 +204,8 @@ describe('RoomControllerService', () => {
                   "description": "Valid test 2",
                   "room": 148
                 }
-              ]
+              ],
+              "capacity": 35
             },
             {
               "id": 149,
@@ -203,7 +220,8 @@ describe('RoomControllerService', () => {
                   "description": "test",
                   "room": 149
                 }
-              ]
+              ],
+              "capacity": 35
             },
             {
               "id": 150,
@@ -225,7 +243,8 @@ describe('RoomControllerService', () => {
                   "description": "New Semester",
                   "room": 150
                 }
-              ]
+              ],
+              "capacity": 35
             },
             {
               "id": 151,
@@ -247,7 +266,8 @@ describe('RoomControllerService', () => {
                   "description": "New test",
                   "room": 151
                 }
-              ]
+              ],
+              "capacity": 35
             }
       ];
     });
@@ -262,7 +282,7 @@ describe('RoomControllerService', () => {
 
     //create
     it('should create a new Room', () => {
-        let newRoom: Room = {id: 200, roomName: 'Unit Room', building: 67, active: true, unavailabilities: []};
+        let newRoom: Room = {id: 200, roomName: 'Unit Room', building: 67, active: true, unavailabilities: [], capacity: 35};
         roomControllerService.create(newRoom).subscribe(resp => {
             expect(resp).toEqual(newRoom);
         });
@@ -275,7 +295,7 @@ describe('RoomControllerService', () => {
 
     //update
     it('should update an existing room', () => {
-        let updatedRoom: Room = {id: 150, roomName: 'Unit Room', building: 67, active: false, unavailabilities: []};
+        let updatedRoom: Room = {id: 150, roomName: 'Unit Room', building: 67, active: false, unavailabilities: [], capacity: 35};
         roomControllerService.update(updatedRoom).subscribe(resp => {
             expect(resp).toEqual(updatedRoom);
         });
@@ -556,8 +576,8 @@ describe('RoomControllerService', () => {
         roomControllerService.find(findParam).subscribe(resp =>
             fail('should have failed with a 404 error'),
             (error: HttpErrorResponse) => {
-                expect(error.status).toEqual(404, 'status');
-                expect(error.error).toEqual(errmsg, 'message');
+                expect(error.status).toEqual(404);
+                expect(error.error).toEqual(errmsg);
             }
         );
         let req = httpTestingController.expectOne(roomApi.baseUrl + roomApi.find + findParam);

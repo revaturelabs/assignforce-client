@@ -79,6 +79,15 @@ export const environment = {
       remove: '/'
     },
 
+    eventController: {
+      baseUrl: 'api/event',
+      create: '',
+      update: '/',
+      findAll: '',
+      find: '/',
+      remove: '/'
+    },
+
     roomController: {
       baseUrl: 'api/room',
       create: '',
@@ -135,15 +144,6 @@ export const environment = {
 
     unavailableController: {
       baseUrl: 'api/unavailable',
-      create: '',
-      update: '/',
-      findAll: '',
-      find: '/',
-      remove: '/'
-    },
-
-    eventController: {
-      baseUrl: 'api/event',
       create: '',
       update: '/',
       findAll: '',
