@@ -1,6 +1,5 @@
 /**
  * Model for Building
- * 
  */
 
 import { Room } from './Room';
