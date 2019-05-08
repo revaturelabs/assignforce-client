@@ -1,0 +1,119 @@
+<!-- <div class="calendar-navs">
+  <div class="week-nav">
+    <button (click)="prevWeek()">&lt;</button>
+    <span class="p4">{{ currentDate.format('MMMM') }}</span>
+    <button (click)="nextWeek()">&gt;</button>
+  </div>
+
+  <div class="year-nav">
+    <button (click)="prevYear()">&lt;</button>
+    <span>{{ currentDate.format('WWWW') }}</span>
+    <button (click)="nextYear()">&gt;</button>
+  </div>
+
+  <div class="month-grid">
+    <div class="day-names">
+      <div *ngFor="let name of dayNames" class="day-name p9">
+        {{ name }}
+      </div>
+    </div>
+
+    <div class="weeks">
+      <div *ngFor="let week of weeks" class="week">
+        <ng-container *ngFor="let day of week">
+          <div class="week-date disabled" *ngIf="!isSelectedMonth(day.mDate)">
+            <span class="date-text">{{ day.mDate.date() }}</span>
+          </div>
+
+          <div class="week-date enabled" *ngIf="isSelectedMonth(day.mDate)"
+          (click)="selectDate(day)" [ngClass]="{ today: day.today, selected: day.selected }">
+            <span class="date-text">{{ day.mDate.date() }}</span>  
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<!-- <mat-table *ngFor="let room of rooms">
+    <tr>
+      <td>Room is {{ room.roomName }}</td>
+    </tr>
+</mat-table> -->
+
+<!-- <button (click)="changeDynamic()">Change</button> -->
+
+<mat-select (change)="locationChange($event.value)">
+  <mat-option *ngFor="let location of locations" [value]="location.id">{{ location.name }}</mat-option>
+</mat-select>
+
+<div *ngIf="selectedLocation !== 0">
+    <div class="year-nav">
+      <button (click)="prevYear()">&lt;</button>
+      <span>{{ currentDate.format('YYYY') }}</span>
+      <button (click)="nextYear()">&gt;</button>
+    </div>
+    
+    <div class="month-nav">
+      <button (click)="prevMonth()">&lt;</button>
+      <span class="p4">{{ currentDate.format('MMMM') }}</span>
+      <button (click)="nextMonth()">&gt;</button>
+    </div>
+
+    <mat-table #table [dataSource]="schedule">
+      <ng-container matColumnDef="capacity">
+        <mat-header-cell *matHeaderCellDef>Capacity</mat-header-cell>
+        <mat-cell *matCellDef="let room">{{ room.capacity }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="room">
+        <mat-header-cell *matHeaderCellDef>Room</mat-header-cell>
+        <mat-cell *matCellDef="let room">{{ room.roomName }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="sunday">
+        <mat-header-cell *matHeaderCellDef>Sunday</mat-header-cell>
+        <mat-cell *matCellDef="let room">{{ room.week[0] }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="monday">
+        <mat-header-cell *matHeaderCellDef>Monday</mat-header-cell>
+        <mat-cell *matCellDef="let room">{{ room.week[1] }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="tuesday">
+        <mat-header-cell *matHeaderCellDef>Tuesday</mat-header-cell>
+        <mat-cell *matCellDef="let room">{{ room.week[2] }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="wednesday">
+        <mat-header-cell *matHeaderCellDef>Wednesday</mat-header-cell>
+        <mat-cell *matCellDef="let room">{{ room.week[3] }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="thursday">
+        <mat-header-cell *matHeaderCellDef>Thursday</mat-header-cell>
+        <mat-cell *matCellDef="let room">{{ room.week[4] }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="friday">
+        <mat-header-cell *matHeaderCellDef>Friday</mat-header-cell>
+        <mat-cell *matCellDef="let room">{{ room.week[5] }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="saturday">
+        <mat-header-cell *matHeaderCellDef>Saturday</mat-header-cell>
+        <mat-cell *matCellDef="let room">{{ room.week[6] }}</mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+      <mat-row *matRowDef="let myData; columns: columnsToDisplay"></mat-row>
+    </mat-table>
+      
+    <div class="week-nav">
+      <button (click)="prevWeek()">&lt; Prev Week</button>
+      <!-- <span class="p4">{{ currentDate.format('WW') }}</span> -->
+      <button (click)="nextWeek()">Next Week &gt;</button>
+    </div>
+
+</div>
