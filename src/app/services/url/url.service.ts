@@ -48,4 +48,5 @@ export class UrlService {
   getRoomSchedulerUrl(): string {
     return environment.appRoutes.roomScheduler;
   }
+
 }

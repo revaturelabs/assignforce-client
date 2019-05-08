@@ -66,6 +66,7 @@ import { BatchFormComponent } from './components/batch-form/batch-form.component
 import { RoomSchedulerComponent } from './components/room-scheduler/room-scheduler.component';
 import { RoomAddEventFormComponent } from "./components/room-scheduler/add-event-form/add-event-form.component";
 import { MatTableModule } from '@angular/material';
+import { EventControllerService } from './services/api/event-controller/event-controller.service';
 
 @NgModule({
   declarations: [
@@ -145,6 +146,7 @@ import { MatTableModule } from '@angular/material';
     CachedObjectsService,
     BuildingControllerService,
     RoomControllerService,
+    EventControllerService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: SpringXsrfInterceptor,

@@ -141,6 +141,16 @@ export const environment = {
       find: '/',
       remove: '/'
     },
+
+    eventController: {
+      baseUrl: 'api/event',
+      create: '',
+      update: '/',
+      findAll: '',
+      find: '/',
+      remove: '/'
+    },
+
     filehandlerController: {
       baseUrl: 'api/filehandler',
       create: '',
