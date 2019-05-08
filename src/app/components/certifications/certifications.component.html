@@ -4,40 +4,12 @@
     <span class="mat-expansion-panel-header-title">Certifications</span>
     <span class="md-toolbar-spacer"></span>
     <button mat-icon-button>
-       <!-- (click)="inputCert.click()" -->
-      <!-- <input class="inputFile" #inputCert type="file" (change)="getCert($event)"> -->
-      <mat-icon matTooltip="Add Certification" class="material-icons md-toolbar-icon">add_circle</mat-icon>
+       
+      <mat-icon class="mat-icon" matTooltip="Add Certification" class="material-icons md-toolbar-icon">add_circle</mat-icon>
     </button>
   </mat-toolbar>
 </mat-toolbar-row>
 
 <mat-card-content>
-  <!--see the list of certifications and remove any that exist-->
-  <!-- <div class="md-padding" layout="column">
-    <div class="certAddBox" layout="row" *ngIf="certFile != undefined">
-      <div>
-        <mat-form-field>
-          <input matInput placeholder="Certification Name" name="certName" [(ngModel)]="certName" required>
-        </mat-form-field>
-        <br>
-        <label>{{certFile[0].name}}</label> -->
-        <!-- <button mat-button (click)="uploadCertification()" *ngIf="certName != undefined">Update</button>
-        <br>
-      </div>
-    </div> -->
-    <!-- <mat-divider *ngIf="certFile != undefined"></mat-divider>
-    <span *ngIf="trainer.certifications == null">
-      <h6>You have no certifications selected. Try adding some.</h6>
-    </span> -->
-    <!-- <mat-list>
-      <mat-list-item *ngFor="let cert of trainer.certifications">
-        <mat-icon matListIcon class="material-icons" style="color: black;">insert_drive_file</mat-icon>
-        <h3 matLine>{{cert.name}}</h3>
-        <span class="md-toolbar-spacer"></span>
-        <button mat-icon-button class="md-icon-button" (click)="removeCertification(cert)">
-          <mat-icon matTooltip="Remove Certification" class="material-icons" style="color: black">remove_circle</mat-icon>
-        </button>
-      </mat-list-item>
-    </mat-list> -->
-  <!-- </div> -->
+ 
 </mat-card-content>

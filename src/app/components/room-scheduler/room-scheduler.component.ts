@@ -8,15 +8,10 @@ import { BuildingControllerService } from '../../services/api/building-controlle
 import { RoomControllerService } from '../../services/api/room-controller/room-controller.service';
 import { Address } from '../../model/Address';
 import { Building } from '../../model/Building';
-
 import { CachedObjectsService } from '../../services/api/cache/cached-objects.service';
-
-// export interface PeriodicElement {
-//   name: string;
-//   position: number;
-//   weight: number;
-//   symbol: string;
-// }
+import { EventControllerService } from '../../services/api/event-controller/event-controller.service';
+import { MatDialog } from '@angular/material';
+import { RoomAddEventFormComponent } from './add-event-form/add-event-form.component';
 
 export interface CalendarDate {
   mDate: moment.Moment;
@@ -50,12 +45,8 @@ export class RoomSchedulerComponent implements OnInit{
   columnsToDisplay: string[] = ['capacity', 'room', 'sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
 
   currentDate = moment();
-  //dayNames = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
   weeks: CalendarDate[][] = [];
   sortedDates: CalendarDate[] = [];
-
-  room: Room = new Room(2, true, 'Room325', 32, []);
-  room2: Room = new Room(2, true, 'Room2', 32, []);
 
   @Input() selectedDates: CalendarDate[] = [];
   @Output() onSelectDate = new EventEmitter<CalendarDate>();
@@ -69,33 +60,19 @@ export class RoomSchedulerComponent implements OnInit{
   constructor (private locationService: AddressControllerService,
     private buildingService: BuildingControllerService,
     private roomService: RoomControllerService,
-    private cachingService: CachedObjectsService
+    private cachingService: CachedObjectsService,
+    private eventService: EventControllerService,
+    public dialog: MatDialog
     ) { }
 
   ngOnInit(): void {
     this.loadLocations();
     this.loadBuildings();
     this.loadRooms();
-
-    //this.generateSchedule();
+    this.loadEvents();
   }
 
-  locationChange(location) {
-    this.selectedLocation = location;
-    const buildings: Building[] = this.locationBuildings(location);
-    this.filteredRooms = [];
-    console.log(buildings);
-    for (let i = 0; i < buildings.length; i++) {
-      console.log('building id is ' + buildings[i].buildingId);
-      const rooms: Room[] = this.buildingRooms(buildings[i].buildingId);
-      for (let j = 0; j < rooms.length; j++) {
-        this.filteredRooms.push(rooms[j]);
-      }
-    }
-    this.renderEvents();
-  }
-
-  renderEvents() {
+  renderEvents(weekChange: boolean) {
     for (let i = 0; i < this.filteredRooms.length; i++) {
       let weekEvents: string[] = [];
       
@@ -103,12 +80,30 @@ export class RoomSchedulerComponent implements OnInit{
 
       weekEvents = this.thisWeekSchedule(roomEvents, this.filteredRooms[i]);
       
-      this.schedule.push({
-        capacity: this.filteredRooms[i].capacity,
-        roomName: this.filteredRooms[i].roomName,
-        week: weekEvents
-      })
+      if (weekChange) {
+          this.schedule[i].week = weekEvents;
+      } else {
+        this.schedule.push({
+          capacity: this.filteredRooms[i].capacity,
+          roomName: this.filteredRooms[i].roomName,
+          week: weekEvents
+        })
+      }
     }
+  }
+
+
+  locationChange(location) {
+  this.selectedLocation = location;
+    const buildings: Building[] = this.locationBuildings(location);
+    this.filteredRooms = [];
+    for (let i = 0; i < buildings.length; i++) {
+      const rooms: Room[] = this.buildingRooms(buildings[i].buildingId);
+      for (let j = 0; j < rooms.length; j++) {
+        this.filteredRooms.push(rooms[j]);
+      }
+    }
+    this.renderEvents(false);
   }
 
   thisWeekSchedule(roomEvents: Event[], room: Room): string[] {
@@ -118,14 +113,15 @@ export class RoomSchedulerComponent implements OnInit{
       const day = moment(firstOfWeek).add(j, 'days');
       for (let i = 0; i < roomEvents.length; i++) {
         const event: Event = roomEvents[i];
-        if (moment(day).isBetween(moment(event.startDate), moment(event.endDate))) {
-          result[i] = room.roomName;
+        if (moment(day).isSame(moment(event.startDate)) ||
+         moment(day).isSame(moment(event.endDate)) ||
+         moment(day).isBetween(moment(event.startDate), moment(event.endDate))) {
+          result[j] = event.name;
         }
       }
     }
     return result;
   }
-
 
   loadLocations() {
     this.locationService
@@ -153,6 +149,12 @@ export class RoomSchedulerComponent implements OnInit{
     this.roomService.findAll().subscribe((rooms) => {
       this.rooms = rooms;
     });
+  }
+
+  loadEvents() {
+    this.eventService.findAll().subscribe((events) => {
+      this.events = events;
+    })
   }
 
   locationBuildings(id: number) {
@@ -183,28 +185,6 @@ export class RoomSchedulerComponent implements OnInit{
       });
   }
 
-  renderRows() {
-    const event1: Event = new Event(1, new Date(2019, 3, 4), new Date(2019, 5, 10), 'Room 7392', 1);
-    const event2: Event = new Event(2, new Date(2019, 3, 4), new Date(2019, 5, 10), 'Room 3242', 2);
-    this.events.push(event1);
-    this.events.push(event2);
-  }
-
-  generateSchedule() {
-    
-  }
-
-  
-
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes.selectedDates &&
-      changes.selectedDates.currentValue &&
-      changes.selectedDates.currentValue.length > 1) {
-        this.sortedDates = _.sortBy(changes.selectedDates.currentValue, (m: CalendarDate) => m.mDate.valueOf());
-        this.generateSchedule();
-      }
-  }
-
   // Date checkers
 
   isToday(date: moment.Moment) {
@@ -229,67 +209,59 @@ export class RoomSchedulerComponent implements OnInit{
 
   prevWeek() {
     this.currentDate = moment(this.currentDate).subtract(1, 'weeks');
-    this.renderEvents();
+    this.renderEvents(true);
   }
 
   nextWeek() {
     this.currentDate = moment(this.currentDate).add(1, 'weeks');
-    this.renderEvents();
+    this.renderEvents(true);
   }
 
   prevMonth() {
     this.currentDate = moment(this.currentDate).subtract(1, 'months');
-    this.renderEvents();
+    this.renderEvents(true);
   }
 
   nextMonth() {
     this.currentDate = moment(this.currentDate).add(1, 'months');
-    this.renderEvents();
+    this.renderEvents(true);
   }
 
   firstWeek() {
     this.currentDate = moment(this.currentDate).startOf('year');
-    this.renderEvents();
+    this.renderEvents(true);
   }
 
   lastWeek() {
     this.currentDate = moment(this.currentDate).endOf('year');
-    this.renderEvents();
+    this.renderEvents(true);
   }
 
   prevYear() {
     this.currentDate = moment(this.currentDate).subtract(1, 'year');
-    this.renderEvents();
+    this.renderEvents(true);
   }
 
   nextYear() {
     this.currentDate = moment(this.currentDate).add(1, 'year');
-    this.renderEvents();
+    this.renderEvents(true);
   }
 
-  // generate the calendar grid
+  openDialog(): void {
+    const dialogRef = this.dialog.open(RoomAddEventFormComponent, {
+      width: '250px',
+      data: {
+        location: this.selectedLocation,
+        rooms: this.filteredRooms
+      }
+    });
 
-  // generateCalender() {
-  //   const dates = this.fillDates(this.currentDate);
-  //   const weeks: CalendarDate[][] = [];
-  //   while (dates.length > 0) {
-  //     weeks.push(dates.splice(0, 7));
-  //   }
-  //   this.weeks = weeks;
-  // }
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
 
-  // fillDates(currentMoment: moment.Moment) {
-  //   const firstOfMonth = moment(currentMoment).startOf('month').date();
-  //   const firstDayOfGrid = moment(currentMoment).startOf('month').subtract(firstOfMonth, 'days');
-  //   const start = firstDayOfGrid.date();
-  //   return _.range(start, start + 42)
-  //         .map((date: number): CalendarDate => {
-  //           const d = moment(firstDayOfGrid).date(date);
-  //           return {
-  //             today: this.isToday(d),
-  //             selected: this.isSelected(d),
-  //             mDate: d,
-  //           };
-  //         });
-  // }
+  cancel() {
+    this.dialog.closeAll();
+  }
 }

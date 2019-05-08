@@ -23,8 +23,6 @@
 
     </mat-expansion-panel>
 
-    <!-- Shows form changing as values inserted. For testing purposes only -->
-    <!-- <p>Form value: {{ batchForm.value | json }}</p> -->
   </mat-accordion>
 
   <!-- All Batches Panel-->
@@ -111,15 +109,9 @@
               <button *ngIf="this.auth0.userHasRole(['SVP of Technology'])" mat-icon-button (click)="editBatch(batch)">
                 <mat-icon matTooltip="Edit" matTooltipPosition="above">mode_edit</mat-icon>
               </button>
-              <!-- <button mat-icon-button (click)="cloneBatch()" [disabled]="true">
-                <mat-icon matTooltip="Clone" matTooltipPosition="above">filter_none</mat-icon>
-              </button> -->
               <button *ngIf="this.auth0.userHasRole(['SVP of Technology'])" mat-icon-button (click)="deleteBatch(batch)">
                 <mat-icon matTooltip="Delete" matTooltipPosition="above">delete</mat-icon>
               </button>
-              <!-- <button mat-icon-button>
-                <mat-icon matTooltip="Synchronize" matTooltipPosition="above">publish</mat-icon>
-              </button> -->
             </mat-cell>
           </ng-container>
 
