@@ -44,6 +44,8 @@ export class RoomSchedulerComponent implements OnInit{
   weekDate: Date;
   columnsToDisplay: string[] = ['capacity', 'room', 'sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
 
+  weekDateHeader: string[] = [];
+
   currentDate = moment();
   weeks: CalendarDate[][] = [];
   sortedDates: CalendarDate[] = [];
@@ -111,6 +113,7 @@ export class RoomSchedulerComponent implements OnInit{
     let result: string[] = ['free', 'free', 'free', 'free', 'free', 'free', 'free'];
     for (let j = 0; j < 7; j++) {
       const day = moment(firstOfWeek).add(j, 'days');
+      this.weekDateHeader[j] = day.date().toString();
       for (let i = 0; i < roomEvents.length; i++) {
         const event: Event = roomEvents[i];
         if (moment(day).isSame(moment(event.startDate)) ||

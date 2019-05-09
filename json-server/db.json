@@ -1212,6 +1212,78 @@
       "name": "Simon Batch",
       "created": "2016-01-01T14:00:00.000Z",
       "room": 157
+    },
+    {
+      "id": 15,
+      "startDate": "2019-05-11T04:00:00.000Z",
+      "endDate": "2019-05-11T04:00:00.000Z",
+      "name": "1903 Mar25 Java",
+      "created": "2019-05-09T02:41:47.246Z",
+      "room": "1701 E"
+    },
+    {
+      "id": 16,
+      "startDate": "2019-05-11T04:00:00.000Z",
+      "endDate": "2019-05-11T04:00:00.000Z",
+      "name": "1906 Jun17 Java",
+      "created": "2019-05-09T02:44:17.222Z",
+      "room": "2301 C"
+    },
+    {
+      "id": 17,
+      "startDate": "2019-05-15T04:00:00.000Z",
+      "endDate": "2019-05-17T04:00:00.000Z",
+      "name": "1903 Mar25 Java",
+      "created": "2019-05-09T02:45:58.685Z",
+      "room": "1701 E"
+    },
+    {
+      "id": 18,
+      "startDate": "2019-05-16T04:00:00.000Z",
+      "endDate": "2019-05-25T04:00:00.000Z",
+      "name": "1903 Mar25 Java",
+      "created": "2019-05-09T13:40:33.178Z",
+      "room": "1701 E"
+    },
+    {
+      "id": 19,
+      "startDate": "",
+      "endDate": "",
+      "name": "1903 Mar11 .NET",
+      "created": "2019-05-09T13:50:45.302Z",
+      "room": "1701 E"
+    },
+    {
+      "id": 20,
+      "startDate": "2019-05-31T04:00:00.000Z",
+      "endDate": "2019-05-14T04:00:00.000Z",
+      "name": "1903 Mar18 SDET",
+      "created": "2019-05-09T13:53:05.650Z",
+      "room": "1300"
+    },
+    {
+      "id": 21,
+      "startDate": "2019-05-20T04:00:00.000Z",
+      "endDate": "2019-05-24T04:00:00.000Z",
+      "name": "1903 Mar25 Java",
+      "created": "2019-05-09T13:56:07.631Z",
+      "room": "1701 E"
+    },
+    {
+      "id": 22,
+      "startDate": "2019-05-20T04:00:00.000Z",
+      "endDate": "2019-05-24T04:00:00.000Z",
+      "name": "1903 Mar25 Java",
+      "created": "2019-05-09T13:56:12.118Z",
+      "room": "1701 E"
+    },
+    {
+      "id": 23,
+      "startDate": "2019-05-20T04:00:00.000Z",
+      "endDate": "2019-05-24T04:00:00.000Z",
+      "name": "1903 Mar25 Java",
+      "created": "2019-05-09T14:00:24.359Z",
+      "room": 156
     }
   ],
   "rooms": [
@@ -1485,13 +1557,6 @@
       "building": 71,
       "unavailabilities": [],
       "capacity": 40
-    },
-    {
-      "id": 163,
-      "active": true,
-      "roomName": "Test",
-      "building": 66,
-      "unavailabilities": []
     }
   ],
   "settings": [

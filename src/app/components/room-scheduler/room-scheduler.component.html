@@ -1,4 +1,4 @@
-<mat-select (change)="locationChange($event.value)">
+<mat-select (change)="locationChange($event.value)" placeholder="Select Location">
   <mat-option *ngFor="let location of locations" [value]="location.id">{{ location.name }}</mat-option>
 </mat-select>
 
@@ -27,37 +27,37 @@
       </ng-container>
 
       <ng-container matColumnDef="sunday">
-        <mat-header-cell *matHeaderCellDef>Sunday</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef>Sunday {{ weekDateHeader[0] }}</mat-header-cell>
         <mat-cell *matCellDef="let room">{{ room.week[0] }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="monday">
-        <mat-header-cell *matHeaderCellDef>Monday</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef>Monday {{ weekDateHeader[1] }}</mat-header-cell>
         <mat-cell *matCellDef="let room">{{ room.week[1] }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="tuesday">
-        <mat-header-cell *matHeaderCellDef>Tuesday</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef>Tuesday {{ weekDateHeader[2] }}</mat-header-cell>
         <mat-cell *matCellDef="let room">{{ room.week[2] }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="wednesday">
-        <mat-header-cell *matHeaderCellDef>Wednesday</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef>Wednesday {{ weekDateHeader[3] }}</mat-header-cell>
         <mat-cell *matCellDef="let room">{{ room.week[3] }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="thursday">
-        <mat-header-cell *matHeaderCellDef>Thursday</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef>Thursday {{ weekDateHeader[4] }}</mat-header-cell>
         <mat-cell *matCellDef="let room">{{ room.week[4] }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="friday">
-        <mat-header-cell *matHeaderCellDef>Friday</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef>Friday {{ weekDateHeader[5] }}</mat-header-cell>
         <mat-cell *matCellDef="let room">{{ room.week[5] }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="saturday">
-        <mat-header-cell *matHeaderCellDef>Saturday</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef>Saturday {{ weekDateHeader[6] }}</mat-header-cell>
         <mat-cell *matCellDef="let room">{{ room.week[6] }}</mat-cell>
       </ng-container>
 
