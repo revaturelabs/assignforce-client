@@ -18,6 +18,7 @@ node_modules
 *.launch
 .settings/
 *.sublime-workspace
+.scannerwork
 
 # IDE - VSCode
 .vscode/*
@@ -35,6 +36,7 @@ npm-debug.log
 testem.log
 /typings
 /package-lock.json
+.scannerwork
 
 # e2e
 /e2e/*.js
@@ -83,6 +85,7 @@ local.properties
 .settings/ 
 .loadpath 
 .recommenders 
+.scannerwork
 
 # Eclipse Core 
 .project 
@@ -139,3 +142,6 @@ Servers/
 #two files really don't want to cooperate 
 
 JDBC/target/
+
+#testing
+/.scannerwork

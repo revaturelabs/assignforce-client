@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppRouting } from './app.routing';
-import { AuthService} from './services/auth/auth.service';
+import { AuthService } from './services/auth/auth.service';
 import { UrlService } from './services/url/url.service';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { SecurityContext } from './services/auth/security-context.service';

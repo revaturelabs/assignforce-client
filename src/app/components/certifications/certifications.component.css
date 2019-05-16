@@ -10,19 +10,9 @@
 .md-toolbar-spacer {
   flex: 1 1 auto;
 }
-/* ---------- MAT CARD ----------- */
-mat-card {
-  margin: 0;
-  padding: 0;
-}
-
-mat-card-content {
-  margin: 0;
-  padding: 16px;
-}
 
 /* ---------- MAT ICON ----------- */
-mat-icon {
+.mat-icon {
   margin: 0;
   display: inline-flex;
   vertical-align: middle;

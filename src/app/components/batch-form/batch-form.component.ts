@@ -1,3 +1,9 @@
+/**
+ *  Batch Form Component
+ * 
+ * @author Auguest Duet
+ */
+
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { CurriculumControllerService } from '../../services/api/curriculum-controller/curriculum-controller.service';
@@ -141,6 +147,13 @@ export class BatchFormComponent implements OnInit, OnChanges {
     }
   }
 
+  /**
+   * Method to setup eding for the batch
+   *
+   * @private
+   * @param {Batch} model
+   * @memberof BatchFormComponent
+   */
   private setupEditing(model: Batch) {
     this.batchFormGroup.get('curriculum').setValue(model.curriculum);
     this.batchFormGroup.get('startDate').setValue(new Date(model.startDate));
@@ -223,6 +236,13 @@ export class BatchFormComponent implements OnInit, OnChanges {
     });
   }
 
+  /**
+   * Method to filter building rooms by building id number.
+   *
+   * @private
+   * @param {number} selBuildingId
+   * @memberof BatchFormComponent
+   */
   private filterBuildRooms(selBuildingId: number){
     console.log(selBuildingId);
     console.log(this.rooms);
@@ -241,6 +261,14 @@ export class BatchFormComponent implements OnInit, OnChanges {
     }
   }
 
+  /**
+   * Method that gets the Friday for the end of the batch
+   *
+   * @private
+   * @param {Date} val
+   * @returns { Date } Friday of end of batch
+   * @memberof BatchFormComponent
+   */
   private getFridayForEndDate(val: Date) {
     const d = new Date(val);
     const day = d.getDay(),
@@ -249,6 +277,13 @@ export class BatchFormComponent implements OnInit, OnChanges {
     return new Date(friday.getTime() + 7 * this.batchSpan * 24 * 60 * 60 * 1000);
   }
 
+  /**
+   * Method to get the Monday of the Batch Start
+   *
+   * @private
+   * @returns { Date } Date object is date of Monday for Start Date
+   * @memberof BatchFormComponent
+   */
   private getMondayForStartDate() {
     const now = new Date();
     const day = now.getDay(),
@@ -257,6 +292,15 @@ export class BatchFormComponent implements OnInit, OnChanges {
     return new Date(monday.getTime() + 7 * 24 * 60 * 60 * 1000);
   }
 
+  /**
+   * Method to calculate the number of days a batch spans.
+   *
+   * @private
+   * @param {Date} start
+   * @param {Date} end
+   * @returns { Number } Number of days
+   * @memberof BatchFormComponent
+   */
   private calculateBatchSpan(start: Date, end: Date) {
     const startTime = start.getTime();
     const endTime = end.getTime();
@@ -288,6 +332,14 @@ export class BatchFormComponent implements OnInit, OnChanges {
     }
   }
 
+  /**
+   * Checks if a skill number is equal to a skill
+   *
+   * @param {number} a
+   * @param {Skill} b
+   * @returns { boolean }
+   * @memberof BatchFormComponent
+   */
   skillsComparator(a: number, b: Skill) {
     if(b) {
       return a === b.skillId;
@@ -295,12 +347,23 @@ export class BatchFormComponent implements OnInit, OnChanges {
     return false;
   }
 
+  /**
+   * Method to handle "Cancel" button click on batch form.
+   *
+   * @memberof BatchFormComponent
+   */
   onCancel() {
     this.actionCancelled.emit();
     this.batchFormGroup.reset();
     this.batchFormGroup.get('classSize').setValue(this.minBatchTarget);
   }
 
+  /**
+   * Method to handle form submission from batch form. 
+   *
+   * @param {Batch} value
+   * @memberof BatchFormComponent
+   */
   onSubmit(value: Batch) {
     this.batchSubmitted.emit(value);
     this.batchFormGroup.reset();

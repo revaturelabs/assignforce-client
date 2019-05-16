@@ -3,7 +3,6 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { AppComponent } from './app.component';
 import { AppRouting } from './app.routing';
 import { AddSkillComponent } from './components/add-skill/add-skill.component';
@@ -15,21 +14,19 @@ import { CurriculaComponent } from './components/curricula/curricula.component';
 import { CurriculumSkillsComponent } from './components/curriculum-skills/curriculum-skills.component';
 import { EditSkillComponent } from './components/edit-skill/edit-skill.component';
 import { LocationAddDialogComponent } from './components/locations/add-dialog/location-add-dialog.component';
-import {
-  LocationAddLocationDialogComponent,
-  LocationAddRoomDialogComponent,
-  LocationDeleteBuildingDialogComponent,
-  LocationDeleteLocationDialogComponent,
-  LocationDeleteRoomDialogComponent,
-  LocationEditBuildingDialogComponent,
-  LocationEditLocationDialogComponent,
-  LocationEditRoomDialogComponent,
-  LocationsComponent,
-  LocationOpenUnavailibilityDialogComponent,
-  LocationAddUnavailabilityDialogComponent,
-  LocationChangeUnavailabilityDialogComponent,
-  LocationDeleteUnavailabilityDialogComponent
-} from './components/locations/locations.component';
+import { LocationAddLocationDialogComponent } from './components/locations/location-add-location-dialog/location-add-location-dialog.component';
+import { LocationAddRoomDialogComponent } from './components/locations/location-add-room-dialog/location-add-room-dialog.component';
+import { LocationDeleteBuildingDialogComponent } from './components/locations/location-delete-building-dialog/location-delete-building-dialog.component';
+import { LocationDeleteLocationDialogComponent } from './components/locations/location-delete-location-dialog/location-delete-location-dialog.component';
+import { LocationDeleteRoomDialogComponent } from './components/locations/location-delete-room-dialog/location-delete-room-dialog.component';
+import { LocationEditBuildingDialogComponent } from './components/locations/location-edit-building-dialog/location-edit-building-dialog.component';
+import { LocationEditLocationDialogComponent } from './components/locations/location-edit-location-dialog/location-edit-location-dialog.component';
+import { LocationEditRoomDialogComponent } from './components/locations/location-edit-room-dialog/location-edit-room-dialog.component';
+import { LocationsComponent } from './components/locations/locations.component';
+import { LocationOpenUnavailibilityDialogComponent } from './components/locations/location-open-unavailibility/location-open-unavailibility.component';
+import { LocationAddUnavailabilityDialogComponent } from './components/locations/location-add-unavailability-dialog/location-add-unavailability-dialog.component';
+import { LocationChangeUnavailabilityDialogComponent } from './components/locations/location-change-unavailability-dialog/location-change-unavailability-dialog.component';
+import { LocationDeleteUnavailabilityDialogComponent } from './components/locations/location-delete-unavailability-dialog/location-delete-unavailability-dialog.component';
 import { LoginComponent } from './components/login/login.component';
 import { MenuBarComponent } from './components/menu-bar/menu-bar.component';
 import { OverviewComponent } from './components/overview/overview.component';
@@ -57,7 +54,6 @@ import { UrlService } from './services/url/url.service';
 import { BatchesTimelineComponent } from './components/batches-timeline/batches-timeline.component';
 import { BatchesTimelineFilterComponent } from './components/batches-timeline-filter/batches-timeline-filter.component';
 import { FocusControllerService } from './services/api/focus-controller/focus-controller.service';
-
 import { EditCurriculumComponent } from './components/edit-curriculum/edit-curriculum.component';
 import { FillSkillsService } from './services/api/skill-controller/fill-skills.service';
 import { AddTrainerErrorComponent } from './components/trainers/add-trainer-error/add-trainer-error.component';
@@ -67,6 +63,10 @@ import { FilehandlerService } from './services/api/filehandler-controller/fileha
 import { BuildingControllerService } from './services/api/building-controller/building-controller.service';
 import { RoomControllerService } from './services/api/room-controller/room-controller.service';
 import { BatchFormComponent } from './components/batch-form/batch-form.component';
+import { RoomSchedulerComponent } from './components/room-scheduler/room-scheduler.component';
+import { RoomAddEventFormComponent } from "./components/room-scheduler/add-event-form/add-event-form.component";
+import { MatTableModule } from '@angular/material';
+import { EventControllerService } from './services/api/event-controller/event-controller.service';
 
 @NgModule({
   declarations: [
@@ -83,7 +83,7 @@ import { BatchFormComponent } from './components/batch-form/batch-form.component
     LocationAddLocationDialogComponent,
     LocationDeleteLocationDialogComponent,
     LocationEditLocationDialogComponent,
-    LocationAddDialogComponent, // LocationAddBuildingDialogComponent,
+    LocationAddDialogComponent,
     LocationDeleteBuildingDialogComponent,
     LocationEditBuildingDialogComponent,
     LocationAddRoomDialogComponent,
@@ -108,7 +108,9 @@ import { BatchFormComponent } from './components/batch-form/batch-form.component
     LocationDeleteUnavailabilityDialogComponent,
     AddTrainerErrorComponent,
     AddCurriculumComponent,
-    BatchFormComponent
+    BatchFormComponent,
+    RoomSchedulerComponent,
+    RoomAddEventFormComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 
@@ -119,11 +121,10 @@ import { BatchFormComponent } from './components/batch-form/batch-form.component
     BrowserModule,
     AppRouting,
     BrowserAnimationsModule,
-    AppMaterialModule
-    //InMemoryWebApiModule.forRoot(InMemDbService)
-  ],
+    AppMaterialModule,
+    ],
 
-  exports: [AppMaterialModule],
+  exports: [AppMaterialModule, RoomAddEventFormComponent],
 
   providers: [
     S3CredentialService,
@@ -145,6 +146,7 @@ import { BatchFormComponent } from './components/batch-form/batch-form.component
     CachedObjectsService,
     BuildingControllerService,
     RoomControllerService,
+    EventControllerService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: SpringXsrfInterceptor,
@@ -172,7 +174,9 @@ import { BatchFormComponent } from './components/batch-form/batch-form.component
     TrainersAddComponent,
     LocationDeleteUnavailabilityDialogComponent,
     AddTrainerErrorComponent,
-    AddCurriculumComponent
+    AddCurriculumComponent,
+    RoomSchedulerComponent,
+    RoomAddEventFormComponent,
   ]
 })
 export class AppModule {}

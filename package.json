@@ -48,8 +48,10 @@
     "highcharts": "^6.1.0",
     "jest-cli": "^24.1.0",
     "json2csv": "^3.11.5",
+    "moment": "^2.24.0",
     "npm": "^6.3.0",
     "rxjs": "^5.5.2",
+    "tslint-sonarts": "^1.9.0",
     "zone.js": "^0.8.25"
   },
   "devDependencies": {
@@ -76,6 +78,8 @@
     "prettier": "^1.11.1",
     "pretty-quick": "^1.4.1",
     "protractor": "^5.4.0",
+    "sonar-scanner": "^3.1.0",
+    "sonarqube-scanner": "^2.4.0",
     "ts-node": "~3.2.0",
     "tslint": "~5.7.0",
     "typescript": "^2.6.2"

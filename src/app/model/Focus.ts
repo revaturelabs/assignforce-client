@@ -1,3 +1,7 @@
+/**
+ * Model for Focus
+ */
+
 import { Skill } from './Skill';
 
 export class Focus {
@@ -7,6 +11,15 @@ export class Focus {
   isCore: boolean;
   skills: Skill[];
 
+  /**
+   * Creates an instance of Focus.
+   * @param {number} id
+   * @param {string} name
+   * @param {boolean} active
+   * @param {boolean} core
+   * @param {Skill[]} skills
+   * @memberof Focus
+   */
   constructor(id: number, name: string, active: boolean, core: boolean, skills: Skill[]) {
     this.id = id;
     this.name = name;

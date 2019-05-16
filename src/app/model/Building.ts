@@ -1,3 +1,7 @@
+/**
+ * Model for Building
+ */
+
 import { Room } from './Room';
 import { Address } from './Address';
 
@@ -13,6 +17,15 @@ export class Building {
   
   id: number;
 
+  /**
+   * Creates an instance of Building.
+   * @param {boolean} isActive
+   * @param {number} id
+   * @param {string} buildingName
+   * @param {Room[]} rooms
+   * @param {number} address
+   * @memberof Building
+   */
   constructor(isActive: boolean, id: number, buildingName: string, rooms: Room[], address: number) {
     this.isActive = isActive;
     this.buildingId = id;

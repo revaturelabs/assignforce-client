@@ -46,10 +46,7 @@ export class BatchesTimelineFilterComponent implements OnInit {
   //Hint: I could. All the extra code.
   @ViewChild('location') location;
 
-  //Why couldn't they use the same nomenclature between this component and batch timeline...
-  //I should rename everything to somethingList so it can be consistent.
-  //Batch timeline used to just be trainers, batches, buildings, etc. Boring.
-  //You know.. Previous batch never bothered to use Focus.
+
   public curriculumData = [];
   public focusData = [];
   public locationData = [];
@@ -64,7 +61,6 @@ export class BatchesTimelineFilterComponent implements OnInit {
     this.loadCurriculumData();
     this.loadFocusData();
     this.loadLocationData();
-    this.loadBuildingData();
   }
 
   loadSettingData() {
@@ -140,38 +136,7 @@ export class BatchesTimelineFilterComponent implements OnInit {
           this.loading = false;
       });
     });
-    // this.addressControllerService.findAll().subscribe(
-    //   result => {
-    //     //Add placeholders
-    //     this.locationData = [];
-    //     this.locationData.push(this.locationAny);
-    //     this.buildingData = [];
-    //     this.buildingData.push(this.buildingAny);
-    //     //Loop through results to...
-    //     //1. Add all buildings for the location placeholder to populate the building dropdown
-    //     //2. Populate the building dropdown
-    //     //3. Populate location dropdown
-    //     for (const location of result) {
-    //       for (const building of location.buildings) {
-    //         this.locationAny.buildings.push(building);
-    //         this.buildingData.push(building);
-    //       }
-    //       this.locationData.push(location);
-    //     }
-    //     //Muh logging.
-    //     //console.log(this.buildingData);
-    //     //console.log(this.locationAny.buildings);
-    //     //console.log(this.locationData);
-
-    //     //Set filters to placeholders for dat two-way databinding
-    //     this.locationFilter = this.locationData[0];
-    //     this.buildingFilter = this.buildingData[0];
-    //     this.loading = false;
-    //   },
-    //   err => {
-    //     console.log("failed to load locations ", err);
-    //   }
-    // );
+    
   }
 
 //The basic biiiatch event emitter
@@ -188,9 +153,5 @@ onLocationSelectChange(evt: Event) {
     this.buildingData.push(building);
   }
   this.filterChangeEmitter.emit(evt);
-}
-
-loadBuildingData(){
-  this.buildingFilter;
-}
+ }
 }

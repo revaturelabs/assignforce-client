@@ -1100,92 +1100,292 @@
       ]
     }
   ],
+  "events": [
+    {
+      "id": 1,
+      "startDate": "2019-05-06T00:00:00.000Z",
+      "endDate": "2019-05-10T14:00:00.000Z",
+      "name": "Nick Batch",
+      "created": "2016-01-01T14:00:00.000Z",
+      "room": 156
+    },
+    {
+      "id": 2,
+      "startDate": "2019-05-06T00:00:00.000Z",
+      "endDate": "2019-05-10T14:00:00.000Z",
+      "name": "Steve Batch",
+      "created": "2016-01-01T14:00:00.000Z",
+      "room": 160
+    },
+    {
+      "id": 3,
+      "startDate": "2019-05-06T00:00:00.000Z",
+      "endDate": "2019-05-10T14:00:00.000Z",
+      "name": "John Batch",
+      "created": "2016-01-01T14:00:00.000Z",
+      "room": 161
+    },
+    {
+      "id": 4,
+      "startDate": "2019-05-06T00:00:00.000Z",
+      "endDate": "2019-05-10T14:00:00.000Z",
+      "name": "David Batch",
+      "created": "2016-01-01T14:00:00.000Z",
+      "room": 150
+    },
+    {
+      "id": 5,
+      "startDate": "2019-05-06T00:00:00.000Z",
+      "endDate": "2019-05-10T14:00:00.000Z",
+      "name": "Blake Batch",
+      "created": "2016-01-01T14:00:00.000Z",
+      "room": 162
+    },
+    {
+      "id": 6,
+      "startDate": "2019-05-06T00:00:00.000Z",
+      "endDate": "2019-05-10T14:00:00.000Z",
+      "name": "Jack Batch",
+      "created": "2016-01-01T14:00:00.000Z",
+      "room": 155
+    },
+    {
+      "id": 7,
+      "startDate": "2019-05-06T00:00:00.000Z",
+      "endDate": "2019-05-10T14:00:00.000Z",
+      "name": "Simon Batch",
+      "created": "2016-01-01T14:00:00.000Z",
+      "room": 157
+    },
+    {
+      "id": 8,
+      "startDate": "2019-05-13T00:00:00.000Z",
+      "endDate": "2019-05-14T14:00:00.000Z",
+      "name": "Nick Batch",
+      "created": "2016-01-01T14:00:00.000Z",
+      "room": 156
+    },
+    {
+      "id": 9,
+      "startDate": "2019-05-13T00:00:00.000Z",
+      "endDate": "2019-05-15T14:00:00.000Z",
+      "name": "Steve Batch",
+      "created": "2016-01-01T14:00:00.000Z",
+      "room": 160
+    },
+    {
+      "id": 10,
+      "startDate": "2019-05-13T00:00:00.000Z",
+      "endDate": "2019-05-16T14:00:00.000Z",
+      "name": "John Batch",
+      "created": "2016-01-01T14:00:00.000Z",
+      "room": 161
+    },
+    {
+      "id": 11,
+      "startDate": "2019-05-13T00:00:00.000Z",
+      "endDate": "2019-05-17T14:00:00.000Z",
+      "name": "David Batch",
+      "created": "2016-01-01T14:00:00.000Z",
+      "room": 150
+    },
+    {
+      "id": 12,
+      "startDate": "2019-05-13T00:00:00.000Z",
+      "endDate": "2019-05-13T14:00:00.000Z",
+      "name": "Blake Batch",
+      "created": "2016-01-01T14:00:00.000Z",
+      "room": 162
+    },
+    {
+      "id": 13,
+      "startDate": "2019-05-13T00:00:00.000Z",
+      "endDate": "2019-05-14T14:00:00.000Z",
+      "name": "Jack Batch",
+      "created": "2016-01-01T14:00:00.000Z",
+      "room": 155
+    },
+    {
+      "id": 14,
+      "startDate": "2019-05-13T00:00:00.000Z",
+      "endDate": "2019-05-15T14:00:00.000Z",
+      "name": "Simon Batch",
+      "created": "2016-01-01T14:00:00.000Z",
+      "room": 157
+    },
+    {
+      "id": 15,
+      "startDate": "2019-05-11T04:00:00.000Z",
+      "endDate": "2019-05-11T04:00:00.000Z",
+      "name": "1903 Mar25 Java",
+      "created": "2019-05-09T02:41:47.246Z",
+      "room": "1701 E"
+    },
+    {
+      "id": 16,
+      "startDate": "2019-05-11T04:00:00.000Z",
+      "endDate": "2019-05-11T04:00:00.000Z",
+      "name": "1906 Jun17 Java",
+      "created": "2019-05-09T02:44:17.222Z",
+      "room": "2301 C"
+    },
+    {
+      "id": 17,
+      "startDate": "2019-05-15T04:00:00.000Z",
+      "endDate": "2019-05-17T04:00:00.000Z",
+      "name": "1903 Mar25 Java",
+      "created": "2019-05-09T02:45:58.685Z",
+      "room": "1701 E"
+    },
+    {
+      "id": 18,
+      "startDate": "2019-05-16T04:00:00.000Z",
+      "endDate": "2019-05-25T04:00:00.000Z",
+      "name": "1903 Mar25 Java",
+      "created": "2019-05-09T13:40:33.178Z",
+      "room": "1701 E"
+    },
+    {
+      "id": 19,
+      "startDate": "",
+      "endDate": "",
+      "name": "1903 Mar11 .NET",
+      "created": "2019-05-09T13:50:45.302Z",
+      "room": "1701 E"
+    },
+    {
+      "id": 20,
+      "startDate": "2019-05-31T04:00:00.000Z",
+      "endDate": "2019-05-14T04:00:00.000Z",
+      "name": "1903 Mar18 SDET",
+      "created": "2019-05-09T13:53:05.650Z",
+      "room": "1300"
+    },
+    {
+      "id": 21,
+      "startDate": "2019-05-20T04:00:00.000Z",
+      "endDate": "2019-05-24T04:00:00.000Z",
+      "name": "1903 Mar25 Java",
+      "created": "2019-05-09T13:56:07.631Z",
+      "room": "1701 E"
+    },
+    {
+      "id": 22,
+      "startDate": "2019-05-20T04:00:00.000Z",
+      "endDate": "2019-05-24T04:00:00.000Z",
+      "name": "1903 Mar25 Java",
+      "created": "2019-05-09T13:56:12.118Z",
+      "room": "1701 E"
+    },
+    {
+      "id": 23,
+      "startDate": "2019-05-20T04:00:00.000Z",
+      "endDate": "2019-05-24T04:00:00.000Z",
+      "name": "1903 Mar25 Java",
+      "created": "2019-05-09T14:00:24.359Z",
+      "room": 156
+    }
+  ],
   "rooms": [
     {
       "id": 1,
       "roomName": "201",
       "active": true,
-      "building": 1
+      "building": 1,
+      "capacity": 25
     },
     {
       "id": 2,
       "roomName": "202",
       "active": true,
-      "building": 1
+      "building": 1,
+      "capacity": 25
     },
     {
       "id": 3,
       "roomName": "204",
       "active": true,
-      "building": 1
+      "building": 1,
+      "capacity": 30
     },
     {
       "id": 4,
       "roomName": "205",
       "active": true,
-      "building": 1
+      "building": 1,
+      "capacity": 30
     },
     {
       "id": 5,
       "roomName": "X1",
       "active": false,
-      "building": 1
+      "building": 1,
+      "capacity": 35
     },
     {
       "id": 6,
       "roomName": "207",
       "active": true,
-      "building": 1
+      "building": 1,
+      "capacity": 35
     },
     {
       "id": 100,
       "roomName": "X2",
       "active": false,
-      "building": 1
+      "building": 1,
+      "capacity": 40
     },
     {
       "id": 101,
       "roomName": "X3",
       "active": false,
-      "building": 1
+      "building": 1,
+      "capacity": 40
     },
     {
       "id": 122,
       "roomName": "209",
       "active": true,
-      "building": 1
+      "building": 1,
+      "capacity": 45
     },
     {
       "id": 102,
       "roomName": "203",
       "active": true,
-      "building": 1
+      "building": 1,
+      "capacity": 45
     },
     {
       "id": 103,
       "roomName": "206",
       "active": true,
-      "building": 1
+      "building": 1,
+      "capacity": 25
     },
     {
       "id": 142,
       "roomName": "214",
       "active": true,
-      "building": 1
+      "building": 1,
+      "capacity": 25
     },
     {
       "id": 145,
       "active": true,
       "roomName": "Chik Fil A",
       "building": 67,
-      "unavailabilities": []
+      "unavailabilities": [],
+      "capacity": 30
     },
     {
       "id": 146,
       "active": true,
       "roomName": "Subway",
       "building": 67,
-      "unavailabilities": []
+      "unavailabilities": [],
+      "capacity": 30
     },
     {
       "id": 147,
@@ -1207,7 +1407,8 @@
           "description": "Vacationing",
           "room": 147
         }
-      ]
+      ],
+      "capacity": 35
     },
     {
       "id": 148,
@@ -1229,7 +1430,8 @@
           "description": "Valid test 2",
           "room": 148
         }
-      ]
+      ],
+      "capacity": 40
     },
     {
       "id": 149,
@@ -1244,7 +1446,8 @@
           "description": "test",
           "room": 149
         }
-      ]
+      ],
+      "capacity": 40
     },
     {
       "id": 150,
@@ -1266,7 +1469,8 @@
           "description": "New Semester",
           "room": 150
         }
-      ]
+      ],
+      "capacity": 45
     },
     {
       "id": 151,
@@ -1288,55 +1492,71 @@
           "description": "New test",
           "room": 151
         }
-      ]
+      ],
+      "capacity": 25
     },
     {
       "id": 153,
       "active": true,
       "roomName": "Let's try this again",
-      "unavailabilities": []
+      "unavailabilities": [],
+      "capacity": 25
     },
     {
       "id": 155,
       "active": true,
       "roomName": "Help!",
       "building": 72,
-      "unavailabilities": []
+      "unavailabilities": [],
+      "capacity": 30
     },
     {
       "id": 156,
       "active": true,
       "roomName": "1701 E",
       "building": 66,
-      "unavailabilities": []
+      "unavailabilities": [],
+      "capacity": 30
     },
     {
       "id": 157,
       "active": true,
       "roomName": "Strawberry Fields",
       "building": 100,
-      "unavailabilities": []
+      "unavailabilities": [],
+      "capacity": 35
     },
     {
       "id": 158,
       "active": true,
       "roomName": "The President's Office",
       "building": 101,
-      "unavailabilities": []
+      "unavailabilities": [],
+      "capacity": 35
     },
     {
       "id": 160,
       "active": true,
       "roomName": "2301 C",
       "building": 66,
-      "unavailabilities": []
+      "unavailabilities": [],
+      "capacity": 40
     },
     {
       "id": 161,
       "active": true,
       "roomName": "1300",
       "building": 66,
-      "unavailabilities": []
+      "unavailabilities": [],
+      "capacity": 40
+    },
+    {
+      "id": 162,
+      "active": true,
+      "roomName": "The Hamburgler",
+      "building": 71,
+      "unavailabilities": [],
+      "capacity": 40
     }
   ],
   "settings": [
@@ -2301,6 +2521,285 @@
       "certifications": [],
       "resume": "",
       "linkedInUrl": ""
+    },
+    {
+      "id": 124,
+      "firstName": "Trevin",
+      "lastName": "Chester",
+      "isActive": true,
+      "preferredLocation": null,
+      "unavailabilities": [],
+      "email": "trevin.chester@revature.com",
+      "skills": [
+        {
+          "skillId": 1
+        },
+        {
+          "skillId": 2
+        },
+        {
+          "skillId": 3
+        },
+        {
+          "skillId": 4
+        },
+        {
+          "skillId": 25
+        },
+        {
+          "skillId": 48
+        },
+        {
+          "skillId": 49
+        },
+        {
+          "skillId": 50
+        },
+        {
+          "skillId": 51
+        },
+        {
+          "skillId": 52
+        },
+        {
+          "skillId": 54
+        },
+        {
+          "skillId": 55
+        },
+        {
+          "skillId": 56
+        },
+        {
+          "skillId": 57
+        },
+        {
+          "skillId": 59,
+          "skillName": "ASP.NET MVC",
+          "isActive": true
+        },
+        {
+          "skillId": 60,
+          "skillName": "ASP.NET WEB API",
+          "isActive": true
+        },
+        {
+          "skillId": 58,
+          "skillName": "C#",
+          "isActive": true
+        },
+        {
+          "skillId": 66,
+          "skillName": "ADO.NET",
+          "isActive": true
+        },
+        {
+          "skillId": 62,
+          "skillName": "MSTest",
+          "isActive": true
+        },
+        {
+          "skillId": 65,
+          "skillName": "Entity Framework",
+          "isActive": true
+        },
+        {
+          "skillId": 63,
+          "skillName": "xUnit",
+          "isActive": true
+        },
+        {
+          "skillId": 64,
+          "skillName": "NLog",
+          "isActive": true
+        },
+        {
+          "skillId": 61,
+          "skillName": "IIS",
+          "isActive": true
+        },
+        {
+          "skillId": 46,
+          "skillName": "Core .NET",
+          "isActive": true
+        },
+        {
+          "skillId": 47
+        },
+        {
+          "skillId": 68
+        },
+        {
+          "skillId": 69
+        },
+        {
+          "skillId": 5
+        },
+        {
+          "skillId": 70
+        },
+        {
+          "skillId": 71
+        },
+        {
+          "skillId": 72
+        },
+        {
+          "skillId": 2,
+          "skillName": "JUnit",
+          "isActive": true
+        },
+        {
+          "skillId": 1,
+          "skillName": "Core Java",
+          "isActive": true
+        },
+        {
+          "skillId": 2,
+          "skillName": "JUnit",
+          "isActive": true
+        },
+        {
+          "skillId": 1,
+          "skillName": "Core Java",
+          "isActive": true
+        },
+        {
+          "skillId": 1,
+          "skillName": "Core Java",
+          "isActive": true
+        }
+      ],
+      "certifications": [],
+      "resume": "",
+      "linkedInUrl": ""
+    },
+    {
+      "id": 125,
+      "firstName": "Khang",
+      "lastName": "Khang",
+      "isActive": true,
+      "preferredLocation": null,
+      "unavailabilities": [],
+      "email": "Kahng.Khang@Khang.kom",
+      "skills": [
+        {
+          "skillId": 1
+        },
+        {
+          "skillId": 2
+        },
+        {
+          "skillId": 3
+        },
+        {
+          "skillId": 4
+        },
+        {
+          "skillId": 25
+        },
+        {
+          "skillId": 48
+        },
+        {
+          "skillId": 49
+        },
+        {
+          "skillId": 50
+        },
+        {
+          "skillId": 51
+        },
+        {
+          "skillId": 52
+        },
+        {
+          "skillId": 54
+        },
+        {
+          "skillId": 55
+        },
+        {
+          "skillId": 56
+        },
+        {
+          "skillId": 57
+        },
+        {
+          "skillId": 59,
+          "skillName": "ASP.NET MVC",
+          "isActive": true
+        },
+        {
+          "skillId": 60,
+          "skillName": "ASP.NET WEB API",
+          "isActive": true
+        },
+        {
+          "skillId": 58,
+          "skillName": "C#",
+          "isActive": true
+        },
+        {
+          "skillId": 66,
+          "skillName": "ADO.NET",
+          "isActive": true
+        },
+        {
+          "skillId": 62,
+          "skillName": "MSTest",
+          "isActive": true
+        },
+        {
+          "skillId": 65,
+          "skillName": "Entity Framework",
+          "isActive": true
+        },
+        {
+          "skillId": 63,
+          "skillName": "xUnit",
+          "isActive": true
+        },
+        {
+          "skillId": 64,
+          "skillName": "NLog",
+          "isActive": true
+        },
+        {
+          "skillId": 61,
+          "skillName": "IIS",
+          "isActive": true
+        },
+        {
+          "skillId": 46,
+          "skillName": "Core .NET",
+          "isActive": true
+        },
+        {
+          "skillId": 47
+        },
+        {
+          "skillId": 68
+        },
+        {
+          "skillId": 69
+        },
+        {
+          "skillId": 5
+        },
+        {
+          "skillId": 70
+        },
+        {
+          "skillId": 71
+        },
+        {
+          "skillId": 72
+        }
+      ],
+      "certifications": [],
+      "resume": "",
+      "linkedInUrl": ""
     }
   ],
   "unavailables": [
@@ -2330,6 +2829,13 @@
       "endDate": "2019-06-07T04:00:00.000Z",
       "description": "Batch",
       "room": 156
+    },
+    {
+      "id": 15,
+      "startDate": "2019-04-23T20:30:48.330Z",
+      "endDate": "2019-04-30T04:00:00.000Z",
+      "description": "test",
+      "room": 162
     }
   ]
 }

@@ -13,7 +13,8 @@ export const environment = {
     profile: 'profile',
     reports: 'reports',
     settings: 'settings',
-    callback: 'callback'
+    callback: 'callback',
+    roomScheduler: 'room-scheduler'
   },
 
   security_config: {
@@ -63,6 +64,15 @@ export const environment = {
 
     locationController: {
       baseUrl: 'http://localhost:3000/addresses',
+      create: '',
+      update: '/',
+      findAll: '',
+      find: '/',
+      remove: '/'
+    },
+
+    eventController: {
+      baseUrl: 'http://localhost:3000/events',
       create: '',
       update: '/',
       findAll: '',

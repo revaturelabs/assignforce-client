@@ -21,7 +21,8 @@ export const environment = {
     profile: 'profile',
     reports: 'reports',
     settings: 'settings',
-    callback: 'callback'
+    callback: 'callback',
+    roomScheduler: 'room-scheduler'
   },
 
   auth0: {
@@ -71,6 +72,15 @@ export const environment = {
 
     locationController: {
       baseUrl: 'api/location',
+      create: '',
+      update: '/',
+      findAll: '',
+      find: '/',
+      remove: '/'
+    },
+
+    eventController: {
+      baseUrl: 'api/event',
       create: '',
       update: '/',
       findAll: '',
@@ -140,6 +150,7 @@ export const environment = {
       find: '/',
       remove: '/'
     },
+
     filehandlerController: {
       baseUrl: 'api/filehandler',
       create: '',

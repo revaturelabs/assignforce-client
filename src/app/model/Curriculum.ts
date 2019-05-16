@@ -1,3 +1,7 @@
+/**
+ * Model for Curriculum
+ */
+
 import { Skill } from './Skill';
 
 export class Curriculum {
@@ -7,6 +11,15 @@ export class Curriculum {
   isCore: boolean;
   skills: Skill[];
 
+  /**
+   * Creates an instance of Curriculum.
+   * @param {number} id
+   * @param {string} name
+   * @param {boolean} active
+   * @param {boolean} core
+   * @param {Skill[]} skills
+   * @memberof Curriculum
+   */
   constructor(id: number, name: string, active: boolean, core: boolean, skills: Skill[]) {
     this.id = id;
     this.name = name;
