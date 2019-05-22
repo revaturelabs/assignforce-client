@@ -18,7 +18,8 @@
     "precommit": "run-s format:fix lint test:once",
     "format:check": "prettier --config ./.prettierrc --list-different \"src/{app,environments,assets}/**/*{.ts,.js,.json,.css,.scss}\"",
     "e2e": "ng e2e",
-    "json-server": "json-server --watch ./json-server/db.json --routes ./json-server/routes.json"
+    "json-server": "json-server --watch ./json-server/db.json --routes ./json-server/routes.json",
+    "sonar-scanner": "sonar-scanner"
   },
   "private": true,
   "dependencies": {
