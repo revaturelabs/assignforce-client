@@ -22,7 +22,7 @@ export class BatchControllerService {
       location: batch.location ? batch.location : null,
       building: batch.building ? batch.building : null,
       room: batch.room ? batch.room : null,
-      classSize: batch.classSize ? batch.classSize : null
+      classSize: batch.size ? batch.size : null
     });
   }
   public update(batch: Batch): Observable<Batch> {
@@ -34,7 +34,7 @@ export class BatchControllerService {
       curriculum: batch.curriculum,
       trainer: batch.trainer ? batch.trainer : null,
       cotrainer: batch.cotrainer ? batch.cotrainer : null,
-      classSize: batch.classSize ? batch.classSize : null,
+      classSize: batch.size ? batch.size : null,
       skills: batch.skills,
       location: batch.location,
       building: batch.building ? batch.building : null,

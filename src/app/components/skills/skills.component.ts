@@ -61,7 +61,7 @@ export class SkillsComponent implements OnInit, OnChanges {
     }
 
     this.trainer.skills.forEach((tSkill, ind) => {
-      skills[ind] = this.allSkills.filter(skill => skill.skillId === tSkill.skillId)[0];
+      skills[ind] = this.allSkills.filter(skill => skill.id === tSkill.id)[0];
     });
     return skills;
   }
@@ -76,8 +76,8 @@ export class SkillsComponent implements OnInit, OnChanges {
 
   // add a skill to the current trainer
   addSkill(skill) {
-    if (!this.trainer.skills.some(tSkill => skill.skillId === tSkill.skillId)) {
-      this.trainer.skills.push(<any>{ skillId: skill.skillId });
+    if (!this.trainer.skills.some(tSkill => skill.id === tSkill.id)) {
+      this.trainer.skills.push(<any>{ skillId: skill.id });
     } else {
       this.removeSkill(skill)
     }
@@ -85,7 +85,7 @@ export class SkillsComponent implements OnInit, OnChanges {
 
   // remove a trainer skill on the bottom
   removeSkill(skill) {
-    this.trainer.skills = this.trainer.skills.filter(tSkill => skill.skillId !== tSkill.skillId);
+    this.trainer.skills = this.trainer.skills.filter(tSkill => skill.id !== tSkill.id);
   }
 
   // grab all the skills and create a skill list
@@ -111,6 +111,6 @@ export class SkillsComponent implements OnInit, OnChanges {
     }
   }
   compareObjects(o1: any, o2: any): boolean {
-    return o1.skillId === o2.skillId;
+    return o1.id === o2.id;
   }
 }

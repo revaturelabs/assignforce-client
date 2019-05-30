@@ -22,8 +22,8 @@
                 <span class="core-skills-label">Skills: </span>
                 <span *ngIf="core.skills.length < 1">none</span>
                 <span *ngFor="let skill of curriculumSkills(core); last as last">
-                  <span *ngIf="!last" class="core-skills">{{skill.skillName}}, </span>
-                  <span *ngIf="last" class="core-skills">{{skill.skillName}}</span>
+                  <span *ngIf="!last" class="core-skills">{{skill.name}}, </span>
+                  <span *ngIf="last" class="core-skills">{{skill.name}}</span>
                 </span>
                 <br><br><br>
               </div>

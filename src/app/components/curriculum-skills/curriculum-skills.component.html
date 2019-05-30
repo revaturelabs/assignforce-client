@@ -17,7 +17,7 @@
           <ng-container *ngFor="let skill of skillData; last as last">
           <mat-list-item class="item-detail" *ngIf="skill.isActive">
             <div>
-              <h3 mat-line class="skill-name">{{skill.skillName}}</h3>
+              <h3 mat-line class="skill-name">{{skill.name}}</h3>
             </div>
             <span class="fill-space"></span>
             <button mat-icon-button class="edit-button button-orange" *ngIf="this.auth0.userHasRole(['SVP of Technology'])" (click)="openEditSkillDialog(skill)">

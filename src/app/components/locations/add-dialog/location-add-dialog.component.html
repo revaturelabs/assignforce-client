@@ -1,7 +1,7 @@
 <h2 mat-dialog-title>Add {{ addType | titlecase }}</h2>
 <div mat-dialog-content>
     <mat-form-field class="update-form" style="width: 100%">
-        <input matInput tabindex="1" [(ngModel)]="typeContent.buildingName" [placeholder]="(addType | titlecase) + ' Name'">
+        <input matInput tabindex="1" [(ngModel)]="typeContent.name" [placeholder]="(addType | titlecase) + ' Name'">
     </mat-form-field>
     <div *ngIf="addType === 'location'">
         <mat-form-field class="update-form" style="width: 100%">

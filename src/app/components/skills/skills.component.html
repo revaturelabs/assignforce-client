@@ -26,7 +26,7 @@
         <mat-select class="revDark" multiple placeholder="Select Skill" [compareWith]="compareObjects" [ngModel]="trainer.skills">
           <mat-optgroup class="revDark">
             <mat-option class="revDark" *ngFor="let skill of allSkills" (click)="addSkill(skill)" [value]="skill">
-              <span class="revDark">{{skill.skillName}}</span>
+              <span class="revDark">{{skill.name}}</span>
             </mat-option>
           </mat-optgroup>
         </mat-select>
@@ -37,7 +37,7 @@
         <button [disabled]="lockSkills" mat-button class="md-list-item" *ngFor="let skill of trainerSkills()" (click)="removeSkill(skill)">
           <mat-icon class="material-icons">stars</mat-icon>
           <span class="revDark">
-              <h5>{{skill?.skillName}}</h5>
+              <h5>{{skill?.name}}</h5>
           </span>
         </button>
       </mat-list>

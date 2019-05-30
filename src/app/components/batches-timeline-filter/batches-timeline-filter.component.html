@@ -35,7 +35,7 @@
         <mat-label>Building</mat-label>
         <mat-select id="building" name="building" (change)="onFilterChange($event)" [(ngModel)]="buildingFilter">
           <mat-option *ngFor="let building of buildingData" [value]="building">
-            {{building.buildingName}}
+            {{building.name}}
           </mat-option>
         </mat-select>
       </mat-form-field>
