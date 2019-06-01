@@ -13,6 +13,7 @@ export const environment = {
   //routers
   appRoutes: {
     login: 'login',
+    project3: 'project3',
     overview: 'overview',
     batches: 'batches',
     locations: 'locations',
@@ -144,6 +145,15 @@ export const environment = {
 
     unavailableController: {
       baseUrl: 'api/unavailable',
+      create: '',
+      update: '/',
+      findAll: '',
+      find: '/',
+      remove: '/'
+    },
+
+    project3Controller: {
+      baseUrl: 'api/project3',
       create: '',
       update: '/',
       findAll: '',

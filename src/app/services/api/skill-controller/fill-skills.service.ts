@@ -26,7 +26,7 @@ export class FillSkillsService {
   
   This service can be used to populate objs. This is done by first getting the 
   list of skills, and then getting the list of objects. These are both done 
-  through observabes, and then a filter is run to replace skill arrays that only 
+  through observables, and then a filter is run to replace skill arrays that only 
   have skill ids to skill arrays with all information included.
 
   serviceType takes in the type of service to use

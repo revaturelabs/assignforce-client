@@ -14,7 +14,8 @@ export const environment = {
     reports: 'reports',
     settings: 'settings',
     callback: 'callback',
-    roomScheduler: 'room-scheduler'
+    roomScheduler: 'room-scheduler',
+    project3: 'project3'
   },
 
   security_config: {
@@ -144,6 +145,14 @@ export const environment = {
     },
     filehandlerController: {
       baseUrl: 'api/filehandler',
+      create: '',
+      update: '/',
+      findAll: '',
+      find: '/',
+      remove: '/'
+    },
+    project3Controller: {
+      baseUrl: 'api/project3',
       create: '',
       update: '/',
       findAll: '',

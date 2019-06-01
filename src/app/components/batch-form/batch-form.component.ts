@@ -22,6 +22,8 @@ import { BuildingControllerService } from '../../services/api/building-controlle
 import { RoomControllerService } from '../../services/api/room-controller/room-controller.service';
 import { Batch } from '../../model/Batch';
 import { BatchMode } from '../batches/batches.component';
+import { Project3 } from '../../model/Project3';
+import { Project3ControllerService } from '../../services/api/project3-controller/project3-controller.service'
 
 @Component({
   selector: 'app-batch-form',
@@ -47,6 +49,7 @@ export class BatchFormComponent implements OnInit, OnChanges {
   filteredRooms: Room[] = new Array<Room>();
   allSkills: Skill[] = new Array<Skill>();
   filteredSkills: {skillId: number}[] = new Array<{skillId: number}>();
+  project3s: Project3[] = new Array<Project3>();
 
 
   //state trackers
@@ -66,7 +69,8 @@ export class BatchFormComponent implements OnInit, OnChanges {
     private trainerService: TrainerControllerService,
     private locationService: AddressControllerService,
     private buildingService: BuildingControllerService,
-    private roomService: RoomControllerService) { 
+    private roomService: RoomControllerService,
+    private project3Service: Project3ControllerService) { 
   }
 
   ngOnInit() {
@@ -123,6 +127,10 @@ export class BatchFormComponent implements OnInit, OnChanges {
       room: new FormControl({
         value: null,
         disabled: this.isDataLoading
+      }),
+      project3: new FormControl({
+        value: null,
+        disabled: this.isDataLoading
       })
     });
 
@@ -148,7 +156,7 @@ export class BatchFormComponent implements OnInit, OnChanges {
   }
 
   /**
-   * Method to setup eding for the batch
+   * Method to setup editing for the batch
    *
    * @private
    * @param {Batch} model
@@ -165,6 +173,7 @@ export class BatchFormComponent implements OnInit, OnChanges {
     this.batchFormGroup.get('location').setValue(model.location);
     this.batchFormGroup.get('building').setValue(model.building);
     this.batchFormGroup.get('room').setValue(model.room);
+    this.batchFormGroup.get('project3').setValue(model.project3);
   }
 
   private async loadLocations() {
@@ -187,6 +196,10 @@ export class BatchFormComponent implements OnInit, OnChanges {
 
   private async loadSkills() {
     this.allSkills = await this.skillsService.findAll().toPromise();
+  }
+
+  private async loadProject3s() {
+    this.project3s = await this.project3Service.findAll().toPromise();
   }
 
   private async loadSettings() {

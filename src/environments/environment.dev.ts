@@ -23,6 +23,7 @@ export const environment = {
       settings: 'settings',
       callback: 'callback',
       roomScheduler: 'roomScheduler',
+      project3: 'project3',
     },
   
     auth0: {
@@ -126,6 +127,15 @@ export const environment = {
   
       trainerController: {
         baseUrl: `${apiBaseUrl}/trainer-service`,
+        create: '',
+        update: '/',
+        findAll: '',
+        find: '/',
+        remove: '/'
+      },
+
+      project3Controller: {
+        baseUrl: `${apiBaseUrl}/project3-service`,
         create: '',
         update: '/',
         findAll: '',
