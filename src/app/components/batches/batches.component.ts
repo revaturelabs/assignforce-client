@@ -76,11 +76,11 @@ export class BatchesComponent implements OnInit, AfterViewInit {
   batchColumns = [
     "name",
     "curriculum",
-    "trainers",
+    "trainer",
     "location",
     "building",
     "room",
-    "size",
+    "classSize",
     "startDate",
     "endDate",
     "Icons"
@@ -217,6 +217,19 @@ export class BatchesComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
+
+    this.dataSource.sortingDataAccessor = (item, property) => {
+      switch (property) {
+        // Sort by trainer name instead of id
+        case "trainer":
+          const trainer = this.entityLookup("trainers", item.trainer);
+          if (typeof trainer !== "undefined") {
+            return trainer.firstName;
+          }
+          break;
+        default: return item[property];
+      }
+    };
   }
 
   entityLookup(entityContainerName: string, entityId: number) {
