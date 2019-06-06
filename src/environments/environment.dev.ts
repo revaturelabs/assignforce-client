@@ -2,13 +2,13 @@
 // The build system defaults to the dev environment which uses `environment.ts`, but if you do
 // `ng build --env=prod` then `environment.prod.ts` will be used instead.
 // The list of which env maps to which file can be found in `.angular-cli.json`.
-const apiBaseUrl = 'http://dev.assignforce.revaturelabs.com/api';
+const apiBaseUrl = 'https://dev.assignforce.revaturelabs.com/api';
 
 export const environment = {
     production: false,
     name: 'dev',
 
-    baseUrl: 'http://dev.assignforce.revaturelabs.com',
+    baseUrl: 'https://dev.assignforce.revaturelabs.com',
 
     // routers
     appRoutes: {
@@ -32,7 +32,7 @@ export const environment = {
       domain: 'revature.auth0.com',
       responseType: 'token id_token',
       audience: 'hydra-gateway',
-      redirectUri: 'http://dev.assignforce.revaturelabs.com/callback',
+      redirectUri: 'https://dev.assignforce.revaturelabs.com/callback',
       scope: 'openid profile'
     },
 
