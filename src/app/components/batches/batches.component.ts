@@ -23,6 +23,8 @@ import { FillSkillsService } from "../../services/api/skill-controller/fill-skil
 import { Unavailability } from "../../model/Unavailability";
 import { BuildingControllerService } from "../../services/api/building-controller/building-controller.service";
 import { RoomControllerService } from "../../services/api/room-controller/room-controller.service";
+import { Project3ControllerService } from "../../services/api/project3-controller/project3-controller.service";
+import { Project3 } from "../../model/Project3";
 
 export enum BatchMode {
   Create = 1,
@@ -48,6 +50,7 @@ export class BatchesComponent implements OnInit, AfterViewInit {
   rooms: Room[] = [];
   skills: Skill[] = [];
   buildingRooms: Room[] = [];
+  project3s: Project3[] = [];
 
   selectedLocation: Address;
   selectedBuilding: Building;
@@ -83,6 +86,7 @@ export class BatchesComponent implements OnInit, AfterViewInit {
     "classSize",
     "startDate",
     "endDate",
+    "project3",
     "Icons"
   ];
 
@@ -107,7 +111,8 @@ export class BatchesComponent implements OnInit, AfterViewInit {
     private fillSkills: FillSkillsService,
     private settingService: SettingControllerService,
     private buildingService: BuildingControllerService,
-    private roomService: RoomControllerService
+    private roomService: RoomControllerService,
+    private project3Service: Project3ControllerService,
   ) {}
 
   @ViewChild(MatSort)
@@ -152,6 +157,10 @@ export class BatchesComponent implements OnInit, AfterViewInit {
           this.rooms.sort((a, b) => a.id - b.id);
         });
       });
+    });
+
+    this.project3Service.findAll().subscribe((resp) => {
+      this.project3s = resp;
     });
 
     if (this.trainers[0]) {
