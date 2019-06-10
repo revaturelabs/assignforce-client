@@ -45,8 +45,8 @@
     {
       "id": 1,
       "name": "1903 Mar25 Java",
-      "startDate": 1553518800000,
-      "endDate": 1559336400000,
+      "startDate": "2019-03-26T13:00:00.000Z",
+      "endDate": "2019-06-01T21:00:00.000Z",
       "curriculum": 1,
       "trainer": 1,
       "cotrainer": 2,
@@ -2836,6 +2836,20 @@
       "endDate": "2019-04-30T04:00:00.000Z",
       "description": "test",
       "room": 162
+    }
+  ],
+  "project3s": [
+    {
+      "id": 1,
+      "name": "Assign Force",
+      "description": "Assign batches to trainers and rooms",
+      "isActive": true
+    },
+    {
+      "id": 2,
+      "name": "Project Force",
+      "description": "Manage projects creating tasks and assigning them to teams",
+      "isActive": true
     }
   ]
 }

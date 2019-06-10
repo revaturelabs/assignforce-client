@@ -69,6 +69,8 @@ import { MatTableModule } from '@angular/material';
 import { EventControllerService } from './services/api/event-controller/event-controller.service';
 import { Project3sComponent } from './components/project3s/project3s.component';
 import { Project3ControllerService } from './services/api/project3-controller/project3-controller.service';
+import { ProjectsAddComponent } from './components/project3s/projects-add/projects-add.component';
+import { ProjectItemComponent } from './components/project3s/project-item/project-item.component';
 
 @NgModule({
   declarations: [
@@ -113,7 +115,9 @@ import { Project3ControllerService } from './services/api/project3-controller/pr
     BatchFormComponent,
     RoomSchedulerComponent,
     RoomAddEventFormComponent,
-    Project3sComponent
+    Project3sComponent,
+    ProjectsAddComponent,
+    ProjectItemComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 

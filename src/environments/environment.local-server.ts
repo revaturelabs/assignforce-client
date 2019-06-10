@@ -152,7 +152,7 @@ export const environment = {
       remove: '/'
     },
     project3Controller: {
-      baseUrl: 'api/project3',
+      baseUrl: 'http://localhost:3000/project3s',
       create: '',
       update: '/',
       findAll: '',

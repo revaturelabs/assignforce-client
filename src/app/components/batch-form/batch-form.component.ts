@@ -141,6 +141,7 @@ export class BatchFormComponent implements OnInit, OnChanges {
     this.loadLocations();
     this.loadSkills();
     this.loadSettings();
+    this.loadProject3s();
     this.isDataLoading = false;
 
     //subscribe to form group changes

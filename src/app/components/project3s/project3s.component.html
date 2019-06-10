@@ -1,3 +1,34 @@
-<p>
-  project3s works!
-</p>
+<div class="container-projects">
+  <mat-toolbar-row>
+    <mat-toolbar class="toolbar-projects">
+      <span class="mat-expansion-panel-header-title">Projects</span>
+      <span class="fill-space"></span>
+      <button mat-icon-button *ngIf="!isLoanding && this.auth0.userHasRole(['SVP of Technology'])" (click)="addProject()" matTooltip="Add Project">
+        <mat-icon>add_circle</mat-icon>
+      </button>
+    </mat-toolbar>
+  </mat-toolbar-row>
+  <!-- show a lost of all the projects -->
+  <mat-card>
+    <mat-card-content class="md-padding" *ngIf="projects != undefined && canLoad">
+      <div *ngFor="let project of projects">
+        <mat-list *ngIf="project.isActive">
+          <app-project-item [project]="project"></app-project-item>
+        </mat-list>
+      </div>
+    </mat-card-content>
+    <!--displays a loading circle if projects is undefined-->
+    <div class="center">
+      <div fxFlex="100"> &nbsp;</div>
+      <mat-progress-spinner *ngIf="isLoanding && projects.length < 1" mode="indeterminate"></mat-progress-spinner>
+      <h4 *ngIf="!isLoading && projects.length < 1">No Active Projects.</h4>
+      <div fxFlex="100"> &nbsp;</div>
+    </div>
+  </mat-card>
+</div>
+
+<br/>
+
+<!-- <mat-card>
+  <app-core [isCore]="true"></app-core>
+</mat-card> -->

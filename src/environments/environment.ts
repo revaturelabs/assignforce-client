@@ -13,7 +13,6 @@ export const environment = {
   //routers
   appRoutes: {
     login: 'login',
-    project3: 'project3',
     overview: 'overview',
     batches: 'batches',
     locations: 'locations',
@@ -23,7 +22,8 @@ export const environment = {
     reports: 'reports',
     settings: 'settings',
     callback: 'callback',
-    roomScheduler: 'room-scheduler'
+    roomScheduler: 'room-scheduler',
+    project3: 'project3'
   },
 
   auth0: {
