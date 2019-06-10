@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Project3 } from '../../../model/Project3';
 import { Project3ControllerService } from '../../../services/api/project3-controller/project3-controller.service';
 import { AuthService } from '../../../services/auth/auth.service';
@@ -10,6 +10,7 @@ import { CachedObjectsService } from '../../../services/api/cache/cached-objects
   styleUrls: ['./project-item.component.css']
 })
 export class ProjectItemComponent implements OnInit {
+  @Input()
   project: Project3;
   isManager: boolean;
   
