@@ -66,7 +66,7 @@ describe('CurriculumSkillsComponent', () => {
 
   it('should contain the skill name', () => {
   const compiled = fixture.debugElement.nativeElement;
-  expect(compiled.querySelector('.skill-name').textContent).toContain(component.skillData[0].skillName);
+  expect(compiled.querySelector('.skill-name').textContent).toContain(component.skillData[0].name);
   });
 
 

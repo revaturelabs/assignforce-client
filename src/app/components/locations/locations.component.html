@@ -33,7 +33,7 @@
                   <mat-expansion-panel-header>
                     <mat-panel-title>
                       <mat-icon mat-list-icon svgIcon="building"></mat-icon>
-                      <h4 mat-line>{{building.buildingName}}</h4>
+                      <h4 mat-line>{{building.name}}</h4>
                     </mat-panel-title>
                     <mat-panel-description>
                       <span class="fill-space"></span>
@@ -46,10 +46,10 @@
                   </mat-expansion-panel-header>
 
                   <div style="padding-top: .5%">
-                    <mat-list *ngFor="let room of buildingRooms(building.buildingId)">
+                    <mat-list *ngFor="let room of buildingRooms(building.id)">
                       <mat-list-item>
                         <h4 mat-line>
-                          <mat-icon style="color: black">store</mat-icon>{{room.roomName}}</h4>
+                          <mat-icon style="color: black">store</mat-icon>{{room.name}}</h4>
                         <span class="fill-space"></span>
                         <mat-icon *ngIf="auth0.userHasRole(['SVP of Technology'])" matTooltip="Remove Room" class="material-icons" style="color: black; cursor: pointer" (click)="openDeleteRoomDialog($event, location, building, room)">
                           remove_circle_outline</mat-icon>

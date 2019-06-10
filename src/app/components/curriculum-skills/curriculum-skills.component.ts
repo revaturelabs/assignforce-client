@@ -59,7 +59,7 @@ export class CurriculumSkillsComponent implements OnInit {
   }
 
   confirmRemoveSkill(skill: Skill) {
-    if (confirm('Are you sure you want to remove ' + skill.skillName + '?')) {
+    if (confirm('Are you sure you want to remove ' + skill.name + '?')) {
       skill.isActive = false;
       this.skillControllerService
         .update(skill)

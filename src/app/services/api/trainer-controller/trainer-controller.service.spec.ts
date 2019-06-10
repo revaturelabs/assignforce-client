@@ -257,7 +257,7 @@ describe('CRUD and REST testing',() => {
   //   expect(req.request.method).toBe('GET');
   //
   //   req.flush({
-  //     skillId:203
+  //     id:203
   //   });
   //
   //   httpMock.verify();

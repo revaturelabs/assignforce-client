@@ -1,10 +1,10 @@
 /**
  *  Batch Form Component
- * 
+ *
  * @author Auguest Duet
  */
 
-import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit , Output, EventEmitter, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { CurriculumControllerService } from '../../services/api/curriculum-controller/curriculum-controller.service';
 import { Curriculum } from '../../model/Curriculum';
@@ -46,7 +46,7 @@ export class BatchFormComponent implements OnInit, OnChanges {
   rooms: Room[] = new Array<Room>();
   filteredRooms: Room[] = new Array<Room>();
   allSkills: Skill[] = new Array<Skill>();
-  filteredSkills: {skillId: number}[] = new Array<{skillId: number}>();
+  filteredSkills: {id: number}[] = new Array<{id: number}>();
 
 
   //state trackers
@@ -108,7 +108,7 @@ export class BatchFormComponent implements OnInit, OnChanges {
         value: null,
         disabled: this.isDataLoading
       }),
-      classSize: new FormControl({
+      size: new FormControl({
         value: this.minBatchTarget,
         disabled: this.isDataLoading
       }),
@@ -161,7 +161,7 @@ export class BatchFormComponent implements OnInit, OnChanges {
     this.batchFormGroup.get('name').setValue(model.name);
     this.batchFormGroup.get('trainer').setValue(model.trainer);
     this.batchFormGroup.get('cotrainer').setValue(model.cotrainer);
-    this.batchFormGroup.get('classSize').setValue(model.classSize || this.minBatchTarget);
+    this.batchFormGroup.get('size').setValue(model.size || this.minBatchTarget);
     this.batchFormGroup.get('location').setValue(model.location);
     this.batchFormGroup.get('building').setValue(model.building);
     this.batchFormGroup.get('room').setValue(model.room);
@@ -195,7 +195,7 @@ export class BatchFormComponent implements OnInit, OnChanges {
     this.nameTempString = settings.defaultNamePattern;
     this.minBatchTarget = settings.minBatchSize;
     this.maxBatchTarget = settings.maxBatchSize;
-    this.batchFormGroup.get('classSize').setValue(this.minBatchTarget);
+    this.batchFormGroup.get('size').setValue(this.minBatchTarget);
   }
 
   private onFormChanges() {
@@ -256,7 +256,7 @@ export class BatchFormComponent implements OnInit, OnChanges {
     const selectedCurriculum = this.curricula.find(curr => curr.id === selCurrId)
     if(selectedCurriculum) {
       this.filteredSkills = this.allSkills.filter(skill => {
-        return selectedCurriculum.skills.find(cSkill => skill.skillId === cSkill.skillId)
+        return selectedCurriculum.skills.find(cSkill => skill.id === cSkill.id)
       });
     }
   }
@@ -342,7 +342,7 @@ export class BatchFormComponent implements OnInit, OnChanges {
    */
   skillsComparator(a: number, b: Skill) {
     if(b) {
-      return a === b.skillId;
+      return a === b.id;
     }
     return false;
   }
@@ -355,7 +355,7 @@ export class BatchFormComponent implements OnInit, OnChanges {
   onCancel() {
     this.actionCancelled.emit();
     this.batchFormGroup.reset();
-    this.batchFormGroup.get('classSize').setValue(this.minBatchTarget);
+    this.batchFormGroup.get('size').setValue(this.minBatchTarget);
   }
 
   /**
@@ -367,6 +367,6 @@ export class BatchFormComponent implements OnInit, OnChanges {
   onSubmit(value: Batch) {
     this.batchSubmitted.emit(value);
     this.batchFormGroup.reset();
-    this.batchFormGroup.get('classSize').setValue(this.minBatchTarget);
+    this.batchFormGroup.get('size').setValue(this.minBatchTarget);
   }
 }

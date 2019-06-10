@@ -65,21 +65,21 @@ export class TrainerItemComponent implements OnInit {
     const skillsArray = this.allSkills.filter(aSkill => {
       if (this.trainer.skills) {
         return this.trainer.skills.findIndex(tSkill => {
-          return aSkill.skillId === tSkill.skillId;
+          return aSkill.id === tSkill.id;
         }) >= 0;
       }
       return false;
     });
-    return skillsArray.map(skill => skill.skillName).join(', ');
+    return skillsArray.map(skill => skill.name).join(', ');
 
     // for (const skill of this.trainer.skills) {
     //   // console.log(skill);
     //   if (skill) {
-    //     skillName.push(' ' + skill.skillName);
+    //     name.push(' ' + skill.name);
     //   } else {
-    //     skillName.push('skillErr!');
+    //     name.push('skillErr!');
     //   }
     // }
-    // return skillName;
+    // return name;
   }
 }

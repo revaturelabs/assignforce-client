@@ -87,7 +87,7 @@ export class FillSkillsService {
     for (const obj of objList) {
       for (let i = 0; i < obj.skills.length; i++) {
         obj.skills[i] = this.skillList.filter(skill => {
-          return skill.skillId === obj.skills[i].skillId;
+          return skill.id === obj.skills[i].id;
         })[0];
       }
     }
