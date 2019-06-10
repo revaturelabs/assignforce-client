@@ -61,9 +61,9 @@ export class Project3sComponent implements OnInit {
     };
 
     const dialogRef = this.dialog.open(ProjectsAddComponent, {
-      width: '450px',
+      width: '850px',
       data: {
-        project3: project3
+        project: project3
       }
     });
 

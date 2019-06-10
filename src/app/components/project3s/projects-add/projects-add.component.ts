@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { Project3 } from '../../../model/Project3';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-projects-add',
@@ -7,9 +10,42 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProjectsAddComponent implements OnInit {
 
-  constructor() { }
+  project: Project3 = {
+    id: null,
+    name: '',
+    description: '',
+    isActive: true
+  }
+    
+  addProjectForm: FormGroup;
 
-  ngOnInit() {
+  constructor(
+    public dialogRef: MatDialogRef<ProjectsAddComponent>,
+    @Inject(MAT_DIALOG_DATA) public dataP: any,
+    private fb: FormBuilder
+  ) {
+    this.addProjectForm = this.fb.group({
+      name: ['', Validators.required],
+      description: ['']
+    });
+
+    this.addProjectForm.controls['name'].setValue(this.project.name);
+    this.addProjectForm.controls['description'].setValue(this.project.description);
+
   }
 
+  ngOnInit() {}
+
+  onSubmit(value, valid) {
+    if (valid) {
+      this.project = Object.assign({}, this.project, value);
+     
+      this.dialogRef.close(this.project);
+    }
+  }
+
+  onNoClick(evt): void {
+    evt.preventDefault();
+    this.dialogRef.close();
+  }
 }

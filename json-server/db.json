@@ -2843,7 +2843,7 @@
       "id": 1,
       "name": "Assign Force",
       "description": "Assign batches to trainers and rooms",
-      "isActive": true
+      "isActive": false
     },
     {
       "id": 2,
