@@ -22,8 +22,8 @@ import { BuildingControllerService } from '../../services/api/building-controlle
 import { RoomControllerService } from '../../services/api/room-controller/room-controller.service';
 import { Batch } from '../../model/Batch';
 import { BatchMode } from '../batches/batches.component';
-import { Project3 } from '../../model/Project3';
-import { Project3ControllerService } from '../../services/api/project3-controller/project3-controller.service'
+import { FinalProject } from '../../model/FinalProject';
+import { FinalProjectControllerService } from '../../services/api/final-project-controller/final-project-controller.service'
 
 @Component({
   selector: 'app-batch-form',
@@ -49,7 +49,7 @@ export class BatchFormComponent implements OnInit, OnChanges {
   filteredRooms: Room[] = new Array<Room>();
   allSkills: Skill[] = new Array<Skill>();
   filteredSkills: {skillId: number}[] = new Array<{skillId: number}>();
-  project3s: Project3[] = new Array<Project3>();
+  finalProjects: FinalProject[] = new Array<FinalProject>();
 
 
   //state trackers
@@ -70,7 +70,7 @@ export class BatchFormComponent implements OnInit, OnChanges {
     private locationService: AddressControllerService,
     private buildingService: BuildingControllerService,
     private roomService: RoomControllerService,
-    private project3Service: Project3ControllerService) { 
+    private finalProjectService: FinalProjectControllerService) { 
   }
 
   ngOnInit() {
@@ -128,7 +128,7 @@ export class BatchFormComponent implements OnInit, OnChanges {
         value: null,
         disabled: this.isDataLoading
       }),
-      project3: new FormControl({
+      finalProject: new FormControl({
         value: null,
         disabled: this.isDataLoading
       })
@@ -141,7 +141,7 @@ export class BatchFormComponent implements OnInit, OnChanges {
     this.loadLocations();
     this.loadSkills();
     this.loadSettings();
-    this.loadProject3s();
+    this.loadFinalProjects();
     this.isDataLoading = false;
 
     //subscribe to form group changes
@@ -174,7 +174,7 @@ export class BatchFormComponent implements OnInit, OnChanges {
     this.batchFormGroup.get('location').setValue(model.location);
     this.batchFormGroup.get('building').setValue(model.building);
     this.batchFormGroup.get('room').setValue(model.room);
-    this.batchFormGroup.get('project3').setValue(model.project3);
+    this.batchFormGroup.get('finalProject').setValue(model.finalProject);
   }
 
   private async loadLocations() {
@@ -199,8 +199,8 @@ export class BatchFormComponent implements OnInit, OnChanges {
     this.allSkills = await this.skillsService.findAll().toPromise();
   }
 
-  private async loadProject3s() {
-    this.project3s = await this.project3Service.findAll().toPromise();
+  private async loadFinalProjects() {
+    this.finalProjects = await this.finalProjectService.findAll().toPromise();
   }
 
   private async loadSettings() {

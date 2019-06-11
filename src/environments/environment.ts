@@ -23,7 +23,7 @@ export const environment = {
     settings: 'settings',
     callback: 'callback',
     roomScheduler: 'room-scheduler',
-    project3: 'project3'
+    finalProjects: 'finalProjects'
   },
 
   auth0: {
@@ -152,15 +152,6 @@ export const environment = {
       remove: '/'
     },
 
-    project3Controller: {
-      baseUrl: 'api/project3',
-      create: '',
-      update: '/',
-      findAll: '',
-      find: '/',
-      remove: '/'
-    },
-
     filehandlerController: {
       baseUrl: 'api/filehandler',
       create: '',
@@ -168,6 +159,16 @@ export const environment = {
       findAll: '',
       find: '/',
       remove: '/'
+    },
+
+    finalProjectController: {
+      baseUrl: 'api/finalProject',
+      create: '',
+      update: '/',
+      findAll: '',
+      find: '/',
+      remove: '/'
     }
+
   }
 };

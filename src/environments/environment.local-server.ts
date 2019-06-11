@@ -15,7 +15,7 @@ export const environment = {
     settings: 'settings',
     callback: 'callback',
     roomScheduler: 'room-scheduler',
-    project3: 'project3'
+    finalProjects: 'finalProjects'
   },
 
   security_config: {
@@ -151,8 +151,8 @@ export const environment = {
       find: '/',
       remove: '/'
     },
-    project3Controller: {
-      baseUrl: 'http://localhost:3000/project3s',
+    finalProjectController: {
+      baseUrl: 'http://localhost:3000/finalProjects',
       create: '',
       update: '/',
       findAll: '',

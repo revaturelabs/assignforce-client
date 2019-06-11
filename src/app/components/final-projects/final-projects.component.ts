@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Project3 } from '../../model/Project3';
+import { FinalProject } from '../../model/FinalProject';
 import { MatDialog } from '@angular/material';
-import { Project3ControllerService } from '../../services/api/project3-controller/project3-controller.service';
+import { FinalProjectControllerService } from '../../services/api/final-project-controller/final-project-controller.service';
 import { BatchControllerService } from '../../services/api/batch-controller/batch-controller.service';
 import { AuthService } from '../../services/auth/auth.service';
 import { CachedObjectsService } from '../../services/api/cache/cached-objects.service';
@@ -9,14 +9,14 @@ import { Batch } from '../../model/Batch';
 import { ProjectsAddComponent } from './projects-add/projects-add.component';
 
 @Component({
-  selector: 'app-project3s',
-  templateUrl: './project3s.component.html',
-  styleUrls: ['./project3s.component.css']
+  selector: 'app-final-projects',
+  templateUrl: './final-projects.component.html',
+  styleUrls: ['./final-projects.component.css']
 })
-export class Project3sComponent implements OnInit {
+export class FinalProjectsComponent implements OnInit {
   name: string;
   description: string;
-  projects: Project3[] = [];
+  projects: FinalProject[] = [];
   isActive: boolean;
   batches: Batch[] = [];
 
@@ -24,7 +24,7 @@ export class Project3sComponent implements OnInit {
   canLoad = true;
   constructor(
     public dialog: MatDialog,
-    private projectService: Project3ControllerService,
+    private projectService: FinalProjectControllerService,
     private batchService: BatchControllerService,
     public auth0: AuthService,
     private cacheService: CachedObjectsService
@@ -53,7 +53,7 @@ export class Project3sComponent implements OnInit {
   }
 
   addProject(): void {
-    const project3: Project3 = {
+    const finalProject: FinalProject = {
       id: null,
       name: '',
       description: '',
@@ -63,7 +63,7 @@ export class Project3sComponent implements OnInit {
     const dialogRef = this.dialog.open(ProjectsAddComponent, {
       width: '850px',
       data: {
-        project: project3
+        project: finalProject
       }
     });
 

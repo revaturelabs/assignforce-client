@@ -2838,7 +2838,7 @@
       "room": 162
     }
   ],
-  "project3s": [
+  "finalProjects": [
     {
       "id": 1,
       "name": "Assign Force",
@@ -2850,6 +2850,12 @@
       "name": "Project Force",
       "description": "Manage projects creating tasks and assigning them to teams",
       "isActive": true
+    },
+    {
+      "id": 3,
+      "name": "grfsdf",
+      "description": "asdzsfawf",
+      "isActive": false
     }
   ]
 }

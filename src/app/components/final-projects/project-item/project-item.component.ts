@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Project3 } from '../../../model/Project3';
-import { Project3ControllerService } from '../../../services/api/project3-controller/project3-controller.service';
+import { FinalProject } from '../../../model/FinalProject';
+import { FinalProjectControllerService } from '../../../services/api/final-project-controller/final-project-controller.service';
 import { AuthService } from '../../../services/auth/auth.service';
 import { CachedObjectsService } from '../../../services/api/cache/cached-objects.service';
 
@@ -11,11 +11,11 @@ import { CachedObjectsService } from '../../../services/api/cache/cached-objects
 })
 export class ProjectItemComponent implements OnInit {
   @Input()
-  project: Project3;
+  project: FinalProject;
   isManager: boolean;
   
   constructor(
-    private projectService: Project3ControllerService,
+    private projectService: FinalProjectControllerService,
     public auth0: AuthService,
     private cachingService: CachedObjectsService
   ) {}

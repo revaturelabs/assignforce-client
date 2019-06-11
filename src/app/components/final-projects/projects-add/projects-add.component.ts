@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { Project3 } from '../../../model/Project3';
+import { FinalProject } from '../../../model/FinalProject';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
@@ -10,7 +10,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 })
 export class ProjectsAddComponent implements OnInit {
 
-  project: Project3 = {
+  project: FinalProject = {
     id: null,
     name: '',
     description: '',

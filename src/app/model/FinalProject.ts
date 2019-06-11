@@ -1,4 +1,4 @@
-export class Project3 {
+export class FinalProject {
     id: number;
     name: string;
     description: string;

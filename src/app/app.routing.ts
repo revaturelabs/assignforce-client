@@ -13,7 +13,7 @@ import { AuthenticatingComponent } from './components/authenticating/authenticat
 import { GuardService as AuthGuard } from './services/auth/guard.service';
 import { environment } from '../environments/environment';
 import { RoomSchedulerComponent } from './components/room-scheduler/room-scheduler.component';
-import { Project3sComponent } from './components/project3s/project3s.component';
+import { FinalProjectsComponent } from './components/final-projects/final-projects.component';
 
 
 const appRoutes: Routes = [
@@ -70,8 +70,8 @@ const appRoutes: Routes = [
         component: RoomSchedulerComponent
       }, 
       {
-        path: environment.appRoutes.project3,
-        component: Project3sComponent
+        path: environment.appRoutes.finalProjects,
+        component: FinalProjectsComponent
       }, 
       {
         path: '**',

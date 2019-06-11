@@ -50,7 +50,7 @@ export class MenuBarComponent implements OnInit {
     },
     {
       label: 'Final Projects',
-      path: this.url.getProject3Url()
+      path: this.url.getFinalProjectUrl()
     }
   ];
 

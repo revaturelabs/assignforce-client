@@ -112,9 +112,9 @@
   </div>
   <div>
     <mat-form-field>
-        <mat-select formControlName="project3" placeholder="Project3">
+        <mat-select formControlName="finalProject" placeholder="FinalProject">
           <mat-option>None</mat-option>
-          <mat-option *ngFor="let project of project3s" [value]="project.id">
+          <mat-option *ngFor="let project of finalProjects" [value]="project.id">
             {{ project.name }}
           </mat-option>
           <!-- <mat-option value="2">

@@ -100,10 +100,10 @@
             <mat-cell *matCellDef="let batch"> {{batch.endDate| date : 'MM/dd/yyyy'}} </mat-cell>
           </ng-container>
 
-          <!-- Project 3 Column -->
-          <ng-container matColumnDef="project3">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Project 3 </mat-header-cell>
-            <mat-cell *matCellDef="let batch"> {{ entityLookup('project3s', batch.project3)?.name }} </mat-cell>
+          <!-- Final Project Column -->
+          <ng-container matColumnDef="finalProject">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Final Project </mat-header-cell>
+            <mat-cell *matCellDef="let batch"> {{ entityLookup('finalProjects', batch.finalProject)?.name }} </mat-cell>
           </ng-container>
 
 
