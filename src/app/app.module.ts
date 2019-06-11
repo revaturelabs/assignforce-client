@@ -185,6 +185,7 @@ import { ProjectItemComponent } from './components/project3s/project-item/projec
     AddCurriculumComponent,
     RoomSchedulerComponent,
     RoomAddEventFormComponent,
+    ProjectsAddComponent,
   ]
 })
 export class AppModule {}

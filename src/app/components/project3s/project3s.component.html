@@ -3,7 +3,7 @@
     <mat-toolbar class="toolbar-projects">
       <span class="mat-expansion-panel-header-title">Projects</span>
       <span class="fill-space"></span>
-      <button mat-icon-button *ngIf="!isLoanding && this.auth0.userHasRole(['SVP of Technology'])" (click)="addProject()" matTooltip="Add Project">
+      <button mat-icon-button *ngIf="!isLoading && this.auth0.userHasRole(['SVP of Technology'])" (click)="addProject()" matTooltip="Add Project">
         <mat-icon>add_circle</mat-icon>
       </button>
     </mat-toolbar>

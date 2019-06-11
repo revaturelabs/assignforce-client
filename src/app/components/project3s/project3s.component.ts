@@ -67,7 +67,17 @@ export class Project3sComponent implements OnInit {
       }
     });
 
-    
+    dialogRef.afterClosed().subscribe(result => {
+      this.projectService
+        .create(result)
+        .toPromise()
+        .then(t => {
+          this.projects.push(t);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    });
   }
 
 }
