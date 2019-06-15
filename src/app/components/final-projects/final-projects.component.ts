@@ -68,7 +68,8 @@ export class FinalProjectsComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.projectService
+      if (result) {
+        this.projectService
         .create(result)
         .toPromise()
         .then(t => {
@@ -76,7 +77,8 @@ export class FinalProjectsComponent implements OnInit {
         })
         .catch(error => {
           console.log(error);
-        });
+        })
+      }
     });
   }
 

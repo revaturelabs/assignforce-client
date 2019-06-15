@@ -45,8 +45,8 @@
     {
       "id": 1,
       "name": "1903 Mar25 Java",
-      "startDate": "2019-03-26T13:00:00.000Z",
-      "endDate": "2019-06-01T21:00:00.000Z",
+      "startDate": "2019-03-30T13:00:00.000Z",
+      "endDate": "2019-06-05T21:00:00.000Z",
       "curriculum": 1,
       "trainer": 1,
       "cotrainer": 2,
@@ -130,8 +130,8 @@
     {
       "id": 2,
       "name": "1906 Jun17 Java",
-      "startDate": 1560776400000,
-      "endDate": 1566594000000,
+      "startDate": "2019-06-17T13:00:00.000Z",
+      "endDate": "2019-08-23T21:00:00.000Z",
       "curriculum": 1,
       "trainer": 1,
       "cotrainer": null,
@@ -1284,6 +1284,54 @@
       "name": "1903 Mar25 Java",
       "created": "2019-05-09T14:00:24.359Z",
       "room": 156
+    },
+    {
+      "id": 24,
+      "startDate": "",
+      "endDate": "",
+      "name": "",
+      "created": "2019-06-11T14:39:52.807Z",
+      "room": ""
+    },
+    {
+      "id": 25,
+      "startDate": "2019-06-09T04:00:00.000Z",
+      "endDate": "2019-06-10T04:00:00.000Z",
+      "name": "1601 Jan01 Java",
+      "created": "2019-06-11T14:40:19.479Z",
+      "room": 162
+    },
+    {
+      "id": 26,
+      "startDate": "2019-06-09T04:00:00.000Z",
+      "endDate": "2019-06-10T04:00:00.000Z",
+      "name": "1601 Jan01 Java",
+      "created": "2019-06-11T14:41:49.707Z",
+      "room": 162
+    },
+    {
+      "id": 27,
+      "startDate": "",
+      "endDate": "",
+      "name": "",
+      "created": "2019-06-12T21:13:49.339Z",
+      "room": ""
+    },
+    {
+      "id": 28,
+      "startDate": "",
+      "endDate": "",
+      "name": "",
+      "created": "2019-06-12T23:31:39.057Z",
+      "room": ""
+    },
+    {
+      "id": 29,
+      "startDate": "",
+      "endDate": "",
+      "name": "",
+      "created": "2019-06-12T23:32:02.698Z",
+      "room": ""
     }
   ],
   "rooms": [
@@ -2843,7 +2891,7 @@
       "id": 1,
       "name": "Assign Force",
       "description": "Assign batches to trainers and rooms",
-      "isActive": false
+      "isActive": true
     },
     {
       "id": 2,
@@ -2856,6 +2904,45 @@
       "name": "grfsdf",
       "description": "asdzsfawf",
       "isActive": false
+    },
+    {
+      "id": 4,
+      "name": "dfsdf",
+      "description": "saddsax",
+      "isActive": false
+    },
+    {
+      "id": 5,
+      "name": "rsegesg",
+      "description": "afacawc",
+      "isActive": false
+    },
+    {
+      "id": 6,
+      "name": "dfzzv",
+      "description": "asdcsdc",
+      "isActive": false
+    },
+    {
+      "id": 7,
+      "name": "kjbkj",
+      "description": "jlnkn",
+      "isActive": false
+    },
+    {
+      "id": 8,
+      "name": "hgvgv",
+      "description": "mnb m",
+      "isActive": false
+    },
+    {
+      "id": 9
+    },
+    {
+      "id": 10,
+      "name": "Project Example",
+      "description": "Project Description",
+      "isActive": true
     }
   ]
 }

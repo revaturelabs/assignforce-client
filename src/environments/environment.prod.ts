@@ -144,7 +144,7 @@ export const environment = {
       remove: '/'
     },
     finalProjectController: {
-      baseUrl: `${apiBaseUrl}/final-projects`,
+      baseUrl: `${apiBaseUrl}/final-projects-service`,
       create: '/',
       update: '/',
       findAll: '',

@@ -60,5 +60,6 @@ export class RoomAddEventFormComponent implements OnInit {
         this.newEvent = new Event(null, this.addEventForm.value.startDate, this.addEventForm.value.endDate,
             this.addEventForm.value.batch,new Date(), this.addEventForm.value.room );
         this.eventService.create(this.newEvent).toPromise();
+        this.dialogRef.close();
     }
 }

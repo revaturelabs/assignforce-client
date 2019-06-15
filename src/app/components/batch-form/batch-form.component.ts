@@ -201,6 +201,7 @@ export class BatchFormComponent implements OnInit, OnChanges {
 
   private async loadFinalProjects() {
     this.finalProjects = await this.finalProjectService.findAll().toPromise();
+    this.finalProjects = this.finalProjects.filter(project => project.isActive)
   }
 
   private async loadSettings() {
