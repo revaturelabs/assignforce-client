@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LocationOpenUnavailibilityComponent } from './location-open-unavailibility.component';
+import { LocationOpenUnavailibilityDialogComponent } from './location-open-unavailibility.component';
 
 describe('LocationOpenUnavailibilityComponent', () => {
-  let component: LocationOpenUnavailibilityComponent;
-  let fixture: ComponentFixture<LocationOpenUnavailibilityComponent>;
+  let component: LocationOpenUnavailibilityDialogComponent;
+  let fixture: ComponentFixture<LocationOpenUnavailibilityDialogComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LocationOpenUnavailibilityComponent ]
+      declarations: [ LocationOpenUnavailibilityDialogComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LocationOpenUnavailibilityComponent);
+    fixture = TestBed.createComponent(LocationOpenUnavailibilityDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

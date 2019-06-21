@@ -71,7 +71,8 @@ const batchService = {
         "location": 1,
         "building": 1,
         "room": 7,
-        "classSize": 21
+        "classSize": 21,
+        "project3": 1
       },
       {
         "id": 739,
@@ -87,7 +88,8 @@ const batchService = {
         "location": 1,
         "building": 1,
         "room": 7,
-        "classSize": 21
+        "classSize": 21,
+        "project3": 1
       },
     ];
     return of(batches);
@@ -98,6 +100,7 @@ const buildingService = {
   findAll: jest.fn().mockImplementation(() => {
     const buildings: Building[] = [
       {
+        "id": 1,
         "buildingId": 1,
         "isActive": true,
         "buildingName": "11730 Plaza American Drive (HQ)",
@@ -105,6 +108,7 @@ const buildingService = {
         "rooms": []
       },
       {
+        "id": 2,
         "buildingId": 2,
         "isActive": true,
         "buildingName": "ASU Building 1",
@@ -124,14 +128,16 @@ const roomService = {
         "roomName": "208",
         "building": 1,
         "active": true,
-        "unavailabilities": []
+        "unavailabilities": [],
+        "capacity": 20
       },
       {
         "id": 1,
         "roomName": "201",
         "building": 1,
         "active": true,
-        "unavailabilities": []
+        "unavailabilities": [],
+        "capacity": 20
       }
     ];
     return of(rooms);

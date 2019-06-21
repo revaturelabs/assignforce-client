@@ -23,6 +23,7 @@ export const environment = {
       settings: 'settings',
       callback: 'callback',
       roomScheduler: 'roomScheduler',
+      finalProjects: 'finalProjects'
     },
 
     auth0: {
@@ -157,6 +158,16 @@ export const environment = {
         findAll: '',
         find: '/',
         remove: '/'
+      },
+
+      finalProjectController: {
+        baseUrl: `${apiBaseUrl}/final-project-service`,
+        create: '',
+        update: '/',
+        findAll: '',
+        find: '/',
+        remove: '/'
       }
+
     }
   };

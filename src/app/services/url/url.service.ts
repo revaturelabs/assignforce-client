@@ -49,4 +49,8 @@ export class UrlService {
     return environment.appRoutes.roomScheduler;
   }
 
+  getFinalProjectUrl(): string {
+    return environment.appRoutes.finalProjects;
+  }
+
 }

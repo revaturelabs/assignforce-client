@@ -18,6 +18,7 @@ export class Batch {
   location: number;
   building: number;
   room: number;
+  finalProject: number;
   classSize: number;
 
   /**
@@ -33,6 +34,7 @@ export class Batch {
    * @param {number} [location]
    * @param {number} [building]
    * @param {number} [room]
+   * @param {number} [finalProject]
    * @param {number} [classSize]
    * @memberof Batch
    */
@@ -48,6 +50,7 @@ export class Batch {
     location?: number,
     building?: number,
     room?: number,
+    finalProject?: number,
     classSize?: number
   ) {
     this.id = id;
@@ -61,6 +64,7 @@ export class Batch {
     this.location = location;
     this.building = building;
     this.room = room;
+    this.finalProject = finalProject;
     this.classSize = classSize;
   }
 }

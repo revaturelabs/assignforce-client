@@ -50,7 +50,7 @@
           </ng-container>
 
           <!-- Trainer Column -->
-          <ng-container matColumnDef="trainers">
+          <ng-container matColumnDef="trainer">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Trainer/Cotrainer </mat-header-cell>
             <mat-cell *matCellDef="let batch">
               <div *ngIf="batch.trainer">{{ (entityLookup('trainers', batch.trainer)?.firstName + ' ' + entityLookup('trainers', batch.trainer)?.lastName)
@@ -83,7 +83,7 @@
           </ng-container>
 
           <!-- Class Size Column -->
-          <ng-container matColumnDef="size">
+          <ng-container matColumnDef="classSize">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Class Size </mat-header-cell>
             <mat-cell *matCellDef="let batch"> {{batch.classSize}} </mat-cell>
           </ng-container>
@@ -98,6 +98,12 @@
           <ng-container matColumnDef="endDate">
             <mat-header-cell *matHeaderCellDef mat-sort-header> EndDate </mat-header-cell>
             <mat-cell *matCellDef="let batch"> {{batch.endDate| date : 'MM/dd/yyyy'}} </mat-cell>
+          </ng-container>
+
+          <!-- Final Project Column -->
+          <ng-container matColumnDef="finalProject">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Final Project </mat-header-cell>
+            <mat-cell *matCellDef="let batch"> {{ entityLookup('finalProjects', batch.finalProject)?.name }} </mat-cell>
           </ng-container>
 
 

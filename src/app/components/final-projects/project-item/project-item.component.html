@@ -1,0 +1,21 @@
+<mat-list-item mat-ripple="#ff0000" *ngIf="project.isActive">
+    <mat-icon class="projectIcon" matListIcon>folder_special</mat-icon>
+    <h4 matLine> {{ project.name }} </h4>
+    <p matLine>Description: {{ project.description }}</p>
+    <span class="md-toolbar-spacer"> </span>
+    
+    <button mat-icon-button (click)="removeProject()" *ngIf="isManager==true" matTooltip="Deactivate Project">
+      <mat-icon class="revOrange">remove_circle</mat-icon>
+    </button>
+  </mat-list-item>
+
+  <mat-list-item class="md-2-line" mat-ripple="#ff0000" *ngIf="!project.isActive">
+      <mat-icon class="projectIcon" matListIcon>folder_special</mat-icon>
+      <h4 matLine> {{ project.name }} </h4>
+      <p *ngIf="project.description" matLine>Description: {{ project.description }}</p>
+      <span class="md-toolbar-spacer"> </span>
+      <!--button activates a Project-->
+      <button mat-icon-button (click)="activateProject()" *ngIf="isManager==true" matTooltip="Reactivate Project">
+        <mat-icon class="revOrange">add_circle</mat-icon>
+      </button>
+    </mat-list-item>
