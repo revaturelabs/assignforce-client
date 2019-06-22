@@ -23,6 +23,8 @@ import { FillSkillsService } from "../../services/api/skill-controller/fill-skil
 import { Unavailability } from "../../model/Unavailability";
 import { BuildingControllerService } from "../../services/api/building-controller/building-controller.service";
 import { RoomControllerService } from "../../services/api/room-controller/room-controller.service";
+import { FinalProjectControllerService } from "../../services/api/final-project-controller/final-project-controller.service";
+import { FinalProject } from "../../model/FinalProject";
 
 export enum BatchMode {
   Create = 1,
@@ -48,6 +50,7 @@ export class BatchesComponent implements OnInit, AfterViewInit {
   rooms: Room[] = [];
   skills: Skill[] = [];
   buildingRooms: Room[] = [];
+  finalProjects: FinalProject[] = [];
 
   selectedLocation: Address;
   selectedBuilding: Building;
@@ -76,14 +79,15 @@ export class BatchesComponent implements OnInit, AfterViewInit {
   batchColumns = [
     "name",
     "curriculum",
-    "trainers",
+    "trainer",
     "location",
     "building",
     "room",
-    "size",
+    "classSize",
     "startDate",
     "endDate",
-    "Icons",
+    "finalProject",
+    "Icons"
   ];
 
   allBatches: Batch[] = [];
@@ -107,7 +111,8 @@ export class BatchesComponent implements OnInit, AfterViewInit {
     private fillSkills: FillSkillsService,
     private settingService: SettingControllerService,
     private buildingService: BuildingControllerService,
-    private roomService: RoomControllerService
+    private roomService: RoomControllerService,
+    private finalProjectService: FinalProjectControllerService,
   ) {}
 
   @ViewChild(MatSort)
@@ -152,6 +157,10 @@ export class BatchesComponent implements OnInit, AfterViewInit {
           this.rooms.sort((a, b) => a.id - b.id);
         });
       });
+    });
+
+    this.finalProjectService.findAll().subscribe((resp) => {
+      this.finalProjects = resp;
     });
 
     if (this.trainers[0]) {
@@ -217,6 +226,19 @@ export class BatchesComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
+
+    this.dataSource.sortingDataAccessor = (item, property) => {
+      switch (property) {
+        // Sort by trainer name instead of id
+        case "trainer":
+          const trainer = this.entityLookup("trainers", item.trainer);
+          if (typeof trainer !== "undefined") {
+            return trainer.firstName;
+          }
+          break;
+        default: return item[property];
+      }
+    };
   }
 
   entityLookup(entityContainerName: string, entityId: number) {

@@ -111,6 +111,19 @@
     </mat-form-field>
   </div>
   <div>
+    <mat-form-field>
+        <mat-select formControlName="finalProject" placeholder="FinalProject">
+          <mat-option>None</mat-option>
+          <mat-option *ngFor="let project of finalProjects" [value]="project.id">
+            {{ project.name }}
+          </mat-option>
+          <!-- <mat-option value="2">
+            Something Else
+          </mat-option> -->
+        </mat-select>
+      </mat-form-field>
+  </div>
+  <div>
       <button type="submit" mat-raised-button [disabled]="!batchFormGroup.valid" (click)="onSubmit(batchFormGroup.value)">Submit</button>
       <button type="button" mat-raised-button (click)="onCancel()">Cancel</button>
     </div>

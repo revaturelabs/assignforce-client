@@ -71,7 +71,8 @@ const batchService = {
         "location": 1,
         "building": 1,
         "room": 7,
-        "classSize": 21
+        "classSize": 21,
+        "project3": 1
       },
       {
         "id": 739,
@@ -87,7 +88,8 @@ const batchService = {
         "location": 1,
         "building": 1,
         "room": 7,
-        "classSize": 21
+        "classSize": 21,
+        "project3": 1
       },
     ];
     return of(batches);
@@ -124,14 +126,16 @@ const roomService = {
         "name": "208",
         "building": 1,
         "active": true,
-        "unavailabilities": []
+        "unavailabilities": [],
+        "capacity": 20
       },
       {
         "id": 1,
         "name": "201",
         "building": 1,
         "active": true,
-        "unavailabilities": []
+        "unavailabilities": [],
+        "capacity": 20
       }
     ];
     return of(rooms);

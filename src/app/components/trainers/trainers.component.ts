@@ -21,8 +21,8 @@ import { FilehandlerService } from '../../services/api/filehandler-controller/fi
 export class TrainersComponent implements OnInit {
   [x: string]: any;
 
-  firstName;
-  lastName;
+  firstName: string;
+  lastName: string;
   trainers: Trainer[] = [];
   curricula: Curriculum[] = [];
 
