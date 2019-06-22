@@ -20,6 +20,7 @@ import { LocationDeleteBuildingDialogComponent } from './components/locations/lo
 import { LocationDeleteLocationDialogComponent } from './components/locations/location-delete-location-dialog/location-delete-location-dialog.component';
 import { LocationDeleteRoomDialogComponent } from './components/locations/location-delete-room-dialog/location-delete-room-dialog.component';
 import { LocationEditBuildingDialogComponent } from './components/locations/location-edit-building-dialog/location-edit-building-dialog.component';
+import { LocationAddBuildingDialogComponent } from './components/locations/location-add-building-dialog/location-add-building-dialog.component';
 import { LocationEditLocationDialogComponent } from './components/locations/location-edit-location-dialog/location-edit-location-dialog.component';
 import { LocationEditRoomDialogComponent } from './components/locations/location-edit-room-dialog/location-edit-room-dialog.component';
 import { LocationsComponent } from './components/locations/locations.component';
@@ -92,6 +93,7 @@ import { EventControllerService } from './services/api/event-controller/event-co
     LocationOpenUnavailibilityDialogComponent,
     LocationAddUnavailabilityDialogComponent,
     LocationChangeUnavailabilityDialogComponent,
+    LocationAddBuildingDialogComponent,
     LoginComponent,
     SkillsComponent,
     CoreComponent,
@@ -152,7 +154,7 @@ import { EventControllerService } from './services/api/event-controller/event-co
       useClass: SpringXsrfInterceptor,
       multi: true
     },
-    
+
   ],
   bootstrap: [AppComponent],
   entryComponents: [
