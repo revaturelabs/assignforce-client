@@ -68,6 +68,10 @@ import { RoomSchedulerComponent } from './components/room-scheduler/room-schedul
 import { RoomAddEventFormComponent } from "./components/room-scheduler/add-event-form/add-event-form.component";
 import { MatTableModule } from '@angular/material';
 import { EventControllerService } from './services/api/event-controller/event-controller.service';
+import { FinalProjectsComponent } from './components/final-projects/final-projects.component';
+import { FinalProjectControllerService } from './services/api/final-project-controller/final-project-controller.service';
+import { ProjectsAddComponent } from './components/final-projects/projects-add/projects-add.component';
+import { ProjectItemComponent } from './components/final-projects/project-item/project-item.component';
 
 @NgModule({
   declarations: [
@@ -113,6 +117,9 @@ import { EventControllerService } from './services/api/event-controller/event-co
     BatchFormComponent,
     RoomSchedulerComponent,
     RoomAddEventFormComponent,
+    FinalProjectsComponent,
+    ProjectsAddComponent,
+    ProjectItemComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 
@@ -149,6 +156,7 @@ import { EventControllerService } from './services/api/event-controller/event-co
     BuildingControllerService,
     RoomControllerService,
     EventControllerService,
+    FinalProjectControllerService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: SpringXsrfInterceptor,
@@ -179,6 +187,7 @@ import { EventControllerService } from './services/api/event-controller/event-co
     AddCurriculumComponent,
     RoomSchedulerComponent,
     RoomAddEventFormComponent,
+    ProjectsAddComponent,
   ]
 })
 export class AppModule {}

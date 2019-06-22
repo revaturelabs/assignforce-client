@@ -30,17 +30,17 @@ describe('SkillControllerService', () => {
   // it('should get the data', ()=>{
   
   //   service.find(1).toPromise().then((data):any => {
-  //     expect(data.skillId).toBe(1);
+  //     expect(data.id).toBe(1);
   //   }).catch(err =>{});
   
   //   // service.find(1).toPromise().then()(data:any=>{
-  //   //   expect(data.skillId).toBe(1);
+  //   //   expect(data.id).toBe(1);
   //   // }));
   //   const req = httpMock.expectOne((`https://18.191.174.118:8765/skill-service`),'Call the Api');
   //   expect(req.request.method).toHaveBeenCalled();
   
   //   req.flush({
-  //     skillId: 1
+  //     id: 1
   //   });
   
   //   httpMock.verify();
@@ -48,16 +48,16 @@ describe('SkillControllerService', () => {
   // });
   
   // it('should post the correct data', () => {
-  //   service.create({ skillId: 2300 ,skillName: 'Wayne Gretski', isActive: true }).subscribe((data: any) => {
-  //     expect(data.skillId).toBe(2300);
+  //   service.create({ id: 2300 ,name: 'Wayne Gretski', isActive: true }).subscribe((data: any) => {
+  //     expect(data.id).toBe(2300);
   //   });
   
   //   const req = httpMock.expectOne(`https://18.191.174.118:8765/skill-service`, 'post to api');
   //   expect(req.request.method).toBe('POST');
   
   //   req.flush({
-  //     skillId: 2300,
-  //     skillName: 'Wayne Gretski',
+  //     id: 2300,
+  //     name: 'Wayne Gretski',
   //     isActive: true
   //   });
   

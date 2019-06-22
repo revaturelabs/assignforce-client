@@ -47,6 +47,10 @@ export class MenuBarComponent implements OnInit {
     {
       label: 'Room Scheduler',
       path: this.url.getRoomSchedulerUrl()
+    },
+    {
+      label: 'Final Projects',
+      path: this.url.getFinalProjectUrl()
     }
   ];
 

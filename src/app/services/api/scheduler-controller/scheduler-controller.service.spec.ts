@@ -1,5 +1,4 @@
-import { TestBed, inject } from '@angular/core/testing';
-
+import { TestBed , inject } from '@angular/core/testing';
 import { SchedulerControllerService } from './scheduler-controller.service';
 
 describe('SchedulerControllerService', () => {

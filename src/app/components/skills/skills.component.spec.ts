@@ -25,7 +25,7 @@ describe('SkillsComponent', () => {
   let fixture: ComponentFixture<SkillsComponent>;
   let skillService: SkillControllerService;
 
-    const skills: Skill[] = [
+    let skills: Skill[] = [
       { skillId: 1, skillName: 'Java', isActive: true },
       { skillId: 2, skillName: 'SQL', isActive: true },
       { skillId: 3, skillName: 'Angular', isActive: true },
@@ -35,10 +35,12 @@ describe('SkillsComponent', () => {
     class MockSkillService {
   
     findAll(): Observable<Skill[]> {
-      return Observable.of(this.skills);
+      return Observable.of(skills);
     }
+    /* may be just wrong */
     remove(skill: Skill): Observable<Skill> {
-      return Observable.of(this.skill.pop());
+      skills = skills.filter((sk)=>sk!==skill);
+      return Observable.of(skill);
     }
   }
 
@@ -76,7 +78,7 @@ describe('SkillsComponent', () => {
   it('should remove Java from the skillsList', () => {
     skillService.findAll().toPromise().then(skills=>{
       component.skillsList = skills;
-      component.remove({ id: 1, name: 'Java', active: true });
+      component.removeSkill({ id: 1, name: 'Java', active: true });
       expect(component.skillsList.length).toBe(3, 'skill not properly removed');
     });
   });

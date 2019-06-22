@@ -15,7 +15,8 @@ export const environment = {
     profile: 'profile',
     reports: 'reports',
     settings: 'settings',
-    callback: 'callback'
+    callback: 'callback',
+    finalProjects: 'finalProjects'
   },
 
   security_config: {
@@ -137,6 +138,14 @@ export const environment = {
     filehandlerController: {
       baseUrl: `${apiBaseUrl}/filehandler-service`,
       create: '',
+      update: '/',
+      findAll: '',
+      find: '/',
+      remove: '/'
+    },
+    finalProjectController: {
+      baseUrl: `${apiBaseUrl}/final-projects-service`,
+      create: '/',
       update: '/',
       findAll: '',
       find: '/',

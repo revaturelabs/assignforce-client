@@ -5,6 +5,7 @@ import { Focus } from '../../../model/Focus';
 import { Skill } from '../../../model/Skill';
 import { Curriculum } from '../../../model/Curriculum';
 import { Address } from '../../../model/Address';
+import { FinalProject } from '../../../model/FinalProject';
 
 /**
  * This service is used to store information from the database, so that once a call is done once,
@@ -21,6 +22,7 @@ export class CachedObjectsService {
   private cachedSkills: Skill[] = [];
   private cachedLocations: Address[] = [];
   private cachedCurriculum: Curriculum[] = [];
+  private cachedFinalProjects: FinalProject[] = []
 
   public getTrainers():Trainer[]{
     return this.cachedTrainers;
@@ -70,5 +72,12 @@ export class CachedObjectsService {
     this.cachedCurriculum = curriculum;
   }
 
+  public getFinalProjects(): FinalProject[]{
+    return this.cachedFinalProjects;
+  }
+  
+  public setFinalProjects(finalProject: FinalProject[]){
+    this.cachedFinalProjects = finalProject;
+  }
 
 }

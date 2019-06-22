@@ -13,7 +13,7 @@ import 'rxjs/add/observable/of';
 describe('EditSkillComponent', () => {
   let component: EditSkillComponent;
   let fixture: ComponentFixture<EditSkillComponent>;
-  const mockDialogData: Skill = { skillId: 1, skillName: 'Test Skill', isActive: true };
+  const mockDialogData: Skill = { id: 1, name: 'Test Skill', isActive: true };
   let skillControllerService: SkillControllerService;
 
   class MockDialogRef {
@@ -57,13 +57,13 @@ describe('EditSkillComponent', () => {
 
   it('should have name variable populated with current name of skill', () => {
     fixture.detectChanges();
-    expect(component.data.skillName).toContain('Test Skill');
+    expect(component.data.name).toContain('Test Skill');
   });
 
   it('should create a new skill object when the new skill method is called', () => {
     component.newSkill();
     fixture.detectChanges();
-    expect(component.data.skillName).toContain('');
+    expect(component.data.name).toContain('');
   });
 
   it('should closeDialog', () => {

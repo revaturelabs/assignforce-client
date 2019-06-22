@@ -131,9 +131,9 @@ describe('BuildingControllerService', () => {
     buildingControllerService.update(updatedBuilding).subscribe(resp => {
       expect(resp).toEqual(updatedBuilding);
     });
-    let req = httpTestingController.expectOne(buildingApi.baseUrl + buildingApi.update + updatedBuilding.buildingId);
+    let req = httpTestingController.expectOne(buildingApi.baseUrl + buildingApi.update + updatedBuilding.id);
     expect(req.request.method).toBe('PUT');
-    let buildingIndex = buildingData.findIndex(building => building.buildingId === req.request.body.buildingId);
+    let buildingIndex = buildingData.findIndex(building => building.id === req.request.body.buildingId);
     buildingData[buildingIndex] = req.request.body;
     req.flush(buildingData[buildingIndex]);
   });
@@ -156,7 +156,7 @@ describe('BuildingControllerService', () => {
     });
     let req = httpTestingController.expectOne(buildingApi.baseUrl + buildingApi.remove + removedId);
     expect(req.request.method).toBe('DELETE');
-    let removedIndex = buildingData.findIndex(building => building.buildingId === removedId);
+    let removedIndex = buildingData.findIndex(building => building.id === removedId);
     buildingData.splice(removedIndex, 1);
     req.flush('Done');
   });
@@ -169,7 +169,7 @@ describe('BuildingControllerService', () => {
     });
     let req = httpTestingController.expectOne(buildingApi.baseUrl + buildingApi.find + findParam);
     expect(req.request.method).toBe('GET');
-    let foundIndex = buildingData.findIndex(building => building.buildingId === findParam);
+    let foundIndex = buildingData.findIndex(building => building.id === findParam);
     req.flush(buildingData[foundIndex]);
   });
   

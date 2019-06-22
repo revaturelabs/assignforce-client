@@ -18,7 +18,8 @@ export const environment = {
     profile: 'profile',
     reports: 'reports',
     settings: 'settings',
-    callback: 'callback'
+    callback: 'callback',
+    finalProjects: 'finalProjects'
   },
 
   security_config: {
@@ -131,6 +132,15 @@ export const environment = {
 
     unavailableController: {
       baseUrl: 'https://hydra.cfapps.io/api/unavailables',
+      create: '',
+      update: '/',
+      findAll: '',
+      find: '/',
+      remove: '/'
+    },
+
+    finalProjectController: {
+      baseUrl: 'https://hydra.cfapps.io/api/finalProjects',
       create: '',
       update: '/',
       findAll: '',

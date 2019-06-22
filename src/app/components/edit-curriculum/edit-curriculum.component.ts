@@ -58,7 +58,7 @@ export class EditCurriculumComponent implements OnInit {
 
   //Compares the skills so that you can see what already exists in the object in the select
   compareFunction(skill, skill2) {
-    return skill.skillId === skill2.skillId;
+    return skill.id === skill2.id;
   }
 
   //Resets the curriculum object so that we don't have undefined issues when loading a page

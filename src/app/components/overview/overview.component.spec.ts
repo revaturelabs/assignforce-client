@@ -71,7 +71,8 @@ const batchService = {
         "location": 1,
         "building": 1,
         "room": 7,
-        "classSize": 21
+        "classSize": 21,
+        "project3": 1
       },
       {
         "id": 739,
@@ -87,7 +88,8 @@ const batchService = {
         "location": 1,
         "building": 1,
         "room": 7,
-        "classSize": 21
+        "classSize": 21,
+        "project3": 1
       },
     ];
     return of(batches);
@@ -98,16 +100,16 @@ const buildingService = {
   findAll: jest.fn().mockImplementation(() => {
     const buildings: Building[] = [
       {
-        "buildingId": 1,
+        "id": 1,
         "isActive": true,
-        "buildingName": "11730 Plaza American Drive (HQ)",
+        "name": "11730 Plaza American Drive (HQ)",
         "address": 1,
         "rooms": []
       },
       {
-        "buildingId": 2,
+        "id": 2,
         "isActive": true,
-        "buildingName": "ASU Building 1",
+        "name": "ASU Building 1",
         "address": 2,
         "rooms": []
       }
@@ -121,17 +123,19 @@ const roomService = {
     const rooms: Room[] = [
       {
         "id": 7,
-        "roomName": "208",
+        "name": "208",
         "building": 1,
         "active": true,
-        "unavailabilities": []
+        "unavailabilities": [],
+        "capacity": 20
       },
       {
         "id": 1,
-        "roomName": "201",
+        "name": "201",
         "building": 1,
         "active": true,
-        "unavailabilities": []
+        "unavailabilities": [],
+        "capacity": 20
       }
     ];
     return of(rooms);
@@ -296,12 +300,12 @@ describe('OverviewComponent', () => {
 
   it('should display the building name in b-building-cell', () => {
     const name = fixture.nativeElement.querySelectorAll('.b-building-cell')[0].textContent;
-    expect(name).toContain(component.buildingsList[0].buildingName);
+    expect(name).toContain(component.buildingsList[0].name);
   });
 
   it('should display the room name in b-room-cell', () => {
     const name = fixture.nativeElement.querySelectorAll('.b-room-cell')[0].textContent;
-    expect(name).toContain(component.roomsList[1].roomName);
+    expect(name).toContain(component.roomsList[1].name);
   });
 
   it('should display the trainer name in b-trainer-cell', () => {
