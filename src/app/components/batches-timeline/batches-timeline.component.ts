@@ -451,8 +451,8 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
       if (this.locationFilter.name !== "Any") {
         filter = filter ? filter : batch.location !== this.locationFilter.id;
       }
-      if (this.buildingFilter.buildingName !== "Any") {
-        filter = filter ? filter : batch.building !== this.buildingFilter.buildingId;
+      if (this.buildingFilter.name !== "Any") {
+        filter = filter ? filter : batch.building !== this.buildingFilter.id;
       }
       if (!filter) {
         this.batchFilteredList.push(batch);
@@ -536,7 +536,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
       this.locationList.sort((a, b) => a.id - b.id);
       if(this.buildingList !== null) {
         this.buildingList.forEach(buildings => {
-          this.buildingList.sort((a, b) => a.buildingId - b.buildingId);
+          this.buildingList.sort((a, b) => a.id - b.id);
           
         });
       }
@@ -770,9 +770,9 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
   }
 
   getBuildingNameById(id: number) {
-    const index = this.buildingList.findIndex(t => t.buildingId === id);
+    const index = this.buildingList.findIndex(t => t.id === id);
     if(this.buildingList[index] != null){
-      return this.buildingList[index].buildingName;
+      return this.buildingList[index].name;
     }
     return "No Building exists."
   }

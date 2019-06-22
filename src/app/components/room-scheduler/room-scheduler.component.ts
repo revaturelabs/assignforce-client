@@ -87,7 +87,7 @@ export class RoomSchedulerComponent implements OnInit{
       } else {
         this.schedule.push({
           capacity: this.filteredRooms[i].capacity,
-          roomName: this.filteredRooms[i].roomName,
+          roomName: this.filteredRooms[i].name,
           week: weekEvents
         })
       }
@@ -100,7 +100,7 @@ export class RoomSchedulerComponent implements OnInit{
     const buildings: Building[] = this.locationBuildings(location);
     this.filteredRooms = [];
     for (let i = 0; i < buildings.length; i++) {
-      const rooms: Room[] = this.buildingRooms(buildings[i].buildingId);
+      const rooms: Room[] = this.buildingRooms(buildings[i].id);
       for (let j = 0; j < rooms.length; j++) {
         this.filteredRooms.push(rooms[j]);
       }
@@ -140,8 +140,8 @@ export class RoomSchedulerComponent implements OnInit{
     this.buildingService.findAll().subscribe(buildings => {
       this.buildings = buildings;
       for (const b of buildings) {
-        if (b.buildingId === null) {
-          b.buildingId = b.id;
+        if (b.id === null) {
+          b.id = b.id;
           this.updateBuilding(this.locations[this.locations.findIndex(searchFor => searchFor.id === b.address)], b);
         }
       }
@@ -175,7 +175,7 @@ export class RoomSchedulerComponent implements OnInit{
   updateBuilding(location: Address, building: Building) {
     const newLocation = location;
     for (let i = 0; i < newLocation.buildings.length; i++) {
-      if (newLocation.buildings[i].buildingId === building.buildingId) {
+      if (newLocation.buildings[i].id === building.id) {
         newLocation.buildings[i] = building;
         break;
       }

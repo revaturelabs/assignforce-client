@@ -97,8 +97,8 @@ describe('CurriculumControllerService', () => {
             "isCore": true,
             "skills": [{
               "isActive": true,
-              "skillId": 1,
-              "skillName": "skill1"
+              "id": 1,
+              "name": "skill1"
             }]
           }
         ]

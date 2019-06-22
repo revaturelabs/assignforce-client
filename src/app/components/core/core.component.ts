@@ -73,7 +73,7 @@ export class CoreComponent implements OnInit {
     const filtered: Skill[] = [];
     curriculum.skills.forEach(skill => {
       for (const s of this.skills) {
-        if (skill.skillId === s.skillId) {
+        if (skill.id === s.id) {
           filtered.push(s);
           break; //match found, break to next curriculum skill
         }

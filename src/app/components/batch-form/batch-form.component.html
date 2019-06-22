@@ -13,7 +13,7 @@
     <!-- skills field -->
     <mat-form-field>
       <mat-select formControlName="skills" placeholder="Skills" multiple [compareWith]="skillsComparator">
-        <mat-option *ngFor="let skill of allSkills" [value]="skill.skillId">{{ skill.skillName }}</mat-option>
+        <mat-option *ngFor="let skill of allSkills" [value]="skill.id">{{ skill.name }}</mat-option>
       </mat-select>
     </mat-form-field>
   </div>
@@ -77,7 +77,7 @@
         [min]="minBatchTarget"
         [max]="maxBatchTarget"
         step="5"
-        formControlName="classSize"
+        formControlName="size"
         placeholder="Target Size"
       />
     </mat-form-field>
@@ -93,8 +93,8 @@
 
     <mat-form-field>
       <mat-select formControlName="building" placeholder="Building">
-        <mat-option *ngFor="let building of filteredBuildings" [value]="building.buildingId">
-          {{ building.buildingName }}
+        <mat-option *ngFor="let building of filteredBuildings" [value]="building.id">
+          {{ building.name }}
         </mat-option>
       </mat-select>
     </mat-form-field>
@@ -105,7 +105,7 @@
         placeholder="Room"
       >
         <mat-option *ngFor="let room of filteredRooms" [value]="room.id">
-          {{ room.roomName }}
+          {{ room.name }}
         </mat-option>
       </mat-select>
     </mat-form-field>

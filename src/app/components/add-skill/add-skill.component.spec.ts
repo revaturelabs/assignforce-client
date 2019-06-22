@@ -65,7 +65,7 @@ describe('AddSkillComponent', () => {
     it('should create a new skill object when the new skill method is called', () => {
       component.newSkill();
       fixture.detectChanges();
-      expect(component.skill.skillName).toBe('');
+      expect(component.skill.name).toBe('');
     });
 
     it('should addSkill', () => {

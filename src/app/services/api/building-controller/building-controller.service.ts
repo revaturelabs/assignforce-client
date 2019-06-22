@@ -17,7 +17,7 @@ export class BuildingControllerService {
     return this.http.post<Building>(this.buildingController.baseUrl + this.buildingController.create, building);
   }
   public update(building: Building): Observable<Building> {
-    return this.http.put<Building>(this.buildingController.baseUrl + this.buildingController.update + building.buildingId, building);
+    return this.http.put<Building>(this.buildingController.baseUrl + this.buildingController.update + building.id, building);
   }
   public findAll(): Observable<Building[]> {
     return this.http.get<Building[]>(this.buildingController.baseUrl + this.buildingController.findAll);

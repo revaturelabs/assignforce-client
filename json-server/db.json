@@ -50,76 +50,76 @@
       "curriculum": 1,
       "trainer": 1,
       "cotrainer": 2,
-      "classSize": 40,
+      "size": 40,
       "skills": [
         {
-          "skillId": 4,
-          "skillName": "AngularJ",
+          "id": 4,
+          "name": "AngularJ",
           "isActive": true
         },
         {
-          "skillId": 1,
-          "skillName": "Core Java",
+          "id": 1,
+          "name": "Core Java",
           "isActive": true
         },
         {
-          "skillId": 2,
-          "skillName": "JUnit",
+          "id": 2,
+          "name": "JUnit",
           "isActive": true
         },
         {
-          "skillId": 3,
-          "skillName": "Spring",
+          "id": 3,
+          "name": "Spring",
           "isActive": true
         },
         {
-          "skillId": 50,
-          "skillName": "Java Servlets",
+          "id": 50,
+          "name": "Java Servlets",
           "isActive": true
         },
         {
-          "skillId": 51,
-          "skillName": "JSP",
+          "id": 51,
+          "name": "JSP",
           "isActive": true
         },
         {
-          "skillId": 25,
-          "skillName": "Oracle SQL",
+          "id": 25,
+          "name": "Oracle SQL",
           "isActive": true
         },
         {
-          "skillId": 48,
-          "skillName": "JDBC",
+          "id": 48,
+          "name": "JDBC",
           "isActive": true
         },
         {
-          "skillId": 49,
-          "skillName": "HTML",
+          "id": 49,
+          "name": "HTML",
           "isActive": true
         },
         {
-          "skillId": 52,
-          "skillName": "Freemarker",
+          "id": 52,
+          "name": "Freemarker",
           "isActive": true
         },
         {
-          "skillId": 54,
-          "skillName": "jQuery",
+          "id": 54,
+          "name": "jQuery",
           "isActive": true
         },
         {
-          "skillId": 55,
-          "skillName": "Hibernate",
+          "id": 55,
+          "name": "Hibernate",
           "isActive": true
         },
         {
-          "skillId": 56,
-          "skillName": "REST",
+          "id": 56,
+          "name": "REST",
           "isActive": true
         },
         {
-          "skillId": 57,
-          "skillName": "SOAP",
+          "id": 57,
+          "name": "SOAP",
           "isActive": true
         }
       ],
@@ -135,76 +135,76 @@
       "curriculum": 1,
       "trainer": 1,
       "cotrainer": null,
-      "classSize": 40,
+      "size": 40,
       "skills": [
         {
-          "skillId": 4,
-          "skillName": "AngularJ",
+          "id": 4,
+          "name": "AngularJ",
           "isActive": true
         },
         {
-          "skillId": 1,
-          "skillName": "Core Java",
+          "id": 1,
+          "name": "Core Java",
           "isActive": true
         },
         {
-          "skillId": 2,
-          "skillName": "JUnit",
+          "id": 2,
+          "name": "JUnit",
           "isActive": true
         },
         {
-          "skillId": 3,
-          "skillName": "Spring",
+          "id": 3,
+          "name": "Spring",
           "isActive": true
         },
         {
-          "skillId": 50,
-          "skillName": "Java Servlets",
+          "id": 50,
+          "name": "Java Servlets",
           "isActive": true
         },
         {
-          "skillId": 51,
-          "skillName": "JSP",
+          "id": 51,
+          "name": "JSP",
           "isActive": true
         },
         {
-          "skillId": 25,
-          "skillName": "Oracle SQL",
+          "id": 25,
+          "name": "Oracle SQL",
           "isActive": true
         },
         {
-          "skillId": 48,
-          "skillName": "JDBC",
+          "id": 48,
+          "name": "JDBC",
           "isActive": true
         },
         {
-          "skillId": 49,
-          "skillName": "HTML",
+          "id": 49,
+          "name": "HTML",
           "isActive": true
         },
         {
-          "skillId": 52,
-          "skillName": "Freemarker",
+          "id": 52,
+          "name": "Freemarker",
           "isActive": true
         },
         {
-          "skillId": 54,
-          "skillName": "jQuery",
+          "id": 54,
+          "name": "jQuery",
           "isActive": true
         },
         {
-          "skillId": 55,
-          "skillName": "Hibernate",
+          "id": 55,
+          "name": "Hibernate",
           "isActive": true
         },
         {
-          "skillId": 56,
-          "skillName": "REST",
+          "id": 56,
+          "name": "REST",
           "isActive": true
         },
         {
-          "skillId": 57,
-          "skillName": "SOAP",
+          "id": 57,
+          "name": "SOAP",
           "isActive": true
         }
       ],
@@ -221,80 +221,80 @@
       "cotrainer": null,
       "skills": [
         {
-          "skillId": 4,
-          "skillName": "AngularJ",
+          "id": 4,
+          "name": "AngularJ",
           "isActive": true
         },
         {
-          "skillId": 1,
-          "skillName": "Core Java",
+          "id": 1,
+          "name": "Core Java",
           "isActive": true
         },
         {
-          "skillId": 2,
-          "skillName": "JUnit",
+          "id": 2,
+          "name": "JUnit",
           "isActive": true
         },
         {
-          "skillId": 3,
-          "skillName": "Spring",
+          "id": 3,
+          "name": "Spring",
           "isActive": true
         },
         {
-          "skillId": 50,
-          "skillName": "Java Servlets",
+          "id": 50,
+          "name": "Java Servlets",
           "isActive": true
         },
         {
-          "skillId": 51,
-          "skillName": "JSP",
+          "id": 51,
+          "name": "JSP",
           "isActive": true
         },
         {
-          "skillId": 25,
-          "skillName": "Oracle SQL",
+          "id": 25,
+          "name": "Oracle SQL",
           "isActive": true
         },
         {
-          "skillId": 48,
-          "skillName": "JDBC",
+          "id": 48,
+          "name": "JDBC",
           "isActive": true
         },
         {
-          "skillId": 49,
-          "skillName": "HTML",
+          "id": 49,
+          "name": "HTML",
           "isActive": true
         },
         {
-          "skillId": 52,
-          "skillName": "Freemarker",
+          "id": 52,
+          "name": "Freemarker",
           "isActive": true
         },
         {
-          "skillId": 54,
-          "skillName": "jQuery",
+          "id": 54,
+          "name": "jQuery",
           "isActive": true
         },
         {
-          "skillId": 55,
-          "skillName": "Hibernate",
+          "id": 55,
+          "name": "Hibernate",
           "isActive": true
         },
         {
-          "skillId": 56,
-          "skillName": "REST",
+          "id": 56,
+          "name": "REST",
           "isActive": true
         },
         {
-          "skillId": 57,
-          "skillName": "SOAP",
+          "id": 57,
+          "name": "SOAP",
           "isActive": true
         }
       ],
       "location": null,
       "building": null,
       "room": null,
-      "classSize": 10,
+      "size": 10,
       "id": 3
     },
     {
@@ -306,45 +306,45 @@
       "cotrainer": null,
       "skills": [
         {
-          "skillId": 5,
-          "skillName": "Selenium/WebDriver",
+          "id": 5,
+          "name": "Selenium/WebDriver",
           "isActive": true
         },
         {
-          "skillId": 47,
-          "skillName": "Core SDET",
+          "id": 47,
+          "name": "Core SDET",
           "isActive": true
         },
         {
-          "skillId": 69,
-          "skillName": "TestNG",
+          "id": 69,
+          "name": "TestNG",
           "isActive": true
         },
         {
-          "skillId": 72,
-          "skillName": "Manual Testing",
+          "id": 72,
+          "name": "Manual Testing",
           "isActive": true
         },
         {
-          "skillId": 70,
-          "skillName": "Pyhton",
+          "id": 70,
+          "name": "Pyhton",
           "isActive": true
         },
         {
-          "skillId": 71,
-          "skillName": "UFT",
+          "id": 71,
+          "name": "UFT",
           "isActive": true
         },
         {
-          "skillId": 68,
-          "skillName": "Cucumber",
+          "id": 68,
+          "name": "Cucumber",
           "isActive": true
         }
       ],
       "location": null,
       "building": null,
       "room": null,
-      "classSize": 10,
+      "size": 10,
       "id": 4
     },
     {
@@ -355,56 +355,56 @@
       "curriculum": 2,
       "trainer": 2,
       "cotrainer": null,
-      "classSize": 10,
+      "size": 10,
       "skills": [
         {
-          "skillId": 59,
-          "skillName": "ASP.NET MVC",
+          "id": 59,
+          "name": "ASP.NET MVC",
           "isActive": true
         },
         {
-          "skillId": 60,
-          "skillName": "ASP.NET WEB API",
+          "id": 60,
+          "name": "ASP.NET WEB API",
           "isActive": true
         },
         {
-          "skillId": 58,
-          "skillName": "C#",
+          "id": 58,
+          "name": "C#",
           "isActive": true
         },
         {
-          "skillId": 66,
-          "skillName": "ADO.NET",
+          "id": 66,
+          "name": "ADO.NET",
           "isActive": true
         },
         {
-          "skillId": 62,
-          "skillName": "MSTest",
+          "id": 62,
+          "name": "MSTest",
           "isActive": true
         },
         {
-          "skillId": 65,
-          "skillName": "Entity Framework",
+          "id": 65,
+          "name": "Entity Framework",
           "isActive": true
         },
         {
-          "skillId": 63,
-          "skillName": "xUnit",
+          "id": 63,
+          "name": "xUnit",
           "isActive": true
         },
         {
-          "skillId": 64,
-          "skillName": "NLog",
+          "id": 64,
+          "name": "NLog",
           "isActive": true
         },
         {
-          "skillId": 61,
-          "skillName": "IIS",
+          "id": 61,
+          "name": "IIS",
           "isActive": true
         },
         {
-          "skillId": 46,
-          "skillName": "Core .NET",
+          "id": 46,
+          "name": "Core .NET",
           "isActive": true
         }
       ],
@@ -421,80 +421,80 @@
       "cotrainer": null,
       "skills": [
         {
-          "skillId": 4,
-          "skillName": "AngularJ",
+          "id": 4,
+          "name": "AngularJ",
           "isActive": true
         },
         {
-          "skillId": 1,
-          "skillName": "Core Java",
+          "id": 1,
+          "name": "Core Java",
           "isActive": true
         },
         {
-          "skillId": 2,
-          "skillName": "JUnit",
+          "id": 2,
+          "name": "JUnit",
           "isActive": true
         },
         {
-          "skillId": 3,
-          "skillName": "Spring",
+          "id": 3,
+          "name": "Spring",
           "isActive": true
         },
         {
-          "skillId": 50,
-          "skillName": "Java Servlets",
+          "id": 50,
+          "name": "Java Servlets",
           "isActive": true
         },
         {
-          "skillId": 51,
-          "skillName": "JSP",
+          "id": 51,
+          "name": "JSP",
           "isActive": true
         },
         {
-          "skillId": 25,
-          "skillName": "Oracle SQL",
+          "id": 25,
+          "name": "Oracle SQL",
           "isActive": true
         },
         {
-          "skillId": 48,
-          "skillName": "JDBC",
+          "id": 48,
+          "name": "JDBC",
           "isActive": true
         },
         {
-          "skillId": 49,
-          "skillName": "HTML",
+          "id": 49,
+          "name": "HTML",
           "isActive": true
         },
         {
-          "skillId": 52,
-          "skillName": "Freemarker",
+          "id": 52,
+          "name": "Freemarker",
           "isActive": true
         },
         {
-          "skillId": 54,
-          "skillName": "jQuery",
+          "id": 54,
+          "name": "jQuery",
           "isActive": true
         },
         {
-          "skillId": 55,
-          "skillName": "Hibernate",
+          "id": 55,
+          "name": "Hibernate",
           "isActive": true
         },
         {
-          "skillId": 56,
-          "skillName": "REST",
+          "id": 56,
+          "name": "REST",
           "isActive": true
         },
         {
-          "skillId": 57,
-          "skillName": "SOAP",
+          "id": 57,
+          "name": "SOAP",
           "isActive": true
         }
       ],
       "location": null,
       "building": null,
       "room": null,
-      "classSize": 10,
+      "size": 10,
       "id": 6
     },
     {
@@ -506,174 +506,174 @@
       "cotrainer": null,
       "skills": [
         {
-          "skillId": 5,
-          "skillName": "Selenium/WebDriver",
+          "id": 5,
+          "name": "Selenium/WebDriver",
           "isActive": true
         },
         {
-          "skillId": 47,
-          "skillName": "Core SDET",
+          "id": 47,
+          "name": "Core SDET",
           "isActive": true
         },
         {
-          "skillId": 69,
-          "skillName": "TestNG",
+          "id": 69,
+          "name": "TestNG",
           "isActive": true
         },
         {
-          "skillId": 72,
-          "skillName": "Manual Testing",
+          "id": 72,
+          "name": "Manual Testing",
           "isActive": true
         },
         {
-          "skillId": 70,
-          "skillName": "Pyhton",
+          "id": 70,
+          "name": "Pyhton",
           "isActive": true
         },
         {
-          "skillId": 71,
-          "skillName": "UFT",
+          "id": 71,
+          "name": "UFT",
           "isActive": true
         },
         {
-          "skillId": 68,
-          "skillName": "Cucumber",
+          "id": 68,
+          "name": "Cucumber",
           "isActive": true
         }
       ],
       "location": null,
       "building": null,
       "room": null,
-      "classSize": 10,
+      "size": 10,
       "id": 7
     }
   ],
   "buildings": [
     {
-      "buildingId": 64,
+      "id": 64,
       "isActive": true,
       "address": 45,
-      "buildingName": "Chicago"
+      "name": "Chicago"
     },
     {
-      "buildingId": 2,
+      "id": 2,
       "isActive": true,
       "address": 2,
-      "buildingName": "ASU Building 1"
+      "name": "ASU Building 1"
     },
     {
-      "buildingId": 21,
+      "id": 21,
       "isActive": true,
       "address": 3,
-      "buildingName": "SPS"
+      "name": "SPS"
     },
     {
-      "buildingId": 3,
+      "id": 3,
       "isActive": true,
       "address": 3,
-      "buildingName": "Queens"
+      "name": "Queens"
     },
     {
       "isActive": "true",
       "address": "5",
-      "buildingName": "Detroit",
-      "buildingId": 65
+      "name": "Detroit",
+      "id": 65
     },
     {
-      "buildingId": 1,
+      "id": 1,
       "isActive": true,
       "address": 1,
-      "buildingName": "11730 Plaza American Drive (HQ)"
+      "name": "11730 Plaza American Drive (HQ)"
     },
     {
       "isActive": true,
-      "buildingId": 66,
-      "buildingName": "Muma",
+      "id": 66,
+      "name": "Muma",
       "rooms": [],
       "address": 66
     },
     {
       "isActive": true,
-      "buildingId": 68,
-      "buildingName": "Johnson Center",
+      "id": 68,
+      "name": "Johnson Center",
       "rooms": [],
       "address": 67
     },
     {
       "isActive": true,
-      "buildingId": 69,
-      "buildingName": "NEC",
+      "id": 69,
+      "name": "NEC",
       "rooms": [],
       "address": 66
     },
     {
       "isActive": true,
-      "buildingId": 70,
-      "buildingName": "Enterprise",
+      "id": 70,
+      "name": "Enterprise",
       "rooms": [],
       "address": 67
     },
     {
       "isActive": true,
-      "buildingId": 71,
-      "buildingName": "Batty Nuggets",
+      "id": 71,
+      "name": "Batty Nuggets",
       "rooms": [],
       "address": 66
     },
     {
       "isActive": true,
-      "buildingId": 72,
-      "buildingName": "Happy Times",
+      "id": 72,
+      "name": "Happy Times",
       "rooms": [],
       "address": 66
     },
     {
       "isActive": true,
-      "buildingId": 100,
-      "buildingName": "John Lennon",
+      "id": 100,
+      "name": "John Lennon",
       "rooms": [],
       "address": 66,
-      "id": 100
+      "localServerId": 100
     },
     {
       "isActive": true,
-      "buildingId": 101,
-      "buildingName": "Administration",
+      "id": 101,
+      "name": "Administration",
       "rooms": [],
       "address": 69,
-      "id": 101
+      "localServerId": 101
     },
     {
       "isActive": true,
-      "buildingId": 102,
-      "buildingName": "testingstan 2.0",
+      "id": 102,
+      "name": "testingstan 2.0",
       "rooms": [],
       "address": 66,
-      "id": 102
+      "localServerId": 102
     },
     {
       "isActive": true,
-      "buildingId": 103,
-      "buildingName": "Brown Hall",
+      "id": 103,
+      "name": "Brown Hall",
       "rooms": [],
       "address": 70,
-      "id": 103
+      "localServerId": 103
     },
     {
       "isActive": true,
-      "buildingId": 104,
-      "buildingName": "Behan Hall",
+      "id": 104,
+      "name": "Behan Hall",
       "rooms": [],
       "address": 70,
-      "id": 104
+      "localServerId": 104
     },
     {
       "isActive": true,
-      "buildingId": 105,
-      "buildingName": "Marshall Student Center",
+      "id": 105,
+      "name": "Marshall Student Center",
       "rooms": [],
       "address": 66,
-      "id": 105
+      "localServerId": 105
     }
   ],
   "curricula": [
@@ -684,53 +684,53 @@
       "isCore": true,
       "skills": [
         {
-          "skillId": 59,
-          "skillName": "ASP.NET MVC",
+          "id": 59,
+          "name": "ASP.NET MVC",
           "isActive": true
         },
         {
-          "skillId": 60,
-          "skillName": "ASP.NET WEB API",
+          "id": 60,
+          "name": "ASP.NET WEB API",
           "isActive": true
         },
         {
-          "skillId": 58,
-          "skillName": "C#",
+          "id": 58,
+          "name": "C#",
           "isActive": true
         },
         {
-          "skillId": 66,
-          "skillName": "ADO.NET",
+          "id": 66,
+          "name": "ADO.NET",
           "isActive": true
         },
         {
-          "skillId": 62,
-          "skillName": "MSTest",
+          "id": 62,
+          "name": "MSTest",
           "isActive": true
         },
         {
-          "skillId": 65,
-          "skillName": "Entity Framework",
+          "id": 65,
+          "name": "Entity Framework",
           "isActive": true
         },
         {
-          "skillId": 63,
-          "skillName": "xUnit",
+          "id": 63,
+          "name": "xUnit",
           "isActive": true
         },
         {
-          "skillId": 64,
-          "skillName": "NLog",
+          "id": 64,
+          "name": "NLog",
           "isActive": true
         },
         {
-          "skillId": 61,
-          "skillName": "IIS",
+          "id": 61,
+          "name": "IIS",
           "isActive": true
         },
         {
-          "skillId": 46,
-          "skillName": "Core .NET",
+          "id": 46,
+          "name": "Core .NET",
           "isActive": true
         }
       ]
@@ -742,46 +742,46 @@
       "isCore": true,
       "skills": [
         {
-          "skillId": 1
+          "id": 1
         },
         {
-          "skillId": 2
+          "id": 2
         },
         {
-          "skillId": 3
+          "id": 3
         },
         {
-          "skillId": 4
+          "id": 4
         },
         {
-          "skillId": 25
+          "id": 25
         },
         {
-          "skillId": 48
+          "id": 48
         },
         {
-          "skillId": 49
+          "id": 49
         },
         {
-          "skillId": 50
+          "id": 50
         },
         {
-          "skillId": 51
+          "id": 51
         },
         {
-          "skillId": 52
+          "id": 52
         },
         {
-          "skillId": 54
+          "id": 54
         },
         {
-          "skillId": 55
+          "id": 55
         },
         {
-          "skillId": 56
+          "id": 56
         },
         {
-          "skillId": 57
+          "id": 57
         }
       ]
     },
@@ -792,25 +792,25 @@
       "isCore": true,
       "skills": [
         {
-          "skillId": 47
+          "id": 47
         },
         {
-          "skillId": 68
+          "id": 68
         },
         {
-          "skillId": 69
+          "id": 69
         },
         {
-          "skillId": 5
+          "id": 5
         },
         {
-          "skillId": 70
+          "id": 70
         },
         {
-          "skillId": 71
+          "id": 71
         },
         {
-          "skillId": 72
+          "id": 72
         }
       ]
     },
@@ -834,16 +834,16 @@
       "isCore": false,
       "skills": [
         {
-          "skillId": 4
+          "id": 4
         },
         {
-          "skillId": 3
+          "id": 3
         },
         {
-          "skillId": 55
+          "id": 55
         },
         {
-          "skillId": 56
+          "id": 56
         }
       ]
     },
@@ -854,13 +854,13 @@
       "isCore": false,
       "skills": [
         {
-          "skillId": 47
+          "id": 47
         },
         {
-          "skillId": 50
+          "id": 50
         },
         {
-          "skillId": 51
+          "id": 51
         }
       ]
     },
@@ -871,16 +871,16 @@
       "isCore": false,
       "skills": [
         {
-          "skillId": 4
+          "id": 4
         },
         {
-          "skillId": 47
+          "id": 47
         },
         {
-          "skillId": 50
+          "id": 50
         },
         {
-          "skillId": 51
+          "id": 51
         }
       ]
     },
@@ -891,19 +891,19 @@
       "isCore": false,
       "skills": [
         {
-          "skillId": 4
+          "id": 4
         },
         {
-          "skillId": 1
+          "id": 1
         },
         {
-          "skillId": 47
+          "id": 47
         },
         {
-          "skillId": 50
+          "id": 50
         },
         {
-          "skillId": 51
+          "id": 51
         }
       ]
     },
@@ -914,7 +914,7 @@
       "isCore": false,
       "skills": [
         {
-          "skillId": 27
+          "id": 27
         }
       ]
     },
@@ -925,7 +925,7 @@
       "isCore": false,
       "skills": [
         {
-          "skillId": 28
+          "id": 28
         }
       ]
     },
@@ -936,7 +936,7 @@
       "isCore": false,
       "skills": [
         {
-          "skillId": 30
+          "id": 30
         }
       ]
     },
@@ -947,7 +947,7 @@
       "isCore": false,
       "skills": [
         {
-          "skillId": 29
+          "id": 29
         }
       ]
     },
@@ -958,7 +958,7 @@
       "isCore": false,
       "skills": [
         {
-          "skillId": 31
+          "id": 31
         }
       ]
     },
@@ -982,8 +982,8 @@
       "isCore": true,
       "skills": [
         {
-          "skillId": 3,
-          "skillName": "Spring",
+          "id": 3,
+          "name": "Spring",
           "isActive": true
         }
       ]
@@ -995,8 +995,8 @@
       "isCore": true,
       "skills": [
         {
-          "skillId": 2,
-          "skillName": "JUnit",
+          "id": 2,
+          "name": "JUnit",
           "isActive": true
         }
       ]
@@ -1008,8 +1008,8 @@
       "isCore": true,
       "skills": [
         {
-          "skillId": 1,
-          "skillName": "Core Java",
+          "id": 1,
+          "name": "Core Java",
           "isActive": true
         }
       ]
@@ -1021,8 +1021,8 @@
       "isCore": true,
       "skills": [
         {
-          "skillId": 2,
-          "skillName": "JUnit",
+          "id": 2,
+          "name": "JUnit",
           "isActive": true
         }
       ]
@@ -1034,13 +1034,13 @@
       "isCore": true,
       "skills": [
         {
-          "skillId": 1,
-          "skillName": "Core Java",
+          "id": 1,
+          "name": "Core Java",
           "isActive": true
         },
         {
-          "skillId": 2,
-          "skillName": "JUnit",
+          "id": 2,
+          "name": "JUnit",
           "isActive": true
         }
       ]
@@ -1052,8 +1052,8 @@
       "isCore": true,
       "skills": [
         {
-          "skillId": 1,
-          "skillName": "Core Java",
+          "id": 1,
+          "name": "Core Java",
           "isActive": true
         }
       ]
@@ -1065,23 +1065,23 @@
       "isCore": true,
       "skills": [
         {
-          "skillId": 1,
-          "skillName": "Core Java",
+          "id": 1,
+          "name": "Core Java",
           "isActive": true
         },
         {
-          "skillId": 5,
-          "skillName": "Selenium/WebDriver",
+          "id": 5,
+          "name": "Selenium/WebDriver",
           "isActive": true
         },
         {
-          "skillId": 3,
-          "skillName": "Spring",
+          "id": 3,
+          "name": "Spring",
           "isActive": true
         },
         {
-          "skillId": 6,
-          "skillName": "XYZ",
+          "id": 6,
+          "name": "XYZ",
           "isActive": true
         }
       ]
@@ -1093,8 +1093,8 @@
       "isCore": true,
       "skills": [
         {
-          "skillId": 1,
-          "skillName": "Core Java",
+          "id": 1,
+          "name": "Core Java",
           "isActive": true
         }
       ]
@@ -1287,19 +1287,20 @@
     },
     {
       "id": 24,
-      "startDate": "",
-      "endDate": "",
-      "name": "",
-      "created": "2019-06-11T14:39:52.807Z",
+      "startDate": "2019-06-09T04:00:00.000Z",
+      "endDate": "2019-06-13T04:00:00.000Z",
+      "name": "1906 Jun17 Java",
+      "created": "2019-06-10T03:22:04.207Z",
       "room": ""
     },
     {
       "id": 25,
-      "startDate": "2019-06-09T04:00:00.000Z",
-      "endDate": "2019-06-10T04:00:00.000Z",
-      "name": "1601 Jan01 Java",
-      "created": "2019-06-11T14:40:19.479Z",
-      "room": 162
+<<<<
+      "startDate": "2019-06-04T04:00:00.000Z",
+      "endDate": "2019-06-12T04:00:00.000Z",
+      "name": "1903 Mar25 Java",
+      "created": "2019-06-10T04:07:42.330Z",
+      "room": 161
     },
     {
       "id": 26,
@@ -1337,84 +1338,84 @@
   "rooms": [
     {
       "id": 1,
-      "roomName": "201",
+      "name": "201",
       "active": true,
       "building": 1,
       "capacity": 25
     },
     {
       "id": 2,
-      "roomName": "202",
+      "name": "202",
       "active": true,
       "building": 1,
       "capacity": 25
     },
     {
       "id": 3,
-      "roomName": "204",
+      "name": "204",
       "active": true,
       "building": 1,
       "capacity": 30
     },
     {
       "id": 4,
-      "roomName": "205",
+      "name": "205",
       "active": true,
       "building": 1,
       "capacity": 30
     },
     {
       "id": 5,
-      "roomName": "X1",
+      "name": "X1",
       "active": false,
       "building": 1,
       "capacity": 35
     },
     {
       "id": 6,
-      "roomName": "207",
+      "name": "207",
       "active": true,
       "building": 1,
       "capacity": 35
     },
     {
       "id": 100,
-      "roomName": "X2",
+      "name": "X2",
       "active": false,
       "building": 1,
       "capacity": 40
     },
     {
       "id": 101,
-      "roomName": "X3",
+      "name": "X3",
       "active": false,
       "building": 1,
       "capacity": 40
     },
     {
       "id": 122,
-      "roomName": "209",
+      "name": "209",
       "active": true,
       "building": 1,
       "capacity": 45
     },
     {
       "id": 102,
-      "roomName": "203",
+      "name": "203",
       "active": true,
       "building": 1,
       "capacity": 45
     },
     {
       "id": 103,
-      "roomName": "206",
+      "name": "206",
       "active": true,
       "building": 1,
       "capacity": 25
     },
     {
       "id": 142,
-      "roomName": "214",
+      "name": "214",
       "active": true,
       "building": 1,
       "capacity": 25
@@ -1422,7 +1423,7 @@
     {
       "id": 145,
       "active": true,
-      "roomName": "Chik Fil A",
+      "name": "Chik Fil A",
       "building": 67,
       "unavailabilities": [],
       "capacity": 30
@@ -1430,7 +1431,7 @@
     {
       "id": 146,
       "active": true,
-      "roomName": "Subway",
+      "name": "Subway",
       "building": 67,
       "unavailabilities": [],
       "capacity": 30
@@ -1438,7 +1439,7 @@
     {
       "id": 147,
       "active": true,
-      "roomName": "1st Floor",
+      "name": "1st Floor",
       "building": 68,
       "unavailabilities": [
         {
@@ -1461,7 +1462,7 @@
     {
       "id": 148,
       "active": true,
-      "roomName": "China Town",
+      "name": "China Town",
       "building": 68,
       "unavailabilities": [
         {
@@ -1484,7 +1485,7 @@
     {
       "id": 149,
       "active": true,
-      "roomName": "3rd Floor",
+      "name": "3rd Floor",
       "building": 68,
       "unavailabilities": [
         {
@@ -1500,7 +1501,7 @@
     {
       "id": 150,
       "active": true,
-      "roomName": "200 A",
+      "name": "200 A",
       "building": 69,
       "unavailabilities": [
         {
@@ -1523,7 +1524,7 @@
     {
       "id": 151,
       "active": true,
-      "roomName": "Bat Cave",
+      "name": "Bat Cave",
       "building": 70,
       "unavailabilities": [
         {
@@ -1546,14 +1547,14 @@
     {
       "id": 153,
       "active": true,
-      "roomName": "Let's try this again",
+      "name": "Let's try this again",
       "unavailabilities": [],
       "capacity": 25
     },
     {
       "id": 155,
       "active": true,
-      "roomName": "Help!",
+      "name": "Help!",
       "building": 72,
       "unavailabilities": [],
       "capacity": 30
@@ -1561,7 +1562,7 @@
     {
       "id": 156,
       "active": true,
-      "roomName": "1701 E",
+      "name": "1701 E",
       "building": 66,
       "unavailabilities": [],
       "capacity": 30
@@ -1569,7 +1570,7 @@
     {
       "id": 157,
       "active": true,
-      "roomName": "Strawberry Fields",
+      "name": "Strawberry Fields",
       "building": 100,
       "unavailabilities": [],
       "capacity": 35
@@ -1577,7 +1578,7 @@
     {
       "id": 158,
       "active": true,
-      "roomName": "The President's Office",
+      "name": "The President's Office",
       "building": 101,
       "unavailabilities": [],
       "capacity": 35
@@ -1585,7 +1586,7 @@
     {
       "id": 160,
       "active": true,
-      "roomName": "2301 C",
+      "name": "2301 C",
       "building": 66,
       "unavailabilities": [],
       "capacity": 40
@@ -1593,7 +1594,7 @@
     {
       "id": 161,
       "active": true,
-      "roomName": "1300",
+      "name": "1300",
       "building": 66,
       "unavailabilities": [],
       "capacity": 40
@@ -1601,7 +1602,7 @@
     {
       "id": 162,
       "active": true,
-      "roomName": "The Hamburgler",
+      "name": "The Hamburgler",
       "building": 71,
       "unavailabilities": [],
       "capacity": 40
@@ -1625,218 +1626,218 @@
   ],
   "skills": [
     {
-      "skillId": 4,
-      "skillName": "AngularJ",
+      "id": 4,
+      "name": "AngularJ",
       "isActive": true
     },
     {
-      "skillId": 1,
-      "skillName": "Core Java",
+      "id": 1,
+      "name": "Core Java",
       "isActive": true
     },
     {
-      "skillId": 2,
-      "skillName": "JUnit",
+      "id": 2,
+      "name": "JUnit",
       "isActive": true
     },
     {
-      "skillId": 5,
-      "skillName": "Selenium/WebDriver",
+      "id": 5,
+      "name": "Selenium/WebDriver",
       "isActive": true
     },
     {
-      "skillId": 3,
-      "skillName": "Spring",
+      "id": 3,
+      "name": "Spring",
       "isActive": true
     },
     {
-      "skillId": 6,
-      "skillName": "XYZ",
+      "id": 6,
+      "name": "XYZ",
       "isActive": true
     },
     {
-      "skillId": 32,
-      "skillName": "Salesforce",
+      "id": 32,
+      "name": "Salesforce",
       "isActive": true
     },
     {
-      "skillId": 47,
-      "skillName": "Core SDET",
+      "id": 47,
+      "name": "Core SDET",
       "isActive": true
     },
     {
-      "skillId": 50,
-      "skillName": "Java Servlets",
+      "id": 50,
+      "name": "Java Servlets",
       "isActive": true
     },
     {
-      "skillId": 51,
-      "skillName": "JSP",
+      "id": 51,
+      "name": "JSP",
       "isActive": true
     },
     {
-      "skillId": 78,
-      "skillName": "C++",
+      "id": 78,
+      "name": "C++",
       "isActive": true
     },
     {
-      "skillId": 25,
-      "skillName": "Oracle SQL",
+      "id": 25,
+      "name": "Oracle SQL",
       "isActive": true
     },
     {
-      "skillId": 48,
-      "skillName": "JDBC",
+      "id": 48,
+      "name": "JDBC",
       "isActive": true
     },
     {
-      "skillId": 49,
-      "skillName": "HTML",
+      "id": 49,
+      "name": "HTML",
       "isActive": true
     },
     {
-      "skillId": 52,
-      "skillName": "Freemarker",
+      "id": 52,
+      "name": "Freemarker",
       "isActive": true
     },
     {
-      "skillId": 53,
-      "skillName": "CSS",
+      "id": 53,
+      "name": "CSS",
       "isActive": true
     },
     {
-      "skillId": 54,
-      "skillName": "jQuery",
+      "id": 54,
+      "name": "jQuery",
       "isActive": true
     },
     {
-      "skillId": 55,
-      "skillName": "Hibernate",
+      "id": 55,
+      "name": "Hibernate",
       "isActive": true
     },
     {
-      "skillId": 56,
-      "skillName": "REST",
+      "id": 56,
+      "name": "REST",
       "isActive": true
     },
     {
-      "skillId": 57,
-      "skillName": "SOAP",
+      "id": 57,
+      "name": "SOAP",
       "isActive": true
     },
     {
-      "skillId": 59,
-      "skillName": "ASP.NET MVC",
+      "id": 59,
+      "name": "ASP.NET MVC",
       "isActive": true
     },
     {
-      "skillId": 60,
-      "skillName": "ASP.NET WEB API",
+      "id": 60,
+      "name": "ASP.NET WEB API",
       "isActive": true
     },
     {
-      "skillId": 58,
-      "skillName": "C#",
+      "id": 58,
+      "name": "C#",
       "isActive": true
     },
     {
-      "skillId": 66,
-      "skillName": "ADO.NET",
+      "id": 66,
+      "name": "ADO.NET",
       "isActive": true
     },
     {
-      "skillId": 62,
-      "skillName": "MSTest",
+      "id": 62,
+      "name": "MSTest",
       "isActive": true
     },
     {
-      "skillId": 67,
-      "skillName": "T-SQL",
+      "id": 67,
+      "name": "T-SQL",
       "isActive": true
     },
     {
-      "skillId": 65,
-      "skillName": "Entity Framework",
+      "id": 65,
+      "name": "Entity Framework",
       "isActive": true
     },
     {
-      "skillId": 63,
-      "skillName": "xUnit",
+      "id": 63,
+      "name": "xUnit",
       "isActive": true
     },
     {
-      "skillId": 64,
-      "skillName": "NLog",
+      "id": 64,
+      "name": "NLog",
       "isActive": true
     },
     {
-      "skillId": 61,
-      "skillName": "IIS",
+      "id": 61,
+      "name": "IIS",
       "isActive": true
     },
     {
-      "skillId": 69,
-      "skillName": "TestNG",
+      "id": 69,
+      "name": "TestNG",
       "isActive": true
     },
     {
-      "skillId": 72,
-      "skillName": "Manual Testing",
+      "id": 72,
+      "name": "Manual Testing",
       "isActive": true
     },
     {
-      "skillId": 70,
-      "skillName": "Pyhton",
+      "id": 70,
+      "name": "Pyhton",
       "isActive": true
     },
     {
-      "skillId": 71,
-      "skillName": "UFT",
+      "id": 71,
+      "name": "UFT",
       "isActive": true
     },
     {
-      "skillId": 68,
-      "skillName": "Cucumber",
+      "id": 68,
+      "name": "Cucumber",
       "isActive": true
     },
     {
-      "skillId": 73,
-      "skillName": "C",
+      "id": 73,
+      "name": "C",
       "isActive": true
     },
     {
-      "skillId": 46,
-      "skillName": "Core .NET",
+      "id": 46,
+      "name": "Core .NET",
       "isActive": true
     },
     {
-      "skillId": 26,
-      "skillName": "Microservices",
+      "id": 26,
+      "name": "Microservices",
       "isActive": true
     },
     {
-      "skillId": 27,
-      "skillName": "Big Data",
+      "id": 27,
+      "name": "Big Data",
       "isActive": true
     },
     {
-      "skillId": 28,
-      "skillName": "Dynamics CRM",
+      "id": 28,
+      "name": "Dynamics CRM",
       "isActive": true
     },
     {
-      "skillId": 29,
-      "skillName": "Oracle Fusion",
+      "id": 29,
+      "name": "Oracle Fusion",
       "isActive": true
     },
     {
-      "skillId": 30,
-      "skillName": "PEGA",
+      "id": 30,
+      "name": "PEGA",
       "isActive": true
     },
     {
-      "skillId": 79,
-      "skillName": "Go",
+      "id": 79,
+      "name": "Go",
       "isActive": true
     }
   ],
@@ -1850,22 +1851,22 @@
       "id": 1,
       "skills": [
         {
-          "skillId": 4
+          "id": 4
         },
         {
-          "skillId": 1
+          "id": 1
         },
         {
-          "skillId": 2
+          "id": 2
         },
         {
-          "skillId": 50
+          "id": 50
         },
         {
-          "skillId": 51
+          "id": 51
         },
         {
-          "skillId": 5
+          "id": 5
         }
       ],
       "preferredLocation": 4
@@ -2146,79 +2147,79 @@
       "lastName": "Jimmy",
       "skills": [
         {
-          "skillId": 1
+          "id": 1
         },
         {
-          "skillId": 2
+          "id": 2
         },
         {
-          "skillId": 3
+          "id": 3
         },
         {
-          "skillId": 4
+          "id": 4
         },
         {
-          "skillId": 25
+          "id": 25
         },
         {
-          "skillId": 48
+          "id": 48
         },
         {
-          "skillId": 49
+          "id": 49
         },
         {
-          "skillId": 50
+          "id": 50
         },
         {
-          "skillId": 51
+          "id": 51
         },
         {
-          "skillId": 52
+          "id": 52
         },
         {
-          "skillId": 54
+          "id": 54
         },
         {
-          "skillId": 55
+          "id": 55
         },
         {
-          "skillId": 56
+          "id": 56
         },
         {
-          "skillId": 57
+          "id": 57
         },
         {
-          "skillId": 46
+          "id": 46
         },
         {
-          "skillId": 58
+          "id": 58
         },
         {
-          "skillId": 59
+          "id": 59
         },
         {
-          "skillId": 60
+          "id": 60
         },
         {
-          "skillId": 61
+          "id": 61
         },
         {
-          "skillId": 62
+          "id": 62
         },
         {
-          "skillId": 63
+          "id": 63
         },
         {
-          "skillId": 64
+          "id": 64
         },
         {
-          "skillId": 65
+          "id": 65
         },
         {
-          "skillId": 66
+          "id": 66
         },
         {
-          "skillId": 47
+          "id": 47
         }
       ],
       "certifications": "",
@@ -2234,97 +2235,97 @@
       "lastName": "President",
       "skills": [
         {
-          "skillId": 1
+          "id": 1
         },
         {
-          "skillId": 2
+          "id": 2
         },
         {
-          "skillId": 3
+          "id": 3
         },
         {
-          "skillId": 4
+          "id": 4
         },
         {
-          "skillId": 25
+          "id": 25
         },
         {
-          "skillId": 48
+          "id": 48
         },
         {
-          "skillId": 49
+          "id": 49
         },
         {
-          "skillId": 50
+          "id": 50
         },
         {
-          "skillId": 51
+          "id": 51
         },
         {
-          "skillId": 52
+          "id": 52
         },
         {
-          "skillId": 54
+          "id": 54
         },
         {
-          "skillId": 55
+          "id": 55
         },
         {
-          "skillId": 56
+          "id": 56
         },
         {
-          "skillId": 57
+          "id": 57
         },
         {
-          "skillId": 46
+          "id": 46
         },
         {
-          "skillId": 58
+          "id": 58
         },
         {
-          "skillId": 59
+          "id": 59
         },
         {
-          "skillId": 60
+          "id": 60
         },
         {
-          "skillId": 61
+          "id": 61
         },
         {
-          "skillId": 62
+          "id": 62
         },
         {
-          "skillId": 63
+          "id": 63
         },
         {
-          "skillId": 64
+          "id": 64
         },
         {
-          "skillId": 65
+          "id": 65
         },
         {
-          "skillId": 66
+          "id": 66
         },
         {
-          "skillId": 47
+          "id": 47
         },
         {
-          "skillId": 68
+          "id": 68
         },
         {
-          "skillId": 69
+          "id": 69
         },
         {
-          "skillId": 5
+          "id": 5
         },
         {
-          "skillId": 70
+          "id": 70
         },
         {
-          "skillId": 71
+          "id": 71
         },
         {
-          "skillId": 72
+          "id": 72
         }
       ],
       "certifications": "",
@@ -2340,76 +2341,76 @@
       "lastName": "Senior",
       "skills": [
         {
-          "skillId": 1
+          "id": 1
         },
         {
-          "skillId": 2
+          "id": 2
         },
         {
-          "skillId": 3
+          "id": 3
         },
         {
-          "skillId": 4
+          "id": 4
         },
         {
-          "skillId": 25
+          "id": 25
         },
         {
-          "skillId": 48
+          "id": 48
         },
         {
-          "skillId": 49
+          "id": 49
         },
         {
-          "skillId": 50
+          "id": 50
         },
         {
-          "skillId": 51
+          "id": 51
         },
         {
-          "skillId": 52
+          "id": 52
         },
         {
-          "skillId": 54
+          "id": 54
         },
         {
-          "skillId": 55
+          "id": 55
         },
         {
-          "skillId": 56
+          "id": 56
         },
         {
-          "skillId": 57
+          "id": 57
         },
         {
-          "skillId": 46
+          "id": 46
         },
         {
-          "skillId": 58
+          "id": 58
         },
         {
-          "skillId": 59
+          "id": 59
         },
         {
-          "skillId": 60
+          "id": 60
         },
         {
-          "skillId": 61
+          "id": 61
         },
         {
-          "skillId": 62
+          "id": 62
         },
         {
-          "skillId": 63
+          "id": 63
         },
         {
-          "skillId": 64
+          "id": 64
         },
         {
-          "skillId": 65
+          "id": 65
         },
         {
-          "skillId": 66
+          "id": 66
         }
       ],
       "certifications": "",
@@ -2435,10 +2436,10 @@
       "email": "test.trainer@revature.com",
       "skills": [
         {
-          "skillId": 4
+          "id": 4
         },
         {
-          "skillId": 1
+          "id": 1
         }
       ],
       "certifications": [],
@@ -2455,46 +2456,46 @@
       "email": "jim.dandy@revature.com",
       "skills": [
         {
-          "skillId": 1
+          "id": 1
         },
         {
-          "skillId": 2
+          "id": 2
         },
         {
-          "skillId": 3
+          "id": 3
         },
         {
-          "skillId": 4
+          "id": 4
         },
         {
-          "skillId": 25
+          "id": 25
         },
         {
-          "skillId": 48
+          "id": 48
         },
         {
-          "skillId": 49
+          "id": 49
         },
         {
-          "skillId": 50
+          "id": 50
         },
         {
-          "skillId": 51
+          "id": 51
         },
         {
-          "skillId": 52
+          "id": 52
         },
         {
-          "skillId": 54
+          "id": 54
         },
         {
-          "skillId": 55
+          "id": 55
         },
         {
-          "skillId": 56
+          "id": 56
         },
         {
-          "skillId": 57
+          "id": 57
         }
       ],
       "certifications": [],
@@ -2524,46 +2525,46 @@
       "email": "j.doe@revature.com",
       "skills": [
         {
-          "skillId": 1
+          "id": 1
         },
         {
-          "skillId": 2
+          "id": 2
         },
         {
-          "skillId": 3
+          "id": 3
         },
         {
-          "skillId": 4
+          "id": 4
         },
         {
-          "skillId": 25
+          "id": 25
         },
         {
-          "skillId": 48
+          "id": 48
         },
         {
-          "skillId": 49
+          "id": 49
         },
         {
-          "skillId": 50
+          "id": 50
         },
         {
-          "skillId": 51
+          "id": 51
         },
         {
-          "skillId": 52
+          "id": 52
         },
         {
-          "skillId": 54
+          "id": 54
         },
         {
-          "skillId": 55
+          "id": 55
         },
         {
-          "skillId": 56
+          "id": 56
         },
         {
-          "skillId": 57
+          "id": 57
         }
       ],
       "certifications": [],
@@ -2580,141 +2581,141 @@
       "email": "trevin.chester@revature.com",
       "skills": [
         {
-          "skillId": 1
+          "id": 1
         },
         {
-          "skillId": 2
+          "id": 2
         },
         {
-          "skillId": 3
+          "id": 3
         },
         {
-          "skillId": 4
+          "id": 4
         },
         {
-          "skillId": 25
+          "id": 25
         },
         {
-          "skillId": 48
+          "id": 48
         },
         {
-          "skillId": 49
+          "id": 49
         },
         {
-          "skillId": 50
+          "id": 50
         },
         {
-          "skillId": 51
+          "id": 51
         },
         {
-          "skillId": 52
+          "id": 52
         },
         {
-          "skillId": 54
+          "id": 54
         },
         {
-          "skillId": 55
+          "id": 55
         },
         {
-          "skillId": 56
+          "id": 56
         },
         {
-          "skillId": 57
+          "id": 57
         },
         {
-          "skillId": 59,
-          "skillName": "ASP.NET MVC",
+          "id": 59,
+          "name": "ASP.NET MVC",
           "isActive": true
         },
         {
-          "skillId": 60,
-          "skillName": "ASP.NET WEB API",
+          "id": 60,
+          "name": "ASP.NET WEB API",
           "isActive": true
         },
         {
-          "skillId": 58,
-          "skillName": "C#",
+          "id": 58,
+          "name": "C#",
           "isActive": true
         },
         {
-          "skillId": 66,
-          "skillName": "ADO.NET",
+          "id": 66,
+          "name": "ADO.NET",
           "isActive": true
         },
         {
-          "skillId": 62,
-          "skillName": "MSTest",
+          "id": 62,
+          "name": "MSTest",
           "isActive": true
         },
         {
-          "skillId": 65,
-          "skillName": "Entity Framework",
+          "id": 65,
+          "name": "Entity Framework",
           "isActive": true
         },
         {
-          "skillId": 63,
-          "skillName": "xUnit",
+          "id": 63,
+          "name": "xUnit",
           "isActive": true
         },
         {
-          "skillId": 64,
-          "skillName": "NLog",
+          "id": 64,
+          "name": "NLog",
           "isActive": true
         },
         {
-          "skillId": 61,
-          "skillName": "IIS",
+          "id": 61,
+          "name": "IIS",
           "isActive": true
         },
         {
-          "skillId": 46,
-          "skillName": "Core .NET",
+          "id": 46,
+          "name": "Core .NET",
           "isActive": true
         },
         {
-          "skillId": 47
+          "id": 47
         },
         {
-          "skillId": 68
+          "id": 68
         },
         {
-          "skillId": 69
+          "id": 69
         },
         {
-          "skillId": 5
+          "id": 5
         },
         {
-          "skillId": 70
+          "id": 70
         },
         {
-          "skillId": 71
+          "id": 71
         },
         {
-          "skillId": 72
+          "id": 72
         },
         {
-          "skillId": 2,
-          "skillName": "JUnit",
+          "id": 2,
+          "name": "JUnit",
           "isActive": true
         },
         {
-          "skillId": 1,
-          "skillName": "Core Java",
+          "id": 1,
+          "name": "Core Java",
           "isActive": true
         },
         {
-          "skillId": 2,
-          "skillName": "JUnit",
+          "id": 2,
+          "name": "JUnit",
           "isActive": true
         },
         {
-          "skillId": 1,
-          "skillName": "Core Java",
+          "id": 1,
+          "name": "Core Java",
           "isActive": true
         },
         {
-          "skillId": 1,
-          "skillName": "Core Java",
+          "id": 1,
+          "name": "Core Java",
           "isActive": true
         }
       ],
@@ -2732,117 +2733,117 @@
       "email": "Kahng.Khang@Khang.kom",
       "skills": [
         {
-          "skillId": 1
+          "id": 1
         },
         {
-          "skillId": 2
+          "id": 2
         },
         {
-          "skillId": 3
+          "id": 3
         },
         {
-          "skillId": 4
+          "id": 4
         },
         {
-          "skillId": 25
+          "id": 25
         },
         {
-          "skillId": 48
+          "id": 48
         },
         {
-          "skillId": 49
+          "id": 49
         },
         {
-          "skillId": 50
+          "id": 50
         },
         {
-          "skillId": 51
+          "id": 51
         },
         {
-          "skillId": 52
+          "id": 52
         },
         {
-          "skillId": 54
+          "id": 54
         },
         {
-          "skillId": 55
+          "id": 55
         },
         {
-          "skillId": 56
+          "id": 56
         },
         {
-          "skillId": 57
+          "id": 57
         },
         {
-          "skillId": 59,
-          "skillName": "ASP.NET MVC",
+          "id": 59,
+          "name": "ASP.NET MVC",
           "isActive": true
         },
         {
-          "skillId": 60,
-          "skillName": "ASP.NET WEB API",
+          "id": 60,
+          "name": "ASP.NET WEB API",
           "isActive": true
         },
         {
-          "skillId": 58,
-          "skillName": "C#",
+          "id": 58,
+          "name": "C#",
           "isActive": true
         },
         {
-          "skillId": 66,
-          "skillName": "ADO.NET",
+          "id": 66,
+          "name": "ADO.NET",
           "isActive": true
         },
         {
-          "skillId": 62,
-          "skillName": "MSTest",
+          "id": 62,
+          "name": "MSTest",
           "isActive": true
         },
         {
-          "skillId": 65,
-          "skillName": "Entity Framework",
+          "id": 65,
+          "name": "Entity Framework",
           "isActive": true
         },
         {
-          "skillId": 63,
-          "skillName": "xUnit",
+          "id": 63,
+          "name": "xUnit",
           "isActive": true
         },
         {
-          "skillId": 64,
-          "skillName": "NLog",
+          "id": 64,
+          "name": "NLog",
           "isActive": true
         },
         {
-          "skillId": 61,
-          "skillName": "IIS",
+          "id": 61,
+          "name": "IIS",
           "isActive": true
         },
         {
-          "skillId": 46,
-          "skillName": "Core .NET",
+          "id": 46,
+          "name": "Core .NET",
           "isActive": true
         },
         {
-          "skillId": 47
+          "id": 47
         },
         {
-          "skillId": 68
+          "id": 68
         },
         {
-          "skillId": 69
+          "id": 69
         },
         {
-          "skillId": 5
+          "id": 5
         },
         {
-          "skillId": 70
+          "id": 70
         },
         {
-          "skillId": 71
+          "id": 71
         },
         {
-          "skillId": 72
+          "id": 72
         }
       ],
       "certifications": [],

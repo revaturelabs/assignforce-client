@@ -16,7 +16,7 @@
     <mat-form-field>
       <!-- <mat-select placeholder="Select Room" [(value)]="selected" formControlName="room"> -->
       <mat-select placeholder="Select Room" formControlName="room">
-        <mat-option *ngFor="let room of roomArray" [value]="room.id"> {{ room.roomName }} </mat-option>
+        <mat-option *ngFor="let room of roomArray" [value]="room.id"> {{ room.name }} </mat-option>
       </mat-select>
     </mat-form-field>
 

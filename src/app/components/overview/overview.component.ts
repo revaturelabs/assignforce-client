@@ -111,7 +111,7 @@ export class OverviewComponent implements OnInit, AfterViewInit {
       this.addressList.sort((a, b) => a.id - b.id);
       this.buildingController.findAll().subscribe(buildings => {
         this.buildingsList = buildings;
-        this.buildingsList.sort((a, b) => a.buildingId - b.buildingId);
+        this.buildingsList.sort((a, b) => a.id - b.id);
         this.roomController.findAll().subscribe(rooms => {
           this.roomsList = rooms;
           this.roomsList.sort((a, b) => a.id - b.id);
@@ -133,7 +133,7 @@ export class OverviewComponent implements OnInit, AfterViewInit {
       const trainer = this.trainerList.find(t => t.id === batch.trainer);
       const cotrainer = this.trainerList.find(t1 => t1.id === batch.cotrainer);
       const location = this.addressList.find(l => l.id === batch.location);
-      const building = this.buildingsList.find(b => b.buildingId === batch.building);
+      const building = this.buildingsList.find(b => b.id === batch.building);
       const room = this.roomsList.find(r => r.id === batch.room);
       const startDate = new Date(batch.startDate).toLocaleDateString();
       const endDate = new Date(batch.endDate).toLocaleDateString();
@@ -146,8 +146,8 @@ export class OverviewComponent implements OnInit, AfterViewInit {
       newBatch['cotrainer'] = cotrainer ? `${cotrainer.firstName} ${cotrainer.lastName}` : '';
 
       newBatch['location'] = location ? location.name : '';
-      newBatch['building'] = building ? building.buildingName : '';
-      newBatch['room'] = room ? room.roomName : '';
+      newBatch['building'] = building ? building.name : '';
+      newBatch['room'] = room ? room.name : '';
 
       newBatch['startDate'] = startDate;
       newBatch['endDate'] = endDate;
@@ -271,7 +271,7 @@ export class OverviewComponent implements OnInit, AfterViewInit {
 
   findBuilding(id: number): Building {
     let b: Building = null;
-    b = this.buildingsList.find(building => building.buildingId === id);
+    b = this.buildingsList.find(building => building.id === id);
     return b;
   }
 

@@ -36,7 +36,7 @@ describe('CurriculaComponent', () => {
 
   class MockSkillControllerService {
     find(id: number) {
-      return Observable.of(testSkillData.find( (skill) => skill.skillId === id));
+      return Observable.of(testSkillData.find( (skill) => skill.id === id));
     }
     findAll() {
       return Observable.of(testSkillData);

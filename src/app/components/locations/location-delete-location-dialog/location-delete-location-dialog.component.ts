@@ -9,7 +9,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 // Dialog Components which reference the respective html templates in this component
 
 // At some point, we may want a LocationAddBuildingDialogComponent since it just uses
-// the LocationAddDialogComponent default, which references the buildingName anyways
+// the LocationAddDialogComponent default, which references the name anyways
 // so it's pretty much a LocationAddBuildingDialogComponent already.
 export class LocationDeleteLocationDialogComponent {
   constructor(
