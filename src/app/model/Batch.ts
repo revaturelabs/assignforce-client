@@ -64,7 +64,7 @@ export class Batch {
     this.location = location;
     this.building = building;
     this.room = room;
-    this.size = size;
+    this.size = classSize;
     this.finalProject = finalProject;
   }
 }
