@@ -19,6 +19,7 @@ export class Batch {
   building: number;
   room: number;
   size: number;
+  finalProject: number;
 
   /**
    * Creates an instance of Batch.
@@ -33,7 +34,8 @@ export class Batch {
    * @param {number} [location]
    * @param {number} [building]
    * @param {number} [room]
-   * @param {number} [classSize]
+   * @param {number} [size]
+   * @param {number} [finalProject]
    * @memberof Batch
    */
   constructor(
@@ -48,7 +50,8 @@ export class Batch {
     location?: number,
     building?: number,
     room?: number,
-    classSize?: number
+    size?: number,
+    finalProject?: number,
   ) {
     this.id = id;
     this.name = name;
@@ -62,5 +65,6 @@ export class Batch {
     this.building = building;
     this.room = room;
     this.size = classSize;
+    this.finalProject = finalProject;
   }
 }

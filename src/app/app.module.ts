@@ -20,6 +20,7 @@ import { LocationDeleteBuildingDialogComponent } from './components/locations/lo
 import { LocationDeleteLocationDialogComponent } from './components/locations/location-delete-location-dialog/location-delete-location-dialog.component';
 import { LocationDeleteRoomDialogComponent } from './components/locations/location-delete-room-dialog/location-delete-room-dialog.component';
 import { LocationEditBuildingDialogComponent } from './components/locations/location-edit-building-dialog/location-edit-building-dialog.component';
+import { LocationAddBuildingDialogComponent } from './components/locations/location-add-building-dialog/location-add-building-dialog.component';
 import { LocationEditLocationDialogComponent } from './components/locations/location-edit-location-dialog/location-edit-location-dialog.component';
 import { LocationEditRoomDialogComponent } from './components/locations/location-edit-room-dialog/location-edit-room-dialog.component';
 import { LocationsComponent } from './components/locations/locations.component';
@@ -67,6 +68,10 @@ import { RoomSchedulerComponent } from './components/room-scheduler/room-schedul
 import { RoomAddEventFormComponent } from "./components/room-scheduler/add-event-form/add-event-form.component";
 import { MatTableModule } from '@angular/material';
 import { EventControllerService } from './services/api/event-controller/event-controller.service';
+import { FinalProjectsComponent } from './components/final-projects/final-projects.component';
+import { FinalProjectControllerService } from './services/api/final-project-controller/final-project-controller.service';
+import { ProjectsAddComponent } from './components/final-projects/projects-add/projects-add.component';
+import { ProjectItemComponent } from './components/final-projects/project-item/project-item.component';
 
 @NgModule({
   declarations: [
@@ -92,6 +97,7 @@ import { EventControllerService } from './services/api/event-controller/event-co
     LocationOpenUnavailibilityDialogComponent,
     LocationAddUnavailabilityDialogComponent,
     LocationChangeUnavailabilityDialogComponent,
+    LocationAddBuildingDialogComponent,
     LoginComponent,
     SkillsComponent,
     CoreComponent,
@@ -111,6 +117,9 @@ import { EventControllerService } from './services/api/event-controller/event-co
     BatchFormComponent,
     RoomSchedulerComponent,
     RoomAddEventFormComponent,
+    FinalProjectsComponent,
+    ProjectsAddComponent,
+    ProjectItemComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 
@@ -147,12 +156,13 @@ import { EventControllerService } from './services/api/event-controller/event-co
     BuildingControllerService,
     RoomControllerService,
     EventControllerService,
+    FinalProjectControllerService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: SpringXsrfInterceptor,
       multi: true
     },
-    
+
   ],
   bootstrap: [AppComponent],
   entryComponents: [
@@ -177,6 +187,7 @@ import { EventControllerService } from './services/api/event-controller/event-co
     AddCurriculumComponent,
     RoomSchedulerComponent,
     RoomAddEventFormComponent,
+    ProjectsAddComponent,
   ]
 })
 export class AppModule {}

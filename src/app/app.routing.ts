@@ -13,6 +13,7 @@ import { AuthenticatingComponent } from './components/authenticating/authenticat
 import { GuardService as AuthGuard } from './services/auth/guard.service';
 import { environment } from '../environments/environment';
 import { RoomSchedulerComponent } from './components/room-scheduler/room-scheduler.component';
+import { FinalProjectsComponent } from './components/final-projects/final-projects.component';
 
 
 const appRoutes: Routes = [
@@ -67,6 +68,10 @@ const appRoutes: Routes = [
        {
         path: environment.appRoutes.roomScheduler,
         component: RoomSchedulerComponent
+      }, 
+      {
+        path: environment.appRoutes.finalProjects,
+        component: FinalProjectsComponent
       }, 
       {
         path: '**',

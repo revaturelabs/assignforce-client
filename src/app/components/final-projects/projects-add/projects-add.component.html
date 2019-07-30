@@ -1,0 +1,21 @@
+<form [formGroup]="addProjectForm" (submit)="onSubmit(addProjectForm.value, addProjectForm.valid)">
+    <h2 mat-dialog-title>Add New Final Project</h2>
+    <div mat-dialog-content>
+      <div>
+        <mat-form-field style="width: 100%;">
+          <input matInput formControlName="name" placeholder="Project Name" type="text">
+        </mat-form-field>
+      </div>
+  
+      <div>
+        <mat-form-field style="width: 100%;">
+          <input matInput formControlName="description" placeholder="Project Description" type="text">
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div mat-dialog-actions>
+      <button mat-button tabindex="4" [disabled]="!addProjectForm.valid">Add</button>
+      <button mat-button (click)="onNoClick($event)" tabindex="-1">Cancel</button>
+    </div>
+  </form>

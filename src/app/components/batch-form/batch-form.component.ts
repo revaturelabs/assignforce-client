@@ -1,10 +1,10 @@
 /**
  *  Batch Form Component
- * 
+ *
  * @author Auguest Duet
  */
 
-import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit , Output, EventEmitter, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { CurriculumControllerService } from '../../services/api/curriculum-controller/curriculum-controller.service';
 import { Curriculum } from '../../model/Curriculum';
@@ -22,6 +22,8 @@ import { BuildingControllerService } from '../../services/api/building-controlle
 import { RoomControllerService } from '../../services/api/room-controller/room-controller.service';
 import { Batch } from '../../model/Batch';
 import { BatchMode } from '../batches/batches.component';
+import { FinalProject } from '../../model/FinalProject';
+import { FinalProjectControllerService } from '../../services/api/final-project-controller/final-project-controller.service'
 
 @Component({
   selector: 'app-batch-form',
@@ -46,7 +48,10 @@ export class BatchFormComponent implements OnInit, OnChanges {
   rooms: Room[] = new Array<Room>();
   filteredRooms: Room[] = new Array<Room>();
   allSkills: Skill[] = new Array<Skill>();
-  filteredSkills: {skillId: number}[] = new Array<{skillId: number}>();
+
+  filteredSkills: {id: number}[] = new Array<{id: number}>();
+  finalProjects: FinalProject[] = new Array<FinalProject>();
+
 
 
   //state trackers
@@ -66,7 +71,8 @@ export class BatchFormComponent implements OnInit, OnChanges {
     private trainerService: TrainerControllerService,
     private locationService: AddressControllerService,
     private buildingService: BuildingControllerService,
-    private roomService: RoomControllerService) { 
+    private roomService: RoomControllerService,
+    private finalProjectService: FinalProjectControllerService) { 
   }
 
   ngOnInit() {
@@ -108,7 +114,7 @@ export class BatchFormComponent implements OnInit, OnChanges {
         value: null,
         disabled: this.isDataLoading
       }),
-      classSize: new FormControl({
+      size: new FormControl({
         value: this.minBatchTarget,
         disabled: this.isDataLoading
       }),
@@ -123,6 +129,10 @@ export class BatchFormComponent implements OnInit, OnChanges {
       room: new FormControl({
         value: null,
         disabled: this.isDataLoading
+      }),
+      finalProject: new FormControl({
+        value: null,
+        disabled: this.isDataLoading
       })
     });
 
@@ -133,6 +143,7 @@ export class BatchFormComponent implements OnInit, OnChanges {
     this.loadLocations();
     this.loadSkills();
     this.loadSettings();
+    this.loadFinalProjects();
     this.isDataLoading = false;
 
     //subscribe to form group changes
@@ -148,7 +159,7 @@ export class BatchFormComponent implements OnInit, OnChanges {
   }
 
   /**
-   * Method to setup eding for the batch
+   * Method to setup editing for the batch
    *
    * @private
    * @param {Batch} model
@@ -165,6 +176,7 @@ export class BatchFormComponent implements OnInit, OnChanges {
     this.batchFormGroup.get('location').setValue(model.location);
     this.batchFormGroup.get('building').setValue(model.building);
     this.batchFormGroup.get('room').setValue(model.room);
+    this.batchFormGroup.get('finalProject').setValue(model.finalProject);
   }
 
   private async loadLocations() {
@@ -187,6 +199,11 @@ export class BatchFormComponent implements OnInit, OnChanges {
 
   private async loadSkills() {
     this.allSkills = await this.skillsService.findAll().toPromise();
+  }
+
+  private async loadFinalProjects() {
+    this.finalProjects = await this.finalProjectService.findAll().toPromise();
+    this.finalProjects = this.finalProjects.filter(project => project.isActive)
   }
 
   private async loadSettings() {

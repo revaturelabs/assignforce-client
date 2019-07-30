@@ -47,7 +47,8 @@ describe('ReportsComponent', () => {
       location: 1,
       building: 1,
       room: 7,
-      classSize: 21
+      classSize: 21,
+      "project3": 1
     },
     {
       id: 741,
@@ -61,7 +62,8 @@ describe('ReportsComponent', () => {
       location: 2,
       building: 1,
       room: 7,
-      classSize: 21
+      classSize: 21,
+      "project3": 1
     }];
 
   beforeEach(async(() => {

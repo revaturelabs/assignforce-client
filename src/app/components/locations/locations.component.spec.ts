@@ -9,14 +9,13 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthService } from '../../services/auth/auth.service';
 import { AppMaterialModule } from '../../material.module';
-import { LocationsComponent, LocationAddUnavailabilityDialogComponent } from './locations.component';
+import { LocationsComponent } from './locations.component';
+import { LocationAddUnavailabilityDialogComponent } from './location-add-unavailability-dialog/location-add-unavailability-dialog.component'
 import { AddressControllerService } from '../../services/api/address-controller/address-controller.service';
 import { CachedObjectsService } from '../../services/api/cache/cached-objects.service';
 import { LocationAddDialogComponent } from './add-dialog/location-add-dialog.component';
-import {
-  LocationDeleteLocationDialogComponent,
-  LocationOpenUnavailibilityDialogComponent
-} from './locations.component';
+import { LocationDeleteLocationDialogComponent } from './location-delete-location-dialog/location-delete-location-dialog.component';
+import { LocationOpenUnavailibilityDialogComponent } from './location-open-unavailibility/location-open-unavailibility.component';
 import { BuildingControllerService } from '../../services/api/building-controller/building-controller.service';
 import { RoomControllerService } from '../../services/api/room-controller/room-controller.service';
 import { Component } from '@angular/core';
@@ -113,10 +112,10 @@ describe('LocationsComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(LocationsComponent);
     component = fixture.componentInstance;
-    httpMock = TestBed.get(HttpTestingController);
-    addressTestControllerService = TestBed.get(AddressTestControllerService);
+    this.httpMock = TestBed.get(HttpTestingController);
+    this.addressTestControllerService = TestBed.get(AddressTestControllerService);
 
-    spyOn(addressTestControllerService, 'findAll').and.callThrough();
+    spyOn(this.addressTestControllerService, 'findAll').and.callThrough();
   });
 
   // //
@@ -167,13 +166,14 @@ describe('LocationsComponent', () => {
       unavailabilities: [
         { id: 1, startDate: new Date(2019, 2, 13), endDate: new Date(2019, 3, 8), description: 'Dummy One', room: 1 },
         { id: 2, startDate: new Date(2019, 7, 4), endDate: new Date(2019, 7, 21), description: 'Dummy Two', room: 1 }
-      ]
+      ],
+      capacity: 20
     };
 
     let num = 1;
-    const unavailabilityTest: Unavailability = {id: 3, startDate: new Date(2019, 2, 13), endDate: new Date(2019, 3, 8), description: 'Bad Test', room: 1};
-    const roomTest: Room = {id: 1, roomName: 'Testing Room', building: 1, active: true, unavailabilities: [{id: 1, startDate: new Date(2019, 2, 13), endDate: new Date(2019, 3, 8), description: 'Dummy One', room: 1}, {id: 2, startDate: new Date(2019, 7, 4), endDate: new Date(2019, 7, 21), description: 'Dummy Two', room: 1}]};
-    const num = 1;
+    // const unavailabilityTest: Unavailability = {id: 3, startDate: new Date(2019, 2, 13), endDate: new Date(2019, 3, 8), description: 'Bad Test', room: 1};
+    // const roomTest: Room = {id: 1, roomName: 'Testing Room', building: 1, active: true, unavailabilities: [{id: 1, startDate: new Date(2019, 2, 13), endDate: new Date(2019, 3, 8), description: 'Dummy One', room: 1}, {id: 2, startDate: new Date(2019, 7, 4), endDate: new Date(2019, 7, 21), description: 'Dummy Two', room: 1}]};
+    // const num = 1;
     component3 = TestBed.createComponent(LocationOpenUnavailibilityDialogComponent).componentInstance;
     expect(component3.duplicate(unavailabilityTest, roomTest, num)).toEqual(true);
   });
@@ -195,12 +195,13 @@ describe('LocationsComponent', () => {
       unavailabilities: [
         { id: 1, startDate: new Date(2019, 2, 13), endDate: new Date(2019, 3, 8), description: 'Dummy One', room: 1 },
         { id: 2, startDate: new Date(2019, 7, 4), endDate: new Date(2019, 7, 21), description: 'Dummy Two', room: 1 }
-      ]
+      ],
+      capacity: 20
     };
     let num = 1;
-    const unavailabilityTest: Unavailability = {id: 3, startDate: new Date(2019, 8, 21), endDate: new Date(2019, 9, 20), description: 'Good Test', room: 1};
-    const roomTest: Room = {id: 1, roomName: 'Testing Room', building: 1, active: true, unavailabilities: [{id: 1, startDate: new Date(2019, 2, 13), endDate: new Date(2019, 3, 8), description: 'Dummy One', room: 1}, {id: 2, startDate: new Date(2019, 7, 4), endDate: new Date(2019, 7, 21), description: 'Dummy Two', room: 1}]};
-    const num = 1;
+    // const unavailabilityTest: Unavailability = {id: 3, startDate: new Date(2019, 8, 21), endDate: new Date(2019, 9, 20), description: 'Good Test', room: 1};
+    // const roomTest: Room = {id: 1, roomName: 'Testing Room', building: 1, active: true, unavailabilities: [{id: 1, startDate: new Date(2019, 2, 13), endDate: new Date(2019, 3, 8), description: 'Dummy One', room: 1}, {id: 2, startDate: new Date(2019, 7, 4), endDate: new Date(2019, 7, 21), description: 'Dummy Two', room: 1}]};
+    // const num = 1;
     component3 = TestBed.createComponent(LocationOpenUnavailibilityDialogComponent).componentInstance;
     expect(component3.duplicate(unavailabilityTest, roomTest, num)).toEqual(false);
   });
@@ -267,6 +268,7 @@ describe('LocationsComponent', () => {
 
   it('should return true since the name provided contains content other than spaces', () => { 
     const test = "Test";
+  });
   it('should return true since the name provided contains content other than spaces', () => {
     const test = 'Test';
     expect(component.notBlank(test)).toEqual(true);
@@ -299,7 +301,7 @@ describe('LocationsComponent', () => {
     // let addressController = environment.apiUrls.addressController;
     // let service = TestBed.createComponent(AddressTestControllerService).componentInstance;
     // const request = httpMock.expectOne(addressController + addressController.findAll);
-    addressTestControllerService.findAll().subscribe(result => {
+    this.addressTestControllerService.findAll().subscribe(result => {
       // expect(result['addresses'].length).toBe('');
       expect(result).toBeNull(false);
       // expect(request.request.method).toBe('GET');
