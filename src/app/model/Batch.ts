@@ -1,7 +1,7 @@
 /**
  * Batch model
- * A Batch consists of an id, name, start date, end date, curriculum, trainer, 
- * co-trainer, skills, location, building, room, and class size. 
+ * A Batch consists of an id, name, start date, end date, curriculum, trainer,
+ * co-trainer, skills, location, building, room, and class size.
  */
 import { Skill } from "./Skill";
 import { getMatScrollStrategyAlreadyAttachedError } from "@angular/cdk/overlay/typings/scroll/scroll-strategy";
@@ -64,7 +64,7 @@ export class Batch {
     this.location = location;
     this.building = building;
     this.room = room;
-    this.size = classSize;
+    this.size = size;
     this.finalProject = finalProject;
   }
 }
