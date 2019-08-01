@@ -2936,10 +2936,7 @@
       "isActive": false
     },
     {
-      "id": 9
-    },
-    {
-      "id": 10,
+      "id": 9,
       "name": "Project Example",
       "description": "Project Description",
       "isActive": true
