@@ -1,5 +1,6 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule } from "@angular/common";
+import { NgModule } from "@angular/core";
+import { ReactiveFormsModule } from "@angular/forms";
 import {
   MatButtonModule,
   MatCardModule,
@@ -7,6 +8,7 @@ import {
   MatChipsModule,
   MatDatepickerModule,
   MatDialogModule,
+  MatDialogRef,
   MatExpansionModule,
   MatFormFieldModule,
   MatGridListModule,
@@ -24,11 +26,9 @@ import {
   MatTableModule,
   MatTabsModule,
   MatToolbarModule,
-  MatTooltipModule, 
-  MatDialogRef,
-} from '@angular/material';
-import { ReactiveFormsModule } from '@angular/forms';
-import { RoomSchedulerComponent } from './components/room-scheduler/room-scheduler.component';
+  MatTooltipModule,
+} from "@angular/material";
+import { RoomSchedulerComponent } from "./components/room-scheduler/room-scheduler.component";
 
 @NgModule({
   imports: [
@@ -99,6 +99,6 @@ import { RoomSchedulerComponent } from './components/room-scheduler/room-schedul
     MatGridListModule,
     MatTableModule,
   ],
-  declarations: []
+  declarations: [],
 })
 export class AppMaterialModule {}

@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { Batch } from '../../../model/Batch';
-import { Observable } from 'rxjs/Observable';
-import { environment } from '../../../../environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs/Observable";
+import { environment } from "../../../../environments/environment";
+import { Batch } from "../../../model/Batch";
 
 @Injectable()
 export class BatchControllerService {
@@ -22,7 +22,7 @@ export class BatchControllerService {
       location: batch.location ? batch.location : null,
       building: batch.building ? batch.building : null,
       room: batch.room ? batch.room : null,
-      classSize: batch.size ? batch.size : null
+      classSize: batch.size ? batch.size : null,
     });
   }
   public update(batch: Batch): Observable<Batch> {
@@ -38,14 +38,14 @@ export class BatchControllerService {
       skills: batch.skills,
       location: batch.location,
       building: batch.building ? batch.building : null,
-      room : batch.room ? batch.room : null
+      room : batch.room ? batch.room : null,
     });
   }
   public findAll(): Observable<Batch[]> {
     return this.http.get<Batch[]>(this.batchController.baseUrl + this.batchController.findAll);
   }
   public remove(id: number): Observable<any>{
-    return this.http.delete<Batch>(this.batchController.baseUrl + this.batchController.remove + id)
+    return this.http.delete<Batch>(this.batchController.baseUrl + this.batchController.remove + id);
   }
   public find(id: number): Observable<Batch> {
     return this.http.get<Batch>(this.batchController.baseUrl + this.batchController.find + id);
