@@ -12,7 +12,7 @@ export class ProjectsAddComponent implements OnInit {
 
   project: FinalProject = {
     id: null,
-    name: '',
+    name: "",
     description: '',
     isActive: true
   }

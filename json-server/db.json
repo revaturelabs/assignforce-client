@@ -45,12 +45,12 @@
     {
       "id": 1,
       "name": "1903 Mar25 Java",
-      "startDate": "2019-03-30T13:00:00.000Z",
-      "endDate": "2019-06-05T21:00:00.000Z",
+      "startDate": "2019-03-31T14:00:00.000Z",
+      "endDate": "2019-06-06T22:00:00.000Z",
       "curriculum": 1,
       "trainer": 1,
       "cotrainer": 2,
-      "size": 40,
+      "classSize": 40,
       "skills": [
         {
           "id": 4,

@@ -45,6 +45,7 @@ import { BatchControllerService } from './services/api/batch-controller/batch-co
 import { CurriculumControllerService } from './services/api/curriculum-controller/curriculum-controller.service';
 import { SettingControllerService } from './services/api/setting-controller/setting-controller.service';
 import { SkillControllerService } from './services/api/skill-controller/skill-controller.service';
+import {SprintService} from "./services/api/sprint-service/sprint.service";
 import { TrainerControllerService } from './services/api/trainer-controller/trainer-controller.service';
 import { UnavailableControllerService } from './services/api/unavailable-controller/unavailable-controller.service';
 import { AuthService } from './services/auth/auth.service';
@@ -72,6 +73,7 @@ import { FinalProjectsComponent } from './components/final-projects/final-projec
 import { FinalProjectControllerService } from './services/api/final-project-controller/final-project-controller.service';
 import { ProjectsAddComponent } from './components/final-projects/projects-add/projects-add.component';
 import { ProjectItemComponent } from './components/final-projects/project-item/project-item.component';
+import { AddSprintComponent } from './components/add-sprint/add-sprint.component';
 
 @NgModule({
   declarations: [
@@ -119,7 +121,8 @@ import { ProjectItemComponent } from './components/final-projects/project-item/p
     RoomAddEventFormComponent,
     FinalProjectsComponent,
     ProjectsAddComponent,
-    ProjectItemComponent
+    ProjectItemComponent,
+    AddSprintComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 
@@ -157,10 +160,11 @@ import { ProjectItemComponent } from './components/final-projects/project-item/p
     RoomControllerService,
     EventControllerService,
     FinalProjectControllerService,
+    SprintService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: SpringXsrfInterceptor,
-      multi: true
+      multi: true,
     },
 
   ],
@@ -188,6 +192,7 @@ import { ProjectItemComponent } from './components/final-projects/project-item/p
     RoomSchedulerComponent,
     RoomAddEventFormComponent,
     ProjectsAddComponent,
+    AddSprintComponent,
   ]
 })
 export class AppModule {}

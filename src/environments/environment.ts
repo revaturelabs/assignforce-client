@@ -23,7 +23,8 @@ export const environment = {
     settings: 'settings',
     callback: 'callback',
     roomScheduler: 'room-scheduler',
-    finalProjects: 'finalProjects'
+    finalProjects: 'finalProjects',
+    sprint: 'sprint'
   },
 
   auth0: {
@@ -168,7 +169,15 @@ export const environment = {
       findAll: '',
       find: '/',
       remove: '/'
-    }
+    },
 
-  }
+    sprintService: {
+      baseUrl: 'api/sprint',
+      create: '',
+      update: '/',
+      findAll: '',
+      find: '/',
+      remove: '/'
+    },
+  },
 };

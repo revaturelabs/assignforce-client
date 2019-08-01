@@ -53,4 +53,7 @@ export class UrlService {
     return environment.appRoutes.finalProjects;
   }
 
+  getSprintUrl(): string {
+    return environment.appRoutes.sprint;
+  }
 }
