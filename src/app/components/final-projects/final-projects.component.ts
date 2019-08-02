@@ -7,6 +7,7 @@ import { CachedObjectsService } from "../../services/api/cache/cached-objects.se
 import { FinalProjectControllerService } from "../../services/api/final-project-controller/final-project-controller.service";
 import { AuthService } from "../../services/auth/auth.service";
 import { ProjectsAddComponent } from "./projects-add/projects-add.component";
+import { SprintControllerService } from "../../services/api/sprint-controller/sprint-controller.service";
 
 @Component({
   selector: "app-final-projects",
@@ -28,6 +29,7 @@ export class FinalProjectsComponent implements OnInit {
     private batchService: BatchControllerService,
     public auth0: AuthService,
     private cacheService: CachedObjectsService,
+    private sprintService: SprintControllerService,
   ) {}
 
   ngOnInit() {
@@ -82,4 +84,8 @@ export class FinalProjectsComponent implements OnInit {
     });
   }
 
+  createSprint() {
+    console.log("Clicked!")
+    this.sprintService.createSprint();
+  }
 }

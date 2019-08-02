@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import {Sprint} from "../../model/sprint";
-import {SprintControllerService} from "../../services/api/sprint-controller/sprint-controller.service";
+import { Sprint } from "../../model/sprint";
+import { SprintControllerService } from "../../services/api/sprint-controller/sprint-controller.service";
 
 @Component({
   selector: "app-add-sprint",

@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import "rxjs/add/operator/map";
 import {Observable} from "rxjs/Observable";
@@ -22,15 +22,20 @@ export class SprintControllerService {
   }
   // tslint:disable-next-line:one-line
   createSprint(){
-    return this.http.post("https://api.github.com/repos/revaturelabs/assignforce", {name: "name", description: "description"})
-      .map((res: Response) => res.json());
+    return this.http.post("https://api.github.com/repos/revaturelabs/assignforce/projects", {name: "name", body: "This is a test description."},
+      { headers: new HttpHeaders({
+          "Content-Type": "application/json",
+          "Authorization": "Replace with authentication token in the slack",
+          "Accept": "application/vnd.github.inertia-preview+json"})})
+      .subscribe((res) => {
+        console.log(res);
+      });
   }
 
   // tslint:disable-next-line:one-line
    getSprint(){
     // @ts-ignore
-    return this.http.get("https://api.github.com/repos/revaturelabs/assignforce/projects")
-      .map((res: Response) => res.json());
+    return this.http.get("https://api.github.com/repos/revaturelabs/assignforce/projects");
   }
 
   submit(name, description) {
@@ -38,7 +43,7 @@ export class SprintControllerService {
       // tslint:disable-next-line:one-line
       {
          name,
-        description,
+         description,
       };
     console.log(data);
     this.http.post(this.createSprintUrl, data).subscribe();
