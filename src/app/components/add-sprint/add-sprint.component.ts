@@ -8,17 +8,16 @@ import {SprintControllerService} from "../../services/api/sprint-controller/spri
   styleUrls: ["./add-sprint.component.css"],
 })
 export class AddSprintComponent implements OnInit {
+  name: string;
+  description: string;
+
   sprint: Sprint[];
 
   constructor(private sprintService: SprintControllerService) { }
 
   // tslint:disable-next-line:one-line
-  submitSprinnt(){
-    this.sprintService.createSprint()
-    // tslint:disable-next-line:one-line
-      .subscribe((data) => {
-        this.sprint = data;
-      });
+  submit(){
+    this.sprintService.submit(this.name, this.description);
   }
 
   ngOnInit() {

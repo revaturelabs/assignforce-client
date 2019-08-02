@@ -8,8 +8,8 @@ import {Sprint} from "../../../model/sprint";
 
 @Injectable()
 export class SprintControllerService {
-  private name: string;
-  private description: string;
+
+  createSprintUrl = "https://api.github.com/repos/revaturelabs/assignforce";
 
   constructor(private http: HttpClient) {}
 
@@ -22,7 +22,7 @@ export class SprintControllerService {
   }
   // tslint:disable-next-line:one-line
   createSprint(){
-    return this.http.post("https://api.github.com/repos/revaturelabs/assignforce", {})
+    return this.http.post("https://api.github.com/repos/revaturelabs/assignforce", {name: "name", description: "description"})
       .map((res: Response) => res.json());
   }
 
@@ -31,6 +31,17 @@ export class SprintControllerService {
     // @ts-ignore
     return this.http.get("https://api.github.com/repos/revaturelabs/assignforce/projects")
       .map((res: Response) => res.json());
+  }
+
+  submit(name, description) {
+    const data =
+      // tslint:disable-next-line:one-line
+      {
+         name,
+        description,
+      };
+    console.log(data);
+    this.http.post(this.createSprintUrl, data).subscribe();
   }
 
 }
