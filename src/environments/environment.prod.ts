@@ -153,5 +153,13 @@ export const environment = {
       find: "/",
       remove: "/",
     },
+    sprintService: {
+      baseUrl: "api/sprint",
+      create: "",
+      update: "/",
+      findAll: "",
+      find: "/",
+      remove: "/",
+    },
   },
 };

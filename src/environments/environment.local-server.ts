@@ -1,6 +1,7 @@
 export const environment = {
   production: false,
   name: "local-server",
+  // tslint:disable-next-line:comment-format
   baseUrl: "http://localhost:4200", //change this to https;
 
   appRoutes: {
@@ -28,6 +29,7 @@ export const environment = {
   auth0: {
     namespace: "http://revature.com/",
     title: "AssignForce Login",
+    // tslint:disable-next-line:comment-format
     clientId: "tjQhcs0O4mRV2iry6SAO0Gy1YQcBrWCa", //hydra
     domain: "revature.auth0.com",
     responseType: "token id_token",
@@ -154,6 +156,14 @@ export const environment = {
     },
     finalProjectController: {
       baseUrl: "http://localhost:3000/finalProjects",
+      create: "",
+      update: "/",
+      findAll: "",
+      find: "/",
+      remove: "/",
+    },
+    sprintService: {
+      baseUrl: "api/sprint",
       create: "",
       update: "/",
       findAll: "",
