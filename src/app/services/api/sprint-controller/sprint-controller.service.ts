@@ -25,7 +25,7 @@ export class SprintControllerService {
     return this.http.post("https://api.github.com/repos/revaturelabs/assignforce/projects", {name: "name", body: "This is a test description."},
       { headers: new HttpHeaders({
           "Content-Type": "application/json",
-          "Authorization": "Replace with authentication token in the slack",
+          "Authorization": "Replace with authentication token in the slack. Do not commit the token to the repository without permission.",
           "Accept": "application/vnd.github.inertia-preview+json"})})
       .subscribe((res) => {
         console.log(res);
