@@ -33,29 +33,14 @@ export class SprintControllerService {
   }
 
   // tslint:disable-next-line:one-line
-   getSprint(){
-    // @ts-ignore
-     let sprints;
+  getAll():Observable<Sprint[]> {
+    return this.http.get<Sprint[]>("https://api.github.com/repos/revaturelabs/assignforce/projects",
+    { headers: new HttpHeaders({
+      "Content-Type": "application/json",
+      "Authorization": "token ",
+      "Accept": "application/vnd.github.inertia-preview+json"})})
 
-     this.http.get<Sprint[]>("https://api.github.com/repos/revaturelabs/assignforce/projects")
-      .subscribe((resp) => {
-        sprints = resp;
-      });
-
-     while (!sprints) {}
-
-     return sprints;
   }
 
-  submit(name, description) {
-    const data =
-      // tslint:disable-next-line:one-line
-      {
-         name,
-         description,
-      };
-    console.log(data);
-    this.http.post(this.createSprintUrl, data).subscribe();
-  }
 
 }
