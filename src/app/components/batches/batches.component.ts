@@ -243,8 +243,8 @@ export class BatchesComponent implements OnInit, AfterViewInit {
 
   entityLookup(entityContainerName: string, entityId: number) {
     /*
-      custom lookup due to model for buildings being weird and using buildingId and buildingName 
-      instead of id and name 
+      custom lookup due to model for buildings being weird and using buildingId and buildingName
+      instead of id and name
     */
     if (entityContainerName === "buildings") {
       return this[entityContainerName].find((e) => e.id === entityId);
@@ -252,7 +252,7 @@ export class BatchesComponent implements OnInit, AfterViewInit {
 
     return this[entityContainerName].find((e) => e.id === entityId);
   }
-  
+
   updateCurriculum() {
     // Checking if Curriculum has been selected, if so, populate focuses and skills
     if (!this.batchModel.curriculum) return;

@@ -47,7 +47,6 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
       this.updateBatches();
     }
   };
-
   // dynamic values for formatting
   width = 1536;
   swimlaneXOfs = 100;
@@ -213,6 +212,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
   @Input() buildingList: Building[] = null; //TODO need to verify correct building array
   locationList = [];
   // @Input() roomList: Room[]; //TODO need to investigate correct rooms
+  @Input() locationListChild: Address[] = null;
 
   constructor(
     // private batchController: BatchControllerService,
@@ -433,7 +433,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
         batch.endDate = new Date(batch.endDate).valueOf() + this.ONE_WEEK/7;
       }
     }
-  
+
   }
 
   //Filter batches. TODO: Logic can probably be simplified.
@@ -530,17 +530,25 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
 
   updateLocations() {
   //TODO make this funtionality true
-    this.loading = true;
-    this.addressController.findAll().subscribe(lList => {
-      this.locationList = lList;
-      this.locationList.sort((a, b) => a.id - b.id);
-      if(this.buildingList !== null) {
-        this.buildingList.forEach(buildings => {
-          this.buildingList.sort((a, b) => a.id - b.id);
-          
-        });
-      }
-    });
+    // this.loading = true;
+    // this.addressController.findAll().subscribe(lList => {
+    //   this.locationList = lList;
+    //   this.locationList.sort((a, b) => a.id - b.id);
+    //   if(this.buildingList !== null) {
+    //     this.buildingList.forEach(buildings => {
+    //       this.buildingList.sort((a, b) => a.id - b.id);
+
+    //     });
+    //   }
+    // });
+    this.locationList = this.locationListChild;
+    this.locationList.sort((a, b) => a.id - b.id);
+    if(this.buildingList !== null) {
+      this.buildingList.forEach(buildings => {
+        this.buildingList.sort((a, b) => a.id - b.id);
+
+      });
+    }
   }
 
   updateSettings() {
@@ -778,7 +786,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
   }
 
   getRoomNameById(id: number) {
-  
+
     return "No Room exists."
   }
 
@@ -820,7 +828,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
     if (this.batchFilteredList.length === 0) {
       return rects;
     }
-   
+
 
     // text mode to use by pixel height
     const txtlongpx = 105;
@@ -1015,7 +1023,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
     // cache some common values
     const start_month = this.startDate.getMonth();
     const start_year = this.startDate.getFullYear();
-    
+
     // get distance between months (px) to determine which scale to use
     const ys0 = this.dateToYPos(new Date(start_year, start_month).valueOf());
     const ys1 = this.dateToYPos(

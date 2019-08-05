@@ -12,6 +12,9 @@
 [trainersPerPage]="trainersPerPage"
 [currentPage]="currentPage"
 [maxPages]="maxPages"
+[curriculumFilterList] = "curriculumList"
+[locationFilterList] = "locationListChild"
+[buildingFilterList] = "buildingList"
  (filterChangeEmitter)="onFilterChange($event)"></app-batches-timeline-filter>
 <div (window:resize)="windowResize($event)" id="full-timeline">
   <div id="trainer-names-bg" #trainernames [style.min-width.px]="minWidth">

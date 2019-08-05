@@ -35,6 +35,13 @@ export class BatchFormComponent implements OnInit, OnChanges {
   @Input() options: {mode: BatchMode, model: Batch} = {mode: BatchMode.Create, model: null};
   @Output() batchSubmitted: EventEmitter<Batch> = new EventEmitter<Batch>();
   @Output() actionCancelled: EventEmitter<null> = new EventEmitter<null>();
+  @Input() trainerList: Trainer [] = null;
+  @Input() curriculumList: Curriculum [] = null;
+  @Input() skillsList: Skill [] = null;
+  @Input() locationList: Address [] = null;
+  @Input() buildingList: Building [] = null;
+  @Input() roomsList: Room [] = null;
+  @Input() finalProjectList: FinalProject [] = null;
 
   //for manager
   batchFormGroup: FormGroup;
@@ -72,7 +79,7 @@ export class BatchFormComponent implements OnInit, OnChanges {
     private locationService: AddressControllerService,
     private buildingService: BuildingControllerService,
     private roomService: RoomControllerService,
-    private finalProjectService: FinalProjectControllerService) { 
+    private finalProjectService: FinalProjectControllerService) {
   }
 
   ngOnInit() {
@@ -80,14 +87,14 @@ export class BatchFormComponent implements OnInit, OnChanges {
     this.batchFormGroup = new FormGroup({
       curriculum: new FormControl(
         {
-          value: null, 
+          value: null,
           disabled: this.isDataLoading
-        }, 
+        },
         Validators.required
         ),
       skills: new FormControl(
         {
-          value: null, 
+          value: null,
           disabled: this.isDataLoading
         }
       ),
@@ -138,12 +145,7 @@ export class BatchFormComponent implements OnInit, OnChanges {
 
     //load the appropriate data
     this.isDataLoading = true;
-    this.loadCurricula();
-    this.loadTrainers();
-    this.loadLocations();
-    this.loadSkills();
     this.loadSettings();
-    this.loadFinalProjects();
     this.isDataLoading = false;
 
     //subscribe to form group changes
@@ -156,6 +158,11 @@ export class BatchFormComponent implements OnInit, OnChanges {
         changes.options.currentValue.model) {
       this.setupEditing(changes.options.currentValue.model);
     }
+    this.loadCurricula();
+    this.loadTrainers();
+    this.loadLocations();
+    this.loadSkills();
+    this.loadFinalProjects();
   }
 
   /**
@@ -180,30 +187,30 @@ export class BatchFormComponent implements OnInit, OnChanges {
   }
 
   private async loadLocations() {
-    this.locations = await this.locationService.findAll().toPromise();
+    this.locations = this.locationList;
     this.locations = this.locations.filter(loc => loc.isActive);
 
-    this.buildings = await this.buildingService.findAll().toPromise();
+    this.buildings = this.buildingList;
     this.buildings = this.buildings.filter(b => b.isActive);
 
-    this.rooms = await this.roomService.findAll().toPromise();
+    this.rooms = this.roomsList;
   }
   private async loadTrainers() {
-    this.trainers = await this.trainerService.findAll().toPromise();
+    this.trainers = this.trainerList;
     this.trainers = this.trainers.filter(trainer => trainer.isActive)
   }
 
   private async loadCurricula() {
-    this.curricula = await this.curriculumService.findAll().toPromise();
+    this.curricula = this.curriculumList;
   }
 
   private async loadSkills() {
-    this.allSkills = await this.skillsService.findAll().toPromise();
+    this.allSkills = this.skillsList;
   }
 
   private async loadFinalProjects() {
-    this.finalProjects = await this.finalProjectService.findAll().toPromise();
-    this.finalProjects = this.finalProjects.filter(project => project.isActive)
+    this.finalProjects = this.finalProjectList;
+    this.finalProjects = this.finalProjects.filter(project => project.isActive);
   }
 
   private async loadSettings() {
@@ -324,7 +331,7 @@ export class BatchFormComponent implements OnInit, OnChanges {
 
     if(startTime && endTime){
       const numDays = Math.abs(startTime - endTime) / (1000 * 60 * 60 * 24);
-      return Math.ceil(numDays / 7); 
+      return Math.ceil(numDays / 7);
     }
 
   }
@@ -376,7 +383,7 @@ export class BatchFormComponent implements OnInit, OnChanges {
   }
 
   /**
-   * Method to handle form submission from batch form. 
+   * Method to handle form submission from batch form.
    *
    * @param {Batch} value
    * @memberof BatchFormComponent
