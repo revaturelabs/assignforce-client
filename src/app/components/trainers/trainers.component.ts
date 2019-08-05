@@ -1,22 +1,22 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
-import { AddTrainerErrorComponent} from './add-trainer-error/add-trainer-error.component';
-import { Skill } from '../../model/Skill';
-import { Trainer } from '../../model/Trainer';
-import { TrainersAddComponent } from './trainers-add/trainers-add.component';
-import { TrainerControllerService } from '../../services/api/trainer-controller/trainer-controller.service';
-import { Router } from '@angular/router';
-import { CurriculumControllerService } from '../../services/api/curriculum-controller/curriculum-controller.service';
-import { Curriculum } from '../../model/Curriculum';
-import { AuthService } from '../../services/auth/auth.service';
-import { FillSkillsService } from '../../services/api/skill-controller/fill-skills.service';
-import { CachedObjectsService } from '../../services/api/cache/cached-objects.service';
-import { FilehandlerService } from '../../services/api/filehandler-controller/filehandler-controller.service';
+import { Component, OnInit } from "@angular/core";
+import { MatDialog } from "@angular/material";
+import { Router } from "@angular/router";
+import { Curriculum } from "../../model/Curriculum";
+import { Skill } from "../../model/Skill";
+import { Trainer } from "../../model/Trainer";
+import { CachedObjectsService } from "../../services/api/cache/cached-objects.service";
+import { CurriculumControllerService } from "../../services/api/curriculum-controller/curriculum-controller.service";
+import { FilehandlerService } from "../../services/api/filehandler-controller/filehandler-controller.service";
+import { FillSkillsService } from "../../services/api/skill-controller/fill-skills.service";
+import { TrainerControllerService } from "../../services/api/trainer-controller/trainer-controller.service";
+import { AuthService } from "../../services/auth/auth.service";
+import { AddTrainerErrorComponent} from "./add-trainer-error/add-trainer-error.component";
+import { TrainersAddComponent } from "./trainers-add/trainers-add.component";
 
 @Component({
-  selector: 'app-trainers',
-  templateUrl: './trainers.component.html',
-  styleUrls: ['./trainers.component.css']
+  selector: "app-trainers",
+  templateUrl: "./trainers.component.html",
+  styleUrls: ["./trainers.component.css"],
 })
 export class TrainersComponent implements OnInit {
   [x: string]: any;
@@ -39,7 +39,7 @@ export class TrainersComponent implements OnInit {
     public auth0: AuthService,
     private fillSkills: FillSkillsService,
     private cacheService: CachedObjectsService,
-    private filehandlerService: FilehandlerService
+    private filehandlerService: FilehandlerService,
   ) {}
 
   ngOnInit() {
@@ -63,12 +63,12 @@ export class TrainersComponent implements OnInit {
     //     this.cacheService.setTrainers(this.trainers);
     // })
   //}
-    if(!this.curricula[0]){
+    if (!this.curricula[0]){
       //Only load if cacheService was empty
       this.curriculumService
         .findAll()
         .toPromise()
-        .then(curricula => {
+        .then((curricula) => {
           this.curricula = curricula;
           this.cacheService.setCurricula(curricula);
         });
@@ -77,9 +77,8 @@ export class TrainersComponent implements OnInit {
 
   showCalendar() {}
 
-
   grabS3Resume(trainer: Trainer) {
-    this.filehandlerService.download(trainer).subscribe(data => this.downloadFile(data));
+    this.filehandlerService.download(trainer).subscribe((data) => this.downloadFile(data));
   }
 
   downloadFile(data: Response) {
@@ -93,53 +92,53 @@ export class TrainersComponent implements OnInit {
 
     const trainer: Trainer = {
       id: null,
-      firstName: '',
-      lastName: '',
+      firstName: "",
+      lastName: "",
       isActive: true,
       preferredLocation: null,
       unavailabilities: [],
-      email: '',
+      email: "",
       skills: [],
       certifications: [],
-      resume: '',
-      linkedInUrl: ''
+      resume: "",
+      linkedInUrl: "",
     };
 
     const dialogRef = this.dialog.open(TrainersAddComponent, {
-      width: '450px',
+      width: "450px",
       data: {
-        trainer: trainer,
-        curricula: this.curricula.filter( a => {
+        trainer,
+        curricula: this.curricula.filter( (a) => {
           if (a.isCore && a.isActive){
             return a;
           }
 
-        })
-      }
+        }),
+      },
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         console.log(result);
         //this checks to see if the email that was inputed is is unique
         //if not it opens an error dialog
         let isUnique = true;
-        for(let trainer of this.trainers){
-          if(result.email === trainer.email){
+        for (const trainer of this.trainers){
+          if (result.email === trainer.email){
             isUnique = false;
-            this.dialog.open(AddTrainerErrorComponent,{
-              width: "450px"
+            this.dialog.open(AddTrainerErrorComponent, {
+              width: "450px",
             });
           }
         }
-        if(isUnique){
+        if (isUnique){
           this.trainerService
           .create(result)
           .toPromise()
-          .then(t => {
+          .then((t) => {
             this.trainers.push(t);
           })
-          .catch(error => {
+          .catch((error) => {
             console.log(error);
           });
         }
