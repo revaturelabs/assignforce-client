@@ -153,8 +153,18 @@ export class BatchesTimelineFilterComponent implements OnInit {
     this.locationData.unshift(this.locationAny);
     this.buildingData = this.buildingFilterList;
     this.buildingData.sort((a, b) => a.id - b.id);
-    if(!this.buildingData.includes("Any")) {
+    var found = false;
+    for(var i = 0; i < this.buildingData.length; i++)
+    {
+      if (this.buildingData[i].name == 'Any') {
+        found = true;
+
+        break;
+    }
+  }
+    if(!found) {
       this.buildingData.unshift(this.buildingAny);
+      console.log("Oppai");
     }
 
     this.locationFilter = this.locationData[0];
@@ -170,11 +180,14 @@ onFilterChange(evt: Event) {
 //
 onLocationSelectChange(evt: Event) {
   this.buildingData = [];
-  this.buildingData.push(this.buildingAny);
-  this.buildingFilter = this.buildingData[0];
-  for (const building of this.locationFilter.buildings) {
-    this.buildingData.push(building);
+  // this.buildingData.push(this.buildingAny);
+  if(!this.buildingData.includes("Any")) {
+    this.buildingData.push(this.buildingAny);
   }
+  this.buildingFilter = this.buildingData[0];
+  // for (const building of this.locationFilter.buildings) {
+  //   this.buildingData.push(building);
+  // }
   this.filterChangeEmitter.emit(evt);
  }
 }
