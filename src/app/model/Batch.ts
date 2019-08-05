@@ -21,7 +21,6 @@ export class Batch {
   size: number;
   finalProject: number;
 
-
   /**
    * Creates an instance of Batch.
    * @param {number} [id]

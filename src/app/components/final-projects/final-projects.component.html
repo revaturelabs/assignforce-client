@@ -8,12 +8,12 @@
       </button>
     </mat-toolbar>
   </mat-toolbar-row>
-  <!-- show a list of all the projects -->
+  <!-- show a lost of all the projects -->
   <mat-card>
     <mat-card-content class="md-padding" *ngIf="projects != undefined && canLoad">
       <div *ngFor="let project of projects">
         <mat-list *ngIf="project.isActive">
-          <app-project-item  [project]="project" [routerLink]="['/sprint/']"></app-project-item>
+          <app-project-item (click)="createSprint()" [project]="project"></app-project-item>
         </mat-list>
       </div>
     </mat-card-content>
@@ -32,7 +32,7 @@
       <span class="fill-space"></span>
     </mat-toolbar>
   </mat-toolbar-row>
-  <!-- show a list of all the projects -->
+  <!-- show a lost of all the projects -->
   <mat-card>
     <mat-card-content class="md-padding" *ngIf="projects != undefined && canLoad">
       <div *ngFor="let project of projects">

@@ -44,9 +44,9 @@
   "batches": [
     {
       "id": 1,
-      "name": "1908 Aug16 Java",
-      "startDate": "2019-08-19T14:00:00.000Z",
-      "endDate": "2019-10-21T22:00:00.000Z",
+      "name": "1903 Mar25 Java",
+      "startDate": "2019-03-31T14:00:00.000Z",
+      "endDate": "2019-06-06T22:00:00.000Z",
       "curriculum": 1,
       "trainer": 1,
       "cotrainer": 2,
@@ -496,6 +496,56 @@
       "room": null,
       "size": 10,
       "id": 6
+    },
+    {
+      "name": "2001 Jan01 SDET",
+      "startDate": "2020-01-01T14:00:00.000Z",
+      "endDate": "2020-03-06T22:00:00.000Z",
+      "curriculum": 3,
+      "trainer": null,
+      "cotrainer": null,
+      "skills": [
+        {
+          "id": 5,
+          "name": "Selenium/WebDriver",
+          "isActive": true
+        },
+        {
+          "id": 47,
+          "name": "Core SDET",
+          "isActive": true
+        },
+        {
+          "id": 69,
+          "name": "TestNG",
+          "isActive": true
+        },
+        {
+          "id": 72,
+          "name": "Manual Testing",
+          "isActive": true
+        },
+        {
+          "id": 70,
+          "name": "Pyhton",
+          "isActive": true
+        },
+        {
+          "id": 71,
+          "name": "UFT",
+          "isActive": true
+        },
+        {
+          "id": 68,
+          "name": "Cucumber",
+          "isActive": true
+        }
+      ],
+      "location": null,
+      "building": null,
+      "room": null,
+      "size": 10,
+      "id": 7
     }
   ],
   "buildings": [
