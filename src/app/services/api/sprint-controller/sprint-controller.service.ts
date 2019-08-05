@@ -35,7 +35,16 @@ export class SprintControllerService {
   // tslint:disable-next-line:one-line
    getSprint(){
     // @ts-ignore
-    return this.http.get("https://api.github.com/repos/revaturelabs/assignforce/projects");
+     let sprints;
+
+     this.http.get<Sprint[]>("https://api.github.com/repos/revaturelabs/assignforce/projects")
+      .subscribe((resp) => {
+        sprints = resp;
+      });
+
+     while (!sprints) {}
+
+     return sprints;
   }
 
   submit(name, description) {

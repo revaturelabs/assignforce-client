@@ -1,6 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 import { Sprint } from "../../model/sprint";
 import { SprintControllerService } from "../../services/api/sprint-controller/sprint-controller.service";
+import {MatDialog} from "@angular/material";
+import {Sprint} from "../../model/sprint";
+import {SkillControllerService} from "../../services/api/skill-controller/skill-controller.service";
+import {SprintControllerService} from "../../services/api/sprint-controller/sprint-controller.service";
+import {AuthService} from "../../services/auth/auth.service";
 
 @Component({
   selector: "app-add-sprint",
@@ -8,12 +13,15 @@ import { SprintControllerService } from "../../services/api/sprint-controller/sp
   styleUrls: ["./add-sprint.component.css"],
 })
 export class AddSprintComponent implements OnInit {
-  name: string;
+  name: any;
   description: string;
 
-  sprint: Sprint[];
+  sprints: Sprint[];
 
-  constructor(private sprintService: SprintControllerService) { }
+  constructor(private sprintService: SprintControllerService,
+              private dialog: MatDialog,
+              private skillControllerService: SkillControllerService,
+              public auth0: AuthService) { }
 
   // tslint:disable-next-line:one-line
   submit(){
@@ -21,6 +29,8 @@ export class AddSprintComponent implements OnInit {
   }
 
   ngOnInit() {
+    // tslint:disable-next-line:one-line
+    const x = this.sprintService.getSprint();
   }
 
 }
