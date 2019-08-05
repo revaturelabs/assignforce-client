@@ -19,6 +19,7 @@ export class TrainerItemComponent implements OnInit {
   isManager: boolean;
   allSkills: Skill[] = [];
   routerLink: RouterLink;
+  @Input() skills: Skill[] = [];
 
   constructor(
     private trainerService: TrainerControllerService,
@@ -29,10 +30,10 @@ export class TrainerItemComponent implements OnInit {
 
   ngOnInit() {
     this.isManager = this.auth0.userHasRole(['SVP of Technology']);
-    this.skillsService.findAll().subscribe(response => {
-      this.allSkills = response;
-      this.cachingService.setSkills(response);
-    });
+  }
+  ngOnChanges() {
+    this.allSkills = this.skills;
+    this.cachingService.setSkills(this.skills);
   }
 
   removeTrainer() {

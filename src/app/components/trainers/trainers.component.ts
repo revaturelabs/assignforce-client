@@ -12,7 +12,7 @@ import { AuthService } from '../../services/auth/auth.service';
 import { FillSkillsService } from '../../services/api/skill-controller/fill-skills.service';
 import { CachedObjectsService } from '../../services/api/cache/cached-objects.service';
 import { FilehandlerService } from '../../services/api/filehandler-controller/filehandler-controller.service';
-
+import { SkillControllerService } from "../../services/api/skill-controller/skill-controller.service";
 @Component({
   selector: 'app-trainers',
   templateUrl: './trainers.component.html',
@@ -25,6 +25,7 @@ export class TrainersComponent implements OnInit {
   lastName: string;
   trainers: Trainer[] = [];
   curricula: Curriculum[] = [];
+  skills: Skill[] = [];
 
   isManager = true;
   isLoading: boolean;
@@ -39,7 +40,8 @@ export class TrainersComponent implements OnInit {
     public auth0: AuthService,
     private fillSkills: FillSkillsService,
     private cacheService: CachedObjectsService,
-    private filehandlerService: FilehandlerService
+    private filehandlerService: FilehandlerService,
+    private skillsService: SkillControllerService
   ) {}
 
   ngOnInit() {
@@ -73,6 +75,10 @@ export class TrainersComponent implements OnInit {
           this.cacheService.setCurricula(curricula);
         });
     }
+    this.skillsService.findAll().subscribe((response) => {
+      this.skills = response;
+      this.isLoading = false;
+    });
   }
 
   showCalendar() {}

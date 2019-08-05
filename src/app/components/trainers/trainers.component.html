@@ -24,7 +24,7 @@
     <mat-card-content class="md-padding" *ngIf="trainers != undefined && canLoad">
       <div *ngFor="let trainer of trainers">
         <mat-list *ngIf="trainer.isActive">
-          <app-trainer-item [trainer]="trainer" [routerLink]="['/profile/'+trainer.email]"></app-trainer-item>
+          <app-trainer-item [trainer]="trainer" [routerLink]="['/profile/'+trainer.email]" [skills] = "skills"></app-trainer-item>
         </mat-list>
       </div>
     </mat-card-content>
@@ -50,7 +50,7 @@
     <mat-card-content class="md-padding" *ngIf="trainers != undefined && canLoad">
       <div *ngFor=" let trainer of trainers">
         <mat-list *ngIf="!trainer.isActive">
-          <app-trainer-item [trainer]="trainer"></app-trainer-item>
+          <app-trainer-item [trainer]="trainer" [skills] = "skills" ></app-trainer-item>
         </mat-list>
       </div>
     </mat-card-content>
