@@ -24,6 +24,8 @@ import { SettingControllerService } from "../../services/api/setting-controller/
 import { SkillControllerService } from "../../services/api/skill-controller/skill-controller.service";
 import { TrainerControllerService } from "../../services/api/trainer-controller/trainer-controller.service";
 import { BatchMode } from "../batches/batches.component";
+import { Sprint } from "../../model/sprint";
+import { SprintControllerService } from "../../services/api/sprint-controller/sprint-controller.service";
 
 @Component({
   selector: "app-batch-form",
@@ -51,6 +53,7 @@ export class BatchFormComponent implements OnInit, OnChanges {
 
   filteredSkills: Array<{id: number}> = new Array<{id: number}>();
   finalProjects: FinalProject[] = new Array<FinalProject>();
+  
 
   //state trackers
   isDataLoading: boolean;
@@ -61,6 +64,7 @@ export class BatchFormComponent implements OnInit, OnChanges {
   nameTempString: string;
   endDate: Date;
   numOfWeeksBetween = 0;
+ 
 
   constructor(
     private curriculumService: CurriculumControllerService,
@@ -132,8 +136,10 @@ export class BatchFormComponent implements OnInit, OnChanges {
         value: null,
         disabled: this.isDataLoading,
       }),
-    });
+  
+  });
 
+  
     //load the appropriate data
     this.isDataLoading = true;
     this.loadCurricula();
@@ -175,6 +181,7 @@ export class BatchFormComponent implements OnInit, OnChanges {
     this.batchFormGroup.get("building").setValue(model.building);
     this.batchFormGroup.get("room").setValue(model.room);
     this.batchFormGroup.get("finalProject").setValue(model.finalProject);
+  
   }
 
   private async loadLocations() {
@@ -249,6 +256,8 @@ export class BatchFormComponent implements OnInit, OnChanges {
       this.filterBuildRooms(val);
       this.isDataLoading = false;
     });
+
+    this.batchFormGroup.get("finalProject").setValue("");
   }
 
   /**
@@ -266,6 +275,7 @@ export class BatchFormComponent implements OnInit, OnChanges {
   private filterLocationBuildings(selLocId: number){
     this.filteredBuildings = this.buildings.filter((building) => building.address === selLocId);
   }
+
 
   private filterCurriculumSkills(selCurrId: number) {
     const selectedCurriculum = this.curricula.find((curr) => curr.id === selCurrId);

@@ -1,15 +1,15 @@
 export class Sprint {
   id: number;
   name: string;
-  description: string;
-  sprint: Sprint[];
+  body: string;
+
   constructor(
     id: number,
     name: string,
-    description: string,
+    body: string,
   ) {
     this.id = id;
     this.name = name;
-    this.description = description;
+    this.body = body;
   }
 }
