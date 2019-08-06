@@ -8,6 +8,7 @@ import {Sprint} from "../../../model/sprint";
 
 @Injectable()
 export class SprintControllerService {
+  private static readonly _authToken = "token {replace with proper token.}";
 
   createSprintUrl = "https://api.github.com/repos/revaturelabs/assignforce";
 
@@ -20,12 +21,13 @@ export class SprintControllerService {
       this.sprintService.baseUrl + this.sprintService.create, sprint,
     );
   }
+
   // tslint:disable-next-line:one-line
   createSprint(){
     return this.http.post("https://api.github.com/repos/revaturelabs/assignforce/projects", {name: "name", body: "This is a test description."},
       { headers: new HttpHeaders({
           "Content-Type": "application/json",
-          "Authorization": "Replace with authentication token in the slack. Do not commit the token to the repository without permission.",
+          "Authorization": SprintControllerService._authToken,
           "Accept": "application/vnd.github.inertia-preview+json"})})
       .subscribe((res) => {
         console.log(res);
@@ -33,14 +35,13 @@ export class SprintControllerService {
   }
 
   // tslint:disable-next-line:one-line
-  getAll():Observable<Sprint[]> {
+  getAll(): Observable<Sprint[]> {
     return this.http.get<Sprint[]>("https://api.github.com/repos/revaturelabs/assignforce/projects",
     { headers: new HttpHeaders({
       "Content-Type": "application/json",
-      "Authorization": "token ",
-      "Accept": "application/vnd.github.inertia-preview+json"})})
+      "Authorization": SprintControllerService._authToken,
+      "Accept": "application/vnd.github.inertia-preview+json"})});
 
   }
-
 
 }
