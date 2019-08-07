@@ -1,17 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { FinalProject } from '../../model/FinalProject';
-import { MatDialog } from '@angular/material';
-import { FinalProjectControllerService } from '../../services/api/final-project-controller/final-project-controller.service';
-import { BatchControllerService } from '../../services/api/batch-controller/batch-controller.service';
-import { AuthService } from '../../services/auth/auth.service';
-import { CachedObjectsService } from '../../services/api/cache/cached-objects.service';
-import { Batch } from '../../model/Batch';
-import { ProjectsAddComponent } from './projects-add/projects-add.component';
+import { Component, OnInit } from "@angular/core";
+import { MatDialog } from "@angular/material";
+import { Batch } from "../../model/Batch";
+import { FinalProject } from "../../model/FinalProject";
+import { BatchControllerService } from "../../services/api/batch-controller/batch-controller.service";
+import { CachedObjectsService } from "../../services/api/cache/cached-objects.service";
+import { FinalProjectControllerService } from "../../services/api/final-project-controller/final-project-controller.service";
+import { SprintControllerService } from "../../services/api/sprint-controller/sprint-controller.service";
+import { AuthService } from "../../services/auth/auth.service";
+import { ProjectsAddComponent } from "./projects-add/projects-add.component";
 
 @Component({
-  selector: 'app-final-projects',
-  templateUrl: './final-projects.component.html',
-  styleUrls: ['./final-projects.component.css']
+  selector: "app-final-projects",
+  templateUrl: "./final-projects.component.html",
+  styleUrls: ["./final-projects.component.css"],
 })
 export class FinalProjectsComponent implements OnInit {
   name: string;
@@ -27,7 +28,8 @@ export class FinalProjectsComponent implements OnInit {
     private projectService: FinalProjectControllerService,
     private batchService: BatchControllerService,
     public auth0: AuthService,
-    private cacheService: CachedObjectsService
+    private cacheService: CachedObjectsService,
+    private sprintService: SprintControllerService,
   ) {}
 
   ngOnInit() {
@@ -40,12 +42,14 @@ export class FinalProjectsComponent implements OnInit {
       });
     this.batches = this.cacheService.getBatches();
     //
-    if(!this.batches[0]){
+    // tslint:disable-next-line:one-line
+    if (!this.batches[0]){
+      // tslint:disable-next-line:comment-format
       //only load if cacheService was empty
       this.batchService
         .findAll()
         .toPromise()
-        .then(batches => {
+        .then((batches) => {
           this.batches = batches;
           this.cacheService.setBatches(batches);
         });
@@ -55,31 +59,40 @@ export class FinalProjectsComponent implements OnInit {
   addProject(): void {
     const finalProject: FinalProject = {
       id: null,
-      name: '',
-      description: '',
+      name: "",
+      description: "",
       isActive: true,
     };
 
     const dialogRef = this.dialog.open(ProjectsAddComponent, {
-      width: '850px',
+      width: "850px",
       data: {
-        project: finalProject
-      }
+        project: finalProject,
+      },
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.projectService
         .create(result)
         .toPromise()
-        .then(t => {
+        .then((t) => {
           this.projects.push(t);
         })
-        .catch(error => {
+        .catch((error) => {
           console.log(error);
-        })
+        });
       }
     });
   }
 
+  createSprint() {
+    console.log("Clicked!");
+    this.sprintService.createSprint();
+  }
+
+  getSprints() {
+    console.log("work");
+    this.sprintService.getAll();
+  }
 }

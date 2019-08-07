@@ -8,8 +8,8 @@ export class FinalProject {
         id: number,
         name: string,
         description: string,
-        isActive: boolean
-    ){
+        isActive: boolean,
+    ) {
         this.id = id;
         this.name = name;
         this.description = description;

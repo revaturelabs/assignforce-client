@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../../environments/environment';
-import { FinalProject } from '../../../model/FinalProject';
-import { Observable } from 'rxjs/Observable';
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs/Observable";
+import { environment } from "../../../../environments/environment";
+import { FinalProject } from "../../../model/FinalProject";
 
 @Injectable()
 export class FinalProjectControllerService {
@@ -13,7 +13,7 @@ export class FinalProjectControllerService {
 
   public create(finalProject: FinalProject): Observable<FinalProject> {
     return this.http.post<FinalProject>(
-      this.finalProjectController.baseUrl + this.finalProjectController.create, finalProject
+      this.finalProjectController.baseUrl + this.finalProjectController.create, finalProject,
     );
   }
   public update(finalProject: FinalProject): Observable<FinalProject> {
