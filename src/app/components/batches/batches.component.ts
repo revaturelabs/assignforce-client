@@ -1,45 +1,44 @@
-import { AfterViewInit, Component, OnInit, ViewChild, ViewEncapsulation, DoCheck } from "@angular/core";
-import { MatSort, MatTableDataSource, MatCheckbox, MatSelect, MatDatepicker } from "@angular/material";
-import { ReactiveFormsModule, FormGroup, FormBuilder, Validators, NgForm } from "@angular/forms";
+import {AfterViewInit, Component, OnInit, ViewChild, ViewEncapsulation} from "@angular/core";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {MatSort, MatTableDataSource} from "@angular/material";
 
-import { Batch } from "../../model/Batch";
-import { Curriculum } from "../../model/Curriculum";
-import { Address } from "../../model/Address";
+import {Address} from "../../model/Address";
+import {Batch} from "../../model/Batch";
 
-import { BatchControllerService } from "../../services/api/batch-controller/batch-controller.service";
-import { CurriculumControllerService } from "../../services/api/curriculum-controller/curriculum-controller.service";
-import { TrainerControllerService } from "../../services/api/trainer-controller/trainer-controller.service";
-import { AddressControllerService } from "../../services/api/address-controller/address-controller.service";
-import { Skill } from "../../model/Skill";
-import { Focus } from "../../model/Focus";
-import { Trainer } from "../../model/Trainer";
-import { Building } from "../../model/Building";
-import { Room } from "../../model/Room";
-import { SkillControllerService } from "../../services/api/skill-controller/skill-controller.service";
-import { AuthService } from "../../services/auth/auth.service";
-import { CachedObjectsService } from "../../services/api/cache/cached-objects.service";
-import { SettingControllerService } from "../../services/api/setting-controller/setting-controller.service";
-import { FillSkillsService } from "../../services/api/skill-controller/fill-skills.service";
-import { Unavailability } from "../../model/Unavailability";
-import { BuildingControllerService } from "../../services/api/building-controller/building-controller.service";
-import { RoomControllerService } from "../../services/api/room-controller/room-controller.service";
-import { FinalProjectControllerService } from "../../services/api/final-project-controller/final-project-controller.service";
-import { FinalProject } from "../../model/FinalProject";
+import {Building} from "../../model/Building";
+import {Curriculum} from "../../model/Curriculum";
+import {FinalProject} from "../../model/FinalProject";
+import {Focus} from "../../model/Focus";
+import {Room} from "../../model/Room";
+import {Skill} from "../../model/Skill";
+import {Trainer} from "../../model/Trainer";
+import {AddressControllerService} from "../../services/api/address-controller/address-controller.service";
+import {BatchControllerService} from "../../services/api/batch-controller/batch-controller.service";
+import {BuildingControllerService} from "../../services/api/building-controller/building-controller.service";
+import {CachedObjectsService} from "../../services/api/cache/cached-objects.service";
+import {CurriculumControllerService} from "../../services/api/curriculum-controller/curriculum-controller.service";
+import {FinalProjectControllerService} from "../../services/api/final-project-controller/final-project-controller.service";
+import {RoomControllerService} from "../../services/api/room-controller/room-controller.service";
+import {SettingControllerService} from "../../services/api/setting-controller/setting-controller.service";
+import {FillSkillsService} from "../../services/api/skill-controller/fill-skills.service";
+import {SkillControllerService} from "../../services/api/skill-controller/skill-controller.service";
+import {TrainerControllerService} from "../../services/api/trainer-controller/trainer-controller.service";
+import {AuthService} from "../../services/auth/auth.service";
 
 export enum BatchMode {
   Create = 1,
-  Edit = 2
+  Edit = 2,
 }
 
 @Component({
   selector: "app-batches",
   templateUrl: "./batches.component.html",
   styleUrls: ["./batches.component.css"],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class BatchesComponent implements OnInit, AfterViewInit {
-  //--------------------VALUES FOR CREATING BATCHES-----------------------------------
-  //Objects for storing batch form data
+  // --------------------VALUES FOR CREATING BATCHES-----------------------------------
+  // Objects for storing batch form data
   batchForm: FormGroup;
   newBatch: Batch;
   skillsList: Skill[] = [];
@@ -58,11 +57,11 @@ export class BatchesComponent implements OnInit, AfterViewInit {
   selectedFocus = null;
   sortedTrainers: any[] = [];
 
-  //For form select in Create New Batch
+  // For form select in Create New Batch
   curriculums: Curriculum[] = [];
   locations: Address[] = [];
   buildingsOfALocation: Building[] = [];
-  size: number = 0;
+  size = 0;
 
   // Autogenerated Batch Form Data
   numOfWeeksBetween = 0;
@@ -87,7 +86,7 @@ export class BatchesComponent implements OnInit, AfterViewInit {
     "startDate",
     "endDate",
     "finalProject",
-    "Icons"
+    "Icons",
   ];
 
   allBatches: Batch[] = [];
@@ -138,7 +137,7 @@ export class BatchesComponent implements OnInit, AfterViewInit {
         this.isLoading = false;
         this.firstHeader = "Create Batch Form Disabled - Content Not Loaded";
         console.log(error);
-      }
+      },
     );
 
     this.skillsService.findAll().subscribe((response) => {
@@ -174,7 +173,7 @@ export class BatchesComponent implements OnInit, AfterViewInit {
     }
     if (this.allBatches[0]) {
       // already loaded, don't need to reload
-      this.secondHeader = 'All Batches';
+      this.secondHeader = "All Batches";
       this.isLoading = false;
       this.dataSource.data = this.allBatches;
     } else {
@@ -193,7 +192,8 @@ export class BatchesComponent implements OnInit, AfterViewInit {
       students: [null],
       location: [null],
       building: [null],
-      room: [null]
+      room: [null],
+      finalProject: [null],
     });
 
     // ----- Observable for form changes in Create Batches panel ------
@@ -206,7 +206,7 @@ export class BatchesComponent implements OnInit, AfterViewInit {
         this.batchModel.name = this.createBatchName(curriculum, null, startDate);
         if (startDate) {
           if (!this.endDateIsSet()) {
-            this.batchModel.endDate = <any>this.computeDefaultEndDate(startDate);
+            this.batchModel.endDate = this.computeDefaultEndDate(startDate) as any;
           }
           this.numOfWeeksBetween = this.computeNumOfWeeksBetween(startDate, this.batchModel.endDate);
         }
@@ -243,8 +243,8 @@ export class BatchesComponent implements OnInit, AfterViewInit {
 
   entityLookup(entityContainerName: string, entityId: number) {
     /*
-      custom lookup due to model for buildings being weird and using buildingId and buildingName 
-      instead of id and name 
+      custom lookup due to model for buildings being weird and using buildingId and buildingName
+      instead of id and name
     */
     if (entityContainerName === "buildings") {
       return this[entityContainerName].find((e) => e.id === entityId);
@@ -252,10 +252,13 @@ export class BatchesComponent implements OnInit, AfterViewInit {
 
     return this[entityContainerName].find((e) => e.id === entityId);
   }
-  
+
   updateCurriculum() {
     // Checking if Curriculum has been selected, if so, populate focuses and skills
-    if (!this.batchModel.curriculum) return;
+    if (!this.batchModel.curriculum) {
+      return;
+    }
+
     this.selectedCurriculum = this.batchModel.curriculum;
     this.batchModel.skills = this.selectSkills(this.batchModel.curriculum);
     this.batchModelSkillArr = this.batchModel.skills.map((skill) => skill.id);
@@ -271,7 +274,9 @@ export class BatchesComponent implements OnInit, AfterViewInit {
   updateLocation() {
     // Checking if Location has been selected, if so, populate buildings
     console.log("pop buildings");
-    if (!this.batchModel.location) return;
+    if (!this.batchModel.location) {
+      return;
+    }
     console.log(this.batchModel);
     this.selectedLocation = this.locations.find((location) => location.id === this.batchModel.location);
     this.buildingsOfALocation = this.buildings.filter((building) => building.address === this.selectedLocation.id);
@@ -280,7 +285,9 @@ export class BatchesComponent implements OnInit, AfterViewInit {
   updateBuilding() {
     // Checking if Building has been selected, if so, populate rooms
 
-    if (!this.batchModel.building) return;
+    if (!this.batchModel.building) {
+      return;
+    }
 
     this.buildingRooms = [];
     this.selectedBuilding = this.buildings.find((building) => building.id === this.batchModel.building);
@@ -289,9 +296,9 @@ export class BatchesComponent implements OnInit, AfterViewInit {
 
   sortTrainers() {
     const curr = this.curriculums.find((c) => c.id === this.selectedCurriculum);
-    //changed this to allow for skillsMapping and skillsMatch to work
-    var skillsMapping = 0;
-    var skillsMatch = [];
+    // changed this to allow for skillsMapping and skillsMatch to work
+    let skillsMapping = 0;
+    let skillsMatch = [];
     this.sortedTrainers = [];
 
     this.trainers.forEach((trainer) => {
@@ -301,11 +308,11 @@ export class BatchesComponent implements OnInit, AfterViewInit {
 
       if (trainer.skills.length > 0) {
         skillsMatch = trainer.skills.filter(
-          (tSkill) => curr.skills.findIndex((cSkill) => tSkill.id === cSkill.id) >= 0
+          (tSkill) => curr.skills.findIndex((cSkill) => tSkill.id === cSkill.id) >= 0,
         );
       }
       skillsMapping = Math.floor((skillsMatch.length / Math.max(curr.skills.length, 1)) * 100);
-      const t = <any>Object.assign({}, trainer);
+      const t = Object.assign({}, trainer) as any;
       t.skillsMapping = skillsMapping;
       this.sortedTrainers.push(t);
     });
@@ -316,12 +323,16 @@ export class BatchesComponent implements OnInit, AfterViewInit {
   /* remove trainers with unavailabilities within selected date */
   /* for now the trainer would have to be available within the entire selected date range */
   filterUnavailableTrainers() {
-    if (!this.batchModel.startDate) return;
+    if (!this.batchModel.startDate) {
+      return;
+    }
 
     this.sortedTrainers = this.sortedTrainers.filter((trainer) => {
-      if (trainer.unavailabilities.length == 0) return true; // no unavailabilities
+      if (trainer.unavailabilities.length === 0) {
+        return true;
+      } // no unavailabilities
 
-      let unavailabilities = trainer.unavailabilities.filter((unavailability) => {
+      const unavailabilities = trainer.unavailabilities.filter((unavailability) => {
         return (
           (new Date(unavailability.startDate) > new Date(this.batchModel.startDate) &&
             new Date(unavailability.startDate) < new Date(this.batchModel.endDate)) ||
@@ -333,19 +344,20 @@ export class BatchesComponent implements OnInit, AfterViewInit {
       return !(unavailabilities.length > 0);
     });
   }
+
   // ------ Create a new batch using provided valid form data ------
   onSubmit(event) {
     this.batchModel = Object.assign(this.batchModel, event);
 
     let tempDate = new Date(this.batchModel.startDate);
     tempDate.setHours(9);
-    //@ts-ignore
+    // @ts-ignore
     this.batchModel.startDate = tempDate.toISOString();
 
     tempDate = new Date(this.batchModel.endDate);
     tempDate.setHours(17);
 
-    //@ts-ignore
+    // @ts-ignore
     this.batchModel.endDate = tempDate.toISOString();
     if (this.batchMode === BatchMode.Create) {
       this.batchService
@@ -362,7 +374,7 @@ export class BatchesComponent implements OnInit, AfterViewInit {
           const i = this.allBatches.findIndex((b) => b.id === this.batchModel.id);
           this.allBatches[i] = this.batchModel;
           this.dataSource.data = this.allBatches;
-        })
+        });
     }
 
     this.shouldUpdateTimeline = true;
@@ -374,19 +386,19 @@ export class BatchesComponent implements OnInit, AfterViewInit {
   }
 
   // --------------------------- Methods for auto generating form values -------------------------------------
-  //Calculate number of weeks between two dates
+  // Calculate number of weeks between two dates
   computeNumOfWeeksBetween(startDate: number, endDate: number): number {
     const startValue = new Date(startDate).valueOf();
     const endValue = new Date(endDate).valueOf();
     if (startValue && endValue) {
-      const numberOfDays = Math.abs(<any>startValue - <any>endValue) / (1000 * 60 * 60 * 24);
+      const numberOfDays = Math.abs(startValue as any - endValue as any) / (1000 * 60 * 60 * 24);
       const numberOfWeeks = Math.floor(numberOfDays / 7);
       return numberOfWeeks;
     }
     return 0;
   }
 
-  //Calculate the Date of Ten weeks later from start date
+  // Calculate the Date of Ten weeks later from start date
   computeDefaultEndDate(startDate: number): Date {
     const dateValue = new Date(startDate);
     if (dateValue) {
@@ -395,7 +407,7 @@ export class BatchesComponent implements OnInit, AfterViewInit {
     }
   }
 
-  //Generate Batch Name based on curriculum and/or focus and start date
+  // Generate Batch Name based on curriculum and/or focus and start date
   createBatchName(curriculum: Curriculum, focus: Focus, startDate: number): string {
     if (curriculum && startDate) {
       const date = new Date(startDate);
@@ -437,16 +449,22 @@ export class BatchesComponent implements OnInit, AfterViewInit {
 
     /* this problem only comes up when editing a batch */
     Object.assign(this.batchModel, batch);
-    this.batchForm.markAsDirty(); //won't work if after updateCurriculum method
-    if (this.batchModel.curriculum) this.updateCurriculum();
-    if (this.batchModel.location) this.updateLocation();
-    if (this.batchModel.building) this.updateBuilding();
+    this.batchForm.markAsDirty(); // won't work if after updateCurriculum method
+    if (this.batchModel.curriculum) {
+      this.updateCurriculum();
+    }
+    if (this.batchModel.location) {
+      this.updateLocation();
+    }
+    if (this.batchModel.building) {
+      this.updateBuilding();
+    }
     this.batchForm.clearValidators();
     this.cacheSerivice.setBatches(this.allBatches);
   }
 
   cloneBatch() {
-    //TODO
+    // TODO
   }
 
   deleteBatch(batch: Batch) {
@@ -468,14 +486,14 @@ export class BatchesComponent implements OnInit, AfterViewInit {
   refreshBatches(deleting?: number) {
     // temp fix for deletions not being reflected
     if (deleting) {
-      this.allBatches = this.allBatches.filter((b) => b.id != deleting);
+      this.allBatches = this.allBatches.filter((b) => b.id !== deleting);
     }
     this.batchUpdate();
     this.batchMode = BatchMode.Create;
   }
 
-  batchUpdate(){
-    //grab update data from database
+  batchUpdate() {
+    // grab update data from database
     this.batchService
       .findAll()
       .toPromise()
