@@ -86,9 +86,9 @@ export class FinalProjectsComponent implements OnInit {
     });
   }
 
-  createSprint() {
+  createSprint(name, body) {
     console.log("Clicked!");
-    this.sprintService.createSprint();
+    this.sprintService.createSprint(name, body);
   }
 
   getSprints() {
