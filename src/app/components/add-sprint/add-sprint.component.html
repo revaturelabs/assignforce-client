@@ -6,6 +6,8 @@
         <mat-panel-title>
           <span class="panel-title-fix">Sprints</span>
         </mat-panel-title>
+         <h4>Displays a report of sprint names for each project and their descriptions</h4>
+          
         <span>
           <!--
           <button class="mat-button">
@@ -13,10 +15,12 @@
               <i class="material-icons" style="display: inline-block; vertical-align: middle;">fast_rewind</i>Final Projects</a>
           </button>
           -->
+         
           <button mat-icon-button *ngIf="!isLoading" (click)="createSprint(projectID)" matTooltip="Add Sprint">
             <mat-icon>add_circle</mat-icon>
           </button>
         </span>
+<br/>
 
       </mat-expansion-panel-header>
       <div class="mat-panel-content">
@@ -27,12 +31,36 @@
                 <h3 mat-line class="sprint-name">{{sprint.name}}</h3>
                 <h3 mat-line class="sprint-name">{{sprint.body | json}}</h3>
               </div>
-
               <span class="fill-space"></span>
-            </mat-list-item>
+              <br/>
+<br/>
+           <div class="panel-body">
+              <br/>
+             
+          <table class="table table-striped table-bordered">
+             
+              <thead>
+                  <tr>
+                      <th>Sprint Name</th>
+                      <th>Description</th>
+                  </tr>
+              </thead>
+              <tbody>
+                      <tr>
+                      <td>{{sprint.name}}</td>
+                      <td>{{sprint.body}}</td>
+                    </tr>
+              </tbody>
+          </table>
+      </div>
+            </mat-list-item>    
+ 
           </ng-container>
+         
         </mat-list>
       </div>
+
+     
     </mat-expansion-panel>
   </mat-accordion>
 </mat-card-content>
