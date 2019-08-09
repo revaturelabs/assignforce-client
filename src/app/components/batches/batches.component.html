@@ -109,13 +109,13 @@
           <!-- StartDate Column -->
           <ng-container matColumnDef="sprintStartDate">
             <mat-header-cell *matHeaderCellDef mat-sort-header> SprintStartDate</mat-header-cell>
-            <mat-cell *matCellDef="let batch"> {{batch.endDate | dateAddDays: -19 | date : 'MM/dd/yyyy'}}</mat-cell>
+            <mat-cell *matCellDef="let batch"> {{batch.endDate | dateAddDays: -18 | date : 'MM/dd/yyyy'}}</mat-cell>
           </ng-container>
 
           <!-- EndDate Column -->
           <ng-container matColumnDef="sprintEndDate">
             <mat-header-cell *matHeaderCellDef mat-sort-header> SprintEndDate</mat-header-cell>
-            <mat-cell *matCellDef="let batch"> {{batch.endDate | dateAddDays: -7 | date : 'MM/dd/yyyy'}} </mat-cell>
+            <mat-cell *matCellDef="let batch"> {{batch.endDate | date : 'MM/dd/yyyy'}} </mat-cell>
           </ng-container>
 
 
