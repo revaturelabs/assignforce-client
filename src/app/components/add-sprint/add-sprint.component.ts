@@ -1,3 +1,5 @@
+
+import { getSupportedInputTypes } from "@angular/cdk/platform";
 import {Component, OnInit} from "@angular/core";
 import {MatDialog} from "@angular/material";
 import {ActivatedRoute} from "@angular/router";
@@ -6,14 +8,13 @@ import {SkillControllerService} from "../../services/api/skill-controller/skill-
 import {SprintControllerService} from "../../services/api/sprint-controller/sprint-controller.service";
 import {AuthService} from "../../services/auth/auth.service";
 
+
 @Component({
   selector: "app-add-sprint",
   templateUrl: "./add-sprint.component.html",
   styleUrls: ["./add-sprint.component.css"],
 })
 export class AddSprintComponent implements OnInit {
-  name: any;
-  description: string;
 
   sprints: Sprint[];
   isLoading: boolean;
@@ -51,6 +52,7 @@ export class AddSprintComponent implements OnInit {
 
         // In a real app: dispatch action to load the details here.
       });
+
     }
 
     createSprint(ProjectId) {
