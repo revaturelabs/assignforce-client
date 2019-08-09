@@ -106,6 +106,18 @@
             <mat-cell *matCellDef="let batch"> {{ entityLookup('finalProjects', batch.finalProject)?.name }} </mat-cell>
           </ng-container>
 
+          <!-- StartDate Column -->
+          <ng-container matColumnDef="sprintStartDate">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> SprintStartDate</mat-header-cell>
+            <mat-cell *matCellDef="let batch"> {{batch.endDate | dateAddDays: -19 | date : 'MM/dd/yyyy'}}</mat-cell>
+          </ng-container>
+
+          <!-- EndDate Column -->
+          <ng-container matColumnDef="sprintEndDate">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> SprintEndDate</mat-header-cell>
+            <mat-cell *matCellDef="let batch"> {{batch.endDate | dateAddDays: -7 | date : 'MM/dd/yyyy'}} </mat-cell>
+          </ng-container>
+
 
           <!-- Buttons -->
           <ng-container matColumnDef="Icons">
@@ -121,8 +133,8 @@
             </mat-cell>
           </ng-container>
 
-          <mat-header-row *matHeaderRowDef="batchColumns"></mat-header-row>
-          <mat-row *matRowDef="let row; columns: batchColumns;"></mat-row>
+          <mat-header-row *matHeaderRowDef="batchColumnsDisplay"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: batchColumnsDisplay;"></mat-row>
         </mat-table>
 
         <!-- Loading Spinner -->

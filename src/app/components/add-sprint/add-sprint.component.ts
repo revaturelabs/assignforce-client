@@ -1,7 +1,8 @@
+
 import { getSupportedInputTypes } from "@angular/cdk/platform";
-import { Component, OnInit, ElementRef, ViewChild } from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {MatDialog} from "@angular/material";
-import { ActivatedRoute } from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 import {Sprint} from "../../model/sprint";
 import {SkillControllerService} from "../../services/api/skill-controller/skill-controller.service";
 import {SprintControllerService} from "../../services/api/sprint-controller/sprint-controller.service";
@@ -33,7 +34,6 @@ export class AddSprintComponent implements OnInit {
       .subscribe((sprints) => {
         this.sprints = [];
         for (const sprint of sprints) {
-
           try {
             const body = JSON.parse(sprint.body);
             if (body.finalProject) {
@@ -56,7 +56,6 @@ export class AddSprintComponent implements OnInit {
     }
 
     createSprint(ProjectId) {
-
       this.sprintService.createSprint("$ProjectSprint", '{"finalProject":' + ProjectId + "}");
     }
   }
