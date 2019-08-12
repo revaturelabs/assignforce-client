@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import {Component, OnInit, ViewChild, ElementRef} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import {Sprint} from "../../model/sprint";
@@ -6,6 +7,17 @@ import {AuthService} from "../../services/auth/auth.service";
 
 
 
+=======
+import {Component, OnInit} from "@angular/core";
+import {MatDialog} from "@angular/material";
+import {ActivatedRoute, Router} from "@angular/router";
+import {Sprint} from "../../model/sprint";
+import {FinalProjectControllerService} from "../../services/api/final-project-controller/final-project-controller.service";
+import {SkillControllerService} from "../../services/api/skill-controller/skill-controller.service";
+import {SprintControllerService} from "../../services/api/sprint-controller/sprint-controller.service";
+import {AuthService} from "../../services/auth/auth.service";
+
+>>>>>>> 279b3efb994f2247dadfeb32796234fbea0a2ca3
 @Component({
   selector: "app-add-sprint",
   templateUrl: "./add-sprint.component.html",
@@ -19,7 +31,14 @@ export class AddSprintComponent implements OnInit {
 
 
   constructor(private sprintService: SprintControllerService,
+<<<<<<< HEAD
+=======
+              private finalProjectService: FinalProjectControllerService,
+              private dialog: MatDialog,
+              private skillControllerService: SkillControllerService,
+>>>>>>> 279b3efb994f2247dadfeb32796234fbea0a2ca3
               public auth0: AuthService,
+              private router: Router,
               private route: ActivatedRoute) { }
 
   // tslint:disable-next-line:one-line
@@ -56,7 +75,13 @@ export class AddSprintComponent implements OnInit {
   }
 
     createSprint(ProjectId) {
-      this.sprintService.createSprint("$ProjectSprint", '{"finalProject":' + ProjectId + "}");
+      const projectName = this.finalProjectService.find(ProjectId).subscribe((project) => {
+        const name = "Sprint for " + project.name;
+        const body = '{"finalProject":' + project.id + "}";
+        this.sprintService.createSprint(name, body, () => {
+          this.sprints.push({name, body: JSON.parse(body), id: undefined});
+        });
+      });
     }
 
     count(sprints) {

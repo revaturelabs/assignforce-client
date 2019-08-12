@@ -1,5 +1,5 @@
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import { Injectable } from "@angular/core";
+import {Injectable} from "@angular/core";
 import "rxjs/add/operator/map";
 import {Observable} from "rxjs/Observable";
 import {environment} from "../../../../environments/environment";
@@ -22,7 +22,7 @@ export class SprintControllerService {
   }
 
   // tslint:disable-next-line:one-line
-  createSprint(name, body){
+  createSprint(name, body, callback) {
     const RequestHeaders = { headers: new HttpHeaders({
       "Content-Type": "application/json",
       "Authorization": SprintControllerService._authToken,
@@ -39,7 +39,7 @@ export class SprintControllerService {
         this.http.post(url, {name: "In Progress"}, RequestHeaders).subscribe(_);
         this.http.post(url, {name: "Testing"}, RequestHeaders).subscribe(_);
         this.http.post(url, {name: "Done"}, RequestHeaders).subscribe(_);
-        console.log("Hello", resp);
+        callback();
       });
   }
 
