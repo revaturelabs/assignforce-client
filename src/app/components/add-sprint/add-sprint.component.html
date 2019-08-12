@@ -4,7 +4,7 @@
     <mat-expansion-panel expanded="true" disabled="true">
       <mat-expansion-panel-header class="toolbar-curricula-sub">
         <mat-panel-title>
-          <span class="panel-title-fix">Sprints</span>
+          <span class="panel-title-fix">Sprint Report</span>
         </mat-panel-title>
          <!-- <h4>Displays a report of sprint names for each project and their descriptions</h4> -->
           
@@ -30,32 +30,25 @@
               <div>
                 <h3 mat-line class="sprint-name">{{sprint.name}}</h3>
                 <h3 mat-line class="sprint-name">{{sprint.body | json}}</h3>
+                
               </div>
+              
               <span class="fill-space"></span>
-              <br/>
-<br/>
-           <!-- <div class="panel-body">
-              <br/>
-             
-          <table class="table table-striped table-bordered">
-             
-              <thead>
-                  <tr>
-                      <th>Sprint Name</th>
-                      <th>Description</th>
-                  </tr>
-              </thead>
-              <tbody>
-                      <tr>
-                      <td>{{sprint.name}}</td>
-                      <td>{{sprint.body}}</td>
-                    </tr>
-              </tbody>
-          </table>
-      </div> -->
+               
             </mat-list-item>    
- 
+  
           </ng-container>
+         <br/>
+         <br/>
+         <br/> 
+
+          <div>
+          <h2>Total Sprints for this project: </h2>
+          <h3 mat-line class="sprint-name">{{count(sprints)}}</h3>
+          <!-- <h3 mat-line class="sprint-name">{{sprints.length}}</h3> -->
+          </div> 
+         
+            
          
         </mat-list>
       </div>

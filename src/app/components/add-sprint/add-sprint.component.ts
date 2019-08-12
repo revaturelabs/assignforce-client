@@ -1,12 +1,9 @@
-
-import { getSupportedInputTypes } from "@angular/cdk/platform";
-import {Component, OnInit} from "@angular/core";
-import {MatDialog} from "@angular/material";
+import {Component, OnInit, ViewChild, ElementRef} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import {Sprint} from "../../model/sprint";
-import {SkillControllerService} from "../../services/api/skill-controller/skill-controller.service";
 import {SprintControllerService} from "../../services/api/sprint-controller/sprint-controller.service";
 import {AuthService} from "../../services/auth/auth.service";
+
 
 
 @Component({
@@ -20,9 +17,8 @@ export class AddSprintComponent implements OnInit {
   isLoading: boolean;
   projectID: number;
 
+
   constructor(private sprintService: SprintControllerService,
-              private dialog: MatDialog,
-              private skillControllerService: SkillControllerService,
               public auth0: AuthService,
               private route: ActivatedRoute) { }
 
@@ -30,15 +26,18 @@ export class AddSprintComponent implements OnInit {
 
   ngOnInit() {
       this.isLoading = true;
+      
       this.sprintService.getAll()
       .subscribe((sprints) => {
         this.sprints = [];
+        
         for (const sprint of sprints) {
           try {
             const body = JSON.parse(sprint.body);
             if (body.finalProject) {
               sprint.body = body;
               this.sprints.push(sprint);
+              console.log(this.sprints.length);
             }
           } catch (e) {
             // invalid json, project is not a project sprint.
@@ -53,9 +52,36 @@ export class AddSprintComponent implements OnInit {
         // In a real app: dispatch action to load the details here.
       });
 
-    }
+    
+  }
 
     createSprint(ProjectId) {
       this.sprintService.createSprint("$ProjectSprint", '{"finalProject":' + ProjectId + "}");
     }
+
+    count(sprints) {
+      var c = 0;
+      if(!sprints) {
+        return -1;
+      }
+      for(let sprint of sprints) {
+        if(sprint.body.finalProject === this.projectID) {
+          c++;
+        }
+      }
+      return c;
+    }
+      /*
+      for(var i = 0; i < this.length; i++) {
+        if(typeof(sprints[i]) !== "undefined") {
+          if(typeof(sprints[i]) == "string" && sprints[i].length == 0) {
+          } else { 
+            c++;
+          }
+        }
+      }
+      return c;
+      */
+    
+   
   }

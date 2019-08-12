@@ -3,12 +3,11 @@ import { Injectable } from "@angular/core";
 import "rxjs/add/operator/map";
 import {Observable} from "rxjs/Observable";
 import {environment} from "../../../../environments/environment";
-import {FinalProject} from "../../../model/FinalProject";
 import {Sprint} from "../../../model/sprint";
 
 @Injectable()
 export class SprintControllerService {
-  private static readonly _authToken = "token ";
+  private static readonly _authToken = "token 8bbd08e64c5b17bdff15c1ef90c252870006c2f2";
 
   createSprintUrl = "https://api.github.com/repos/revaturelabs/assignforce";
 
