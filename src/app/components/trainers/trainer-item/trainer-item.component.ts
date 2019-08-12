@@ -73,14 +73,5 @@ export class TrainerItemComponent implements OnInit {
     });
     return skillsArray.map(skill => skill.name).join(', ');
 
-    // for (const skill of this.trainer.skills) {
-    //   // console.log(skill);
-    //   if (skill) {
-    //     name.push(' ' + skill.name);
-    //   } else {
-    //     name.push('skillErr!');
-    //   }
-    // }
-    // return name;
   }
 }

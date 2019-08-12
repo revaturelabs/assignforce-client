@@ -133,21 +133,6 @@ export class BatchesTimelineFilterComponent implements OnInit {
   }
 
   loadLocationData() {
-    // this.loading = true;
-
-    // this.addressControllerService.findAll().subscribe(aList => {
-    //   this.locationData = Object.values(aList)
-    //   this.locationData.sort((a, b) => a.id - b.id);
-    //   this.locationData.unshift(this.locationAny)
-    //   this.buildingController.findAll().subscribe(buildings => {
-    //     this.buildingData = buildings;
-    //     this.buildingData.sort((a, b) => a.id - b.id);
-    //     this.buildingData.unshift(this.buildingAny);
-    //       this.locationFilter = this.locationData[0];
-    //       this.buildingFilter = this.buildingData[0];
-    //       this.loading = false;
-    //   });
-    // });
     this.locationData = Object.values(this.locationFilterList);
     this.locationData.sort((a, b) => a.id - b.id);
     this.locationData.unshift(this.locationAny);
@@ -185,9 +170,6 @@ onLocationSelectChange(evt: Event) {
     this.buildingData.push(this.buildingAny);
   }
   this.buildingFilter = this.buildingData[0];
-  // for (const building of this.locationFilter.buildings) {
-  //   this.buildingData.push(building);
-  // }
   this.filterChangeEmitter.emit(evt);
  }
 }
