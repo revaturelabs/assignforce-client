@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-import {Component, OnInit, ViewChild, ElementRef} from "@angular/core";
-import {ActivatedRoute} from "@angular/router";
-import {Sprint} from "../../model/sprint";
-import {SprintControllerService} from "../../services/api/sprint-controller/sprint-controller.service";
-import {AuthService} from "../../services/auth/auth.service";
-
-
-
-=======
 import {Component, OnInit} from "@angular/core";
 import {MatDialog} from "@angular/material";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -17,7 +7,6 @@ import {SkillControllerService} from "../../services/api/skill-controller/skill-
 import {SprintControllerService} from "../../services/api/sprint-controller/sprint-controller.service";
 import {AuthService} from "../../services/auth/auth.service";
 
->>>>>>> 279b3efb994f2247dadfeb32796234fbea0a2ca3
 @Component({
   selector: "app-add-sprint",
   templateUrl: "./add-sprint.component.html",
@@ -29,14 +18,10 @@ export class AddSprintComponent implements OnInit {
   isLoading: boolean;
   projectID: number;
 
-
   constructor(private sprintService: SprintControllerService,
-<<<<<<< HEAD
-=======
               private finalProjectService: FinalProjectControllerService,
               private dialog: MatDialog,
               private skillControllerService: SkillControllerService,
->>>>>>> 279b3efb994f2247dadfeb32796234fbea0a2ca3
               public auth0: AuthService,
               private router: Router,
               private route: ActivatedRoute) { }
@@ -45,11 +30,11 @@ export class AddSprintComponent implements OnInit {
 
   ngOnInit() {
       this.isLoading = true;
-      
+
       this.sprintService.getAll()
       .subscribe((sprints) => {
         this.sprints = [];
-        
+
         for (const sprint of sprints) {
           try {
             const body = JSON.parse(sprint.body);
@@ -71,7 +56,6 @@ export class AddSprintComponent implements OnInit {
         // In a real app: dispatch action to load the details here.
       });
 
-    
   }
 
     createSprint(ProjectId) {
@@ -85,28 +69,19 @@ export class AddSprintComponent implements OnInit {
     }
 
     count(sprints) {
-      var c = 0;
-      if(!sprints) {
+
+      let c = 0;
+
+      if (!sprints) {
         return -1;
       }
-      for(let sprint of sprints) {
-        if(sprint.body.finalProject === this.projectID) {
+
+      for (const sprint of sprints) {
+        if (sprint.body.finalProject === this.projectID) {
           c++;
         }
       }
       return c;
     }
-      /*
-      for(var i = 0; i < this.length; i++) {
-        if(typeof(sprints[i]) !== "undefined") {
-          if(typeof(sprints[i]) == "string" && sprints[i].length == 0) {
-          } else { 
-            c++;
-          }
-        }
-      }
-      return c;
-      */
-    
-   
-  }
+
+}
