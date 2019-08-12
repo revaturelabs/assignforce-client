@@ -1,9 +1,8 @@
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import { Injectable } from "@angular/core";
+import {Injectable} from "@angular/core";
 import "rxjs/add/operator/map";
 import {Observable} from "rxjs/Observable";
 import {environment} from "../../../../environments/environment";
-import {FinalProject} from "../../../model/FinalProject";
 import {Sprint} from "../../../model/sprint";
 
 @Injectable()
@@ -23,7 +22,7 @@ export class SprintControllerService {
   }
 
   // tslint:disable-next-line:one-line
-  createSprint(name, body){
+  createSprint(name, body) {
     const RequestHeaders = { headers: new HttpHeaders({
       "Content-Type": "application/json",
       "Authorization": SprintControllerService._authToken,

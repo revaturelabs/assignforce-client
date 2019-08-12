@@ -1,13 +1,11 @@
-
-import { getSupportedInputTypes } from "@angular/cdk/platform";
 import {Component, OnInit} from "@angular/core";
 import {MatDialog} from "@angular/material";
 import {ActivatedRoute} from "@angular/router";
 import {Sprint} from "../../model/sprint";
+import {FinalProjectControllerService} from "../../services/api/final-project-controller/final-project-controller.service";
 import {SkillControllerService} from "../../services/api/skill-controller/skill-controller.service";
 import {SprintControllerService} from "../../services/api/sprint-controller/sprint-controller.service";
 import {AuthService} from "../../services/auth/auth.service";
-
 
 @Component({
   selector: "app-add-sprint",
@@ -21,6 +19,7 @@ export class AddSprintComponent implements OnInit {
   projectID: number;
 
   constructor(private sprintService: SprintControllerService,
+              private finalProjectService: FinalProjectControllerService,
               private dialog: MatDialog,
               private skillControllerService: SkillControllerService,
               public auth0: AuthService,
@@ -56,6 +55,8 @@ export class AddSprintComponent implements OnInit {
     }
 
     createSprint(ProjectId) {
-      this.sprintService.createSprint("$ProjectSprint", '{"finalProject":' + ProjectId + "}");
+      const projectName = this.finalProjectService.find(ProjectId).subscribe((project) => {
+        this.sprintService.createSprint("Sprint for " + project.name, '{"finalProject":' + project.id + "}");
+      });
     }
   }
