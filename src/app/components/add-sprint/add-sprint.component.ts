@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {MatDialog} from "@angular/material";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Sprint} from "../../model/sprint";
 import {FinalProjectControllerService} from "../../services/api/final-project-controller/final-project-controller.service";
 import {SkillControllerService} from "../../services/api/skill-controller/skill-controller.service";
@@ -23,6 +23,7 @@ export class AddSprintComponent implements OnInit {
               private dialog: MatDialog,
               private skillControllerService: SkillControllerService,
               public auth0: AuthService,
+              private router: Router,
               private route: ActivatedRoute) { }
 
   // tslint:disable-next-line:one-line
@@ -56,7 +57,11 @@ export class AddSprintComponent implements OnInit {
 
     createSprint(ProjectId) {
       const projectName = this.finalProjectService.find(ProjectId).subscribe((project) => {
-        this.sprintService.createSprint("Sprint for " + project.name, '{"finalProject":' + project.id + "}");
+        const name = "Sprint for " + project.name;
+        const body = '{"finalProject":' + project.id + "}";
+        this.sprintService.createSprint(name, body, () => {
+          this.sprints.push({name, body: JSON.parse(body), id: undefined});
+        });
       });
     }
   }
