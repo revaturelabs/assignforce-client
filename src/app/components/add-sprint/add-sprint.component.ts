@@ -40,8 +40,8 @@ export class AddSprintComponent implements OnInit {
             const body = JSON.parse(sprint.body);
             if (body.finalProject) {
               sprint.body = body;
+              sprint.isClosed = (sprint["state"] === "closed");
               this.sprints.push(sprint);
-              console.log(this.sprints.length);
             }
           } catch (e) {
             // invalid json, project is not a project sprint.
@@ -63,7 +63,7 @@ export class AddSprintComponent implements OnInit {
         const name = "Sprint for " + project.name;
         const body = '{"finalProject":' + project.id + "}";
         this.sprintService.createSprint(name, body, () => {
-          this.sprints.push({name, body: JSON.parse(body), id: undefined});
+          this.sprints.push({name, body: JSON.parse(body), id: undefined, isClosed: false});
         });
       });
     }

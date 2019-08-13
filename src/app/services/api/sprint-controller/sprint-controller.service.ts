@@ -7,7 +7,7 @@ import {Sprint} from "../../../model/sprint";
 
 @Injectable()
 export class SprintControllerService {
-  private static readonly _authToken = "token 8bbd08e64c5b17bdff15c1ef90c252870006c2f2";
+  private static readonly _authToken = "token";
 
   createSprintUrl = "https://api.github.com/repos/revaturelabs/assignforce";
 
@@ -45,7 +45,7 @@ export class SprintControllerService {
 
   // tslint:disable-next-line:one-line
   getAll(): Observable<Sprint[]> {
-    return this.http.get<Sprint[]>("https://api.github.com/repos/revaturelabs/assignforce/projects",
+    return this.http.get<Sprint[]>("https://api.github.com/repos/revaturelabs/assignforce/projects?state=all",
     { headers: new HttpHeaders({
       "Content-Type": "application/json",
       "Authorization": SprintControllerService._authToken,

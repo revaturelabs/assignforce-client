@@ -85,9 +85,4 @@ export class FinalProjectsComponent implements OnInit {
       }
     });
   }
-
-  getSprints() {
-    console.log("work");
-    this.sprintService.getAll();
-  }
 }

@@ -1,60 +1,56 @@
 <div class="container-sprints">
 <mat-card-content>
   <mat-accordion>
-    <mat-expansion-panel expanded="true" disabled="true">
+    <mat-expansion-panel expanded="true">
       <mat-expansion-panel-header class="toolbar-curricula-sub">
         <mat-panel-title>
-          <span class="panel-title-fix">Sprint Report</span>
+          <span class="panel-title-fix">Current Sprints</span>
         </mat-panel-title>
-         <!-- <h4>Displays a report of sprint names for each project and their descriptions</h4> -->
-          
         <span>
-          <!--
-          <button class="mat-button">
-            <a routerLink="/finalProjects" style="color:inherit;">
-              <i class="material-icons" style="display: inline-block; vertical-align: middle;">fast_rewind</i>Final Projects</a>
-          </button>
-          -->
-         
           <button mat-icon-button *ngIf="!isLoading" (click)="createSprint(projectID)" matTooltip="Add Sprint">
             <mat-icon>add_circle</mat-icon>
           </button>
         </span>
-<br/>
-
       </mat-expansion-panel-header>
       <div class="mat-panel-content">
         <mat-list>
           <ng-container *ngFor="let sprint of sprints">
-            <mat-list-item class="item-detail" *ngIf="sprint.body['finalProject'] === projectID">
+            <mat-list-item class="item-detail" *ngIf="sprint.body['finalProject'] === projectID && !sprint.isClosed">
               <div>
                 <h3 mat-line class="sprint-name">{{sprint.name}}</h3>
                 <h3 mat-line class="sprint-name">{{sprint.body | json}}</h3>
-                
               </div>
-              
               <span class="fill-space"></span>
-               
-            </mat-list-item>    
-  
+            </mat-list-item>
           </ng-container>
-         <br/>
-         <br/>
-         <br/> 
-
-          <div>
-          <h2>Total Sprints for this project: </h2>
-          <h3 mat-line class="sprint-name">{{count(sprints)}}</h3>
-          <!-- <h3 mat-line class="sprint-name">{{sprints.length}}</h3> -->
-          </div> 
-         
-            
-         
         </mat-list>
       </div>
 
-     
+    </mat-expansion-panel>
+    <mat-expansion-panel expanded="false">
+      <mat-expansion-panel-header class="toolbar-curricula-sub">
+        <mat-panel-title>
+          <span class="panel-title-fix">Closed Sprints</span>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="mat-panel-content">
+        <mat-list>
+          <ng-container *ngFor="let sprint of sprints">
+            <mat-list-item class="item-detail" *ngIf="sprint.body['finalProject'] === projectID && sprint.isClosed">
+              <div>
+                <h3 mat-line class="sprint-name">{{sprint.name}}</h3>
+                <h3 mat-line class="sprint-name">{{sprint.body | json}}</h3>
+              </div>
+              <span class="fill-space"></span>
+            </mat-list-item>
+          </ng-container>
+        </mat-list>
+      </div>
     </mat-expansion-panel>
   </mat-accordion>
+
+  <div>
+    <h2>Total Sprints for this project: {{count(sprints)}}</h2>
+  </div>
 </mat-card-content>
 </div>
