@@ -5,7 +5,11 @@ export const sprintService = {
     return of([]);
   }),
 };
-export const finalProjectService = {};
+export const finalProjectService = {
+  findAll: jest.fn().mockImplementation(() => {
+    return of([]);
+  }),
+};
 
 export const batchService = {
   findAll: jest.fn().mockImplementation(() => {
