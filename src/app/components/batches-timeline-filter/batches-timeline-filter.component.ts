@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output, Input, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, Input, ViewChild, SimpleChanges } from '@angular/core';
 import { CurriculumControllerService } from '../../services/api/curriculum-controller/curriculum-controller.service';
 import { FocusControllerService } from '../../services/api/focus-controller/focus-controller.service';
 import { AddressControllerService } from '../../services/api/address-controller/address-controller.service';
@@ -39,6 +39,9 @@ export class BatchesTimelineFilterComponent implements OnInit {
   @Input() trainersPerPage: number = 0;
   @Input() currentPage: number = 0;
   @Input() maxPages: number  = 0;
+  @Input() curriculumFilterList:Curriculum [];
+  @Input() locationFilterList:Address [];
+  @Input() buildingFilterList:Building [];
 
   @Output() public filterChangeEmitter = new EventEmitter<Event>();
 
@@ -58,8 +61,11 @@ export class BatchesTimelineFilterComponent implements OnInit {
 
   ngOnInit() {
     this.loadSettingData();
-    this.loadCurriculumData();
     this.loadFocusData();
+
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    this.loadCurriculumData();
     this.loadLocationData();
   }
 
@@ -81,21 +87,27 @@ export class BatchesTimelineFilterComponent implements OnInit {
   }
 
   loadCurriculumData() {
-    this.loading = true;
-    this.curriculumControllerService.findAll().subscribe(
-      result => {
-        this.curriculumData = [];
-        this.curriculumData.push(this.curriculumAny);
-        for (const curriculum of result) {
-          this.curriculumData.push(curriculum);
-        }
-        this.curriculumFilter = this.curriculumData[0];
-        this.loading = false;
-      },
-      err => {
-        console.log("failed to load curriculums ", err);
-      }
-    );
+    // this.loading = true;
+    // this.curriculumControllerService.findAll().subscribe(
+    //   result => {
+    //     this.curriculumData = [];
+    //     this.curriculumData.push(this.curriculumAny);
+    //     for (const curriculum of result) {
+    //       this.curriculumData.push(curriculum);
+    //     }
+    //     this.curriculumFilter = this.curriculumData[0];
+    //     this.loading = false;
+    //   },
+    //   err => {
+    //     console.log("failed to load curriculums ", err);
+    //   }
+    // );
+    this.curriculumData = [];
+    this.curriculumData.push(this.curriculumAny);
+    for (const curriculum of this.curriculumFilterList) {
+      this.curriculumData.push(curriculum);
+    }
+    this.curriculumFilter = this.curriculumData[0];
   }
 
   loadFocusData() {
@@ -121,22 +133,27 @@ export class BatchesTimelineFilterComponent implements OnInit {
   }
 
   loadLocationData() {
-    this.loading = true;
+    this.locationData = Object.values(this.locationFilterList);
+    this.locationData.sort((a, b) => a.id - b.id);
+    this.locationData.unshift(this.locationAny);
+    this.buildingData = this.buildingFilterList;
+    this.buildingData.sort((a, b) => a.id - b.id);
+    var found = false;
+    for(var i = 0; i < this.buildingData.length; i++)
+    {
+      if (this.buildingData[i].name == 'Any') {
+        found = true;
 
-    this.addressControllerService.findAll().subscribe(aList => {
-      this.locationData = Object.values(aList)
-      this.locationData.sort((a, b) => a.id - b.id);
-      this.locationData.unshift(this.locationAny)
-      this.buildingController.findAll().subscribe(buildings => {
-        this.buildingData = buildings;
-        this.buildingData.sort((a, b) => a.id - b.id);
-        this.buildingData.unshift(this.buildingAny);
-          this.locationFilter = this.locationData[0];
-          this.buildingFilter = this.buildingData[0];
-          this.loading = false;
-      });
-    });
-    
+        break;
+    }
+  }
+    if(!found) {
+      this.buildingData.unshift(this.buildingAny);
+      console.log("Oppai");
+    }
+
+    this.locationFilter = this.locationData[0];
+    this.buildingFilter = this.buildingData[0];
   }
 
 //The basic biiiatch event emitter
@@ -145,13 +162,14 @@ onFilterChange(evt: Event) {
 }
 
 //Special event emitter for location dropdown to populate buildings
+//
 onLocationSelectChange(evt: Event) {
   this.buildingData = [];
-  this.buildingData.push(this.buildingAny);
-  this.buildingFilter = this.buildingData[0];
-  for (const building of this.locationFilter.buildings) {
-    this.buildingData.push(building);
+  // this.buildingData.push(this.buildingAny);
+  if(!this.buildingData.includes("Any")) {
+    this.buildingData.push(this.buildingAny);
   }
+  this.buildingFilter = this.buildingData[0];
   this.filterChangeEmitter.emit(evt);
  }
 }

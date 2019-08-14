@@ -1,17 +1,18 @@
-import { Component, OnInit } from "@angular/core";
-import { MatDialog } from "@angular/material";
-import { Router } from "@angular/router";
-import { Curriculum } from "../../model/Curriculum";
-import { Skill } from "../../model/Skill";
-import { Trainer } from "../../model/Trainer";
-import { CachedObjectsService } from "../../services/api/cache/cached-objects.service";
-import { CurriculumControllerService } from "../../services/api/curriculum-controller/curriculum-controller.service";
-import { FilehandlerService } from "../../services/api/filehandler-controller/filehandler-controller.service";
-import { FillSkillsService } from "../../services/api/skill-controller/fill-skills.service";
-import { TrainerControllerService } from "../../services/api/trainer-controller/trainer-controller.service";
-import { AuthService } from "../../services/auth/auth.service";
-import { AddTrainerErrorComponent} from "./add-trainer-error/add-trainer-error.component";
-import { TrainersAddComponent } from "./trainers-add/trainers-add.component";
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material';
+import { AddTrainerErrorComponent} from './add-trainer-error/add-trainer-error.component';
+import { Skill } from '../../model/Skill';
+import { Trainer } from '../../model/Trainer';
+import { TrainersAddComponent } from './trainers-add/trainers-add.component';
+import { TrainerControllerService } from '../../services/api/trainer-controller/trainer-controller.service';
+import { Router } from '@angular/router';
+import { CurriculumControllerService } from '../../services/api/curriculum-controller/curriculum-controller.service';
+import { Curriculum } from '../../model/Curriculum';
+import { AuthService } from '../../services/auth/auth.service';
+import { FillSkillsService } from '../../services/api/skill-controller/fill-skills.service';
+import { CachedObjectsService } from '../../services/api/cache/cached-objects.service';
+import { FilehandlerService } from '../../services/api/filehandler-controller/filehandler-controller.service';
+import { SkillControllerService } from "../../services/api/skill-controller/skill-controller.service";
 
 @Component({
   selector: "app-trainers",
@@ -25,6 +26,7 @@ export class TrainersComponent implements OnInit {
   lastName: string;
   trainers: Trainer[] = [];
   curricula: Curriculum[] = [];
+  skills: Skill[] = [];
 
   isManager = true;
   isLoading: boolean;
@@ -40,6 +42,7 @@ export class TrainersComponent implements OnInit {
     private fillSkills: FillSkillsService,
     private cacheService: CachedObjectsService,
     private filehandlerService: FilehandlerService,
+    private skillsService: SkillControllerService
   ) {}
 
   ngOnInit() {
@@ -73,6 +76,10 @@ export class TrainersComponent implements OnInit {
           this.cacheService.setCurricula(curricula);
         });
     }
+    this.skillsService.findAll().subscribe((response) => {
+      this.skills = response;
+      this.isLoading = false;
+    });
   }
 
   showCalendar() {}
