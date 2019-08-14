@@ -1,5 +1,12 @@
 import { of } from 'rxjs/observable/of';
 
+export const sprintService = {
+  getAll: jest.fn().mockImplementation(() => {
+    return of([]);
+  }),
+};
+export const finalProjectService = {};
+
 export const batchService = {
   findAll: jest.fn().mockImplementation(() => {
     const batches = [
