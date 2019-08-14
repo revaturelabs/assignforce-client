@@ -1,40 +1,40 @@
 import {
+  AfterViewInit,
   Component,
+  ElementRef,
+  Input,
   OnInit,
   ViewChild,
-  ElementRef,
-  AfterViewInit,
   ViewChildren,
-  Input
 } from "@angular/core";
 // import { BatchControllerService } from "../../services/api/batch-controller/batch-controller.service";
 import {
-  MatSelectChange,
   MatCheckboxChange,
-  MatOption
+  MatOption,
+  MatSelectChange,
 } from "@angular/material";
+import { BatchesTimelineFilterComponent } from "../../components/batches-timeline-filter/batches-timeline-filter.component";
+import { Address } from "../../model/Address";
 // import { TrainerControllerService } from "../../services/api/trainer-controller/trainer-controller.service";
 import { Batch } from "../../model/Batch";
-import { Trainer } from "../../model/Trainer";
-import { Curriculum } from "../../model/Curriculum";
-import { Address } from "../../model/Address";
 import { Building } from "../../model/Building";
-import { SettingControllerService } from "../../services/api/setting-controller/setting-controller.service";
+import { Curriculum } from "../../model/Curriculum";
+import { Room } from "../../model/Room";
+import { Trainer } from "../../model/Trainer";
 // import { CurriculumControllerService } from "../../services/api/curriculum-controller/curriculum-controller.service";
 import { AddressControllerService } from "../../services/api/address-controller/address-controller.service";
-import { BatchesTimelineFilterComponent } from "../../components/batches-timeline-filter/batches-timeline-filter.component";
 // import { RoomControllerService } from "../../services/api/room-controller/room-controller.service";
 import { BuildingControllerService } from "../../services/api/building-controller/building-controller.service";
-import { Room } from "../../model/Room";
+import { SettingControllerService } from "../../services/api/setting-controller/setting-controller.service";
 
 @Component({
   selector: "app-batches-timeline",
   templateUrl: "./batches-timeline.component.html",
-  styleUrls: ["./batches-timeline.component.css"]
+  styleUrls: ["./batches-timeline.component.css"],
 })
 export class BatchesTimelineComponent implements OnInit, AfterViewInit {
   //Get child component to access variables. Is it bad practice? I don't know.
-  @ViewChild(BatchesTimelineFilterComponent) batchesTimelineFilterComponent : BatchesTimelineFilterComponent;
+  @ViewChild(BatchesTimelineFilterComponent) batchesTimelineFilterComponent: BatchesTimelineFilterComponent;
   // root element of the timeline. used for getting the relative mouse position
   @ViewChild("timelineroot") timelineRootElement: ElementRef;
   // trainer name. used to set the width
@@ -43,10 +43,11 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
   @ViewChildren("tooltiptext") tooltipTexts;
 
   @Input() shouldUpdate(update: boolean){
-    if(update){
+    if (update){
       this.updateBatches();
     }
   };
+  
   // dynamic values for formatting
   width = 1536;
   swimlaneXOfs = 100;
@@ -66,7 +67,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
   // editable data
   startDate: Date;
   endDate: Date;
-  curriculumFilter : Curriculum;
+  curriculumFilter: Curriculum;
   focusFilter = "Any";
   locationFilter: Address;
   buildingFilter: Building;
@@ -96,7 +97,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
     "September",
     "October",
     "November",
-    "December"
+    "December",
   ];
   shortMonthNames = [
     "Jan",
@@ -110,7 +111,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
     "Sep",
     "Oct",
     "Nov",
-    "Dec"
+    "Dec",
   ];
   dayOfWeekNames = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
   timescaleEnabled = true;
@@ -144,7 +145,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
     tab: 9,
     plus: 187,
     minus: 189,
-    esc: 27
+    esc: 27,
   };
   keyBoardScrollEnabled = true;
   keyScrollSpeed = 0.01;
@@ -157,7 +158,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
     color: "#000000",
     r: 0,
     points: { x: 0, y: 0 },
-    highpoints: { x: 0, y: 0 }
+    highpoints: { x: 0, y: 0 },
   };
   swimGauge = {
     value: 0,
@@ -169,7 +170,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
     x2: 0,
     bgx1: 0,
     bgx2: 0,
-    w: 0
+    w: 0,
   };
   swimDots = [];
   swimLane = 0;
@@ -191,7 +192,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
     h: 0,
     linespacing: 15,
     color: "#000000cc",
-    triangle: "0,0 0,0 0,0"
+    triangle: "0,0 0,0 0,0",
   };
   tooltipData = [];
   tooltipLastBatch = null;
@@ -231,8 +232,8 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
     this.updateLocations();
     this.updateBatches();
     this.updateTrainers();
-    if(this.batchList !== null) { this.filterBatches(); }
-    if(this.trainerList !== null) { this.filterTrainers(); }
+    if (this.batchList !== null) { this.filterBatches(); }
+    if (this.trainerList !== null) { this.filterTrainers(); }
     this.updateTodayLine();
     this.updatePage();
   }
@@ -250,13 +251,13 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
     // start date
     const preceedingDate = new Date();
     preceedingDate.setMonth(
-      preceedingDate.getMonth() - this.DEFAULT_PRECEEDING_MONTHS
+      preceedingDate.getMonth() - this.DEFAULT_PRECEEDING_MONTHS,
     );
     this.startValue = preceedingDate.valueOf();
     // end date
     const proceedingDate = new Date();
     proceedingDate.setMonth(
-      proceedingDate.getMonth() + this.DEFAULT_PROCEEDING_MONTHS
+      proceedingDate.getMonth() + this.DEFAULT_PROCEEDING_MONTHS,
     );
     this.endValue = proceedingDate.valueOf();
     this.updateDateFilters();
@@ -370,7 +371,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
       }
       default: {
         console.log(
-          "unknown event filter triggered! " + event + "\n" + event.target
+          "unknown event filter triggered! " + event + "\n" + event.target,
         );
       }
     }
@@ -392,10 +393,10 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
       this.actualTrainersPerPage = this.trainersPerPage;
       // update max page value
       this.maxPages = Math.ceil(
-        this.trainerFilteredList.length / this.actualTrainersPerPage
+        this.trainerFilteredList.length / this.actualTrainersPerPage,
       ) - 1;
       this.currentPage = Math.min(this.currentPage, this.maxPages);
-      if(this.currentPage < 0){
+      if (this.currentPage < 0){
         this.currentPage = 0;
       }
     }
@@ -404,7 +405,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
     this.trainersOnThisPage = Math.min(
       this.trainerFilteredList.length -
         this.currentPage * this.actualTrainersPerPage,
-      this.actualTrainersPerPage
+      this.actualTrainersPerPage,
     );
     this.updateSize();
   }
@@ -421,8 +422,8 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
       //This probably needs some editing. Date is now a string. Is there a TO-DO in Typescript?
       //For some reason, it floors the day too hard and moves it back one.
       if (!Number(batch.startDate)) {
-        batch.startDate = new Date(batch.startDate).valueOf() + this.ONE_WEEK/7;
-        batch.endDate = new Date(batch.endDate).valueOf() + this.ONE_WEEK/7;
+        batch.startDate = new Date(batch.startDate).valueOf() + this.ONE_WEEK / 7;
+        batch.endDate = new Date(batch.endDate).valueOf() + this.ONE_WEEK / 7;
       }
     }
 
@@ -450,7 +451,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
         this.batchFilteredList.push(batch);
       }
     }
-    this.filterTrainers()
+    this.filterTrainers();
   }
 
   filterConcludedBatches(batch: Batch) {
@@ -513,7 +514,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
   }
 
   updateSettings() {
-    this.settingControllerService.find().subscribe(result => {
+    this.settingControllerService.find().subscribe((result) => {
       const setting = result;
       this.trainersPerPage = setting.trainersPerPage;
       this.updatePage();
@@ -538,7 +539,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
       (this.width - this.timescaleXOfs) / this.trainersOnThisPage - 5;
     this.columnWidth = Math.min(
       this.maxColumnWidth,
-      Math.max(this.minColumnWidth, col_wid)
+      Math.max(this.minColumnWidth, col_wid),
     );
 
     this.updateTodayLine();
@@ -556,7 +557,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
   getTooltipExists(text: string, value: string) {
     return [
       { text: text + ": ", color: this.tooltipDefaultColor },
-      { text: value, color: this.tooltipMidSectionColor }
+      { text: value, color: this.tooltipMidSectionColor },
     ];
   }
 
@@ -592,7 +593,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
       if (batch.curriculum != null) {
         lines.push([
           { text: this.getCurriculumNameById(batch.curriculum), color: this.tooltipTitleColor },
-          { text: " Batch", color: this.tooltipDefaultColor }
+          { text: " Batch", color: this.tooltipDefaultColor },
         ]);
       }
 
@@ -608,16 +609,16 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
         lines.push(
           this.getTooltipExists(
             "Start Date",
-            new Date(batch.startDate).toDateString()
-          )
+            new Date(batch.startDate).toDateString(),
+          ),
         );
       }
       if (batch.endDate != null) {
         lines.push(
           this.getTooltipExists(
             "End Date",
-            new Date(batch.endDate).toDateString()
-          )
+            new Date(batch.endDate).toDateString(),
+          ),
         );
       }
 
@@ -725,38 +726,38 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
     this.tooltipSetThisFrame = false;
   }
 
-  getTrainerNameById(id:number){
-    const index = this.trainerFilteredList.findIndex(t => t.id === id);
-    return this.trainerFilteredList[index].firstName + " " +this.trainerFilteredList[index].lastName;
+  getTrainerNameById(id: number){
+    const index = this.trainerFilteredList.findIndex((t) => t.id === id);
+    return this.trainerFilteredList[index].firstName + " " + this.trainerFilteredList[index].lastName;
   }
 
   getLocationNameById(id: number) {
-    const index = this.locationList.findIndex(t => t.id === id);
-    if(this.locationList[index] != null){
+    const index = this.locationList.findIndex((t) => t.id === id);
+    if (this.locationList[index] != null){
       return this.locationList[index].name;
     }
-    return "No Location exists."
+    return "No Location exists.";
   }
 
   getBuildingNameById(id: number) {
-    const index = this.buildingList.findIndex(t => t.id === id);
-    if(this.buildingList[index] != null){
+    const index = this.buildingList.findIndex((t) => t.id === id);
+    if (this.buildingList[index] != null){
       return this.buildingList[index].name;
     }
-    return "No Building exists."
+    return "No Building exists.";
   }
 
   getRoomNameById(id: number) {
 
-    return "No Room exists."
+    return "No Room exists.";
   }
 
   getCurriculumNameById(id: number) {
-    const index = this.curriculumList.findIndex(t => t.id === id);
-    if(this.curriculumList[index] != null){
+    const index = this.curriculumList.findIndex((t) => t.id === id);
+    if (this.curriculumList[index] != null){
       return this.curriculumList[index].name;
     }
-    return "No Curriculum exists."
+    return "No Curriculum exists.";
   }
 
   // returns the appropriate color for the core curriculum type
@@ -790,7 +791,6 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
       return rects;
     }
 
-
     // text mode to use by pixel height
     const txtlongpx = 105;
     const txtshortpx = 30;
@@ -807,7 +807,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
 
       // get the column this batch will be in
       let trainer_index = this.trainerFilteredList.findIndex(
-        t => t.id === batch.trainer
+        (t) => t.id === batch.trainer,
       );
       if (trainer_index < 0) {
         // this batch has no trainer, it may have been filtered
@@ -858,15 +858,15 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
         .concat(labeltext.split(""));
 
       rects.push({
-        x: x,
-        y: y,
-        w: w,
-        h: h,
+        x,
+        y,
+        w,
+        h,
         id: "batch-" + batch.id,
-        label: label,
-        labelx: labelx,
-        labely: labely,
-        color: color
+        label,
+        labelx,
+        labely,
+        color,
       });
     }
     return rects;
@@ -882,7 +882,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
         x1: xpos,
         y1: this.swimlaneYOfs,
         x2: xpos,
-        y2: this.height - this.swimlaneYOfs
+        y2: this.height - this.swimlaneYOfs,
       });
     }
     return lines;
@@ -897,7 +897,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
         x1: xpos,
         y1: this.swimlaneYOfs,
         x2: xpos,
-        y2: this.height
+        y2: this.height,
       });
     }
     return lines;
@@ -938,7 +938,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
           const duration = Math.floor(gap / this.ONE_WEEK);
           const midDate = trainerBatches[l][m].endDate + gap / 2;
           const y = this.dateToYPos(midDate);
-          midPoints.push({ duration: duration, xPos: xpos, midDatePos: y });
+          midPoints.push({ duration, xPos: xpos, midDatePos: y });
         }
       }
     }
@@ -970,7 +970,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
       if (i === 0) {
         left += this.swimlaneXOfs;
       }
-      trainerspos.push({ name: name, left: left, width: width });
+      trainerspos.push({ name, left, width });
     }
 
     return trainerspos;
@@ -988,7 +988,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
     // get distance between months (px) to determine which scale to use
     const ys0 = this.dateToYPos(new Date(start_year, start_month).valueOf());
     const ys1 = this.dateToYPos(
-      new Date(start_year, start_month + 1).valueOf()
+      new Date(start_year, start_month + 1).valueOf(),
     );
     const dist_between_months = ys1 - ys0;
 
@@ -1015,7 +1015,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
       namestyle = "day";
       for (let i = 0; i < max_dates; i++) {
         dates.push(
-          new Date(start_year, start_month, this.startDate.getDate() + i)
+          new Date(start_year, start_month, this.startDate.getDate() + i),
         );
       }
     } else if (dist_between_months > px2days) {
@@ -1025,7 +1025,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
         this.startDate.getDate() - (this.startDate.getDate() % 2);
       for (let i = 0; i < max_dates; i++) {
         dates.push(
-          new Date(start_year, start_month, aligned_start_date_2 + i * 2)
+          new Date(start_year, start_month, aligned_start_date_2 + i * 2),
         );
       }
     } else if (dist_between_months > pxweeks) {
@@ -1117,7 +1117,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
         break;
       }
       const x = this.timescaleXOfs - 5;
-      timescale.push({ name: name, x: x, y: y });
+      timescale.push({ name, x, y });
     }
     return timescale;
   }
@@ -1144,7 +1144,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
       x1: this.timescaleXOfs,
       x2: this.width,
       y1: mouseposy,
-      y2: mouseposy
+      y2: mouseposy,
     };
     // position (px) to date
     this.zoomingFromDate = this.yPosToDate(mouseposy);
@@ -1262,7 +1262,7 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
     const y =
       event.clientY -
       this.timelineRootElement.nativeElement.getBoundingClientRect().top;
-    this.updateTooltip(event.target.id, { x: x, y: y });
+    this.updateTooltip(event.target.id, { x, y });
   }
 
   // window has been resized, update timeline

@@ -1,0 +1,35 @@
+<div class="container-sprints">
+<mat-card-content>
+  <mat-accordion>
+    <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel-header class="toolbar-curricula-sub">
+        <mat-panel-title>
+          <span class="panel-title-fix">Sprints</span>
+        </mat-panel-title>
+        <span>
+          <button class="mat-button">
+            <a routerLink="/finalProjects" style="color:inherit;">
+              <i class="material-icons" style="display: inline-block; vertical-align: middle;">fast_rewind</i>Final Projects</a>
+          </button>
+        </span>
+
+
+      </mat-expansion-panel-header>
+      <div class="mat-panel-content">
+        <mat-list>
+          <ng-container *ngFor="let sprint of sprints">
+            <mat-list-item class="item-detail" >
+              <div>
+                <h3 mat-line class="sprint-name">{{sprint.name}}</h3>
+                <h3 mat-line class="sprint-name">{{sprint.body}}</h3>
+              </div>
+
+              <span class="fill-space"></span>
+            </mat-list-item>
+          </ng-container>
+        </mat-list>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</mat-card-content>
+</div>

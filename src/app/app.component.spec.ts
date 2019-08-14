@@ -1,18 +1,18 @@
-import { TestBed, async, ComponentFixture } from '@angular/core/testing';
-import { AppComponent } from './app.component';
-import { MenuBarComponent } from './components/menu-bar/menu-bar.component';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AppMaterialModule } from './material.module';
-import { ReactiveFormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { RouterTestingModule } from '@angular/router/testing';
-import { AppRouting } from './app.routing';
-import { AuthService } from './services/auth/auth.service';
-import { UrlService } from './services/url/url.service';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { SecurityContext } from './services/auth/security-context.service';
-import { LoginComponent } from './components/login/login.component';
+import { NO_ERRORS_SCHEMA } from "@angular/core";
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { ReactiveFormsModule } from "@angular/forms";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { ActivatedRoute, Router } from "@angular/router";
+import { RouterTestingModule } from "@angular/router/testing";
+import { BehaviorSubject } from "rxjs/BehaviorSubject";
+import { AppComponent } from "./app.component";
+import { AppRouting } from "./app.routing";
+import { LoginComponent } from "./components/login/login.component";
+import { MenuBarComponent } from "./components/menu-bar/menu-bar.component";
+import { AppMaterialModule } from "./material.module";
+import { AuthService } from "./services/auth/auth.service";
+import { SecurityContext } from "./services/auth/security-context.service";
+import { UrlService } from "./services/url/url.service";
 
 export class MockActivatedRoute {
   private paramsSubject = new BehaviorSubject(this.testParams);
@@ -39,11 +39,11 @@ export class MockAuthService {
   }
 }
 
-describe('AppComponent', () => {
+describe("AppComponent", () => {
   let originalTimeout;
 
   class MockRouter {
-    navigate = jasmine.createSpy('navigate');
+    navigate = jasmine.createSpy("navigate");
   }
   const activeRoute = new MockActivatedRoute();
   let app: AppComponent;
@@ -59,8 +59,8 @@ describe('AppComponent', () => {
         { provide: Router, useClass: MockRouter },
         { provide: AuthService, useClass: MockAuthService },
         SecurityContext,
-        UrlService
-      ]
+        UrlService,
+      ],
     }).compileComponents();
   }));
 
@@ -69,7 +69,7 @@ describe('AppComponent', () => {
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 30000;
   });
 
-  it('should create the app', async(() => {
+  it("should create the app", async(() => {
     fixture = TestBed.createComponent(AppComponent);
     app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
