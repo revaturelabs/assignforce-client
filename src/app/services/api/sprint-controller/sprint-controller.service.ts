@@ -7,7 +7,7 @@ import {Sprint} from "../../../model/sprint";
 
 @Injectable()
 export class SprintControllerService {
-  private static readonly _authToken = "token";
+  private static readonly _authToken = "token ";
 
   createSprintUrl = "https://api.github.com/repos/revaturelabs/assignforce";
 
