@@ -1,8 +1,8 @@
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { Observable } from "rxjs/Observable";
-import { environment } from "../../../../environments/environment";
-import { Batch } from "../../../model/Batch";
+import {HttpClient} from "@angular/common/http";
+import {Injectable} from "@angular/core";
+import {Observable} from "rxjs/Observable";
+import {environment} from "../../../../environments/environment";
+import {Batch} from "../../../model/Batch";
 
 @Injectable()
 export class BatchControllerService {
@@ -16,13 +16,14 @@ export class BatchControllerService {
       startDate: batch.startDate,
       endDate: batch.endDate,
       curriculum: batch.curriculum,
-      trainer: batch.trainer ? batch.trainer : null,
-      cotrainer: batch.cotrainer ? batch.cotrainer : null,
+      trainer: batch.trainer || null,
+      cotrainer: batch.cotrainer || null,
       skills: batch.skills,
-      location: batch.location ? batch.location : null,
-      building: batch.building ? batch.building : null,
-      room: batch.room ? batch.room : null,
-      classSize: batch.size ? batch.size : null,
+      location: batch.location || null,
+      building: batch.building || null,
+      room: batch.room || null,
+      finalProject: batch.finalProject || null,
+      classSize: batch.size || null,
     });
   }
   public update(batch: Batch): Observable<Batch> {
@@ -32,19 +33,21 @@ export class BatchControllerService {
       startDate: batch.startDate,
       endDate: batch.endDate,
       curriculum: batch.curriculum,
-      trainer: batch.trainer ? batch.trainer : null,
-      cotrainer: batch.cotrainer ? batch.cotrainer : null,
-      classSize: batch.size ? batch.size : null,
+      trainer: batch.trainer || null,
+      cotrainer: batch.cotrainer || null,
+      classSize: batch.size || null,
       skills: batch.skills,
       location: batch.location,
-      building: batch.building ? batch.building : null,
-      room : batch.room ? batch.room : null,
+      building: batch.building || null,
+      finalProject: batch.finalProject || null,
+      room: batch.room || null,
     });
   }
   public findAll(): Observable<Batch[]> {
     return this.http.get<Batch[]>(this.batchController.baseUrl + this.batchController.findAll);
   }
-  public remove(id: number): Observable<any>{
+
+  public remove(id: number): Observable<any> {
     return this.http.delete<Batch>(this.batchController.baseUrl + this.batchController.remove + id);
   }
   public find(id: number): Observable<Batch> {

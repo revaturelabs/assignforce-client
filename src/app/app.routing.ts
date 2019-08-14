@@ -74,7 +74,7 @@ const appRoutes: Routes = [
         component: FinalProjectsComponent,
       },
       {
-        path: environment.appRoutes.sprint,
+        path: environment.appRoutes.sprint + "/:id",
         component: AddSprintComponent,
       },
       {

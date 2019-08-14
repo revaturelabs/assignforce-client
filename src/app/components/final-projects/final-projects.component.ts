@@ -1,13 +1,13 @@
-import { Component, OnInit } from "@angular/core";
-import { MatDialog } from "@angular/material";
-import { Batch } from "../../model/Batch";
-import { FinalProject } from "../../model/FinalProject";
-import { BatchControllerService } from "../../services/api/batch-controller/batch-controller.service";
-import { CachedObjectsService } from "../../services/api/cache/cached-objects.service";
-import { FinalProjectControllerService } from "../../services/api/final-project-controller/final-project-controller.service";
-import { SprintControllerService } from "../../services/api/sprint-controller/sprint-controller.service";
-import { AuthService } from "../../services/auth/auth.service";
-import { ProjectsAddComponent } from "./projects-add/projects-add.component";
+import {Component, OnInit} from "@angular/core";
+import {MatDialog} from "@angular/material";
+import {Batch} from "../../model/Batch";
+import {FinalProject} from "../../model/FinalProject";
+import {BatchControllerService} from "../../services/api/batch-controller/batch-controller.service";
+import {CachedObjectsService} from "../../services/api/cache/cached-objects.service";
+import {FinalProjectControllerService} from "../../services/api/final-project-controller/final-project-controller.service";
+import {SprintControllerService} from "../../services/api/sprint-controller/sprint-controller.service";
+import {AuthService} from "../../services/auth/auth.service";
+import {ProjectsAddComponent} from "./projects-add/projects-add.component";
 
 @Component({
   selector: "app-final-projects",
@@ -84,15 +84,5 @@ export class FinalProjectsComponent implements OnInit {
         });
       }
     });
-  }
-
-  createSprint() {
-    console.log("Clicked!");
-    this.sprintService.createSprint();
-  }
-
-  getSprints() {
-    console.log("work");
-    this.sprintService.getAll();
   }
 }
