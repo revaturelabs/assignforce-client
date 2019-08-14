@@ -46,8 +46,8 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
     if (update){
       this.updateBatches();
     }
-  }
-
+  };
+  
   // dynamic values for formatting
   width = 1536;
   swimlaneXOfs = 100;
@@ -213,27 +213,20 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
   @Input() buildingList: Building[] = null; //TODO need to verify correct building array
   locationList = [];
   // @Input() roomList: Room[]; //TODO need to investigate correct rooms
+  @Input() locationListChild: Address[] = null;
 
   constructor(
-    // private batchController: BatchControllerService,
-    // private trainerController: TrainerControllerService,
     private settingControllerService: SettingControllerService,
-    // private curriculumController: CurriculumControllerService,
     private addressController: AddressControllerService,
-    // private roomController: RoomControllerService,
-    //private buildingController: BuildingControllerService
-
   ) {}
 
   // initialize data
   ngOnInit() {
-    //Load filters based on what is in BatchesTimelineFilterComponent
     this.curriculumFilter = this.batchesTimelineFilterComponent.curriculumAny;
     this.locationFilter = this.batchesTimelineFilterComponent.locationAny;
     this.buildingFilter = this.batchesTimelineFilterComponent.buildingAny;
     this.loadInitialDates();
     this.currentPage = 0;
-    //Database queries
     this.updateSettings();
     this.updateCurriculums();
     this.updateLocations();
@@ -471,25 +464,6 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
   // gets the list of trainers
   updateTrainers() {
     this.loading = true;
-
-    //TODO fix this to be accurate. aka reflect the functionality that it needs
-    // this.trainerController.findAll().subscribe(
-    //   result => {
-    //     this.trainerList = [];
-    //     if (result.length === 0) {
-    //       console.log("no trainers loaded!");
-    //       this.updatePage();
-    //       return;
-    //     }
-    //     this.trainerList = result;
-    //     this.filterTrainers();
-    //     this.updatePage();
-    //     this.loading = false;
-    //   },
-    //   err => {
-    //     console.log("failed to load trainers ", err);
-    //   }
-    // );
   }
 
   //Filter trainers.
@@ -529,18 +503,14 @@ export class BatchesTimelineComponent implements OnInit, AfterViewInit {
   }
 
   updateLocations() {
-  //TODO make this funtionality true
-    this.loading = true;
-    this.addressController.findAll().subscribe((lList) => {
-      this.locationList = lList;
-      this.locationList.sort((a, b) => a.id - b.id);
-      if (this.buildingList !== null) {
-        this.buildingList.forEach((buildings) => {
-          this.buildingList.sort((a, b) => a.id - b.id);
+    this.locationList = this.locationListChild;
+    this.locationList.sort((a, b) => a.id - b.id);
+    if(this.buildingList !== null) {
+      this.buildingList.forEach(buildings => {
+        this.buildingList.sort((a, b) => a.id - b.id);
 
-        });
-      }
-    });
+      });
+    }
   }
 
   updateSettings() {

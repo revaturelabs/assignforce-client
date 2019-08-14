@@ -11,7 +11,14 @@
       </mat-expansion-panel-header>
 
       <!-- Batch Form -->
-      <app-batch-form 
+      <app-batch-form
+        [curriculumList]="curriculums"
+        [trainerList]="trainers"
+        [skillsList]="skills"
+        [locationList]="locations"
+        [buildingList]="buildings"
+        [roomsList]="rooms"
+        [finalProjectList]="finalProjects"
         [options]="{mode: batchMode, model: batchModel}"
         (batchSubmitted)="onSubmit($event)"
         (actionCancelled)="onCancel()"></app-batch-form>
@@ -150,8 +157,9 @@
         [trainerList]="trainers"
         [curriculumList]="curriculums"
         [buildingList]="buildings"
+        [locationListChild]="locations"
       ></app-batches-timeline>
     </mat-expansion-panel>
   </mat-accordion>
-  
+
 </div>
