@@ -2,14 +2,14 @@
  * Model for Curriculum
  */
 
-import { Skill } from './Skill';
+import { Skill } from "./Skill";
 
 export class Curriculum {
   id: number;
   name: string;
   isActive: boolean;
   isCore: boolean;
-  skills: Skill[];
+  skills: Skill[] | any[];
 
   /**
    * Creates an instance of Curriculum.
