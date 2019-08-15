@@ -39,12 +39,7 @@ export class FinalProjectControllerService {
 
   private _finalProjects = [
     {id: 1, name: "Assign Force", description: "Assign batches to trainers and rooms", isActive: true},
-    {
-      id: 2,
-      name: "Project Force",
-      description: "Manage projects creating tasks and assigning them to teams",
-      isActive: true
-    },
+    {id: 2, name: "Project Force", description: "Manage projects creating tasks and assigning them to teams", isActive: true},
   ];
 
   public update(finalProject): Observable<FinalProject> {
