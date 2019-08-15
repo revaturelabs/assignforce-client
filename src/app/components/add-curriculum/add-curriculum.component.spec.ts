@@ -13,8 +13,8 @@ import { SkillControllerService } from "../../services/api/skill-controller/skil
 import { from } from "./../../../../node_modules/rxjs/observable/from";
 import { AddCurriculumComponent } from "./add-curriculum.component";
 
-import { mockCurriculum } from "../../../jestGlobalMocks";
 import { of } from "rxjs/observable/of";
+import { mockCurriculum } from "../../../jestGlobalMocks";
 
 class MockMatDialogRef {
   open() {}

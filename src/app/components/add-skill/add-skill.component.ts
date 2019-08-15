@@ -1,23 +1,23 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material';
-import { Skill } from '../../model/Skill';
-import { SkillControllerService } from '../../services/api/skill-controller/skill-controller.service';
+import { Component, OnInit } from "@angular/core";
+import { MatDialogRef } from "@angular/material";
+import { Skill } from "../../model/Skill";
+import { SkillControllerService } from "../../services/api/skill-controller/skill-controller.service";
 
 @Component({
-  selector: 'app-add-skill',
-  templateUrl: './add-skill.component.html',
-  styleUrls: ['./add-skill.component.css']
+  selector: "app-add-skill",
+  templateUrl: "./add-skill.component.html",
+  styleUrls: ["./add-skill.component.css"],
 })
 export class AddSkillComponent implements OnInit {
   constructor(
-    private dialogRef: MatDialogRef<AddSkillComponent>,
-    private skillControllerService: SkillControllerService
+    public dialogRef: MatDialogRef<AddSkillComponent>,
+    private skillControllerService: SkillControllerService,
   ) {}
 
-  //The skill to be added.
+  // The skill to be added.
   skill: Skill;
 
-  //Makes sure that the skill is defined so that we may bind its properties.
+  // Makes sure that the skill is defined so that we may bind its properties.
   ngOnInit() {
     this.newSkill();
   }
@@ -32,16 +32,16 @@ export class AddSkillComponent implements OnInit {
   }
 
   /**
-   * Resets the skill so that old data wont exist on new Modal opening.  Also makes sure that there aren't any undefined issues. 
+   * Resets the skill so that old data wont exist on new Modal opening.  Also makes sure that there aren't any undefined issues.
    *
    * @memberof AddSkillComponent
    */
   newSkill(): void {
-    this.skill = new Skill(0, '', true);
+    this.skill = new Skill(0, "", true);
   }
   /**
-   * Handler for the add skill button from the form. 
-   * Sends the new skill to be added to the server for processing. 
+   * Handler for the add skill button from the form.
+   * Sends the new skill to be added to the server for processing.
    *
    * @memberof AddSkillComponent
    */
@@ -53,8 +53,8 @@ export class AddSkillComponent implements OnInit {
         this.newSkill();
         this.closeDialog();
       })
-      .catch(err => {
-        alert('Error occurred while adding Skill');
+      .catch((err) => {
+        alert("Error occurred while adding Skill");
         console.log(err);
       });
   }

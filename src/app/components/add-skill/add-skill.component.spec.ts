@@ -1,34 +1,36 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
-import { MatDialogRef } from '@angular/material';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { FormsModule } from "@angular/forms";
+import { MatDialogRef, MatDialogModule } from "@angular/material";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
-import { AppMaterialModule } from '../../material.module';
-import { Skill } from '../../model/Skill';
-import { SkillControllerService } from '../../services/api/skill-controller/skill-controller.service';
-import { AddSkillComponent } from './add-skill.component';
+import { AppMaterialModule } from "../../material.module";
+import { Skill } from "../../model/Skill";
+import { SkillControllerService } from "../../services/api/skill-controller/skill-controller.service";
+import { AddSkillComponent } from "./add-skill.component";
 
-describe('AddSkillComponent', () => {
+import { mockSkills } from "../../../jestGlobalMocks";
+import { HttpClientModule, HttpResponse } from "@angular/common/http";
+import { of } from "rxjs/observable/of";
+
+class MockDialogRef {
+  close() {}
+}
+
+describe("AddSkillComponent", () => {
   let component: AddSkillComponent;
   let fixture: ComponentFixture<AddSkillComponent>;
   let skillControllerService: SkillControllerService;
-
-  class MockDialogRef {
-    close() {}
-  }
-
-  class MockSkillControllerService {
-    create(skill: Skill) {}
-  }
+  let dialog: MockDialogRef;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [AddSkillComponent],
       providers: [
+        SkillControllerService,
+        { provide: MatDialogRef},
         { provide: MatDialogRef, useClass: MockDialogRef },
-        { provide: SkillControllerService, useClass: MockSkillControllerService }
       ],
-      imports: [AppMaterialModule, BrowserAnimationsModule, FormsModule]
+      imports: [AppMaterialModule, BrowserAnimationsModule, FormsModule, HttpClientModule],
     }).compileComponents();
     skillControllerService = TestBed.get(SkillControllerService);
   }));
@@ -36,48 +38,49 @@ describe('AddSkillComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(AddSkillComponent);
     component = fixture.componentInstance;
+    dialog = component.dialogRef;
+    skillControllerService = TestBed.get(SkillControllerService);
     fixture.detectChanges();
   });
 
-    it('should create', () => {
+  it("should create", () => {
       expect(component).toBeTruthy();
     });
 
-    it('should not create', ()=> {
-      expect(!component).toBeFalsy();
-    })
-
-    it('should contain a input field for skill name', () => {
+  it("should contain a input field for skill name", () => {
       const compiled = fixture.debugElement.nativeElement;
-      expect(compiled.querySelector('.skill-name-input')).toBeTruthy();
+      expect(compiled.querySelector(".skill-name-input")).toBeTruthy();
     });
 
-    it('should contain a button labeled Add SKill', () => {
+  it("should contain a button labeled Add SKill", () => {
       const compiled = fixture.debugElement.nativeElement;
-      expect(compiled.querySelector('.add-skill-button').textContent).toContain('Add Skill');
+      expect(compiled.querySelector(".add-skill-button").textContent).toContain("Add Skill");
     });
 
-    it('should contain a button to close dialog', ()=> {
+  it("should contain a button to close dialog", () => {
       const compiled = fixture.debugElement.nativeElement;
-      expect(compiled.querySelector('.close-dialog-button')).toBeTruthy();
+      expect(compiled.querySelector(".close-dialog-button")).toBeTruthy();
     });
 
-    it('should create a new skill object when the new skill method is called', () => {
+  it("should create a new skill object when the new skill method is called", () => {
       component.newSkill();
       fixture.detectChanges();
-      expect(component.skill.name).toBe('');
+      expect(component.skill.name).toBe("");
     });
 
-    it('should addSkill', () => {
+  it("should addSkill", () => {
       // skillControllerService.create(this.skill).toPromise().then(skills => {
-      spyOn(component, 'addSkill');
+      spyOn(skillControllerService, "create").and.returnValue(of(HttpResponse));
+      component.skill = mockSkills[0];
+      component.addSkill();
       fixture.detectChanges();
-      expect(component.skill).toBeTruthy();
+      expect(skillControllerService.create).toHaveBeenCalledTimes(1);
       });
 
-    it('should closeDialog', () => {
+  it("should closeDialog", () => {
+      spyOn(dialog, "close");
       component.closeDialog();
       fixture.detectChanges();
-      expect(component.closeDialog).toBeTruthy();
+      expect(dialog.close).toHaveBeenCalledTimes(1);
     });
 });
