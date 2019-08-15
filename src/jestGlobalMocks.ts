@@ -61,6 +61,7 @@ export const skillService = {
 
 export const trainerService = {
   findAll: jest.fn().mockImplementation(() => {
+    console.log("Called");
     return of(mockTrainers);
   }),
   create: jest.fn().mockImplementation(() => {
