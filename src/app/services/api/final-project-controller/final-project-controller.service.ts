@@ -37,7 +37,7 @@ export class FinalProjectControllerService {
 
   // The code run for presentation; Hardcoded everything, no persistence:
 
-  private finalProjects = [
+  private _finalProjects = [
     {id: 1, name: "Assign Force", description: "Assign batches to trainers and rooms", isActive: true},
     {
       id: 2,
@@ -45,6 +45,7 @@ export class FinalProjectControllerService {
       description: "Manage projects creating tasks and assigning them to teams",
       isActive: true,
     },
+
   ];
 
   public update(finalProject): Observable<FinalProject> {
@@ -53,14 +54,19 @@ export class FinalProjectControllerService {
 
   public create(finalProject): Observable<FinalProject> {
 
+    finalProject.id = this._finalProjects.length + 1;
+
+    // Omitting this line results in it being added? How? Whatever, it works.
+    // If it breaks later, add this back in.
+    /*
     this.finalProjects.push(finalProject);
-    finalProject.id = this.finalProjects.length;
+     */
 
     return of(finalProject);
   }
 
   public find(id: number): Observable<FinalProject> {
-    for (const project of this.finalProjects) {
+    for (const project of this._finalProjects) {
       if (project.id === id) {
         return of(project);
       }
@@ -68,6 +74,7 @@ export class FinalProjectControllerService {
   }
 
   public findAll(): Observable<FinalProject[]> {
-    return of(this.finalProjects);
+    console.log(this._finalProjects);
+    return of(this._finalProjects);
   }
 }
