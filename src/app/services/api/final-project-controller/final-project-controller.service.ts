@@ -43,7 +43,7 @@ export class FinalProjectControllerService {
       id: 2,
       name: "Project Force",
       description: "Manage projects creating tasks and assigning them to teams",
-      isActive: true
+      isActive: true,
     },
   ];
 
