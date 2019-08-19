@@ -54,6 +54,7 @@
     "json2csv": "^3.11.5",
     "moment": "^2.24.0",
     "ng2-charts": "^2.3.0",
+    "ngx-cookie-service": "^2.2.0",
     "npm": "^6.3.0",
     "rxjs": "^5.5.2",
     "tslint-sonarts": "^1.9.0",

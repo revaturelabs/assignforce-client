@@ -1,9 +1,10 @@
 
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
-import { inject, TestBed } from "@angular/core/testing";
+import { async, inject, TestBed } from "@angular/core/testing";
 import {Sprint} from "../../../model/Sprint";
 import { SprintControllerService } from "./sprint-controller.service";
+import { CookieService } from "ngx-cookie-service";
 
 describe("SprintService", () => {
 
@@ -11,19 +12,21 @@ describe("SprintService", () => {
   let sprintControllerService: SprintControllerService;
   let sprints: Sprint[];
 
-  beforeEach(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [SprintControllerService, HttpClient],
+      providers: [SprintControllerService, HttpClient, CookieService],
     });
-  });
+  }));
 
-  httpTestingController = TestBed.get(HttpTestingController);
-  sprintControllerService = TestBed.get(SprintControllerService);
+  beforeEach(async(() => {
+    httpTestingController = TestBed.get(HttpTestingController);
+    sprintControllerService = TestBed.get(SprintControllerService);
+  }));
 
   sprints = [
   new Sprint(1, "TestSprint", "Testing", false),
-  ]
+  ];
 
   it("should be created", inject([SprintControllerService], (service: SprintControllerService) => {
     expect(service).toBeTruthy();
@@ -35,6 +38,7 @@ describe("SprintService", () => {
   });
 
   it("should find all sprints", () => {
+    document.cookie = "SprintRepoAuthToken=1xb734;";
     sprintControllerService.getAll().subscribe((resp) => {
       expect(resp).toEqual(sprints);
     });

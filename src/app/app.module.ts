@@ -3,6 +3,7 @@ import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from "@angular/core";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {BrowserModule} from "@angular/platform-browser";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { CookieService } from "ngx-cookie-service";
 import {AppComponent} from "./app.component";
 import {AppRouting} from "./app.routing";
 import {AddCurriculumComponent} from "./components/add-curriculum/add-curriculum.component";
@@ -75,7 +76,6 @@ import {SecurityContext} from "./services/auth/security-context.service";
 import {S3CredentialService} from "./services/s3-credential/s3-credential.service";
 import {UrlService} from "./services/url/url.service";
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -141,6 +141,7 @@ import {UrlService} from "./services/url/url.service";
   exports: [AppMaterialModule, RoomAddEventFormComponent],
 
   providers: [
+    CookieService,
     S3CredentialService,
     HttpClient,
     UrlService,
