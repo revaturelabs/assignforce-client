@@ -57,10 +57,10 @@ export const environment = {
       },
 
       batchController: {
-        baseUrl: `${apiBaseUrl}/batch-service`,
-        create: "",
+        baseUrl: `${apiBaseUrl}/batch-service/b`,
+        create: "/",
         update: "/",
-        findAll: "",
+        findAll: "/",
         find: "/",
         remove: "/",
       },
@@ -172,10 +172,10 @@ export const environment = {
         remove: "/",
       },
       sprintService: {
-        baseUrl: "api/sprint",
-        create: "",
+        baseUrl: `${apiBaseUrl}/batch-service/p`,
+        create: "/",
         update: "/",
-        findAll: "",
+        findAll: "/",
         find: "/",
         remove: "/",
       },
