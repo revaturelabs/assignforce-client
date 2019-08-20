@@ -164,10 +164,10 @@ export const environment = {
       },
 
       finalProjectController: {
-        baseUrl: `${apiBaseUrl}/final-project-service`,
-        create: "",
+        baseUrl: `${apiBaseUrl}/batch-service/p`,
+        create: "/",
         update: "/",
-        findAll: "",
+        findAll: "/",
         find: "/",
         remove: "/",
       },
