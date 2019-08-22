@@ -8,7 +8,7 @@ export const environment = {
     production: false,
     name: "dev",
 
-    baseUrl: "https://dev2.assignforce.revaturelabs.com",
+    baseUrl: "https://dev.assignforce.revaturelabs.com/",
 
   // tslint:disable-next-line:comment-format
     //routers
@@ -25,7 +25,7 @@ export const environment = {
       callback: "callback",
       roomScheduler: "roomScheduler",
       finalProjects: "finalProjects",
-      sprint: "sprint",
+      sprint: "sprints",
     },
 
     auth0: {

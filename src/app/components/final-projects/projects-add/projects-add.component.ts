@@ -14,7 +14,8 @@ export class ProjectsAddComponent implements OnInit {
     id: null,
     name: "",
     description: "",
-    isActive: true,
+    owner: "",
+    active: true,
   };
 
   addProjectForm: FormGroup;

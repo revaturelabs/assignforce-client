@@ -37,7 +37,7 @@ describe("ProjectItemComponent", () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ProjectItemComponent);
     component = fixture.componentInstance;
-    finalProject = new FinalProject(1, "Assignforce", "The Assignforce", true);
+    finalProject = new FinalProject(1, "Assignforce", "The Assignforce", "august.duet@revature.com", true);
     component.project = finalProject;
     fixture.detectChanges();
   });

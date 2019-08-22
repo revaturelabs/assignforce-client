@@ -12,8 +12,8 @@
   <mat-card>
     <mat-card-content class="md-padding" *ngIf="projects != undefined && canLoad">
       <div *ngFor="let project of projects">
-        <mat-list *ngIf="project.isActive">
-          <app-project-item  [project]="project" [routerLink]="['/sprint/'+ project.id]"></app-project-item>
+        <mat-list *ngIf="project.active">
+          <app-project-item  [project]="project" [routerLink]="['/sprints/'+ project.name]"></app-project-item>
         </mat-list>
       </div>
     </mat-card-content>
@@ -36,7 +36,7 @@
   <mat-card>
     <mat-card-content class="md-padding" *ngIf="projects != undefined && canLoad">
       <div *ngFor="let project of projects">
-        <mat-list *ngIf="!project.isActive">
+        <mat-list *ngIf="!project.active">
           <app-project-item [project]="project"></app-project-item>
         </mat-list>
       </div>

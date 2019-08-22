@@ -1,18 +1,10 @@
 export class Sprint {
-  id: number;
-  name: string;
-  body: string;
-  isClosed: boolean;
-
-  constructor(
-    id: number,
-    name: string,
-    body: string,
-    isClosed: boolean,
-  ) {
-    this.id = id;
-    this.name = name;
-    this.body = body;
-    this.isClosed = isClosed;
-  }
+  constructor(public id: number,
+              public url: string,
+              public body: string,
+              public state: string,
+              public created_at: Date,
+              public updated_at: Date,
+              public columns_url: string,
+              public name: string) {}
 }

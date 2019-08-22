@@ -3,19 +3,19 @@ export class FinalProject {
     name: string;
     description: string;
     owner: string;
-    isActive: boolean;
+    active: boolean;
 
     constructor(
         id: number,
         name: string,
         description: string,
         owner: string,
-        isActive: boolean,
+        active: boolean,
     ) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.owner = owner;
-        this.isActive = isActive;
+        this.active = active;
     }
 }

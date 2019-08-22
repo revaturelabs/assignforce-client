@@ -15,7 +15,7 @@
       <div class="mat-panel-content">
         <mat-list>
           <ng-container *ngFor="let sprint of sprints">
-            <mat-list-item class="item-detail" *ngIf="sprint.body['finalProject'] === projectID && !sprint.isClosed">
+            <mat-list-item class="item-detail" *ngIf="sprint.body['finalProject'] === projectID && sprint.state === 'open'">
               <div>
                 <h3 mat-line class="sprint-name">{{sprint.name}}</h3>
                 <h3 mat-line class="sprint-name">{{sprint.body | json}}</h3>
@@ -36,7 +36,7 @@
       <div class="mat-panel-content">
         <mat-list>
           <ng-container *ngFor="let sprint of sprints">
-            <mat-list-item class="item-detail" *ngIf="sprint.body['finalProject'] === projectID && sprint.isClosed">
+            <mat-list-item class="item-detail" *ngIf="sprint.body['finalProject'] === projectID && sprint.state === 'closed'">
               <div>
                 <h3 mat-line class="sprint-name">{{sprint.name}}</h3>
                 <h3 mat-line class="sprint-name">{{sprint.body | json}}</h3>

@@ -16,7 +16,7 @@ export class AddSprintComponent implements OnInit {
 
   sprints: Sprint[];
   isLoading: boolean;
-  projectID: number;
+  projectName: string;
 
   constructor(private sprintService: SprintControllerService,
               private finalProjectService: FinalProjectControllerService,
@@ -31,57 +31,17 @@ export class AddSprintComponent implements OnInit {
   ngOnInit() {
       this.isLoading = true;
 
-      this.sprintService.getAll()
-      .subscribe((sprints) => {
-        this.sprints = [];
-
-        for (const sprint of sprints) {
-          try {
-            const body = JSON.parse(sprint.body);
-            if (body.finalProject) {
-              sprint.body = body;
-              sprint.isClosed = (sprint["state"] === "closed");
-              this.sprints.push(sprint);
-            }
-          } catch (e) {
-            // invalid json, project is not a project sprint.
-          }
-        }
-        this.isLoading = false;
+      this.route.paramMap.subscribe((params) => {
+        this.projectName = params.get("name");
+        this.sprintService.getAll(this.projectName)
+          .subscribe((sprints) => {
+            this.sprints = sprints;
+            this.isLoading = false;
+          });
       });
-
-      this.route.params.subscribe((params) => {
-        this.projectID = +params["id"]; // (+) converts string 'id' to a number
-
-        // In a real app: dispatch action to load the details here.
-      });
-
   }
 
     createSprint(ProjectId) {
-      const projectName = this.finalProjectService.find(ProjectId).subscribe((project) => {
-        const name = "Sprint for " + project.name;
-        const body = '{"finalProject":' + project.id + "}";
-        this.sprintService.createSprint(name, body, () => {
-          this.sprints.push({name, body: JSON.parse(body), id: undefined, isClosed: false});
-        });
-      });
+      /* not implemented */
     }
-
-    count(sprints) {
-
-      let c = 0;
-
-      if (!sprints) {
-        return -1;
-      }
-
-      for (const sprint of sprints) {
-        if (sprint.body.finalProject === this.projectID) {
-          c++;
-        }
-      }
-      return c;
-    }
-
 }

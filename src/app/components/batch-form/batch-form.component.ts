@@ -60,7 +60,7 @@ export class BatchFormComponent implements OnInit, OnChanges {
 
   filteredSkills: Array<{id: number}> = new Array<{id: number}>();
   finalProjects: FinalProject[] = new Array<FinalProject>();
-  
+
 
   //state trackers
   isDataLoading: boolean;
@@ -71,7 +71,7 @@ export class BatchFormComponent implements OnInit, OnChanges {
   nameTempString: string;
   endDate: Date;
   numOfWeeksBetween = 0;
- 
+
 
   constructor(
     private curriculumService: CurriculumControllerService,
@@ -143,10 +143,10 @@ export class BatchFormComponent implements OnInit, OnChanges {
         value: null,
         disabled: this.isDataLoading,
       }),
-  
+
   });
 
-  
+
     //load the appropriate data
     this.isDataLoading = true;
     this.loadSettings();
@@ -188,7 +188,7 @@ export class BatchFormComponent implements OnInit, OnChanges {
     this.batchFormGroup.get("building").setValue(model.building);
     this.batchFormGroup.get("room").setValue(model.room);
     this.batchFormGroup.get("finalProject").setValue(model.finalProject);
-  
+
   }
 
   private async loadLocations() {
@@ -215,7 +215,7 @@ export class BatchFormComponent implements OnInit, OnChanges {
 
   private async loadFinalProjects() {
     this.finalProjects = this.finalProjectList;
-    this.finalProjects = this.finalProjects.filter(project => project.isActive);
+    this.finalProjects = this.finalProjects.filter((project) => project.active);
   }
 
   private async loadSettings() {

@@ -25,7 +25,7 @@ export class ProjectItemComponent implements OnInit {
 
   }
   removeProject() {
-    this.project.isActive = false;
+    this.project.active = false;
     this.projectService
       .update(this.project)
       .toPromise()
@@ -36,7 +36,7 @@ export class ProjectItemComponent implements OnInit {
   }
 
   activateProject() {
-    this.project.isActive = true;
+    this.project.active = true;
     this.projectService
       .update(this.project)
       .toPromise()

@@ -61,7 +61,8 @@ export class FinalProjectsComponent implements OnInit {
       id: null,
       name: "",
       description: "",
-      isActive: true,
+      owner: "",
+      active: true,
     };
 
     const dialogRef = this.dialog.open(ProjectsAddComponent, {
