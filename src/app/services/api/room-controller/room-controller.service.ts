@@ -21,7 +21,8 @@ export class RoomControllerService {
       active: room.active,
       roomName: room.name,
       building: room.building,
-      unavailabilities: unavailabilities
+      unavailabilities,
+      capacity: 25,
     };
   }
 
