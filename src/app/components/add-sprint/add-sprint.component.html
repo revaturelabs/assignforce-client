@@ -1,56 +1,51 @@
 <div class="container-sprints">
-<mat-card-content>
-  <mat-accordion>
-    <mat-expansion-panel expanded="true">
-      <mat-expansion-panel-header class="toolbar-curricula-sub">
-        <mat-panel-title>
-          <span class="panel-title-fix">Current Sprints</span>
-        </mat-panel-title>
-        <span>
-          <button mat-icon-button *ngIf="!isLoading" (click)="createSprint(projectID)" matTooltip="Add Sprint">
-            <mat-icon>add_circle</mat-icon>
-          </button>
-        </span>
-      </mat-expansion-panel-header>
-      <div class="mat-panel-content">
-        <mat-list>
-          <ng-container *ngFor="let sprint of sprints">
-            <mat-list-item class="item-detail" *ngIf="sprint.state === 'open'">
-              <div>
-                <h3 mat-line class="sprint-name">{{sprint.name}}</h3>
-                <h3 mat-line class="sprint-name">{{sprint.body}}</h3>
-              </div>
-              <span class="fill-space"></span>
-            </mat-list-item>
-          </ng-container>
-        </mat-list>
-      </div>
-
-    </mat-expansion-panel>
-    <mat-expansion-panel expanded="false">
-      <mat-expansion-panel-header class="toolbar-curricula-sub">
-        <mat-panel-title>
-          <span class="panel-title-fix">Closed Sprints</span>
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <div class="mat-panel-content">
-        <mat-list>
-          <ng-container *ngFor="let sprint of sprints">
-            <mat-list-item class="item-detail" *ngIf="sprint.body['finalProject'] === projectID && sprint.state === 'closed'">
-              <div>
-                <h3 mat-line class="sprint-name">{{sprint.name}}</h3>
-                <h3 mat-line class="sprint-name">{{sprint.body | json}}</h3>
-              </div>
-              <span class="fill-space"></span>
-            </mat-list-item>
-          </ng-container>
-        </mat-list>
-      </div>
-    </mat-expansion-panel>
-  </mat-accordion>
-
-  <div>
-    <h2>Total Sprints for this project: {{count(sprints)}}</h2>
-  </div>
-</mat-card-content>
+  <mat-card-content>
+    <mat-accordion>
+      <mat-expansion-panel expanded="true">
+        <mat-expansion-panel-header class="toolbar-curricula-sub">
+          <mat-panel-title>
+            <span class="panel-title-fix">Current Sprints</span>
+          </mat-panel-title>
+          <span>
+            <button mat-icon-button *ngIf="!isLoading" (click)="createSprint(projectID)" matTooltip="Add Sprint">
+              <mat-icon>add_circle</mat-icon>
+            </button>
+          </span>
+        </mat-expansion-panel-header>
+        <div class="mat-panel-content">
+          <mat-accordion multi="true">
+            <ng-container *ngFor="let sprint of sprints">
+              <mat-expansion-panel *ngIf="sprint.state === 'open'">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>{{ sprint.name }}</mat-panel-title>
+                  <mat-panel-description>started: {{ sprint.created_at | date: 'yyyy-MM-dd' }}</mat-panel-description>
+                </mat-expansion-panel-header>
+                <p>{{ sprint.body }}</p>
+              </mat-expansion-panel>
+            </ng-container>
+          </mat-accordion>
+        </div>
+      </mat-expansion-panel>
+      <mat-expansion-panel expanded="false">
+        <mat-expansion-panel-header class="toolbar-curricula-sub">
+          <mat-panel-title>
+            <span class="panel-title-fix">Closed Sprints</span>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="mat-panel-content">
+          <mat-accordion multi="true">
+            <ng-container *ngFor="let sprint of sprints">
+              <mat-expansion-panel *ngIf="sprint.state === 'closed'">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>{{ sprint.name }}</mat-panel-title>
+                  <mat-panel-description>closed: {{ sprint.updated_at | date: 'yyyy-MM-dd' }}</mat-panel-description>
+                </mat-expansion-panel-header>
+                <p>{{ sprint.body }}</p>
+              </mat-expansion-panel>
+            </ng-container>
+          </mat-accordion>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </mat-card-content>
 </div>
