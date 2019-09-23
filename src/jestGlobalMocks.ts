@@ -313,7 +313,7 @@ export const mockCurriculum = [
     id: 2,
     name: ".NET",
     isActive: true,
-    isCore: 1,
+    isCore: true,
     skills: [
       {
         skillId: 59,
@@ -371,7 +371,7 @@ export const mockCurriculum = [
     id: 1,
     name: "Java",
     isActive: true,
-    isCore: 1,
+    isCore: true,
     skills: [
       {
         skillId: 1,
@@ -421,7 +421,7 @@ export const mockCurriculum = [
     id: 3,
     name: "SDET",
     isActive: true,
-    isCore: 1,
+    isCore: true,
     skills: [
       {
         skillId: 47,
@@ -450,19 +450,20 @@ export const mockCurriculum = [
     id: 105,
     name: "Custom",
     isActive: true,
-    isCore: 1,
+    isCore: true,
     skills: [],
   },
   {
     id: 25,
     name: "Appian",
     skills: [],
+    isCore: false,
   },
   {
     id: 4,
     name: "Capital One",
     isActive: true,
-    isCore: 0,
+    isCore: false,
     skills: [
       {
         skillId: 4,
@@ -482,7 +483,7 @@ export const mockCurriculum = [
     id: 64,
     name: "Testing",
     isActive: false,
-    isCore: 0,
+    isCore: false,
     skills: [
       {
         skillId: 47,
@@ -499,7 +500,7 @@ export const mockCurriculum = [
     id: 65,
     name: "Testing2",
     isActive: false,
-    isCore: 0,
+    isCore: false,
     skills: [
       {
         skillId: 4,
@@ -519,7 +520,7 @@ export const mockCurriculum = [
     id: 24,
     name: "name",
     isActive: false,
-    isCore: 0,
+    isCore: false,
     skills: [
       {
         skillId: 4,
@@ -542,7 +543,7 @@ export const mockCurriculum = [
     id: 5,
     name: "Big Data",
     isActive: false,
-    isCore: 0,
+    isCore: false,
     skills: [
       {
         skillId: 27,
@@ -553,7 +554,7 @@ export const mockCurriculum = [
     id: 6,
     name: "Dynamics CRM",
     isActive: true,
-    isCore: 0,
+    isCore: false,
     skills: [
       {
         skillId: 28,
@@ -564,7 +565,7 @@ export const mockCurriculum = [
     id: 7,
     name: "PEGA",
     isActive: true,
-    isCore: 0,
+    isCore: false,
     skills: [
       {
         skillId: 30,
@@ -575,7 +576,7 @@ export const mockCurriculum = [
     id: 8,
     name: "Oracle Fusion",
     isActive: true,
-    isCore: 0,
+    isCore: false,
     skills: [
       {
         skillId: 29,
@@ -586,7 +587,7 @@ export const mockCurriculum = [
     id: 9,
     name: "GO",
     isActive: true,
-    isCore: 0,
+    isCore: false,
     skills: [
       {
         skillId: 31,
@@ -602,7 +603,7 @@ export const mockCurriculum = [
     id: 44,
     name: "BA",
     isActive: true,
-    isCore: 0,
+    isCore: false,
     skills: [],
   },
 ];
@@ -673,3 +674,18 @@ export const mockTrainers = [
     skills: [],
   },
 ];
+export const mockLocations = [
+  {
+    id: 1,
+  },
+  {
+    id: 2,
+  },
+  {
+    id: 3,
+  },
+  {
+    id: 4,
+  },
+];
+export const mockBuildings = [];

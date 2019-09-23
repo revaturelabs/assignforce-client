@@ -19,7 +19,7 @@ export class RoomControllerService {
     return {
       id: room.id,
       active: room.active,
-      roomName: room.name,
+      name: room.name,
       building: room.building,
       unavailabilities,
       capacity: 25,

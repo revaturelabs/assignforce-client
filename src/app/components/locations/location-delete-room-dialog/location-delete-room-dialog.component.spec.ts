@@ -1,14 +1,26 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { LocationDeleteRoomDialogComponent } from './location-delete-room-dialog.component';
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material";
+import { AppMaterialModule } from "../../../material.module";
+import { LocationDeleteRoomDialogComponent } from "./location-delete-room-dialog.component";
 
-describe('LocationDeleteRoomDialogComponent', () => {
+class MockDialog {
+  close() {}
+}
+
+describe("LocationDeleteRoomDialogComponent", () => {
   let component: LocationDeleteRoomDialogComponent;
   let fixture: ComponentFixture<LocationDeleteRoomDialogComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LocationDeleteRoomDialogComponent ]
+      imports: [AppMaterialModule],
+      providers: [
+        {provide: MatDialogRef},
+        {provide: MAT_DIALOG_DATA, useValue: {room: {}}},
+        {provide: MatDialogRef, useClass: MockDialog},
+      ],
+      declarations: [ LocationDeleteRoomDialogComponent ],
     })
     .compileComponents();
   }));
@@ -19,7 +31,7 @@ describe('LocationDeleteRoomDialogComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

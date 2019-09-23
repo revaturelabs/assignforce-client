@@ -1,19 +1,19 @@
-import { Component, EventEmitter, OnInit, Output, Input, ViewChild, SimpleChanges } from '@angular/core';
-import { CurriculumControllerService } from '../../services/api/curriculum-controller/curriculum-controller.service';
-import { FocusControllerService } from '../../services/api/focus-controller/focus-controller.service';
-import { AddressControllerService } from '../../services/api/address-controller/address-controller.service';
-import { SettingControllerService } from '../../services/api/setting-controller/setting-controller.service';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges, ViewChild } from "@angular/core";
+import {$} from "protractor";
 import { Address } from "../../model/Address";
 import { Building } from "../../model/Building";
 import { Curriculum } from "../../model/Curriculum";
-import { BuildingControllerService } from '../../services/api/building-controller/building-controller.service';
-import { RoomControllerService } from '../../services/api/room-controller/room-controller.service';
-import {$} from "protractor";
+import { AddressControllerService } from "../../services/api/address-controller/address-controller.service";
+import { BuildingControllerService } from "../../services/api/building-controller/building-controller.service";
+import { CurriculumControllerService } from "../../services/api/curriculum-controller/curriculum-controller.service";
+import { FocusControllerService } from "../../services/api/focus-controller/focus-controller.service";
+import { RoomControllerService } from "../../services/api/room-controller/room-controller.service";
+import { SettingControllerService } from "../../services/api/setting-controller/setting-controller.service";
 
 @Component({
-  selector: 'app-batches-timeline-filter',
-  templateUrl: './batches-timeline-filter.component.html',
-  styleUrls: ['./batches-timeline-filter.component.css']
+  selector: "app-batches-timeline-filter",
+  templateUrl: "./batches-timeline-filter.component.html",
+  styleUrls: ["./batches-timeline-filter.component.css"],
 })
 export class BatchesTimelineFilterComponent implements OnInit {
   constructor(
@@ -22,7 +22,7 @@ export class BatchesTimelineFilterComponent implements OnInit {
     private addressControllerService: AddressControllerService,
     private settingControllerService: SettingControllerService,
     private buildingController: BuildingControllerService,
-    private roomController: RoomControllerService
+    private roomController: RoomControllerService,
   ) {}
 
   @Input() loading = false;
@@ -36,25 +36,24 @@ export class BatchesTimelineFilterComponent implements OnInit {
   @Input() hideConcludedBatches: boolean;
   @Input() hideBatchlessTrainers: boolean;
   @Input() hideInactiveTrainers: boolean;
-  @Input() trainersPerPage: number = 0;
-  @Input() currentPage: number = 0;
-  @Input() maxPages: number  = 0;
-  @Input() curriculumFilterList:Curriculum [];
-  @Input() locationFilterList:Address [];
-  @Input() buildingFilterList:Building [];
+  @Input() trainersPerPage = 0;
+  @Input() currentPage = 0;
+  @Input() maxPages  = 0;
+  @Input() curriculumFilterList: Curriculum [];
+  @Input() locationFilterList: Address [];
+  @Input() buildingFilterList: Building [];
 
   @Output() public filterChangeEmitter = new EventEmitter<Event>();
 
-  //This isn't used. Just testing to see if I could get the element from batches-timeline component.
-  //Hint: I could. All the extra code.
-  @ViewChild('location') location;
-
+  // This isn't used. Just testing to see if I could get the element from batches-timeline component.
+  // Hint: I could. All the extra code.
+  @ViewChild("location") location;
 
   public curriculumData = [];
   public focusData = [];
   public locationData = [];
   public buildingData = [];
-  //Dropdown placeholders.
+  // Dropdown placeholders.
   public locationAny: Address = new Address(0, "Any", null, null, [], true);
   public buildingAny: Building = new Building(true, 0, "Any", [], 0);
   public curriculumAny: Curriculum = new Curriculum(0, "Any", true, true, []);
@@ -72,7 +71,7 @@ export class BatchesTimelineFilterComponent implements OnInit {
   loadSettingData() {
     this.loading = true;
     this.settingControllerService.find().subscribe(
-      result => {
+      (result) => {
         const setting = result;
         const value = setting.trainersPerPage;
         if (value != null) {
@@ -80,28 +79,13 @@ export class BatchesTimelineFilterComponent implements OnInit {
         }
         this.loading = false;
       },
-      err => {
-        console.log('failed to load settings ', err);
-      }
+      (err) => {
+        console.log("failed to load settings ", err);
+      },
     );
   }
 
   loadCurriculumData() {
-    // this.loading = true;
-    // this.curriculumControllerService.findAll().subscribe(
-    //   result => {
-    //     this.curriculumData = [];
-    //     this.curriculumData.push(this.curriculumAny);
-    //     for (const curriculum of result) {
-    //       this.curriculumData.push(curriculum);
-    //     }
-    //     this.curriculumFilter = this.curriculumData[0];
-    //     this.loading = false;
-    //   },
-    //   err => {
-    //     console.log("failed to load curriculums ", err);
-    //   }
-    // );
     this.curriculumData = [];
     this.curriculumData.push(this.curriculumAny);
     for (const curriculum of this.curriculumFilterList) {
@@ -113,9 +97,9 @@ export class BatchesTimelineFilterComponent implements OnInit {
   loadFocusData() {
     this.loading = true;
     this.focusControllerService.findAll().subscribe(
-      result => {
+      (result) => {
         this.focusData = [];
-        this.focusData.push('Any');
+        this.focusData.push("Any");
         for (let i = 0; i < result.length; i++) {
           const focus = result[i];
           const value = focus.name;
@@ -123,12 +107,12 @@ export class BatchesTimelineFilterComponent implements OnInit {
             this.focusData.push(value);
           }
         }
-        this.focusFilter = 'Any';
+        this.focusFilter = "Any";
         this.loading = false;
       },
-      err => {
-        console.log('failed to load focuses ', err);
-      }
+      (err) => {
+        console.log("failed to load focuses ", err);
+      },
     );
   }
 
@@ -138,16 +122,16 @@ export class BatchesTimelineFilterComponent implements OnInit {
     this.locationData.unshift(this.locationAny);
     this.buildingData = this.buildingFilterList;
     this.buildingData.sort((a, b) => a.id - b.id);
-    var found = false;
-    for(var i = 0; i < this.buildingData.length; i++)
+    let found = false;
+    for (let i = 0; i < this.buildingData.length; i++)
     {
-      if (this.buildingData[i].name == 'Any') {
+      if (this.buildingData[i].name == "Any") {
         found = true;
 
         break;
     }
   }
-    if(!found) {
+    if (!found) {
       this.buildingData.unshift(this.buildingAny);
       console.log("Oppai");
     }
@@ -156,17 +140,17 @@ export class BatchesTimelineFilterComponent implements OnInit {
     this.buildingFilter = this.buildingData[0];
   }
 
-//The basic biiiatch event emitter
+// The basic biiiatch event emitter
 onFilterChange(evt: Event) {
   this.filterChangeEmitter.emit(evt);
 }
 
-//Special event emitter for location dropdown to populate buildings
+// Special event emitter for location dropdown to populate buildings
 //
 onLocationSelectChange(evt: Event) {
   this.buildingData = [];
-  // this.buildingData.push(this.buildingAny);
-  if(!this.buildingData.includes("Any")) {
+
+  if (!this.buildingData.includes("Any")) {
     this.buildingData.push(this.buildingAny);
   }
   this.buildingFilter = this.buildingData[0];

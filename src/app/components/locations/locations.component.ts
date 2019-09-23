@@ -238,7 +238,7 @@ export class LocationsComponent implements OnInit {
   }
   openAddRoomDialog(evt, location: Address, building: Building): void {
     evt.stopPropagation();
-    const room = new Room(null, true, "", building.id, []);
+    const room = new Room(null, true, "", building.id, [], 25);
     const dialogRef = this.dialog.open(LocationAddRoomDialogComponent, {
       width: "450px",
       data: {
@@ -324,7 +324,7 @@ export class LocationsComponent implements OnInit {
     });
   }
   openEditRoomDialog(evt, location: Address, building: Building, room: Room): void {
-    const original = new Room(room.id, room.active, room.name, room.building, room.unavailabilities);
+    const original = new Room(room.id, room.active, room.name, room.building, room.unavailabilities, room.capacity);
 
     evt.stopPropagation();
     const dialogRef = this.dialog.open(LocationEditRoomDialogComponent, {
@@ -401,7 +401,7 @@ export class LocationsComponent implements OnInit {
   }
 
   openEditUnavailibiliyDialog(evt, room: Room): void {
-    const original = new Room(room.id, room.active, room.name, room.building, room.unavailabilities);
+    const original = new Room(room.id, room.active, room.name, room.building, room.unavailabilities, room.capacity);
 
     evt.stopPropagation();
 

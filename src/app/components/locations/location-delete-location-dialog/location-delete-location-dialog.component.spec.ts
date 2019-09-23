@@ -1,14 +1,26 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { LocationDeleteLocationDialogComponent } from './location-delete-location-dialog.component';
+import { AppMaterialModule } from "../../../material.module";
 
-describe('LocationDeleteLocationDialogComponent', () => {
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material";
+import { LocationDeleteLocationDialogComponent } from "./location-delete-location-dialog.component";
+
+class MockDialog {
+  close(){}
+}
+describe("LocationDeleteLocationDialogComponent", () => {
   let component: LocationDeleteLocationDialogComponent;
   let fixture: ComponentFixture<LocationDeleteLocationDialogComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LocationDeleteLocationDialogComponent ]
+      imports: [ AppMaterialModule ],
+      providers: [
+        {provide: MatDialogRef},
+        {provide: MAT_DIALOG_DATA},
+        {provide: MatDialogRef, useClass: MockDialog},
+      ],
+      declarations: [ LocationDeleteLocationDialogComponent ],
     })
     .compileComponents();
   }));
@@ -16,10 +28,13 @@ describe('LocationDeleteLocationDialogComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(LocationDeleteLocationDialogComponent);
     component = fixture.componentInstance;
+    component.data = {
+      location: {},
+    };
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });
