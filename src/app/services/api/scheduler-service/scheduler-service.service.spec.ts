@@ -1,11 +1,13 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import { SchedulerServiceService } from './scheduler-service.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('SchedulerServiceService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [SchedulerServiceService]
+      providers: [SchedulerServiceService],
+      imports: [HttpClientTestingModule],
     });
   });
 

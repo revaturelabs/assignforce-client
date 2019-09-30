@@ -1,16 +1,16 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 import { FormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import "rxjs/add/observable/of";
-import { Observable } from "rxjs/Observable";
-import { HttpClientModule, HttpResponse } from "../../../../node_modules/@angular/common/http";
-import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from "../../../../node_modules/@angular/material";
+// import Of as ObservableOf from "rxjs";
+import { Observable } from "rxjs";
+import { HttpClientModule, HttpResponse } from "@angular/common/http";
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from "@angular/material";
 import { AppMaterialModule } from "../../material.module";
 import { Curriculum } from "../../model/Curriculum";
 import { Skill } from "../../model/Skill";
 import { CurriculumControllerService } from "../../services/api/curriculum-controller/curriculum-controller.service";
 import { SkillControllerService } from "../../services/api/skill-controller/skill-controller.service";
-import { from } from "./../../../../node_modules/rxjs/observable/from";
+import { from } from "rxjs/observable/from";
 import { AddCurriculumComponent } from "./add-curriculum.component";
 
 describe("AddCurriculumComponent", () => {
@@ -122,7 +122,11 @@ describe("AddCurriculumComponent", () => {
       });
 
     component.curriculum = testData[1];
-    component.addCurriculum();
+    component.addCurriculum(); 
+    /** .addCurriculum
+     * should trigger the above two spies, "closeDialog" and "create", because the method addCurriculum calls both 
+     * of these methods - Sam J.
+     *  */ 
 
     expect(curriculumControllerService.create).toHaveBeenCalled();
   });
