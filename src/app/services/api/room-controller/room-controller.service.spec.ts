@@ -4,6 +4,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { Room } from '../../../model/Room';
 import { environment } from '../../../../environments/environment';
+import 'jasmine';
 
 describe('RoomControllerService', () => {
     let httpTestingController: HttpTestingController;
@@ -21,7 +22,7 @@ describe('RoomControllerService', () => {
         roomData = [
           {
               "id": 1,
-              "roomName": "201",
+              "name": "201",
               "active": true,
               "building": 1,
               unavailabilities: [],
@@ -29,7 +30,7 @@ describe('RoomControllerService', () => {
             },
             {
               "id": 2,
-              "roomName": "202",
+              "name": "202",
               "active": true,
               "building": 1,
               unavailabilities: [],
@@ -37,7 +38,7 @@ describe('RoomControllerService', () => {
             },
             {
               "id": 3,
-              "roomName": "204",
+              "name": "204",
               "active": true,
               "building": 1,
               unavailabilities: [],
@@ -45,7 +46,7 @@ describe('RoomControllerService', () => {
             },
             {
               "id": 4,
-              "roomName": "205",
+              "name": "205",
               "active": true,
               "building": 1,
               unavailabilities: [],
@@ -53,7 +54,7 @@ describe('RoomControllerService', () => {
             },
             {
               "id": 5,
-              "roomName": "X1",
+              "name": "X1",
               "active": false,
               "building": 1,
               unavailabilities: [],
@@ -61,7 +62,7 @@ describe('RoomControllerService', () => {
             },
             {
               "id": 6,
-              "roomName": "207",
+              "name": "207",
               "active": true,
               "building": 1,
               unavailabilities: [],
@@ -69,7 +70,7 @@ describe('RoomControllerService', () => {
             },
             {
               "id": 100,
-              "roomName": "X2",
+              "name": "X2",
               "active": false,
               "building": 1,
               unavailabilities: [],
@@ -77,7 +78,7 @@ describe('RoomControllerService', () => {
             },
             {
               "id": 101,
-              "roomName": "X3",
+              "name": "X3",
               "active": false,
               "building": 1,
               unavailabilities: [],
@@ -85,7 +86,7 @@ describe('RoomControllerService', () => {
             },
             {
               "id": 122,
-              "roomName": "209",
+              "name": "209",
               "active": true,
               "building": 1,
               unavailabilities: [],
@@ -93,7 +94,7 @@ describe('RoomControllerService', () => {
             },
             {
               "id": 102,
-              "roomName": "203",
+              "name": "203",
               "active": true,
               "building": 1,
               unavailabilities: [],
@@ -101,7 +102,7 @@ describe('RoomControllerService', () => {
             },
             {
               "id": 103,
-              "roomName": "206",
+              "name": "206",
               "active": true,
               "building": 1,
               unavailabilities: [],
@@ -109,7 +110,7 @@ describe('RoomControllerService', () => {
             },
             {
               "id": 142,
-              "roomName": "214",
+              "name": "214",
               "active": true,
               "building": 1,
               unavailabilities: [],
@@ -118,7 +119,7 @@ describe('RoomControllerService', () => {
             {
               "id": 143,
               "active": true,
-              "roomName": "2301 C",
+              "name": "2301 C",
               "building": 66,
               "unavailabilities": [
                 {
@@ -148,7 +149,7 @@ describe('RoomControllerService', () => {
             {
               "id": 145,
               "active": true,
-              "roomName": "Chik Fil A",
+              "name": "Chik Fil A",
               "building": 67,
               "unavailabilities": [],
               "capacity": 35
@@ -156,7 +157,7 @@ describe('RoomControllerService', () => {
             {
               "id": 146,
               "active": true,
-              "roomName": "Subway",
+              "name": "Subway",
               "building": 67,
               "unavailabilities": [],
               "capacity": 35
@@ -164,7 +165,7 @@ describe('RoomControllerService', () => {
             {
               "id": 147,
               "active": true,
-              "roomName": "1st Floor",
+              "name": "1st Floor",
               "building": 68,
               "unavailabilities": [
                 {
@@ -187,7 +188,7 @@ describe('RoomControllerService', () => {
             {
               "id": 148,
               "active": true,
-              "roomName": "China Town",
+              "name": "China Town",
               "building": 68,
               "unavailabilities": [
                 {
@@ -210,7 +211,7 @@ describe('RoomControllerService', () => {
             {
               "id": 149,
               "active": true,
-              "roomName": "3rd Floor",
+              "name": "3rd Floor",
               "building": 68,
               "unavailabilities": [
                 {
@@ -223,33 +224,11 @@ describe('RoomControllerService', () => {
               ],
               "capacity": 35
             },
-            {
-              "id": 150,
-              "active": true,
-              "roomName": "200 A",
-              "building": 69,
-              "unavailabilities": [
-                {
-                  "id": 0,
-                  "startDate": new Date("2018-12-17T05:00:00.000Z"),
-                  "endDate": new Date("2018-12-26T05:00:00.000Z"),
-                  "description": "Winter Break",
-                  "room": 150
-                },
-                {
-                  "id": 0,
-                  "startDate": new Date("2018-12-10T05:00:00.000Z"),
-                  "endDate": new Date("2018-12-18T05:00:00.000Z"),
-                  "description": "New Semester",
-                  "room": 150
-                }
-              ],
-              "capacity": 35
-            },
+           
             {
               "id": 151,
               "active": true,
-              "roomName": "Bat Cave",
+              "name": "Bat Cave",
               "building": 70,
               "unavailabilities": [
                 {
@@ -282,7 +261,7 @@ describe('RoomControllerService', () => {
 
     //create
     it('should create a new Room', () => {
-        let newRoom: Room = {id: 200, roomName: 'Unit Room', building: 67, active: true, unavailabilities: [], capacity: 35};
+        let newRoom: Room = {id: 200, name: 'Unit Room', building: 67, active: true, unavailabilities: [], capacity: 35};
         roomControllerService.create(newRoom).subscribe(resp => {
             expect(resp).toEqual(newRoom);
         });
@@ -295,7 +274,7 @@ describe('RoomControllerService', () => {
 
     //update
     it('should update an existing room', () => {
-        let updatedRoom: Room = {id: 150, roomName: 'Unit Room', building: 67, active: false, unavailabilities: [], capacity: 35};
+        let updatedRoom: Room = {id: 150, name: 'Unit Room', building: 67, active: false, unavailabilities: [], capacity: 35};
         roomControllerService.update(updatedRoom).subscribe(resp => {
             expect(resp).toEqual(updatedRoom);
         });
@@ -312,7 +291,8 @@ describe('RoomControllerService', () => {
             expect(resp).toEqual({
                 "id": 150,
                 "active": true,
-                "roomName": "200 A",
+                "name" : "201",
+                 "capacity": 5,
                 "building": 69,
                 "unavailabilities": [
                   {
@@ -353,85 +333,113 @@ describe('RoomControllerService', () => {
             expect(resp).toEqual(
               [
                 {
+                  "id": 150,
+                  "active": true,
+                  "name": "3rd Floor",
+                  "capacity": 5,
+                  "building": 68,
+                  "unavailabilities": [
+                    {
+                      "id": 0,
+                      "startDate": new Date("2018-12-03T17:31:28.303Z"),
+                      "endDate": new Date("2018-12-18T05:00:00.000Z"),
+                      "description": "test",
+                      "room": 150
+                    }
+                  ]
+                },
+                {
                     "id": 1,
-                    "roomName": "201",
+                    "name": "201",
+                    "capacity": 35,
                     "active": true,
                     "building": 1,
                     unavailabilities: []
                   },
                   {
                     "id": 2,
-                    "roomName": "202",
+                    "name": "202",
+                    "capacity": 35,
                     "active": true,
                     "building": 1,
                     unavailabilities: []
                   },
                   {
                     "id": 3,
-                    "roomName": "204",
+                    "name": "204",
+                    "capacity": 35,
                     "active": true,
                     "building": 1,
                     unavailabilities: []
                   },
                   {
                     "id": 4,
-                    "roomName": "205",
+                    "name": "205",
+                    "capacity": 35,
                     "active": true,
                     "building": 1,
                     unavailabilities: []
                   },
                   {
                     "id": 5,
-                    "roomName": "X1",
+                    "name": "X1",
+                    "capacity": 35,
                     "active": false,
                     "building": 1,
                     unavailabilities: []
                   },
                   {
                     "id": 6,
-                    "roomName": "207",
+                    "name": "207",
+                    "capacity": 35,
                     "active": true,
                     "building": 1,
                     unavailabilities: []
                   },
                   {
                     "id": 100,
-                    "roomName": "X2",
+                    "name": "X2",
+                    "capacity": 35,
                     "active": false,
                     "building": 1,
                     unavailabilities: []
                   },
                   {
                     "id": 101,
-                    "roomName": "X3",
+                    "name": "X3",
+                    "capacity": 35,
                     "active": false,
                     "building": 1,
                     unavailabilities: []
                   },
                   {
                     "id": 122,
-                    "roomName": "209",
+                    "name": "209",
+                    "capacity": 35,
                     "active": true,
                     "building": 1,
                     unavailabilities: []
                   },
                   {
                     "id": 102,
-                    "roomName": "203",
+                    "name": "203",
+                    "capacity": 35,
                     "active": true,
                     "building": 1,
                     unavailabilities: []
                   },
                   {
                     "id": 103,
-                    "roomName": "206",
+                    "name": "206",
+                    "capacity": 35,
                     "active": true,
                     "building": 1,
                     unavailabilities: []
                   },
                   {
                     "id": 142,
-                    "roomName": "214",
+                    "name": "214",
+                    "capacity": 35,
                     "active": true,
                     "building": 1,
                     unavailabilities: []
@@ -439,7 +447,8 @@ describe('RoomControllerService', () => {
                   {
                     "id": 143,
                     "active": true,
-                    "roomName": "2301 C",
+                    "name": "2301 C",
+                    "capacity": 35,
                     "building": 66,
                     "unavailabilities": [
                       {
@@ -468,21 +477,24 @@ describe('RoomControllerService', () => {
                   {
                     "id": 145,
                     "active": true,
-                    "roomName": "Chik Fil A",
+                    "name": "Chik Fil A",
+                    "capacity" : 35,
                     "building": 67,
                     "unavailabilities": []
                   },
                   {
                     "id": 146,
                     "active": true,
-                    "roomName": "Subway",
+                    "name": "Subway",
+                    "capacity": 35,
                     "building": 67,
                     "unavailabilities": []
                   },
                   {
                     "id": 147,
                     "active": true,
-                    "roomName": "1st Floor",
+                    "capacity": 35,
+                    "name": "1st Floor",
                     "building": 68,
                     "unavailabilities": [
                       {
@@ -504,7 +516,8 @@ describe('RoomControllerService', () => {
                   {
                     "id": 148,
                     "active": true,
-                    "roomName": "China Town",
+                    "name": "China Town",
+                    "capacity" : 35,
                     "building": 68,
                     "unavailabilities": [
                       {
@@ -526,7 +539,8 @@ describe('RoomControllerService', () => {
                   {
                     "id": 149,
                     "active": true,
-                    "roomName": "3rd Floor",
+                    "name": "3rd Floor",
+                    "capacity": 35,
                     "building": 68,
                     "unavailabilities": [
                       {
@@ -538,10 +552,12 @@ describe('RoomControllerService', () => {
                       }
                     ]
                   },
+                  
                   {
                     "id": 151,
                     "active": true,
-                    "roomName": "Bat Cave",
+                    "name": "Bat Cave",
+                    "capacity": 35,
                     "building": 70,
                     "unavailabilities": [
                       {
@@ -571,7 +587,7 @@ describe('RoomControllerService', () => {
     });
     //error
     it('should receive an error after trying to find a room that does not exist', () => {
-        const errmsg = 'Something went wrong. Unless you wanted it to. In that case it went right.';
+        const errmsg = 'Something went wrong.';
         let findParam = 250;
         roomControllerService.find(findParam).subscribe(resp =>
             fail('should have failed with a 404 error'),
