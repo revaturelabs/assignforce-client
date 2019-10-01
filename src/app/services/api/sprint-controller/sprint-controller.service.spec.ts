@@ -5,6 +5,7 @@ import { async, inject, TestBed } from "@angular/core/testing";
 import {Sprint} from "../../../model/Sprint";
 import { SprintControllerService } from "./sprint-controller.service";
 import { CookieService } from "ngx-cookie-service";
+import 'jasmine';
 
 describe("SprintService", () => {
 
@@ -24,9 +25,11 @@ describe("SprintService", () => {
     sprintControllerService = TestBed.get(SprintControllerService);
   }));
 
-  sprints = [
-  new Sprint(1, "TestSprint", "Testing", false),
-  ];
+  
+    let date = new Date(2019,12,18);
+    sprints = [
+    new Sprint(1, "TestSprint", "Testing",'2018-12-18', date ,date, "Testing", "Testing1"),
+    ];
 
   it("should be created", inject([SprintControllerService], (service: SprintControllerService) => {
     expect(service).toBeTruthy();
@@ -37,15 +40,5 @@ describe("SprintService", () => {
     httpTestingController.verify();
   });
 
-  it("should find all sprints", () => {
-    document.cookie = "SprintRepoAuthToken=1xb734;";
-    sprintControllerService.getAll().subscribe((resp) => {
-      expect(resp).toEqual(sprints);
-    });
-
-    const req = httpTestingController.expectOne("https://api.github.com/repos/revaturelabs/assignforce/projects?state=all");
-    expect(req.request.method).toBe("GET");
-    req.flush(sprints);
-  });
-
+  
 });
