@@ -1,4 +1,4 @@
-const apiBaseUrl = 'https://api.assignforce.revaturelabs.com';
+const apiBaseUrl = 'https://assignforce.revaturelabs.com';
 
 export const environment = {
   production: true,
