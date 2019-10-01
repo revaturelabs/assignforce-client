@@ -6,6 +6,7 @@ import { Room } from '../../../model/Room';
 import { environment } from '../../../../environments/environment';
 import 'jasmine';
 
+
 describe('RoomControllerService', () => {
     let httpTestingController: HttpTestingController;
     let roomControllerService: RoomControllerService;
@@ -224,7 +225,29 @@ describe('RoomControllerService', () => {
               ],
               "capacity": 35
             },
-           
+            {
+              "id": 150,
+              "active": true,
+              "name": "200 A",
+              "building": 69,
+              "unavailabilities": [
+                {
+                  "id": 0,
+                  "startDate": new Date("2018-12-17T05:00:00.000Z"),
+                  "endDate": new Date("2018-12-26T05:00:00.000Z"),
+                  "description": "Winter Break",
+                  "room": 150
+                },
+                {
+                  "id": 0,
+                  "startDate": new Date("2018-12-10T05:00:00.000Z"),
+                  "endDate": new Date("2018-12-18T05:00:00.000Z"),
+                  "description": "New Semester",
+                  "room": 150
+                }
+              ],
+              "capacity": 35
+            },
             {
               "id": 151,
               "active": true,
@@ -272,18 +295,6 @@ describe('RoomControllerService', () => {
         req.flush(roomData[dataSize-1]);
     });
 
-    //update
-    it('should update an existing room', () => {
-        let updatedRoom: Room = {id: 150, name: 'Unit Room', building: 67, active: false, unavailabilities: [], capacity: 35};
-        roomControllerService.update(updatedRoom).subscribe(resp => {
-            expect(resp).toEqual(updatedRoom);
-        });
-        let req = httpTestingController.expectOne(roomApi.baseUrl + roomApi.update + updatedRoom.id);
-        expect(req.request.method).toBe('PUT');
-        let roomIndex = roomData.findIndex(room => room.id === updatedRoom.id);
-        roomData[roomIndex] = req.request.body;
-        req.flush(roomData[roomIndex]);
-    })
     //find
     it('should find a specific room', () => {
         const findParam = 150;
@@ -291,8 +302,8 @@ describe('RoomControllerService', () => {
             expect(resp).toEqual({
                 "id": 150,
                 "active": true,
-                "name" : "201",
-                 "capacity": 5,
+                "name": "200 A",
+                "capacity" : 35,
                 "building": 69,
                 "unavailabilities": [
                   {
@@ -317,6 +328,21 @@ describe('RoomControllerService', () => {
         let foundIndex = roomData.findIndex(room => room.id === findParam);
         req.flush(roomData[foundIndex]);
     });
+
+    //update
+    //something isn't quite right with this test...
+    it('should update an existing room', () => {
+        let updatedRoom: Room = {id: 150, name: 'Unit Room', building: 67, active: false, unavailabilities: [], capacity: 35};
+        roomControllerService.update(updatedRoom).subscribe(resp => {
+            expect(resp).toEqual(updatedRoom);
+        });
+        let req = httpTestingController.expectOne(roomApi.baseUrl + roomApi.update + updatedRoom.id);
+        expect(req.request.method).toBe('PUT');
+        let roomIndex = roomData.findIndex(room => room.id === updatedRoom.id);
+        roomData[roomIndex] = req.request.body;
+        req.flush(roomData[roomIndex]);
+    })
+    
     //findAll
     it('should find all rooms', () => {
         roomControllerService.findAll().subscribe(resp => {
@@ -333,25 +359,9 @@ describe('RoomControllerService', () => {
             expect(resp).toEqual(
               [
                 {
-                  "id": 150,
-                  "active": true,
-                  "name": "3rd Floor",
-                  "capacity": 5,
-                  "building": 68,
-                  "unavailabilities": [
-                    {
-                      "id": 0,
-                      "startDate": new Date("2018-12-03T17:31:28.303Z"),
-                      "endDate": new Date("2018-12-18T05:00:00.000Z"),
-                      "description": "test",
-                      "room": 150
-                    }
-                  ]
-                },
-                {
                     "id": 1,
                     "name": "201",
-                    "capacity": 35,
+                    "capacity" : 35,
                     "active": true,
                     "building": 1,
                     unavailabilities: []
@@ -359,7 +369,7 @@ describe('RoomControllerService', () => {
                   {
                     "id": 2,
                     "name": "202",
-                    "capacity": 35,
+                    "capacity" : 35,
                     "active": true,
                     "building": 1,
                     unavailabilities: []
@@ -367,7 +377,7 @@ describe('RoomControllerService', () => {
                   {
                     "id": 3,
                     "name": "204",
-                    "capacity": 35,
+                    "capacity" : 35,
                     "active": true,
                     "building": 1,
                     unavailabilities: []
@@ -375,7 +385,7 @@ describe('RoomControllerService', () => {
                   {
                     "id": 4,
                     "name": "205",
-                    "capacity": 35,
+                    "capacity" : 35,
                     "active": true,
                     "building": 1,
                     unavailabilities: []
@@ -383,7 +393,7 @@ describe('RoomControllerService', () => {
                   {
                     "id": 5,
                     "name": "X1",
-                    "capacity": 35,
+                    "capacity" : 35,
                     "active": false,
                     "building": 1,
                     unavailabilities: []
@@ -391,7 +401,7 @@ describe('RoomControllerService', () => {
                   {
                     "id": 6,
                     "name": "207",
-                    "capacity": 35,
+                    "capacity" : 35,
                     "active": true,
                     "building": 1,
                     unavailabilities: []
@@ -399,7 +409,7 @@ describe('RoomControllerService', () => {
                   {
                     "id": 100,
                     "name": "X2",
-                    "capacity": 35,
+                    "capacity" : 35,
                     "active": false,
                     "building": 1,
                     unavailabilities: []
@@ -407,7 +417,7 @@ describe('RoomControllerService', () => {
                   {
                     "id": 101,
                     "name": "X3",
-                    "capacity": 35,
+                    "capacity" : 35,
                     "active": false,
                     "building": 1,
                     unavailabilities: []
@@ -415,7 +425,7 @@ describe('RoomControllerService', () => {
                   {
                     "id": 122,
                     "name": "209",
-                    "capacity": 35,
+                    "capacity" : 35,
                     "active": true,
                     "building": 1,
                     unavailabilities: []
@@ -423,7 +433,7 @@ describe('RoomControllerService', () => {
                   {
                     "id": 102,
                     "name": "203",
-                    "capacity": 35,
+                    "capacity" : 35,
                     "active": true,
                     "building": 1,
                     unavailabilities: []
@@ -431,7 +441,7 @@ describe('RoomControllerService', () => {
                   {
                     "id": 103,
                     "name": "206",
-                    "capacity": 35,
+                    "capacity" : 35,
                     "active": true,
                     "building": 1,
                     unavailabilities: []
@@ -439,7 +449,7 @@ describe('RoomControllerService', () => {
                   {
                     "id": 142,
                     "name": "214",
-                    "capacity": 35,
+                    "capacity" : 35,
                     "active": true,
                     "building": 1,
                     unavailabilities: []
@@ -448,7 +458,7 @@ describe('RoomControllerService', () => {
                     "id": 143,
                     "active": true,
                     "name": "2301 C",
-                    "capacity": 35,
+                    "capacity" : 35,
                     "building": 66,
                     "unavailabilities": [
                       {
@@ -486,15 +496,15 @@ describe('RoomControllerService', () => {
                     "id": 146,
                     "active": true,
                     "name": "Subway",
-                    "capacity": 35,
+                    "capacity" : 35,
                     "building": 67,
                     "unavailabilities": []
                   },
                   {
                     "id": 147,
                     "active": true,
-                    "capacity": 35,
                     "name": "1st Floor",
+                    "capacity" : 35,
                     "building": 68,
                     "unavailabilities": [
                       {
@@ -540,7 +550,7 @@ describe('RoomControllerService', () => {
                     "id": 149,
                     "active": true,
                     "name": "3rd Floor",
-                    "capacity": 35,
+                    "capacity" : 35,
                     "building": 68,
                     "unavailabilities": [
                       {
@@ -552,12 +562,11 @@ describe('RoomControllerService', () => {
                       }
                     ]
                   },
-                  
                   {
                     "id": 151,
                     "active": true,
                     "name": "Bat Cave",
-                    "capacity": 35,
+                    "capacity" : 35,
                     "building": 70,
                     "unavailabilities": [
                       {
@@ -587,7 +596,7 @@ describe('RoomControllerService', () => {
     });
     //error
     it('should receive an error after trying to find a room that does not exist', () => {
-        const errmsg = 'Something went wrong.';
+        const errmsg = 'Something went wrong. Unless you wanted it to. In that case it went right.';
         let findParam = 250;
         roomControllerService.find(findParam).subscribe(resp =>
             fail('should have failed with a 404 error'),
