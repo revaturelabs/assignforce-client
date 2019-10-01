@@ -9,9 +9,11 @@ describe('LocationAddBuildingDialogComponent', () => {
   let fixture: ComponentFixture<LocationAddBuildingDialogComponent>;
 
   beforeEach(async(() => {
+    
     TestBed.configureTestingModule({
       imports: [ AppMaterialModule, FormsModule, ReactiveFormsModule ],
       declarations: [ LocationAddBuildingDialogComponent ]
+      // missing mock dialog ref
     })
     .compileComponents();
   }));

@@ -86,3 +86,7 @@ describe("BatchesComponent", () => {
     expect(curriculumService.findAll).toHaveBeenCalled();
   });
 });
+
+/** this component contains a lot of functionality, and mostly the functionality comes from services external to the component
+ * However, there is a form group here that is untested.-Sam J
+ */
