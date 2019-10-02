@@ -16,7 +16,7 @@ export class SettingControllerService {
 
   public update(setting: Setting): Observable<Setting> {
     return this.http.put<Setting>(
-      this.settingController.baseUrl + this.settingController.update + "1", setting
+      this.settingController.baseUrl + this.settingController.update, setting
     );
   }
 }
