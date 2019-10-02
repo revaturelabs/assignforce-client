@@ -37,7 +37,7 @@ export const environment = {
 
   apiUrls: {
     addressController: {
-      baseUrl: `${apiBaseUrl}/locations`,
+      baseUrl: `${apiBaseUrl}/locations/`,
       create: '',
       update: '/',
       findAll: '',
@@ -46,7 +46,7 @@ export const environment = {
     },
 
     batchController: {
-      baseUrl: `${apiBaseUrl}/batches`,
+      baseUrl: `${apiBaseUrl}/batches/`,
       create: '',
       update: '/',
       findAll: '',
@@ -55,7 +55,7 @@ export const environment = {
     },
 
     buildingController: {
-      baseUrl: `${apiBaseUrl}/locations/building`,
+      baseUrl: `${apiBaseUrl}/locations/building/`,
       create: '',
       update: '/',
       findAll: '',
@@ -64,7 +64,7 @@ export const environment = {
     },
 
     locationController: {
-      baseUrl: `${apiBaseUrl}/locations`,
+      baseUrl: `${apiBaseUrl}/locations/`,
       create: '',
       update: '/',
       findAll: '',
@@ -73,7 +73,7 @@ export const environment = {
     },
 
     roomController: {
-      baseUrl: `${apiBaseUrl}/locations/room`,
+      baseUrl: `${apiBaseUrl}/locations/room/`,
       create: '',
       update: '/',
       findAll: '',
@@ -82,7 +82,7 @@ export const environment = {
     },
 
     curriculumController: {
-      baseUrl: `${apiBaseUrl}/curricula`,
+      baseUrl: `${apiBaseUrl}/curricula/`,
       create: '',
       update: '/',
       findAll: '',
@@ -100,7 +100,7 @@ export const environment = {
     },
 
     skillController: {
-      baseUrl: `${apiBaseUrl}/skills`,
+      baseUrl: `${apiBaseUrl}/skills/`,
       create: '',
       update: '/',
       findAll: '',
@@ -109,7 +109,7 @@ export const environment = {
     },
 
     trainerController: {
-      baseUrl: `${apiBaseUrl}/trainers`,
+      baseUrl: `${apiBaseUrl}/trainers/`,
       create: '',
       update: '/',
       findAll: '',
@@ -118,7 +118,7 @@ export const environment = {
     },
 
     settingController: {
-      baseUrl: `${apiBaseUrl}/settings`,
+      baseUrl: `${apiBaseUrl}/settings/`,
       create: '',
       update: '/',
       findAll: '',
@@ -135,7 +135,7 @@ export const environment = {
       remove: '/'
     },
     filehandlerController: {
-      baseUrl: `${apiBaseUrl}/files`,
+      baseUrl: `${apiBaseUrl}/files/`,
       create: '',
       update: '/',
       findAll: '',
