@@ -40,6 +40,13 @@ export const environment = {
     scope: "openid profile",
   },
 
+  cognito: {
+    namespace: "https://revature.com/",
+    title: "AssignForce Login",
+    UserPoolId: "us-east-2_emWMUf9hB",
+    ClientId: "2ep84qhn4p307tou1k86tqp1vp",
+  },
+
   security_config: {
     roles: ["SVP of Technology", "Trainer"],
     groups: ["Operations"],
