@@ -12,6 +12,9 @@ import { HttpTestingController, HttpClientTestingModule } from '@angular/common/
 describe('LocationOpenUnavailibilityComponent', () => {
   let component: LocationOpenUnavailibilityDialogComponent;
   let fixture: ComponentFixture<LocationOpenUnavailibilityDialogComponent>;
+
+  /*Added imports and providers needed for this component to compile. Added the matstub and diagstub to mimick the intended function/purpose
+  of the component. */
   class MatStub {
     
     room = {
@@ -21,7 +24,6 @@ describe('LocationOpenUnavailibilityComponent', () => {
   class diagStub {
     close() {}
   }
-  // let http = new HttpClient();
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ LocationOpenUnavailibilityDialogComponent ],

@@ -6,6 +6,8 @@ import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/materia
 describe('LocationDeleteUnavailabilityDialogComponent', () => {
   let component: LocationDeleteUnavailabilityDialogComponent;
   let fixture: ComponentFixture<LocationDeleteUnavailabilityDialogComponent>;
+  /* Added imports and providers necessary for the component to compile. The matstub and diagstub mimick the data and behavior needed
+  for this component to be tested. */
   class MatStub {
     unavailability = {
       description: 'description'
