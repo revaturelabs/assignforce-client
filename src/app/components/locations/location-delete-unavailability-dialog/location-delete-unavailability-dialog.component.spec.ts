@@ -22,7 +22,7 @@ describe('LocationDeleteUnavailabilityDialogComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ LocationDeleteUnavailabilityDialogComponent ],
       imports: [MatDialogModule],
-      providers: [{provide: MatDialogRef, useClass: diagStub}, {provide: MAT_DIALOG_DATA, useClass: MatStub}]//missing mock dialog ref
+      providers: [{provide: MatDialogRef, useClass: diagStub}, {provide: MAT_DIALOG_DATA, useClass: MatStub}]
     })
     .compileComponents();
   }));
