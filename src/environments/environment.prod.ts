@@ -37,7 +37,7 @@ export const environment = {
 
   apiUrls: {
     addressController: {
-      baseUrl: `${apiBaseUrl}/locations/`,
+      baseUrl: `${apiBaseUrl}/assignforce-location-service-prod/locations`,
       create: '',
       update: '/',
       findAll: '',
@@ -46,7 +46,7 @@ export const environment = {
     },
 
     batchController: {
-      baseUrl: `${apiBaseUrl}/batches/`,
+      baseUrl: `${apiBaseUrl}/assignforce-batch-service-prod/batches`,
       create: '',
       update: '/',
       findAll: '',
@@ -55,7 +55,7 @@ export const environment = {
     },
 
     buildingController: {
-      baseUrl: `${apiBaseUrl}/locations/building/`,
+      baseUrl: `${apiBaseUrl}/assignforce-location-service-prod/locations/building`,
       create: '',
       update: '/',
       findAll: '',
@@ -64,7 +64,7 @@ export const environment = {
     },
 
     locationController: {
-      baseUrl: `${apiBaseUrl}/locations/`,
+      baseUrl: `${apiBaseUrl}/assignforce-location-service-prod/locations`,
       create: '',
       update: '/',
       findAll: '',
@@ -73,7 +73,7 @@ export const environment = {
     },
 
     roomController: {
-      baseUrl: `${apiBaseUrl}/locations/room/`,
+      baseUrl: `${apiBaseUrl}/assignforce-location-service-prod/locations/room`,
       create: '',
       update: '/',
       findAll: '',
@@ -82,7 +82,7 @@ export const environment = {
     },
 
     curriculumController: {
-      baseUrl: `${apiBaseUrl}/curricula/`,
+      baseUrl: `${apiBaseUrl}/assignforce-curriculum-service-prod/curricula`,
       create: '',
       update: '/',
       findAll: '',
@@ -100,7 +100,7 @@ export const environment = {
     },
 
     skillController: {
-      baseUrl: `${apiBaseUrl}/skills/`,
+      baseUrl: `${apiBaseUrl}/assignforce-skill-service-prod/skills`,
       create: '',
       update: '/',
       findAll: '',
@@ -109,7 +109,7 @@ export const environment = {
     },
 
     trainerController: {
-      baseUrl: `${apiBaseUrl}/trainers/`,
+      baseUrl: `${apiBaseUrl}/assignforce-trainer-service-prod/trainers`,
       create: '',
       update: '/',
       findAll: '',
@@ -118,7 +118,7 @@ export const environment = {
     },
 
     settingController: {
-      baseUrl: `${apiBaseUrl}/settings/`,
+      baseUrl: `${apiBaseUrl}/assignforce-setting-service-prod/settings`,
       create: '',
       update: '/',
       findAll: '',
@@ -127,7 +127,7 @@ export const environment = {
     },
 
     unavailableController: {
-      baseUrl: `${apiBaseUrl}/locations/unavailabilities`,
+      baseUrl: `${apiBaseUrl}/assignforce-location-service-prod/locations/unavailabilities`,
       create: '/',
       update: '/',
       findAll: '',
@@ -135,7 +135,7 @@ export const environment = {
       remove: '/'
     },
     filehandlerController: {
-      baseUrl: `${apiBaseUrl}/files/`,
+      baseUrl: `${apiBaseUrl}/assignforce-filehandler-service-prod/files`,
       create: '',
       update: '/',
       findAll: '',
