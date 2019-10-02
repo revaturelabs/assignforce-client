@@ -5,17 +5,14 @@ import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule, MatDialogModule, MatInputModule, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 describe('LocationEditBuildingDialogComponent', () => {
+
+  /* Added new imports and providers to properly test the editing of buildings. The matstub and diagstub mimick the data and the behavior of 
+  the building data and MatDialogRef, respectively.
+  */
   class MatStub {
-    // addType: any;
-    // building: any;
-    // location: any;
-    // room: any;
-    // test: 'test'
     building = {
       name: 'Bldg 1'
     }
-      // city = 'Tampa';
-    // state = 'Florida';
   }
   
   class diagStub {
@@ -27,9 +24,7 @@ describe('LocationEditBuildingDialogComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ LocationEditBuildingDialogComponent ],
-      // providers: [FormsModule],
       imports: [MatFormFieldModule, MatDialogModule, FormsModule, MatInputModule, BrowserAnimationsModule],
-      // providers: [{provide: MatDialogRef, useValue: dialog}, {provide: MAT_DIALOG_DATA, useValue: {}}]
       providers: [{ provide: MatDialogRef, useClass: diagStub }, { provide: MAT_DIALOG_DATA, useClass: MatStub }]
   
     })

@@ -9,7 +9,8 @@ import { LocationEditRoomDialogComponent } from './location-edit-room-dialog.com
 describe('LocationEditRoomDialogComponent', () => {
   let component: LocationEditRoomDialogComponent;
   let fixture: ComponentFixture<LocationEditRoomDialogComponent>;
-
+ /*Added imports/providers for this test to pass. The matstub and diagstub classes mimick the data and dialog box behavior needed for the
+ testing of this component. */
   class MatStub {
     
     room: any = 'room';
