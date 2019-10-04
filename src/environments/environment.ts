@@ -43,8 +43,8 @@ export const environment = {
   cognito: {
     namespace: "https://revature.com/",
     title: "AssignForce Login",
-    UserPoolId: "us-east-2_emWMUf9hB",
-    ClientId: "2ep84qhn4p307tou1k86tqp1vp",
+    UserPoolId: "us-east-1_hE8EafqgV",
+    ClientId: "4vd3i79p1ml95c14vkfl9i7567",
   },
 
   security_config: {
