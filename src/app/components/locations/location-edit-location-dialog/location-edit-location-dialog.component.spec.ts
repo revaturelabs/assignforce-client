@@ -2,7 +2,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LocationEditLocationDialogComponent } from './location-edit-location-dialog.component';
 import { MatFormFieldModule, MatFormField, MatDialogModule, MatDialogRef, MatDialog, MAT_DIALOG_DATA, MatInputModule } from '@angular/material';
-import { By } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -35,7 +34,6 @@ describe('LocationEditLocationDialogComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(LocationEditLocationDialogComponent);
-    let matForm = fixture.debugElement.query(By.css('.update-form'));
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
