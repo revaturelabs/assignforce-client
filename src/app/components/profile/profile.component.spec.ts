@@ -1,4 +1,4 @@
-import { from } from './../../../../node_modules/rxjs/observable/from';
+import { from } from 'rxjs/observable/from';
 import { AuthService } from './../../services/auth/auth.service';
 import { SkillControllerService } from './../../services/api/skill-controller/skill-controller.service';
 import { BatchControllerService } from './../../services/api/batch-controller/batch-controller.service';

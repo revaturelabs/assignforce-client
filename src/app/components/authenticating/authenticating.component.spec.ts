@@ -37,3 +37,5 @@ describe('AuthenticatingComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
+/** This component contains only spinners, and no logic or forms for authentication - Sam J */

@@ -12,6 +12,7 @@ describe('LocationAddLocationDialogComponent', () => {
     TestBed.configureTestingModule({
       imports: [ AppMaterialModule, FormsModule, ReactiveFormsModule ],
       declarations: [ LocationAddLocationDialogComponent ]
+      // missing mock dialog
     })
     .compileComponents();
   }));

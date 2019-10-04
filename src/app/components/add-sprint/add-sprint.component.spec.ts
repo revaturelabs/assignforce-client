@@ -48,3 +48,7 @@ describe("AddSprintComponent", () => {
     expect(component).toBeTruthy();
   });
 });
+
+/**
+ * this component and test are unfinished - the createSprint method is unimplemented and untested. - Sam J
+ */
