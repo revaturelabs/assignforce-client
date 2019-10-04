@@ -10,6 +10,12 @@ export const environment = {
 
     baseUrl: "https://dev.assignforce.revaturelabs.com/",
 
+    // region: 'us-east-2',      //cognito added section
+
+    // identityPoolId: '',
+    // userPoolId: 'us-east-2_Cipgv9Wdw',
+    // clientId: '7vup6b69l2brlmiic9hft1t1n9',
+
   // tslint:disable-next-line:comment-format
     //routers
     appRoutes: {
