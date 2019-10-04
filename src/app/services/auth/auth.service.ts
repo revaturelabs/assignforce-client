@@ -62,16 +62,26 @@ export class AuthService {
     };
     const authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails(authenticationData);
     const cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
+    const router = this.router;
+    const urlService = this.urlService;
     cognitoUser.authenticateUser(authenticationDetails, {
       onSuccess(result) {
-        this.setSession(result, authenticationData.Username);
+        const expiresAt = JSON.stringify(result.getAccessToken().getExpiration() * 1000 + new Date().getTime());
+        localStorage.setItem('access_token', result.getAccessToken().getJwtToken());
+        localStorage.setItem('id_token', result.getIdToken().getJwtToken());
+        localStorage.setItem('expires_at', expiresAt);
+        if (authenticationData.Username.includes('svp')) {
+          localStorage.setItem('roles', 'SVP of Technology');
+        } else {
+          localStorage.setItem('roles', 'Trainer');
+        }
         localStorage.setItem('email', authenticationData.Username);
-        this.router.navigate([this.urlService.getOverviewUrl()]);
+        router.navigate([urlService.getOverviewUrl()]);
       },
       onFailure(err) {
         console.log('Error upon trying to login...');
         alert(err);
-        this.router.navigate([this.urlService.getLoginUrl()]);
+        router.navigate([urlService.getLoginUrl()]);
       },
     });
   }
@@ -99,18 +109,18 @@ export class AuthService {
     localStorage.setItem('roles', authResult.idTokenPayload['https://revature.com/roles']);
     localStorage.setItem('groups', authResult.idTokenPayload['https://revature.com/groups']);
   }*/
-  private setSession(result: AmazonCognitoIdentity.CognitoUserSession, email: string): void {
-    // Set the time that the Access Token will expire at
-    const expiresAt = JSON.stringify(result.getAccessToken().getExpiration() * 1000 + new Date().getTime());
-    localStorage.setItem('access_token', result.getAccessToken().getJwtToken());
-    localStorage.setItem('id_token', result.getIdToken().getJwtToken());
-    localStorage.setItem('expires_at', expiresAt);
-    if (email.includes('svp')) {
-      localStorage.setItem('roles', 'SVP of Technology');
-    } else {
-      localStorage.setItem('roles', 'Trainer');
-    }
-  }
+  // private setSession(result: AmazonCognitoIdentity.CognitoUserSession, email: string): void {
+  //   // Set the time that the Access Token will expire at
+  //   const expiresAt = JSON.stringify(result.getAccessToken().getExpiration() * 1000 + new Date().getTime());
+  //   localStorage.setItem('access_token', result.getAccessToken().getJwtToken());
+  //   localStorage.setItem('id_token', result.getIdToken().getJwtToken());
+  //   localStorage.setItem('expires_at', expiresAt);
+  //   if (email.includes('svp')) {
+  //     localStorage.setItem('roles', 'SVP of Technology');
+  //   } else {
+  //     localStorage.setItem('roles', 'Trainer');
+  //   }
+  // }
   /*public logout(): void {
     localStorage.removeItem('access_token');
     localStorage.removeItem('id_token');
