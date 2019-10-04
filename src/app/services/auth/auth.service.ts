@@ -12,8 +12,10 @@ export class AuthService {
   //userProfile: any;
   //trainer = new Trainer(0, '', '', [], [], true, null, [], '', 0,'');
   poolData = {
-    UserPoolId: environment.cognito.UserPoolId, // your user pool id here
-    ClientId: environment.cognito.ClientId, // your app client id here
+    // UserPoolId: environment.cognito.UserPoolId, // your user pool id here
+    // ClientId: environment.cognito.ClientId, // your app client id here
+    UserPoolId: 'us-east-1_hE8EafqgV',
+    ClientId: '4vd3i79p1ml95c14vkfl9i7567',
   };
   userPool = new AmazonCognitoIdentity.CognitoUserPool(this.poolData);
   /*auth0 = new auth0.WebAuth({
