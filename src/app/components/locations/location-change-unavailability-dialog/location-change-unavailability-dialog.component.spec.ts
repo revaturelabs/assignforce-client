@@ -12,6 +12,7 @@ describe('LocationChangeUnavailabilityDialogComponent', () => {
     TestBed.configureTestingModule({
       imports: [ AppMaterialModule, FormsModule, ReactiveFormsModule],
       declarations: [ LocationChangeUnavailabilityDialogComponent ]
+      // missing providers for mock dialog
     })
     .compileComponents();
   }));

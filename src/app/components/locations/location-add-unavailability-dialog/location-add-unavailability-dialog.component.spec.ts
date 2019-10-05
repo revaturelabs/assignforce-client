@@ -12,6 +12,7 @@ describe('LocationAddUnavailabilityDialogComponent', () => {
     TestBed.configureTestingModule({
       imports: [ AppMaterialModule, FormsModule, ReactiveFormsModule],
       declarations: [ LocationAddUnavailabilityDialogComponent ]
+      //missing mock dialog ref
     })
     .compileComponents();
   }));
