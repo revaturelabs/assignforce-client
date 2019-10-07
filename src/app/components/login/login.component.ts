@@ -17,6 +17,8 @@ export class LoginComponent implements OnInit {
     private urlService: UrlService,
     private router: Router,
     ) {}
+
+  //On page loadup checks if has been authentication to transition to overview page
   ngOnInit() {
     this.loginForm = this.fb.group ({
       email: ['', Validators.required],
@@ -29,6 +31,8 @@ export class LoginComponent implements OnInit {
       this.router.navigate([this.urlService.getLoginUrl()]);
     }
   }
+
+  //Passes user information from form to authenticaion service
   onSubmit() {
     this.auth0.startLogin(this.loginForm.get('email').value, this.loginForm.get('password').value);
   }

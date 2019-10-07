@@ -3,7 +3,7 @@ import {Injectable} from "@angular/core";
 import "rxjs/add/operator/map";
 import {Observable} from "rxjs/Observable";
 import {environment} from "../../../../environments/environment";
-import {Sprint} from "../../../model/sprint";
+import {Sprint} from "../../../model/Sprint";
 
 @Injectable()
 export class SprintControllerService {

@@ -18,6 +18,8 @@ export class AppComponent implements OnInit {
     securityConfig.groups = environment.security_config.groups;
     this.securityContext.setSecurityConfig(securityConfig);
   }
+
+  //On page loadup checks if has been authentication to transition to overview page
   ngOnInit() {
     if (this.auth0.isAuthenticated()) {
       this.router.navigate([this.urlService.getOverviewUrl()]);
@@ -25,6 +27,8 @@ export class AppComponent implements OnInit {
       this.router.navigate([this.urlService.getLoginUrl()]);
     }
   }
+
+  //Calls service logout to remove user info from current session
   logout() {
     this.auth0.logout();
   }
