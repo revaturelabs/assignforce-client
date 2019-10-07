@@ -24,7 +24,7 @@ import { SettingControllerService } from "../../services/api/setting-controller/
 import { SkillControllerService } from "../../services/api/skill-controller/skill-controller.service";
 import { TrainerControllerService } from "../../services/api/trainer-controller/trainer-controller.service";
 import { BatchMode } from "../batches/batches.component";
-import { Sprint } from "../../model/sprint";
+import { Sprint } from "../../model/Sprint";
 import { SprintControllerService } from "../../services/api/sprint-controller/sprint-controller.service";
 
 @Component({

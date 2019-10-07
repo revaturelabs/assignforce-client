@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {MatDialog} from "@angular/material";
 import {ActivatedRoute, Router} from "@angular/router";
-import {Sprint} from "../../model/sprint";
+import {Sprint} from "../../model/Sprint";
 import {FinalProjectControllerService} from "../../services/api/final-project-controller/final-project-controller.service";
 import {SkillControllerService} from "../../services/api/skill-controller/skill-controller.service";
 import {SprintControllerService} from "../../services/api/sprint-controller/sprint-controller.service";
