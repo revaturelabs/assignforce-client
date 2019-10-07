@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { fn } from '@angular/compiler/src/output/output_ast';
 import {} from 'jasmine';
+import * as AmazonCognitoIdentity from 'amazon-cognito-identity-js';
 export class MockAuthService {
   lock = null;
   showLogin() {
@@ -60,71 +61,23 @@ describe('AuthService', () => {
   it('should be created', inject([AuthService], (service: AuthService) => {
     expect(service).toBeTruthy();
   }));
-  //handleAuthentication tests
-  it('should set all the variables in set session to localStorage, if it has a valid authresult', ()=>{
-    /*const mockLock = {
-      error: false,
-      authResult: {
-        accessToken: 'testAccesstoken',
-        idToken: 'testIdToken',
-        expiresIn: 500,
-        idTokenPayload: {'https://revature.com/roles': 'athing',
-        'https://revature.com/groups': 'anotherthing'},
-      },
-      profile: {
-        name: 'testProfileName'
-      },
-      on: (string, callBack)=>{
-        callBack({
-          accessToken: 'testAccessToken',
-          idToken: 'testIdToken',
-          expiresIn: 500,
-          idTokenPayload: {'https://revature.com/roles': 'athing',
-          'https://revature.com/groups': 'anotherthing'},
-        });
-      },
-      getUserInfoNoError: (access_token, callBack)=>{
-        callBack(false ,{name: 'testProfileName'} );
-      }
-    }*/
-    
-    //spyOn(service.lock,'on').and.callFake(mockLock.on);
-    //spyOn(service.lock, 'getUserInfo').and.callFake(mockLock.getUserInfoNoError)
-    service.startLogin('svp@mailinator.com,', 'password')
-    // service.handleAuthentication();
-    expect(localStorage.getItem('access_token')).toBe('testAccessToken');
-    expect(localStorage.getItem('id_token')).toBe('testIdToken');
-    expect(JSON.parse(localStorage.getItem('expires_at'))).toBeGreaterThan(new Date().getTime());
-    expect(localStorage.getItem('roles')).toBe('athing');
-    // expect(localStorage.getItem('groups')).toBe('anotherthing');
-    expect(localStorage.getItem('email')).toBe('testProfileName');
-  })
+  
+  //login test needed for future iterations
+
   //logout test
   it('should remove all local storage items', ()=>{
     localStorage.setItem('access_token','acctoken');
     localStorage.setItem('id_token','idtoken');
     localStorage.setItem('expires_at','expat');
     localStorage.setItem('roles','rolestoken');
-    //localStorage.setItem('groups','groupstoken');
-    //spyOn(service.lock , 'logout').and.callFake((parameter)=>{})
+    
     service.logout();
     expect(localStorage.getItem('access_token')).toBe(null);
     expect(localStorage.getItem('id_token')).toBe(null);
     expect(localStorage.getItem('expires_at')).toBe(null);
     expect(localStorage.getItem('roles')).toBe(null);
-    //expect(localStorage.getItem('groups')).toBe(null);
   })
-  /*it('should call the lock logout function', ()=>{
-    localStorage.setItem('access_token','acctoken');
-    localStorage.setItem('id_token','idtoken');
-    localStorage.setItem('expires_at','expat');
-    localStorage.setItem('roles','rolestoken');
-    localStorage.setItem('groups','groupstoken');
-    const fakelogout = jest.fn();
-    spyOn(service.lock, 'logout').and.callFake(fakelogout)
-    service.logout();
-    expect(fakelogout).toHaveBeenCalled();
-  })*/
+
   //isAuthenticated tests
   it('should return true if expiration date is after now',()=>{
     localStorage.setItem('expires_at', JSON.stringify(new Date().getTime()+20000000));
@@ -159,34 +112,6 @@ describe('AuthService', () => {
     expect(service.userHasRole(expectedRoles)).toBe(true);
   })
   
-  /*it('should throw access token must exist error if token does not exist', ()=>{
-    let cb={}
-    expect(()=>{service.getProfile(cb)}).toThrowError('Access');
-  })
-  it('callback should get profile from the lock if none exists in the service', ()=>{
-    let name: string;
-    let getUserInfoNoError = (access_token, callBack)=>{
-      callBack(false ,{name: 'testProfileName'} );
-    }
-    spyOn(service.lock, 'getUserInfo').and.callFake(getUserInfoNoError);
-   
-    let callBackTest = (error, profile) =>{
-    name = profile.name
-   }
-    localStorage.setItem('access_token', 'fakeAccess');
-    service.getProfile(callBackTest);
-    expect(name).toBe('testProfileName');
-  })
-  it('callback should get profile from the service if one exists',()=>{
-    let name: string;
-    service.userProfile ={name: 'testProfileName'};
-    let callBackTest = (error, profile) =>{
-      name = profile.name
-     }
-    localStorage.setItem('access_token', 'fakeAccess');
-    service.getProfile(callBackTest)
-    expect(name).toBe('testProfileName')
-  })*/
  //get Token test
  it('should get access token', ()=>{
    localStorage.setItem('access_token','test_token')
