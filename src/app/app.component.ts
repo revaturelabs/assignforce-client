@@ -11,7 +11,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  constructor(private securityContext: SecurityContext, private auth0: AuthService, private urlService: UrlService, private router: Router) {
+  constructor(
+    private securityContext: SecurityContext,
+    private auth0: AuthService,
+    private urlService: UrlService,
+    private router: Router
+  ) {
     const securityConfig = new SecurityConfig();
     securityConfig.roles = environment.security_config.roles;
     securityConfig.permissions = environment.security_config.permissions;
@@ -21,6 +26,7 @@ export class AppComponent implements OnInit {
 
   //On page loadup checks if has been authentication to transition to overview page
   ngOnInit() {
+    console.log(environment.name);
     if (this.auth0.isAuthenticated()) {
       this.router.navigate([this.urlService.getOverviewUrl()]);
     } else {

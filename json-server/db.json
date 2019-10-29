@@ -498,6 +498,24 @@
       "room": null,
       "size": 10,
       "id": 6
+    },
+    {
+      "name": "1911 Nov25 Test.t",
+      "startDate": "2019-11-25T14:00:00.000Z",
+      "endDate": "2020-01-10T22:00:00.000Z",
+      "curriculum": 106,
+      "trainer": 7,
+      "cotrainer": 1,
+      "skills": [
+        3,
+        49
+      ],
+      "location": 66,
+      "building": 69,
+      "room": 150,
+      "finalProject": null,
+      "size": 10,
+      "id": 7
     }
   ],
   "buildings": [
@@ -1835,7 +1853,7 @@
       "id": 3,
       "firstName": "Joe",
       "lastName": "Kirkbride",
-      "isActive": true,
+      "isActive": false,
       "resume": null,
       "email": "joe.kirkbride@revature.com",
       "skills": []
@@ -1871,7 +1889,7 @@
       "id": 7,
       "firstName": "Yuvi",
       "lastName": "Damodaran",
-      "isActive": true,
+      "isActive": false,
       "resume": null,
       "email": "",
       "skills": []
@@ -1880,7 +1898,7 @@
       "id": 8,
       "firstName": "Steven",
       "lastName": "Kelsey",
-      "isActive": true,
+      "isActive": false,
       "resume": null,
       "email": "",
       "skills": []
@@ -1889,7 +1907,7 @@
       "id": 9,
       "firstName": "Ryan",
       "lastName": "Lessley",
-      "isActive": true,
+      "isActive": false,
       "resume": null,
       "email": "",
       "skills": []
@@ -2843,7 +2861,8 @@
       "id": 1,
       "name": "Assign Force",
       "description": "Assign batches to trainers and rooms",
-      "isActive": true
+      "isActive": true,
+      "active": true
     },
     {
       "id": 2,
@@ -2891,7 +2910,8 @@
       "id": 9,
       "name": "Project Example",
       "description": "Project Description",
-      "isActive": true
+      "isActive": true,
+      "active": true
     }
   ]
 }
