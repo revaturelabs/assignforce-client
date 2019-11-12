@@ -39,6 +39,14 @@
       "state": "Kansas",
       "buildings": [],
       "isActive": true
+    },
+    {
+      "id": 71,
+      "name": "Purdue University",
+      "city": "West Lafayette",
+      "state": "Indiana",
+      "buildings": [],
+      "isActive": true
     }
   ],
   "batches": [
@@ -516,6 +524,113 @@
       "finalProject": null,
       "size": 10,
       "id": 7
+    },
+    {
+      "name": "1911 Nov20 Java",
+      "startDate": "2019-11-20T14:00:00.000Z",
+      "endDate": "2020-01-24T22:00:00.000Z",
+      "curriculum": 1,
+      "trainer": 1,
+      "cotrainer": 1,
+      "skills": [
+        4,
+        1,
+        2,
+        3,
+        50,
+        51,
+        25,
+        48,
+        49,
+        52,
+        54,
+        55,
+        56,
+        57,
+        67
+      ],
+      "location": 66,
+      "building": 66,
+      "room": 160,
+      "finalProject": 1,
+      "size": 200,
+      "id": 8
+    },
+    {
+      "name": "1911 Nov20 Java",
+      "startDate": "2019-11-20T14:00:00.000Z",
+      "endDate": "2020-01-24T22:00:00.000Z",
+      "curriculum": 1,
+      "trainer": 76,
+      "cotrainer": null,
+      "skills": [
+        {
+          "id": 4,
+          "name": "AngularJ",
+          "isActive": true
+        },
+        {
+          "id": 1,
+          "name": "Core Java",
+          "isActive": true
+        },
+        {
+          "id": 2,
+          "name": "JUnit",
+          "isActive": true
+        },
+        {
+          "id": 3,
+          "name": "Spring",
+          "isActive": true
+        },
+        {
+          "id": 50,
+          "name": "Java Servlets",
+          "isActive": true
+        },
+        {
+          "id": 51,
+          "name": "JSP",
+          "isActive": true
+        },
+        {
+          "id": 25,
+          "name": "Oracle SQL",
+          "isActive": true
+        },
+        {
+          "id": 48,
+          "name": "JDBC",
+          "isActive": true
+        },
+        {
+          "id": 54,
+          "name": "jQuery",
+          "isActive": true
+        },
+        {
+          "id": 55,
+          "name": "Hibernate",
+          "isActive": true
+        },
+        {
+          "id": 56,
+          "name": "REST",
+          "isActive": true
+        },
+        {
+          "id": 57,
+          "name": "SOAP",
+          "isActive": true
+        }
+      ],
+      "location": null,
+      "building": null,
+      "room": null,
+      "finalProject": null,
+      "size": 10,
+      "id": 9
     }
   ],
   "buildings": [
@@ -623,14 +738,6 @@
     },
     {
       "isActive": true,
-      "id": 103,
-      "name": "Brown Hall",
-      "rooms": [],
-      "address": 70,
-      "localServerId": 103
-    },
-    {
-      "isActive": true,
       "id": 104,
       "name": "Behan Hall",
       "rooms": [],
@@ -712,46 +819,64 @@
       "isCore": true,
       "skills": [
         {
-          "id": 1
+          "id": 4,
+          "name": "AngularJ",
+          "isActive": true
         },
         {
-          "id": 2
+          "id": 1,
+          "name": "Core Java",
+          "isActive": true
         },
         {
-          "id": 3
+          "id": 2,
+          "name": "JUnit",
+          "isActive": true
         },
         {
-          "id": 4
+          "id": 3,
+          "name": "Spring",
+          "isActive": true
         },
         {
-          "id": 25
+          "id": 50,
+          "name": "Java Servlets",
+          "isActive": true
         },
         {
-          "id": 48
+          "id": 51,
+          "name": "JSP",
+          "isActive": true
         },
         {
-          "id": 49
+          "id": 25,
+          "name": "Oracle SQL",
+          "isActive": true
         },
         {
-          "id": 50
+          "id": 48,
+          "name": "JDBC",
+          "isActive": true
         },
         {
-          "id": 51
+          "id": 54,
+          "name": "jQuery",
+          "isActive": true
         },
         {
-          "id": 52
+          "id": 55,
+          "name": "Hibernate",
+          "isActive": true
         },
         {
-          "id": 54
+          "id": 56,
+          "name": "REST",
+          "isActive": true
         },
         {
-          "id": 55
-        },
-        {
-          "id": 56
-        },
-        {
-          "id": 57
+          "id": 57,
+          "name": "SOAP",
+          "isActive": true
         }
       ]
     },
@@ -1302,6 +1427,22 @@
       "name": "",
       "created": "2019-06-12T23:32:02.698Z",
       "room": ""
+    },
+    {
+      "id": 30,
+      "startDate": "2019-10-15T04:00:00.000Z",
+      "endDate": "2019-12-25T05:00:00.000Z",
+      "name": "1908 Aug16 Java",
+      "created": "2019-10-29T18:08:51.413Z",
+      "room": 161
+    },
+    {
+      "id": 31,
+      "startDate": "2019-10-22T04:00:00.000Z",
+      "endDate": "2019-10-23T04:00:00.000Z",
+      "name": "1903 Mar18 SDET",
+      "created": "2019-10-29T18:09:12.331Z",
+      "room": 150
     }
   ],
   "rooms": [
@@ -1558,7 +1699,7 @@
       "name": "2301 C",
       "building": 66,
       "unavailabilities": [],
-      "capacity": 40
+      "capacity": 35
     },
     {
       "id": 161,
@@ -1575,6 +1716,14 @@
       "building": 71,
       "unavailabilities": [],
       "capacity": 40
+    },
+    {
+      "id": 163,
+      "active": true,
+      "name": "Arboretum",
+      "building": 70,
+      "unavailabilities": [],
+      "capacity": 35
     }
   ],
   "settings": [
@@ -1808,6 +1957,16 @@
       "id": 79,
       "name": "Go",
       "isActive": true
+    },
+    {
+      "id": 80,
+      "name": "Lombok",
+      "isActive": true
+    },
+    {
+      "id": 81,
+      "name": "Lombok",
+      "isActive": true
     }
   ],
   "trainers": [
@@ -1844,7 +2003,7 @@
       "id": 2,
       "firstName": "Fred",
       "lastName": "Belotte",
-      "isActive": true,
+      "isActive": false,
       "resume": null,
       "email": "fred.belotte@revature.com",
       "skills": []
@@ -1916,7 +2075,7 @@
       "id": 10,
       "firstName": "Richard",
       "lastName": "Orr",
-      "isActive": true,
+      "isActive": false,
       "resume": null,
       "email": "",
       "skills": []
@@ -1925,7 +2084,7 @@
       "id": 11,
       "firstName": "Nicholas",
       "lastName": "Jurczak",
-      "isActive": true,
+      "isActive": false,
       "resume": null,
       "email": "",
       "skills": []
@@ -1952,7 +2111,7 @@
       "id": 14,
       "firstName": "Emily",
       "lastName": "Higgins",
-      "isActive": true,
+      "isActive": false,
       "resume": null,
       "email": "",
       "skills": []
@@ -1961,7 +2120,7 @@
       "id": 75,
       "firstName": "Carolyn",
       "lastName": "Rehm",
-      "isActive": true,
+      "isActive": false,
       "resume": null,
       "email": "",
       "skills": []
@@ -1970,7 +2129,7 @@
       "id": 95,
       "firstName": "Mitch",
       "lastName": "Goshorn",
-      "isActive": true,
+      "isActive": false,
       "resume": null,
       "email": "",
       "skills": []
@@ -1979,7 +2138,7 @@
       "id": 55,
       "firstName": "Trevin",
       "lastName": "Chester",
-      "isActive": true,
+      "isActive": false,
       "resume": null,
       "email": "",
       "skills": []
@@ -2096,7 +2255,7 @@
       "id": 38,
       "firstName": "Arun",
       "lastName": "Kumar",
-      "isActive": true,
+      "isActive": false,
       "resume": null,
       "email": "",
       "skills": []
@@ -2192,7 +2351,7 @@
         }
       ],
       "certifications": "",
-      "isActive": true,
+      "isActive": false,
       "resume": "",
       "preferredLocation": null,
       "unavailabilities": [],
@@ -2298,7 +2457,7 @@
         }
       ],
       "certifications": "",
-      "isActive": true,
+      "isActive": false,
       "resume": "",
       "preferredLocation": null,
       "unavailabilities": [],
@@ -2911,6 +3070,13 @@
       "name": "Project Example",
       "description": "Project Description",
       "isActive": true,
+      "active": false
+    },
+    {
+      "id": 10,
+      "name": "Build a webservice",
+      "description": "A project to build a new webservice",
+      "owner": "",
       "active": true
     }
   ]
