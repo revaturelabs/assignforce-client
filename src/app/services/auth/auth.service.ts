@@ -46,7 +46,7 @@ export class AuthService {
     };
     const onFailure = err => {
       console.log('Error upon trying to login...');
-      alert(err);
+      console.log(err);
       router.navigate([urlService.getLoginUrl()]);
     };
 
