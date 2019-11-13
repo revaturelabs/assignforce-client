@@ -125,6 +125,12 @@
             <mat-cell *matCellDef="let batch"> {{batch.endDate | date : 'MM/dd/yyyy'}} </mat-cell>
           </ng-container>
 
+          <!-- source Column -->
+          <ng-container matColumnDef="source">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Source</mat-header-cell>
+            <mat-cell *matCellDef="let batch"> {{batch.source}} </mat-cell>
+          </ng-container>
+
 
           <!-- Buttons -->
           <ng-container matColumnDef="Icons">
