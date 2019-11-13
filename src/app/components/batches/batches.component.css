@@ -28,3 +28,15 @@ mat-icon,
 #batchName {
   width: 250px;
 }
+
+.mat-column-sprintStartDate {
+  margin: 10px;
+}
+.mat-column-sprintEndDate {
+  margin: 10px;
+}
+
+
+.mat-column-source {
+  margin: 10px;
+}

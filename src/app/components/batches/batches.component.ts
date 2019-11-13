@@ -91,6 +91,7 @@ export class BatchesComponent implements OnInit, AfterViewInit {
     ...this.batchColumns,
     "sprintStartDate",
     "sprintEndDate",
+    "source",
     "Icons",
   ];
 

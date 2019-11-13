@@ -20,6 +20,7 @@ export class Batch {
   room: number;
   size: number;
   finalProject: number;
+  source: string;
 
 
   /**
