@@ -136,7 +136,7 @@ import {UrlService} from "./services/url/url.service";
     AppRouting,
     BrowserAnimationsModule,
     AppMaterialModule,
-    ],
+  ],
 
   exports: [AppMaterialModule, RoomAddEventFormComponent],
 

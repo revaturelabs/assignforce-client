@@ -39,5 +39,6 @@
 
 .mat-icon:hover,
 .material-icons:hover {
-  color: #f26a25;
+  /*color: #f26a25;*/
+  color: red;
 }

@@ -1,3 +1,46 @@
+p.glyphicon-file {
+  font-size: 3em;
+}
+
+/*button {*/
+/*  background-color: #fff;*/
+/*  !*color: #f26a25;*!*/
+/*  color: red;*/
+/*  width: 100px;*/
+/*  height: 55px;*/
+/*  border: none;*/
+/*}*/
+
+/*div .form-group {*/
+/*  color: orange;*/
+
+
+.file{
+  text-align: center;
+  float: left;
+  margin-left: 2em;
+  color: #f26a25;
+  cursor: pointer;
+}
+
+.file h5 {
+  color: black;
+
+}
+
+.form-group [type=file]{
+  /*color: #ffffff;*/
+  margin-left: 2em;
+}
+
+/*.form-group {*/
+/*  border: 1px solid #ccc;*/
+/*  display: inline-block;*/
+/*  padding: 6px 12px;*/
+/*  cursor: pointer;*/
+/*}*/
+
+
 /* ---------- PROFILE STYLING ----------- */
 #profileDiv {
   margin-top: 5%;

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
+import { file } from "@babel/types";
 import { Skill } from '../../model/Skill';
 import { S3CredentialService } from '../../services/s3-credential/s3-credential.service';
 import { SkillControllerService } from '../../services/api/skill-controller/skill-controller.service';
@@ -11,20 +12,23 @@ import { AddressControllerService } from '../../services/api/address-controller/
 import { Address } from '../../model/Address';
 import { Unavailability } from '../../model/Unavailability';
 import { Observable } from '../../../../node_modules/rxjs/Observable';
+import { FilehandlerService} from "../../services/api/filehandler-controller/filehandler-controller.service";
+import { Document } from "../../model/Document";
+import { DocumentAndID} from "../../model/DocumentAndID";
 
 declare const gapi;
-
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  fileToUpload: File = null;
+  documents:Document[] = [];
 
   @Input() fName: string;
   @Input() lName: string;
-  //I'm not sure what this does but... it's a -1
-  tId: -1;
+
   //Google API Constant
   //Decides if the edit will show up for certain users so for trainers it takes out the skill edit but leaves the
   lockProfile = true;
@@ -38,6 +42,37 @@ export class ProfileComponent implements OnInit {
     linkIn: new FormControl('', Validators.required),
     locSelect: new FormControl('')
   });
+
+  //Uploading credentials as resume for trainers
+  handleFileInput(files: FileList) {
+    console.log("files to upload");
+    this.fileToUpload = files.item(0);
+    console.log(this.fileToUpload);
+    this.fileHandlerService.upload("resume",this.trainer.id,files)
+      .then(x=>this.loadFiles());
+
+  }
+
+  downLoadFile(data: Document) {
+    var blob = new Blob([data.file.fileContent], { type: data.file.type.toString() });
+    var url = window.URL.createObjectURL(blob);
+    window.open(url);
+  }
+
+
+  loadFiles(){
+    //grab files from database and set the global array named documentList
+    this.fileHandlerService.find(this.trainer.id).subscribe((docs:DocumentAndID[]) => {
+      console.log("-----here are your documents-----");
+      this.documents = [];
+      docs.forEach((d) => {
+        if (d.document.trainerID === this.trainer.id) {
+          this.documents.push(d.document);
+        }
+      });
+    });
+  }
+
 
   unavailableForm = new FormGroup({
     startDate: new FormControl(),
@@ -77,7 +112,8 @@ export class ProfileComponent implements OnInit {
     private addressService: AddressControllerService,
     private router: Router,
     private route: ActivatedRoute,
-    public auth0: AuthService
+    public auth0: AuthService,
+    private fileHandlerService:FilehandlerService
   ) {
   }
 
@@ -102,6 +138,9 @@ export class ProfileComponent implements OnInit {
             } else {
               this.trainer = trainer;
             }
+            //call the load files
+            this.loadFiles();
+
             this.loading = false;
           } else {
             this.failed = true;

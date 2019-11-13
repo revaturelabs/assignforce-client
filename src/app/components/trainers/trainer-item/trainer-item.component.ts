@@ -13,6 +13,7 @@ import { RouterLink } from '../../../../../node_modules/@angular/router';
   templateUrl: './trainer-item.component.html',
   styleUrls: ['./trainer-item.component.css']
 })
+
 export class TrainerItemComponent implements OnInit {
   @Input()
   trainer: Trainer;
