@@ -55,10 +55,10 @@ describe('ProfileComponent', () => {
     trainerService = new TrainerControllerService(null);
     skillService = new SkillControllerService(null);
     auth0 = new AuthService(null, null);
-    component = new ProfileComponent(skillService, trainerService, addressService, router, route, auth0);
+    //component = new ProfileComponent(skillService, trainerService, addressService, router, route, auth0);
 
     spyOn(addressService, 'findAll');
-   
+
     spyOn(trainerService, 'findAll');
 
     spyOn(skillService, 'findAll');
@@ -141,7 +141,7 @@ describe('ProfileComponent', () => {
   it('should call verifyEmail', () => {
     spyOn(component, 'verifyEmail');
     component.verifyEmail();
-    expect(component.verifyEmail).toHaveBeenCalled(); 
+    expect(component.verifyEmail).toHaveBeenCalled();
   });
 
   it('should call padZeroMonth with num', () => {

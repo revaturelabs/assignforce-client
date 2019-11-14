@@ -35,6 +35,7 @@ export class AuthService {
     const router = this.router;
     const urlService = this.urlService;
     const onSuccess = result => {
+
     console.log("Successful login...");
     const expiresAt = JSON.stringify(result.getAccessToken().getExpiration() * 1000 + new Date().getTime());
     localStorage.setItem('access_token', result.getAccessToken().getJwtToken());

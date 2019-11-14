@@ -17,6 +17,7 @@
         </button>
       </mat-toolbar>
     </mat-toolbar-row>
+
     <!--info section-->
     <mat-card-content id="profileContent ">
       <div class="row " *ngIf="trainer">
@@ -97,6 +98,35 @@
       </form>
     </div>
   </mat-card-content>
+</mat-card>
+
+<mat-card>
+  <mat-toolbar-row>
+    <mat-toolbar class="md-toolbar" layout="columns">
+      Curriculum Vitae
+    </mat-toolbar>
+  </mat-toolbar-row>
+  <mat-card-content>
+    <div class="form-group">
+      <label for="file" class="custom-file-upload"></label>
+      <input type="file"
+             id="file" size="120"
+             (change)="handleFileInput($event.target.files)">
+    </div>
+    <p *ngIf="documents.length===0">Your resumes will show up here</p>
+
+
+
+    <!-- One file per submission stored in this container allows for duplicates-->
+    <div class="file_container" *ngIf="documents.length>0">
+      <div class="file" *ngFor ="let document of documents">
+        <p class="glyphicon glyphicon-file glyph"><span (click)="downLoadFile(document)" class="glyphicon glyphicon-download glyph"></span></p>
+        <h5>{{document.file?.fileName}}</h5>
+      </div>
+
+    </div>
+  </mat-card-content>
+
 </mat-card>
 
 <div *ngIf="failed">
