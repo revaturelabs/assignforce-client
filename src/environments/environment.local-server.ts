@@ -147,7 +147,7 @@ export const environment = {
       remove: "/",
     },
     filehandlerController: {
-      baseUrl: "api/filehandler",
+      baseUrl: "http://localhost:3000/filehandler",
       create: "",
       update: "/",
       findAll: "",
