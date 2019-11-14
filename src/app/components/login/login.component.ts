@@ -36,4 +36,8 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.auth0.startLogin(this.loginForm.get('email').value, this.loginForm.get('password').value);
   }
+
+  forgotPasswordButton() {
+    this.auth0.forgotPassword();
+  }
 }

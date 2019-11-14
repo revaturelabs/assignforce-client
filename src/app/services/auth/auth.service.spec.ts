@@ -33,7 +33,7 @@ describe('AuthService', () => {
       ]
     }).compileComponents();
     service = TestBed.get(AuthService);
-   
+
     let store = {};
     const mockLocalStorage = {
       getItem: (key: string): string => {
@@ -61,7 +61,7 @@ describe('AuthService', () => {
   it('should be created', inject([AuthService], (service: AuthService) => {
     expect(service).toBeTruthy();
   }));
-  
+
   //login test needed for future iterations
 
   //logout test
@@ -70,7 +70,7 @@ describe('AuthService', () => {
     localStorage.setItem('id_token','idtoken');
     localStorage.setItem('expires_at','expat');
     localStorage.setItem('roles','rolestoken');
-    
+
     service.logout();
     expect(localStorage.getItem('access_token')).toBe(null);
     expect(localStorage.getItem('id_token')).toBe(null);
@@ -83,7 +83,7 @@ describe('AuthService', () => {
     localStorage.setItem('expires_at', JSON.stringify(new Date().getTime()+20000000));
     expect(service.isAuthenticated()).toBe(true);
   })
- 
+
   it('should return false if expiration date is before now',()=>{
     localStorage.setItem('expires_at', JSON.stringify(new Date().getTime()));
     expect(service.isAuthenticated()).toBe(false);
@@ -111,11 +111,22 @@ describe('AuthService', () => {
     localStorage.setItem('roles', '{"role1", "role2", "role3"}');
     expect(service.userHasRole(expectedRoles)).toBe(true);
   })
-  
+
  //get Token test
  it('should get access token', ()=>{
    localStorage.setItem('access_token','test_token')
    expect(service.getToken()).toBe('test_token')
  })
- 
+
+
+
+ //check that old password is different from new password
+ it('should return new password being different from old password', ()=> {
+   let newPassword = 'newPass';
+   let oldPassword = 'P@$$w0rd123' ;
+   spyOn(service, 'forgotPassword')
+   .and.returnValue('newPass');
+   expect(service.forgotPassword()).toBe("newPass");
+ })
+
 });
