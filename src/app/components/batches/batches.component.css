@@ -30,13 +30,13 @@ mat-icon,
 }
 
 .mat-column-sprintStartDate {
-  margin: 10px;
+  margin: 5px;
 }
 .mat-column-sprintEndDate {
-  margin: 10px;
+  margin: 5px;
 }
 
-
 .mat-column-source {
-  margin: 10px;
+  margin: 5px;
+  font-weight: bold;
 }
